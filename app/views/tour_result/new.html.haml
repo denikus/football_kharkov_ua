@@ -1,0 +1,24 @@
+= javascript_include_tag 'jquery-plugins/select-chain'
+= javascript_include_tag 'application/tour_result/tour_result'
+%h1= "Результаты тура"
+- error_messages_for :article 
+- error_messages_for :post
+
+%div#selector-container
+  %label
+    Турнир
+  =select :tournament, :id, @tournaments.collect {|x| [ x.name, x.id ] }, { :prompt => "Выберите" }
+  .clear
+  %label
+    Сезон
+  =select :season, :id, [], { :prompt => "Выберите"}
+  .clear
+  %label
+    Этап
+  =select :stage, :id, [], { :prompt => "Выберите"}
+  .clear
+
+- form_tag({:action => "create"}, {:id=>"matches_form", :style => "display: none;"}) do
+  %fieldset{:id=>"matches-container"}
+    %legend{:style=> "font-weight: bold;"} Матчи включаемые в результаты тура
+

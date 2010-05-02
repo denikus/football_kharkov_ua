@@ -1,0 +1,15 @@
+<h1>Публичный профиль</h1>
+<%= render :partial => 'avatar', :locals => {:edit => false} %>
+<div id="profile-data-block">
+  <label for="profile_first_name">Имя:</label>
+  <span class="text" id="profile_first_name"><%= @profile.first_name %></span>
+  
+  <label for="profile_last_name">Фамилия:</label>
+  <span class="text" id="profile_last_name"><%= @profile.last_name %></span>
+  
+  <label for="profile_birthday">Дата рождения:</label>
+  <span class="text" id="profile_birthday"><%= @profile.birthday.strftime('%Y-%m-%d') unless @profile.birthday.nil? %></span>
+  
+  <label for="profile_gender">Пол:</label>
+  <span class="text" id="profile_gender"><%= Hash[*Profile::GENDER_OPTIONS.flatten][@profile.gender] %></span>
+</div>

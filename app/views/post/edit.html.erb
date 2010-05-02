@@ -1,0 +1,17 @@
+<%= javascript_include_tag :fckeditor %>
+<h1>Редактирование записи</h1>
+<%= error_messages_for :post %>
+
+<% form_for @post, :url =>{:action=>'update', :id=>@post.id} do |f| %>
+<p>
+    <span>Заголовок</span>
+    <div><%= f.text_field :title %></div>
+ </p>
+<p>
+    <span>Текст</span>
+  <div>
+        <%= fckeditor_textarea(:post, :body, :toolbarSet => 'Basic', :width => '95%', :height => '500px') %>
+    </div>
+ </p>
+<%= f.submit "Сохранить"%>
+<%end%>

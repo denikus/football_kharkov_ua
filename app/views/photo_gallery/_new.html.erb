@@ -1,0 +1,91 @@
+<%= stylesheet_link_tag "mootools-plugins/FancyUpload/style" %>
+<%= javascript_include_tag "mootools/mootools-1.2-core-nc" %>
+<%= javascript_include_tag "mootools-plugins/FancyUpload/Swiff.Uploader" %>
+<%= javascript_include_tag "mootools-plugins/FancyUpload/Fx.ProgressBar" %>
+<%= javascript_include_tag "mootools-plugins/FancyUpload/FancyUpload2" %>
+<script type="text/javascript">
+window.addEvent('load', function() {
+
+    gallery_path = '';
+	var swiffy = new FancyUpload2($('demo-status'), $('demo-list'), {
+		'url': '/photo_gallery/upload_image?method=post' + '&_session_id=<%= session.session_id %>' + '&user_id=<%= session[:user]%>', 
+		'fieldName': 'photoupload',
+		'path': '../../../source/Swiff.Uploader.swf',
+		'onLoad': function() {
+			$('demo-status').removeClass('hide');
+			$('demo-fallback').destroy();
+		},
+        // The changed parts!
+		typeFilter: {'Images (*.jpg, *.jpeg, *.gif, *.png)': '*.jpg; *.jpeg; *.gif; *.png'},
+		target: 'demo-browse-images' // the element for the overlay (Flash 10 only)
+	});
+    
+
+	/**
+	 * Various interactions
+	 */
+
+//	$('demo-browse-all').addEvent('click', function() {
+//		swiffy.browse();
+//		return false;
+//	});
+
+	$('demo-browse-images').addEvent('click', function() {
+        swiffy.browse();
+		return false;
+	});
+
+	$('demo-clear').addEvent('click', function() {
+		swiffy.removeFile();
+		return false;
+	});
+
+	$('demo-upload').addEvent('click', function() {
+		swiffy.upload();
+		return false;
+	});
+
+});
+</script>
+<div id="demo">
+<% form_for @photo_gallery, :url => { :controller => :photo_gallery, :action => :create}, :html => { :method => :post, :id => "form-demo" } do |f|  %>
+    <input type="hidden" name="gallery_id" id="gallery_id" value="" />
+    <div class="main-form-block">
+      <label for="post_title">Заголовок:</label>
+      <%= text_field :post, :title, :class=>"text" %>
+    </div>
+	<fieldset id="demo-fallback">
+		<legend>Загрузка файлов</legend>
+		<p>
+			Выберите фотографии которые хотели бы загрузить<br />
+		</p>
+		<label for="demo-photoupload">
+			Загрузка фотографий:
+			<input type="file" name="photoupload" id="demo-photoupload" />
+		</label>
+	</fieldset>
+ 
+	<div id="demo-status" class="hide">
+		<p>
+			<a href="#" id="demo-browse-images">Выбрать фотографии</a> |
+			<a href="#" id="demo-clear">Очистить список</a> |
+			<a href="#" id="demo-upload">Загрузка</a>
+		</p>
+		<div>
+			<strong class="overall-title">Общий прогресс</strong><br />
+      <%= image_tag "/images/FancyUpload/bar.gif", :class => "progress overall-progress"  %>
+		</div>
+		<div>
+			<strong class="current-title">Загрузка файла</strong><br />
+      <%= image_tag "/images/FancyUpload/bar.gif", :class => "progress current-progress"  %>
+		</div>
+		<div class="current-text"></div>
+	</div>
+  <ul id="uploaded-files"></ul>
+	<ul id="demo-list"></ul>
+  <div class="clear"></div>
+  <div id="gallery-submit">
+    <%= f.submit "Сохранить", :class=>"fancy-submit" %>
+  </div>
+<% end %>
+</div>

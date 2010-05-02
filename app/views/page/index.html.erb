@@ -1,0 +1,8 @@
+<h2>All Pages</h2>
+<ul>
+  <% @pages.each do |page| %>
+     <li>
+       <%= link_to page.title, {:action=>'show', :id=>page.permalink} %> : <%= page.title %>
+     </li>
+  <% end %>
+</ul>

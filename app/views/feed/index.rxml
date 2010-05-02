@@ -1,0 +1,30 @@
+xml.instruct!
+xml.rss "version" => "2.0" , "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+  xml.channel do
+    xml.title 'Душевный футбол'
+    xml.link url_for(:only_path => false,
+                     :controller => 'blog' ,
+                     :action => 'index' )
+    xml.pubDate CGI.rfc1123_date(@posts.first.updated_at)
+    xml.description h("Rss лeнта Душевного футбола" )
+    @posts.each do |post|
+      xml.item do
+        xml.title post.title
+        xml.link post_url(:only_path => false,
+                     :year => post.created_at.strftime('%Y'),
+                     :month => post.created_at.strftime('%m'),
+                     :day => post.created_at.strftime('%d'),
+                     :url => !post.url.nil? ? post.url : '')
+#                   Hpricot(truncate(decode_entities(post.resource.body), 1000, '...')).to_html
+        xml.description Hpricot(article_announce(post.resource['body'])).to_html unless post.resource['body'].nil?
+        xml.pubDate CGI.rfc1123_date(post.updated_at)
+        xml.guid post_url(:only_path => false,
+                     :year => post.created_at.strftime('%Y'),
+                     :month => post.created_at.strftime('%m'),
+                     :day => post.created_at.strftime('%d'),
+                     :url => !post.url.nil? ? post.url : '')
+        xml.author h(User.find(post.author_id).username)
+      end
+    end
+  end
+end

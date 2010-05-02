@@ -1,0 +1,8 @@
+<h2><%= link_to(post.title, post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : ''}))%></h2>
+<div>
+  <% if !post.resource.photos.empty? %>
+    <%= image_tag '/user/' + post.author_id.to_s + '/photo_gallery/' +  post.resource.id.to_s + '/thumbs/thumb_' + post.resource.photos[0].filename  %>
+  <% end %>
+  <br />
+  <%= link_to("смотреть дальше", post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : ''}))%>
+</div>

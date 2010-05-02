@@ -1,0 +1,10 @@
+<h1>Редактирование фотографии пользователя</h1>
+<% form_for :profile_avatar, :url => user_profile_avatar_path(@user), :html => {:multipart => true, :method => 'PUT'} do |f| %>
+  <fieldset>
+    <label for="profile_avatar_uploaded_data">Фотография:</label>
+    <%= f.file_field :uploaded_data, :class=>"text" %>
+    
+    <div class="clear"></div>
+    <%= f.submit 'Отправить', :class=>"fancy-submit" %>
+  </fieldset>
+<%  end %>

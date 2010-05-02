@@ -1,0 +1,9 @@
+<h2>Регистрация</h2>
+<%= error_messages_for :user %>
+<% form_for :user, :url => {:controller=>'admin/user', :action=>'create', :id=>'new'} do |f| -%>
+  <p>Username:<%= f.text_field :username, :size => 40 %></p>
+  <p>Email:<%= f.text_field :email, :size => 60 %></p>
+  <p>Password:<%= f.password_field :password, :size => 60 %></p>
+  <p>Password Confirmation:    <%= f.password_field :password_confirmation, :size => 60 %></p>
+    <%= submit_tag 'Отправить' %>
+<% end -%>

@@ -1,0 +1,56 @@
+<%= stylesheet_link_tag "jquery-plugins/uploadify/uploadify" %>
+<%= javascript_include_tag "jquery-plugins/uploadify/swfobject" %>
+<%= javascript_include_tag "jquery-plugins/jquery.json-2.2.min" %>
+<%= javascript_include_tag "jquery-plugins/uploadify/jquery.uploadify.v2.1.0.min" %>
+<%- session_key_name = ActionController::Base.session_options[:key] -%>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#demo-photoupload').uploadify({
+      script          : '/photo_gallery/upload_image',
+      fileDataName    : 'photoupload[file]',
+      uploader        : '/source/uploadify.swf',
+      queueID         : 'fileQueue',
+      //'auto'           : true,
+		  multi           : true,
+      cancelImg       : '/images/uploadify/cancel.png',
+      buttonText      : "Select Files",
+      onComplete      :function(event, queue_id, file_obj, response, data) {
+        response_obj = $.evalJSON(response);
+        $("#gallery_id").val(response_obj['gallery_id']);
+//        alert($("#gallery_id").val());
+        $("#fileThumbs").append("<img src=\"" + response_obj['path'] + "thumb_" + file_obj['name'] + "\"/>");
+        $("#fileThumbs").append("<div class=\"clear\"></div>");
+        $("#fileThumbs").append("<input type=\"text\" class=\"text\" name=\"picture[" + file_obj['name'] + "]\" />");
+        $("#fileThumbs").append("<div class=\"clear\"></div>");
+      },
+      scriptData      : {
+        '<%= session_key_name %>' : '<%= u cookies[session_key_name] %>',
+        'authenticity_token'  : '<%= u form_authenticity_token if protect_against_forgery? %>',
+        'user_id': '<%= session['warden.user.user.key'][1] %>',
+        'gallery_id': $("#gallery_id").val()
+      }
+  });
+});
+</script>
+
+<div id="demo">
+<% form_for @photo_gallery, :url => { :controller => :photo_gallery, :action => :create}, :html => { :method => :post, :id => "form-demo" } do |f|  %>
+    <input type="hidden" name="gallery_id" id="gallery_id" value="0" />
+    <div class="main-form-block">
+      <label for="post_title">Заголовок:</label>
+      <%= text_field :post, :title, :class=>"text" %>
+    </div>
+	<fieldset id="demo-fallback">
+		<legend>Загрузка файлов</legend>
+    <div><a href="javascript:$('#demo-photoupload').uploadifyUpload();">Загрузить выбранные файлы</a> | <a href="javascript:$('#demo-photoupload').uploadifyClearQueue();">Очистить очередь файлов</a></div>
+		<label for="demo-photoupload">
+			<input type="file" name="photoupload" id="demo-photoupload" />
+		</label>
+	</fieldset>
+  <div id="fileQueue"></div>
+  <div id="fileThumbs"></div>
+  <div id="gallery-submit">
+    <%= f.submit "Сохранить", :class=>"fancy-submit" %>
+  </div>
+<% end %>
+</div>

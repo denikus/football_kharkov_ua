@@ -1,0 +1,41 @@
+<h1>Редактирование профиля</h1>
+<%= render :partial => 'avatar', :locals => {:edit => true} %>
+<div id="profile-data-block">
+  <% form_for :profile, :url => user_profile_path(@user), :html => {:method => :put} do |f| %>
+    <label for="profile_first_name">Имя:</label>
+    <%= f.text_field :first_name, :class=>"text" %>
+    
+    <label for="profile_last_name">Фамилия:</label>
+    <%= f.text_field :last_name, :class=>"text" %>
+    
+    <label for="profile_birthday">Дата рождения:</label>
+    <%= f.date_select :birthday, {:include_blank => true, :default => nil, :start_year => Time.now.year, :end_year => Time.now.year - 100} %>
+    
+    <label for="profile_gender">Пол:</label>
+    <%= f.select :gender, Profile::GENDER_OPTIONS.collect(&:reverse), {:selected => @profile['gender'].to_s} %>
+    
+    <label for="profile_user_type">Статус:</label>
+    <%= f.select :user_type, Profile::USER_TYPE_OPTIONS.collect(&:reverse), {:selected => @profile['user_type'].to_s} %>
+    
+    <label for="profile_role" id="label_profile_role" <% if (@profile.user_type!='footballer') %>style="display:none;" <% end %>>Амплуа:</label>
+    <%= f.select :role, Profile::ROLE_OPTIONS.collect(&:reverse), {:selected => @profile['role'].to_s}, {:style => "display:none;"} %>
+    
+    <div class="clear"></div>
+    <%= f.submit 'Отправить', :class=>"fancy-submit" %>
+  <%  end %>
+</div>
+<script language="javascript">
+  $(document).ready(function() {
+    $('#profile_user_type').change(function() {
+      if ('footballer' == $('#profile_user_type').val()) {
+        $('#profile_role').slideDown("slow");
+        $('#label_profile_role').slideDown("slow");
+      } else {
+         if ($('#profile_role').is(":visible")) {
+           $('#profile_role').slideUp("slow");
+           $('#label_profile_role').slideUp("slow");
+         }
+      }
+    });
+  });
+</script>

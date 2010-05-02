@@ -1,0 +1,103 @@
+<%= stylesheet_link_tag "mootools-plugins/FancyUpload/style" %>
+<%= javascript_include_tag "mootools/mootools-1.2-core" %>
+<%= javascript_include_tag "mootools-plugins/FancyUpload/Swiff.Uploader" %>
+<%= javascript_include_tag "mootools-plugins/FancyUpload/Fx.ProgressBar" %>
+<%= javascript_include_tag "mootools-plugins/FancyUpload/FancyUpload2" %>
+<script type="text/javascript">
+window.addEvent('load', function() {
+  gallery_path = '';
+	var swiffy = new FancyUpload2($('demo-status'), $('demo-list'), {
+		'url': '/photo_gallery/upload_image?method=post' + '&_session_id=<%= session.session_id %>', 
+//		'url': $('form-demo').action + '&_session_id=<%= session.session_id %>', 
+		'fieldName': 'photoupload',
+		'path': '../../../source/Swiff.Uploader.swf',
+    'data': {'gallery_id': '<%= @photo_gallery.id %>'},
+		'onLoad': function() {
+			$('demo-status').removeClass('hide');
+			$('demo-fallback').destroy();
+		}
+	});
+
+	/**
+	 * Various interactions
+	 */
+
+	$('demo-browse-all').addEvent('click', function() {
+		swiffy.browse();
+		return false;
+	});
+
+	$('demo-browse-images').addEvent('click', function() {
+		swiffy.browse({'Images (*.jpg, *.jpeg, *.gif, *.png)': '*.jpg; *.jpeg; *.gif; *.png'});
+		return false;
+	});
+
+	$('demo-clear').addEvent('click', function() {
+		swiffy.removeFile();
+		return false;
+	});
+
+	$('demo-upload').addEvent('click', function() {
+		swiffy.upload();
+		return false;
+	});
+  <% if !@photo_gallery.photos.empty? %>
+      $('gallery-submit').setStyle('visibility', 'visible');
+  <% end %>
+
+});
+</script>
+<div id="demo">
+<% form_for @photo_gallery, :url => { :controller => :photo_gallery, :action => :update}, :html => { :method => :post, :id => "form-demo" } do |f|  %>
+<%= f.hidden_field :gallery_id, :value => @photo_gallery.id %>
+    <div class="main-form-block">
+      <label for="post_title">Заголовок:</label>
+      <%= text_field :post, :title, :class=>"text" %>
+    </div>
+	<fieldset id="demo-fallback">
+		<legend>File Upload</legend>
+		<p>
+			Selected your photo to upload.<br />
+			<strong>This form is just an example fallback for the unobtrusive behaviour of FancyUpload.</strong>
+		</p>
+		<label for="demo-photoupload">
+			Upload Photos:
+			<input type="file" name="photoupload" id="demo-photoupload" />
+		</label>
+	</fieldset>
+ 
+	<div id="demo-status" class="hide">
+		<p>
+			<a href="#" id="demo-browse-all" style="display: none;">Browse Files</a>
+			<a href="#" id="demo-browse-images">Select Images</a> |
+			<a href="#" id="demo-clear">Clear List</a> |
+			<a href="#" id="demo-upload">Upload</a>
+		</p>
+		<div>
+			<strong class="overall-title">Overall progress</strong><br />
+      <%= image_tag "/images/FancyUpload/bar.gif", :class => "progress overall-progress"  %>
+			<!--<img src="../images/FancyUpload/bar.gif" class="progress overall-progress" />-->
+		</div>
+		<div>
+			<strong class="current-title">File Progress</strong><br />
+      <%= image_tag "/images/FancyUpload/bar.gif", :class => "progress current-progress"  %>
+			<!--<img src="../images/FancyUpload/bar.gif" class="progress current-progress" />-->
+		</div>
+		<div class="current-text"></div>
+	</div>
+	<ul id="demo-list"></ul>
+  <ul id="uploaded-files">
+    <% if !@photo_gallery.photos.empty? %>
+      <% @photo_gallery.photos.each do |item| %>
+      <li>
+        <%= image_tag '/user/' + User.find(session[:user])['id'].to_s + '/photo_gallery/' + @photo_gallery.id.to_s + '/thumbs/thumb_' + item.filename %>
+        <div>
+          <input type="text" name="picture[<%= item.filename %>]" value="<%= item.title %>" />
+        </div>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div id="gallery-submit"><input type="submit" value="Save" /></div>
+<% end %>
+</div>

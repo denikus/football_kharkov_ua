@@ -1,0 +1,19 @@
+<%= javascript_include_tag "shadowbox/adapter/shadowbox-jquery" %>
+<%= javascript_include_tag "shadowbox/shadowbox" %>
+<script type="text/javascript">
+  Shadowbox.loadSkin('classic', '../../../javascripts/shadowbox/skin');
+  Shadowbox.loadLanguage('ru', '../../../javascripts/shadowbox/lang');
+  Shadowbox.loadPlayer(['html', 'iframe', 'img'], '../../../javascripts/shadowbox/player');
+  $(document).ready(function() {
+
+      Shadowbox.init();
+  });
+</script>
+<div>
+  <%if !post.resource.photos.nil? %>
+    <% post.resource.photos.each do |image| %>
+      <%= link_to image_tag('/user/' + post.author_id.to_s + '/photo_gallery/' + post.resource.id.to_s + '/thumbs/thumb_' + image.filename), '/user/' + post.author_id.to_s + '/photo_gallery/' + post.resource.id.to_s + '/' + image.filename, {:rel => 'shadowbox[' + post.title + ']', :title => image.title, :class => 'thumbs'} %>
+    <%end%>
+    <br class="clear" />
+  <% end %>
+</div>

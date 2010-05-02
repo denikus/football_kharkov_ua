@@ -1,0 +1,17 @@
+<h1>Редактирование профиля</h1>
+<%= error_messages_for :user %>
+<% form_for @user, :url => { :action => "profile" }, :html=>{:method=>:post} do |f| %>
+  <fieldset>
+    <label for="user_email">Email:</label>
+    <%= f.text_field :email, :class=>"text" %>
+  
+    <label for="user_password">Пароль:</label>
+    <%= f.password_field :password, :class=>"text" %>
+    
+    <label for="user_password_confirmation">Повторите пароль:</label>
+    <%= f.password_field :password_confirmation, :class=>"text" %>
+    
+    <div class="clear"></div>
+    <%= f.submit 'Сохранить', :class=>"fancy-submit" %>
+  </fieldset>
+<% end %>

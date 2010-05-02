@@ -1,0 +1,29 @@
+html, body {
+    font:normal 12px verdana;
+    margin:0;
+    padding:0;
+    border:0 none;
+    overflow:hidden;
+    height:100%;
+}
+p {
+    margin:5px;
+}
+
+.application-menu-node {
+  padding: 5px 0;
+}
+
+.add-item {
+  background-image: url(/images/icons/add.png) !important;
+}
+.del-item {
+  background-image: url(/images/icons/delete.png) !important;
+}
+/*
+.settings {
+    background-image:url(../shared/icons/fam/folder_wrench.png);
+}
+.nav {
+    background-image:url(../shared/icons/fam/folder_go.png);
+}*/

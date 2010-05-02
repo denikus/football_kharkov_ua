@@ -1,0 +1,16 @@
+<h1>Инструкции по активации аккаунта</h1>
+
+<% form_for resource_name, resource, :url => confirmation_path(resource_name) do |f| %>
+  <fieldset>
+    <%= f.error_messages %>
+
+    <%= f.label :Email %>
+    <p><%= f.text_field :email, :class => "text" %></p>
+
+    <p><%= f.submit "Отправить инструкции по активации аккаунта", :class => "fancy-submit" %></p>
+
+    <%- if devise_mapping.recoverable? %>
+      <%= link_to "Забыли пароль?", new_password_path(resource_name) %><br />
+    <% end -%>
+  </fieldset>
+<% end %>

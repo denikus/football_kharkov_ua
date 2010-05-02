@@ -1,0 +1,5 @@
+Добро пожаловать на football.kharkov.ua, <%= @user.username %>!
+
+Для активации Вашего аккаунта перейдите по следующей ссылке:
+
+<%= link_to 'Подтвердить аккаунт', confirmation_url(@user, :confirmation_token => @user.confirmation_token) %>

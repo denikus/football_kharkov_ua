@@ -1,0 +1,22 @@
+<h2>Изменить пароль</h2>
+
+<% form_for resource_name, resource, :url => password_path(resource_name), :html => { :method => :put } do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <%= f.hidden_field :reset_password_token %>
+
+    <p><%= f.label "Пароль" %></p>
+    <p><%= f.password_field :password, :class => "text" %></p>
+
+    <p><%= f.label "Повторите пароль" %></p>
+    <p><%= f.password_field :password_confirmation, :class => "text" %></p>
+
+    <p><%= f.submit "Изменить мой пароль", :class => "fancy-submit" %></p>
+
+    <%- if devise_mapping.confirmable? %>
+      <%= link_to "Не получили инструкций по активации аккаунта?", new_confirmation_path(resource_name) %><br />
+    <% end -%>
+  </fieldset>
+<% end %>
+
+

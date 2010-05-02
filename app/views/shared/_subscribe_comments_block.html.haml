@@ -1,0 +1,5 @@
+=check_box_tag :subscribe_unsibscribe_comments, true, subscribed?(post_id), {:id => "subscribe_unsibscribe_comments_#{post_id}"}
+%label{:style=> "display: inline;", :for => "subscribe_unsibscribe_comments_#{post_id}"} Подписаться
+%span{:id => "subscribe_status"}
+  ="(Вы подписаны)" if subscribed?(post_id)
+.clear  

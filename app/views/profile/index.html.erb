@@ -1,0 +1,35 @@
+<h1><%=h @user.username %></h1>
+<div id="profile-photo-block"></div>
+<div id="profile-data-block">
+  <% if @user.profile %>
+    <dl>
+      <% if !@user.profile.first_name.nil? || !@user.profile.last_name.nil? %>
+        <dt>Имя:</dt>
+        <dd>
+          <%= @user.profile.first_name unless !@user.profile.first_name.nil %>
+          <%= @user.profile.last_name unless !@user.profile.last_name.nil %>
+        </dd>
+      <% end %>
+
+      <% unless @user.profile.birthday.nil? %>
+        <dt>Дата рождения:</dt>
+        <dd><%= @user.profile.birthday %></dd>
+      <% end %>
+
+      <dt>Пол:</dt>
+      <dd><%= Profile::GENDER_OPTIONS[@user.profile.gender.to_s] %></dd>
+
+      <dt>Статус:</dt>
+      <dd><%= Profile::USER_TYPE_OPTIONS[@user.profile.user_type.to_s] %></dd>
+
+      <% if !@user.profile.role.nil? && @user.profile.user_type == 'footballer'  %>
+        <dt>Амплуа:</dt>
+        <dd><%= Profile::ROLE_OPTIONS[@user.profile.role.to_s] %></dd>
+      <% end %>
+    </dl>
+    <div class="clear"></div>
+    <% if is_logged_in? && @user.id == session[:user] %>
+      <%= link_to 'Редактировать', {:controller => :profile, :action => :edit_profile}  %>
+    <% end %>
+  <% end %>
+</div>

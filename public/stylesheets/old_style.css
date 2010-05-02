@@ -1,0 +1,118 @@
+/*main styles*/
+body {
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #DEDEDE;
+  color:#444444;
+} 
+div#header {
+  background-color: #FFF;
+  border-bottom: 5px solid #888888;
+}
+
+div#content {
+  background-color: #FFF;
+}
+
+div#footer {
+  background-color: #555555;
+  color: #CCCCCC;
+}
+
+img {
+  border: 0;
+}
+
+a, a:hover, a:visited {
+  color:#004276;
+  text-decoration:underline;
+}
+
+a:hover {
+  color: #CA0002;
+}
+
+h1 {
+  color:#000000;
+  font-size:26px;
+  font-weight:normal;
+  line-height:32px;
+}
+
+h1 a:link, h1 a:visited {
+  color:#000000;
+  padding-top:20px;
+  text-decoration:none;
+}
+
+h1 a:hover {
+  text-decoration:underline;
+}
+
+div.content {
+  margin: 10px 0;
+  /*margin-top:10px;*/
+  font-size:13px;
+  line-height:20px;
+}
+
+#login-box {
+  margin-top: 5px;
+  overflow:hidden;
+  padding:0pt 0pt 0pt 10px;
+  float: right;
+  width:450px;
+}
+
+#login-box p {
+  margin-top: 5px;
+}
+
+form, fieldset, img {
+  border:medium none;
+}
+
+fieldset ol {
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin:0pt;
+  padding:0pt 0pt 10px;
+}
+
+#login-box fieldset ol li, #forgot_user fieldset ol li {
+  float:left;
+  margin-right:20px;
+}
+fieldset ol li {
+  padding:0pt 0pt 10px;
+  vertical-align:middle;
+}
+li, dt, dd {
+  margin:0pt;
+  padding:0pt;
+}
+
+#info_collect fieldset label {
+  display:block;
+  font-weight:bold;
+  line-height:1.333em;
+}
+
+#info_collect input.textfield, #forgot_user input.textfield {
+  width:100px;
+}
+
+#info_collect input.textfield {
+  margin:0pt;
+  padding:1px 2px;
+}
+
+#user-box {
+  width:300px;
+  margin-top:5px;
+  float: right;
+}
+
+#user-box dd {
+margin-top:3px;
+}
