@@ -20,7 +20,7 @@ config.action_controller.perform_caching             = false
 config.action_mailer.raise_delivery_errors = false
 
 FORUM = {
-  :location => 'http://football.artemka.sv/football_forum/',
+  :location => 'http://forum.football.kharkov.ua/',
   :create_user => 'create_user.php',
   :confirm_user => 'confirm_user.php',
   :secret => 'b261638d90968ece3bc564296fa28c486c8e4963c6a380247a4875508c6b9f5f686df12f9f9464e6520ced86a0602ccc1ed6cdff0cfd4d8bd1b480187313c859'

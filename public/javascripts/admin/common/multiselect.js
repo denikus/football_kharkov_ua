@@ -112,7 +112,7 @@ Ext.ux.form.MultiSelect = Ext.extend(Ext.form.Field,  {
      */
 
     // private
-    defaultAutoCreate : {tag: "div"},
+    defaultAutoCreate : {tag: "div", style: "overflow: auto;"},
 
     // private
     initComponent: function(){
@@ -159,6 +159,7 @@ Ext.ux.form.MultiSelect = Ext.extend(Ext.form.Field,  {
             tbar: this.tbar
         });
         fs.body.addClass('ux-mselect');
+        fs.body.applyStyles('overflow: auto;');
 
         this.view = new Ext.ListView({
             multiSelect: true,

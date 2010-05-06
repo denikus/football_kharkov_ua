@@ -2,13 +2,13 @@
   %strong
     =item[:name]
   .clear
-  =select_tag "tour[#{item[:id]}]", options_for_select(item.tours.collect{|x| [x.name, x.id]}), {:selected => item.tours.last.nil? ? '' :  item.tours.last[:id]}
+  =select_tag "tour", options_for_select(item.tours.collect{|x| [x.name, x.id]}), {:selected => item.tours.last.nil? ? '' :  item.tours.last[:id]}
   .clear
   %div{:id =>"league_tour_content_#{item[:id]}"}
     -if (!item.tours.nil? && !item.tours.empty?) 
       -item.tours.last.matches.each do |match|
         %div
-          =check_box_tag "match[#{item[:id]}][#{match[:id]}]", 1, false, {:id=>"match_#{item[:id]}_#{match[:id]}"}
+          =check_box_tag "match[]", match[:id], false, {:id=>"match_#{item[:id]}_#{match[:id]}"}
           %label{:style=>"display:inline;", :for => "match_#{item[:id]}_#{match[:id]}"}= match_label(match)
         .clear
       %div

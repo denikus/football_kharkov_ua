@@ -19,7 +19,7 @@ class Admin::MatchesController < ApplicationController
           :date => m.played_at,
           :hosts => m.hosts.team.name,
           :guests => m.guests.team.name,
-          :score => m.score
+          :score => "#{m.hosts.stats.score} - #{m.guests.stats.score}"
         }
       end
     }

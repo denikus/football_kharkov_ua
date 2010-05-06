@@ -782,3 +782,44 @@ div.image-loading-container {
   display:none;
   text-align:center;
 }
+
+/**
+*Match result table
+**/
+table.match-result-table {
+  width: 100%;
+  border-collapse:collapse;
+  margin-bottom:20px;
+}
+
+table.match-result-table caption {
+	padding: 0 0 5px 0;
+	width: 100%;
+  font-size: 11px;
+	/*font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
+	text-align: right;
+}
+
+
+table.match-result-table th {
+  text-align: center;
+  background-color: #F5FAFA;
+  color: #BE420E;
+  border: 1px solid #EEEEEE;
+  font-size: 118%;
+}
+
+table.match-result-table td.team-name, table.match-result-table td.match-score {
+  width: 33%;
+  text-align:center;
+  border: 1px solid #EEEEEE;
+  color: #BE420E;
+  font-weight:bold;
+}
+
+table.match-result-table ul.team-players-list {
+  list-style-type: none;
+  text-align: left;
+  margin-left:3px;
+}
+

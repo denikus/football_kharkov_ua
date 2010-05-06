@@ -9,7 +9,7 @@ class Admin::FootballersController < ApplicationController
       {:total_count => footballers.length, :rows => footballers.collect(&prepare_footballer) }
     else
       start = (params[:start] || 0).to_i
-      size = (params[:limit] || 30).to_i
+      size = (params[:limit] || 1000).to_i 
       page = (start/size).to_i + 1
       
       footballers = Footballer.paginate(:all, :page => page, :per_page => size)

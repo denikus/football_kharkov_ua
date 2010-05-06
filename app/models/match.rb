@@ -1,9 +1,16 @@
 class Match < ActiveRecord::Base
   belongs_to :tour
-  has_many :competitors
+  
+  has_many :competitors do
+    [:hosts, :guests].each do |side|
+      define_method(side){ to_a.find{ |s| s.side == side } }
+    end
+  end
+  delegate :hosts, :guests, :to => :competitors
+  
   has_many :match_events
   has_many :match_links
-
+  
   def self.create_from_form params
     returning self.new(:tour_id => params[:tour_id],
       :referee_id => params[:referee_id],
@@ -22,23 +29,23 @@ class Match < ActiveRecord::Base
     end
   end
   
-  def hosts
-    competitors.find_by_side :hosts
-  end
-  
-  def guests
-    competitors.find_by_side :guests
-  end
-  
-  def refresh_score!
-    self.match_events.player.collect(&:event).select{ |e| e.event_type == :score }.inject({}) do |res, e|
-      res[e.football_player.competitor] ||= 0
-      res[e.football_player.competitor] += 1
+  def stats
+    Competitor::SIDES.inject({}) do |res, c|
+      res[c] = send(c).stats.inject({}){ |r, s| r[s.statistic.symbol.to_sym] = s.statistic_value; r }
+      res[c][:football_players] = send(c).football_players.inject({}) do |re, f|
+        re[f.id] = f.stats.inject(Hash.new{ |h, k| h[k] = [] }) do |r, s|
+          r[s.statistic.symbol.to_sym] << s.statistic_value; r
+        end
+        re[f.id].each{ |s, v| re[f.id][s] = v.join(', ') }
+        re[f.id][:number] = f.number
+        re[f.id][:full_name] = ([f.footballer.last_name] + [f.footballer.first_name, f.footballer.patronymic].collect{ |n| n[0..0]+'.' unless n.empty? }.compact).join(' ')
+        re
+      end
       res
-    end.each{ |c, s| c.update_attribute(:score, s) }
+    end
   end
   
   def score
-    "#{hosts.score}:#{guests.score}"
+    "#{hosts.stats.score || 0}:#{guests.stats.score || 0}"
   end
 end

@@ -566,6 +566,7 @@ MatchesPanel.EditMatchDialog = Ext.extend(Ext.Window, {
           url: '/admin/matches/' + this.match_id + '/events',
           method: 'get'
         });
+        this.form.getForm().url = '/admin/matches/' + this.match_id + '/stats'
       },
       grid: new Ext.grid.GridPanel({
         width: 600,
@@ -630,42 +631,104 @@ MatchesPanel.EditMatchDialog = Ext.extend(Ext.Window, {
     });
     Ext.apply(this, {
       form: new Ext.FormPanel({
-        labelWidth: 200,
+        labelWidth: 150,
         frame: true,
-        bodyStyle: 'padding:5px 5px 0',
+        bodyStyle: 'padding:5px 5px 0; overflow: auto;',
         width: 600,
         defaults: {width: 50},
         defaultType: 'textfield',
         items: [{
-            xtype: 'spinnerfield',
-            fieldLabel: 'Штрафные Хозяев',
-            id: 'edit-match-hosts-fouls',
-            name: 'host-fouls',
-            minValue: 0,
-            maxValue: 100
+          xtype: 'fieldset',
+          title: 'Команды',
+          layout: 'column',
+          width: 550,
+          collapsible: true,
+          items: [{
+            xtype: 'fieldset',
+            title: 'Хозяева',
+            columnWidth: .5,
+            items: [{
+              xtype: 'textfield',
+              name: 'hosts[stats][score]',
+              fieldLabel: 'Всего голов',
+              id: 'match-statistic-hosts-score',
+              width: 25
+            }, {
+              xtype: 'textfield',
+              name: 'hosts[stats][first_period_fouls]',
+              fieldLabel: 'Фолы в первом тайме',
+              id: 'match-statistic-hosts-first_period_fouls',
+              width: 25
+            }, {
+              xtype: 'textfield',
+              name: 'hosts[stats][second_period_fouls]',
+              fieldLabel: 'Фолы во втором тайме',
+              id: 'match-statistic-hosts-second_period_fouls',
+              width: 25
+            }]
           }, {
-            xtype: 'spinnerfield',
-            fieldLabel: 'Штрафные Гостей',
-            id: 'edit-match-guests-fouls',
-            name: 'guest-fouls',
-            minValue: 0,
-            maxValue: 100
-          }, {
-            xtype: 'button',
-            text: 'Сохранить',
-            handler: function(){
-              Ext.Ajax.request({
-                url: '/admin/matches/update_fouls/' + self.match_id,
-                method: 'POST',
-                params: {
-                  'hosts[fouls]': Ext.getCmp('edit-match-hosts-fouls').getValue(),
-                  'guests[fouls]': Ext.getCmp('edit-match-guests-fouls').getValue()
-                },
-                waitMsg: 'Обновляем фолы...'
-              })
+            xtype: 'fieldset',
+            title: 'Гости',
+            columnWidth: .5,
+            items: [{
+              xtype: 'textfield',
+              name: 'guests[stats][score]',
+              fieldLabel: 'Всего голов',
+              id: 'match-statistic-guests-score',
+              width: 25
+            }, {
+              xtype: 'textfield',
+              name: 'guests[stats][first_period_fouls]',
+              fieldLabel: 'Фолы в первом тайме',
+              id: 'match-statistic-guests-first_period_fouls',
+              width: 25
+            }, {
+              xtype: 'textfield',
+              name: 'guests[stats][second_period_fouls]',
+              fieldLabel: 'Фолы во втором тайме',
+              id: 'match-statistic-guests-second_period_fouls',
+              width: 25
+            }]
+          }]
+        }, {
+          xtype: 'fieldset',
+          title: 'Игроки',
+          layout: 'column',
+          width: 550,
+          collapsible: true,
+          items: [{
+            xtype: 'fieldset',
+            title: 'Хозяева',
+            columnWidth: .5,
+            items: {
+              xtype: 'fieldset',
+              layout: 'table',
+              layoutConfig: { columns: 2 },
+              title: 'Голы',
+              id: 'match-statistic-hosts-players'
             }
-          }
-        ]
+          }, {
+            xtype: 'fieldset',
+            title: 'Гости',
+            columnWidth: .5,
+            items: {
+              xtype: 'fieldset',
+              layout: 'table',
+              layoutConfig: { columns: 2 },
+              title: 'Голы',
+              id: 'match-statistic-guests-players'
+            }
+          }]
+        }],
+        buttons: [{
+          text: 'Сохранить',
+          handler: (function(){
+            this.form.getForm().submit({
+              waitMsg: 'Сохраняем статистику...',
+              method: 'PUT'
+            });
+          }).createDelegate(this)
+        }]
       })
     });
     Ext.apply(this, {
@@ -683,25 +746,35 @@ MatchesPanel.EditMatchDialog = Ext.extend(Ext.Window, {
         this.form,
         this.grid
       ]
-      /*buttons: [{
-        text: 'Сохранить',
-        handler: this.saveMatch.createDelegate(this)
-      }, {
-        text: 'Отмена',
-        handler: this.closeDialog.createDelegate(this)
-      }]*/
     });
     
     this.on('render', function(){
       this.grid.store.reload();
       Ext.Ajax.request({
-        url: '/admin/matches/' + self.match_id + '/competitors',
+        url: '/admin/matches/' + self.match_id + '/stats',
         success: function(response){
-          var competitors = Ext.decode(response.responseText);
-          competitors.map(function(c){
-            var fouls = Ext.getCmp('edit-match-'+c.side+'-fouls');
-            fouls.setValue(c.fouls);
-            fouls.setFieldLabel('Штрафные: ' + c.team_name);
+          var stats = Ext.decode(response.responseText);
+          ['hosts', 'guests'].map(function(c){
+            ['score', 'first_period_fouls', 'second_period_fouls'].map(function(s){
+              cmp = Ext.getCmp('match-statistic-'+c+'-'+s);
+              cmp.setValue((s in stats[c]) ? stats[c][s] : 0);
+            });
+            var set = Ext.getCmp('match-statistic-'+c+'-players');
+            for(id in stats[c].football_players){
+              if(id.match(/^\d+$/)){
+                set.add({
+                  xtype: 'label',
+                  html: stats[c].football_players[id].full_name + '('+ stats[c].football_players[id].number +')'
+                })
+                set.add({
+                  xtype: 'textfield',
+                  width: 40,
+                  name: c+'[football_players]['+id+'][stats][goal]',
+                  value: ('goal' in stats[c].football_players[id]) ? stats[c].football_players[id].goal : '-'
+                })
+              }
+            };
+            set.doLayout(false, true);
           });
         }
       });

@@ -7,7 +7,12 @@ class TourResultController < ApplicationController
   end
 
   def create
-    
+    unless params[:match].nil?
+      @matches = Match.find(:all,
+                            :conditions => ["id in (?)", params[:match]],
+                            :include => {:tour => :league}
+                           )
+    end
   end
 
   def matches_block

@@ -50,6 +50,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :matches do |m|
       m.resources :match_events, :as => :events
       m.resources :competitors
+      m.resource :stats
     end
     admin.resources :referees
     admin.resources :footballers
