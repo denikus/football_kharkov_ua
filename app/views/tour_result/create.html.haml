@@ -1,0 +1,25 @@
+-@matches.each do |item|
+  %table{:class=>"match-result-table"}
+    %caption
+      = "Дата(Время): #{Russian::strftime(item.played_at, "%Y, %B %d (%H:%M)")}"
+    %tr
+      %th{:style => "text-align: center;", :colspan => 3}
+        =item.tour.league.name
+    %tr
+      %td{:class=>"team-name"}
+        =item.hosts.team.name
+      %td{:class=>"match-score"}
+        = "#{item.hosts.stats.score} - #{item.guests.stats.score}"
+      %td{:class=>"team-name"}
+        =item.guests.team.name
+    %tr
+      %td
+        %ul{:class=>"team-players-list"}
+          -item.hosts.football_players.each do |football_player|
+            %li= "№#{football_player.number} #{football_player.footballer.last_name} #{football_player.footballer.first_name} "
+      %td
+        = "#{item.hosts.stats.score} - #{item.guests.stats.score}"
+      %td
+        %ul{:class=>"team-players-list"}
+          -item.guests.football_players.each do |football_player|
+            %li= "№#{football_player.number} #{football_player.footballer.last_name} #{football_player.footballer.first_name} "
