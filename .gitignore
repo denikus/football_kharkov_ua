@@ -1,0 +1,19 @@
+#logs
+log/*
+*.log
+
+*temp files and cache
+tmp/*
+*.tmp
+
+#database scheme
+db/schema.rb
+
+#database config file
+config/database.yml
+
+#doc files
+doc/*
+
+#user files
+public/user
