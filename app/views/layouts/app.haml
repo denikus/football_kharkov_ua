@@ -1,0 +1,44 @@
+!!!
+%html{'xmlns' => "http://www.w3.org/1999/xhtml", 'xml:lang' => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", :"http-equiv"=>"Content-Type"}/
+    %meta{:name => "description", :content=>"Душевный харьковский футбол и все что с ним связано"}/
+    %title= (@page_title ||= 'Харьков футбольный')
+    %link{:rel=>"alternate", :type => "application/rss+xml", :title => "RSS", :href => "http://football.kharkov.ua/feed"}/
+    %link{:rel=>"icon", :type => "image/x-icon", :href => "/favicon.ico"}/
+    = stylesheet_link_tag 'styles'
+    = stylesheet_link_tag 'top_menu'
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+    = javascript_include_tag "jrails"
+    = javascript_include_tag "application"
+    :javascript
+      authenticity_token = "#{form_authenticity_token}";
+  %body
+    #minHeight
+    #outer
+      #inner
+        / Header
+        #header
+          #header-block
+            = link_to image_tag("logo.gif", :height=>"85", :alt=>"Харьков футбольный"), '/', {:title=> "Харьков Футбольный", :id => "logo-link"}
+            - if user_signed_in?
+              = render :partial => 'shared/user_block'
+            - else
+              = render :partial => 'shared/login'
+            = render :partial => 'shared/top_menu'
+        / EOF Header
+      / Container
+      #container
+        = yield
+      / EOF Container
+    #clearfooter
+
+    / footer
+    #footer &copy; Football.kharkov.ua
+    / end footer
+    :javascript
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    :javascript
+      var pageTracker = _gat._getTracker("UA-2028404-8");
+      pageTracker._trackPageview();

@@ -1,0 +1,11 @@
+-inside_layout 'app' do
+  /left column
+  #col-left{:style => "width: 920px;"}
+    - if flash[:error]
+      #main-error-block.error= flash[:error]
+    -if flash[:warning]
+      #main-notice-block.notice= flash[:warning]
+    -if flash[:notice]
+      #main-success-block.notice= flash[:notice]
+    = yield
+  /eof left column

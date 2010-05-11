@@ -1,65 +1,49 @@
-- inside_layout 'app' do
+-inside_layout 'app' do
   /left column
-<div id="col-left">
-  <% if flash[:error] -%>
-        <div class="error" id="main-error-block" ><%= flash[:error] %></div>
-      <% end -%>
-      <% if flash[:warning] -%>
-        <div class="notice" id="main-notice-block" ><%= flash[:warning] %></div>
-      <% end -%>
-      <% if flash[:notice] -%>
-        <div class="success" id="main-success-block" ><%= flash[:notice] %></div>
-  <% end -%>
-  <%= yield %>
-</div>
+  #col-left
+    - if flash[:error]
+      #main-error-block.error= flash[:error]
+    -if flash[:warning]
+      #main-notice-block.notice= flash[:warning]
+    -if flash[:notice]
+      #main-success-block.notice= flash[:notice]
+    = yield 
+  /eof left column
 
-<div id="col-right">
-  <div class="sidebar-block">
-    <div class="sidebar-block-header">
-      <h4>Подписка</h4>
-      <%=link_to image_tag("/images/rss.gif"), {:controller => 'feed'}, {:class => "rss-icon-link"} %>
-      <%=link_to image_tag("/images/twit.gif"), 'http://twitter.com/footballkharkov/', {:class => "twitter-icon-link"} %>
-    </div>
-    <div class="clear"></div>
-    <!-- rss2email -->
-    <form action="http://www.rss2email.ru/ready.asp" method="get">
-    <input type="hidden" name="rss" value="http://football.kharkov.ua/feed" />
-    <input type="hidden" name="link"  value="http://football.kharkov.ua" />
-    <input type="hidden" name="logo" value="http://football.kharkov.ua/images/logo.gif" />
-    Рассылка на E-mail
-    <div class="clear"></div>
-    <input type="text" class="text" style="width:150px;" size="20" name="email" value="Ваш E-mail" onfocus="if (this.value=='Ваш E-mail') this.value='';" />
-    <input type="submit" class="fancy-submit" style="font-weight:bold;" value="Do it!" />
-    </form>
-    <!-- /rss2email -->
-  </div>
-  <div class="sidebar-block">
-    <h4>Партнеры</h4>
-    <div style="text-align: center;">
-      <% if rand(2).to_i==1 %>
-        <%= link_to image_tag("/images/banners/intetics_180x90.gif"), 'http://intetics.com/', {:style=>"display: block;", :target => "_blank"} %>
-      <% else %>
-        <%= link_to image_tag("/images/banners/itleague.png"), 'http://itleague.kharkov.ua/', {:style=>"display: block;", :target => "_blank"} %>
-      <% end %>
-    </div>
-  </div>
-  <div class="sidebar-block">
-    <h4>Новенькое</h4>
-    <ul>
-    <%  Post.paginate(:page => 1, :per_page => 5, :order => 'created_at DESC').each do |item| %>
-      <li><%=  link_to item.title, post_url({:year => item.created_at.strftime('%Y'), :month => item.created_at.strftime('%m'), :day => item.created_at.strftime('%d'), :url => !item.url.nil? ? item.url : ''}) %></li>
-    <% end %>
-    </ul>
-  </div>
-  <div class="sidebar-block">
-    <h4>Комментарии</h4>
-    <ul>
-    <%  Comment.paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => {:post , :user}, :conditions => ["parent_id IS NOT NULL"]).each do |item| %>
-      <li>
-        <%= item.user.username %> (<%= Russian::strftime(item.created_at, "%B %d; %H:%M") %>)<br />
-        <%=link_to(item.post.title, post_url({:year => item.post.created_at.strftime('%Y'), :month => item.post.created_at.strftime('%m'), :day => item.post.created_at.strftime('%d'), :url => !item.post.url.nil? ? item.post.url : '', :anchor => "comment-#{item.id}"})) %>
-      </li>
-    <% end %>
-    </ul>
-  </div>
-</div>
+  /right column
+  #col-right
+    .sidebar-block
+      .sidebar-block-header
+        %h4 Подписка
+        =link_to image_tag("/images/rss.gif"), {:controller => 'feed'}, {:class => "rss-icon-link"}
+        =link_to image_tag("/images/twit.gif"), 'http://twitter.com/footballkharkov/', {:class => "twitter-icon-link"}
+      .clear
+      /rss2email
+      %form{:action => "http://www.rss2email.ru/ready.asp", :method => "get"}
+        %input{:type => "hidden", :name => "rss", :value => "http://football.kharkov.ua/feed"}
+        %input{:type=>"hidden", :name => "link", :value => "http://football.kharkov.ua"}
+        %input{:type=>"hidden", :name=>"logo", :value=>"http://football.kharkov.ua/images/logo.gif"}
+        Рассылка на E-mail
+        .clear
+        %input{:type => "text", :class => "text", :style => "width:150px;", :size => "20", :name => "email", :value => "Ваш E-mail", :onfocus => "if (this.value=='Ваш E-mail') this.value='';"}
+        %input{:type => "submit", :class => "fancy-submit", :style => "font-weight:bold;", :value => "Do it!"}
+    .sidebar-block
+      %h4 Партнеры
+      .sidebar-partners
+        - if rand(2).to_i==1
+          = link_to image_tag("/images/banners/intetics_180x90.gif"), 'http://intetics.com/', {:style=>"display: block;", :target => "_blank"}
+        - else
+          = link_to image_tag("/images/banners/itleague.png"), 'http://itleague.kharkov.ua/', {:style=>"display: block;", :target => "_blank"}
+    .sidebar-block
+      %h4 Новенькое
+      %ul
+        - Post.paginate(:page => 1, :per_page => 5, :order => 'created_at DESC').each do |item|
+          %li= link_to item.title, post_url({:year => item.created_at.strftime('%Y'), :month => item.created_at.strftime('%m'), :day => item.created_at.strftime('%d'), :url => !item.url.nil? ? item.url : ''})
+    .sidebar-block
+      %h4 Комментарии
+      %ul
+        - Comment.paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => {:post , :user}, :conditions => ["parent_id IS NOT NULL"]).each do |item|
+          %li
+            = "#{item.user.username} (#{Russian::strftime(item.created_at, "%B %d; %H:%M")})"
+            %br
+            =link_to(item.post.title, post_url({:year => item.post.created_at.strftime('%Y'), :month => item.post.created_at.strftime('%m'), :day => item.post.created_at.strftime('%d'), :url => !item.post.url.nil? ? item.post.url : '', :anchor => "comment-#{item.id}"}))

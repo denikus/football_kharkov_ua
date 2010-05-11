@@ -1,6 +1,7 @@
 class TourResultController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
 #  before_filter :check_permissions, :except => [:show, :new, :create]
+  layout 'app_without_sidebar'
 
   def new
     @tournaments = Tournament.find(:all, :order => "name ASC")

@@ -48,6 +48,11 @@ body
 #inner {
 	width: 100%;
 }
+
+a#logo-link {
+ float: left; 
+}
+
 #footer {
 	width: 100%;
 	clear: both;
@@ -410,6 +415,10 @@ div.sidebar-block-header h4 {
 
 div.sidebar-block a{
     text-decoration: none;
+}
+
+div.sidebar-partners {
+  text-align: center;
 }
 
 a.rss-icon-link {float:right;}
