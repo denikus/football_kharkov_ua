@@ -3,7 +3,7 @@ class MatchPlayerEvent < ActiveRecord::Base
   belongs_to :football_player
   
   def after_save
-    match_event.match.refresh_score! if event_type == :score
+#    match_event.match.refresh_score! if event_type == :score
   end
   
   def before_destroy
@@ -11,7 +11,7 @@ class MatchPlayerEvent < ActiveRecord::Base
   end
   
   def after_destroy
-    @match.refresh_score! if event_type == :score
+#    @match.refresh_score! if event_type == :score
   end
   #named_scope :score, {:conditions => {:event_type => :score}, :include => {:football_player => :competitor}}
 end

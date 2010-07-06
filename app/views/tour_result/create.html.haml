@@ -18,11 +18,9 @@
           -item.hosts.football_players.each do |football_player|
             %li= "№#{football_player.number} #{football_player.footballer.last_name} #{football_player.footballer.first_name} "
       %td
-        -guest_goals = []
-        -item.guests.football_players.each do |player|
-          -player.stats.goal.to_a.each do |goal|
-            - goals <<  [goal, player.footballer]
-        =goals.inspect
+        %ul{:class=>"team-players-list"}
+          -item.match_events.each do |match_event|
+            %li=match_event.minute
       %td
         %ul{:class=>"team-players-list"}
           -item.guests.football_players.each do |football_player|
