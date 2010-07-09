@@ -1,6 +1,8 @@
 <div id="login-box">
+
   <% form_for :user, :url => new_user_session_path do |f| -%>
-    <fieldset>
+  <%# form_for resource_name, resource, :url => session_path(resource_name) do |f| -%>
+  <fieldset>
       <ol>
         <li>
           <label for="user_email">Email:</label>

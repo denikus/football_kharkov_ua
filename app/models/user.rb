@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     find_by_username!(param)
   end
   
-  def confirm_with_forum!
+def confirm_with_forum!
     ret = confirm_without_forum!
     Net::HTTP.post_form(URI.join(FORUM[:location], FORUM[:confirm_user]), {
       'from_rails' => 'true',
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     })
     ret
   end
-  
+
   alias_method_chain :confirm!, :forum
   
 end

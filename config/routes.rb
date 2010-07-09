@@ -33,8 +33,9 @@ ActionController::Routing::Routes.draw do |map|
 #          :action => "show",
 #          :requirements => { :cmspage => /[a-zA-Z0-9_]+(\.htm)/,}
 
+#  devise_for :users
 
-  
+
   map.root :controller => "blog"
   
   map.devise_for :admin
@@ -63,6 +64,8 @@ ActionController::Routing::Routes.draw do |map|
       p.resource :avatar, :as => :photo, :controller => :profile_avatars
     end
   end
+
+
 
   map.post ':year/:month/:day/:url',
     :controller=>'post',
