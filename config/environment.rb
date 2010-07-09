@@ -38,8 +38,6 @@ Rails::Initializer.run do |config|
 #   config.load_paths += %W(#{RAILS_ROOT}/app/middleware)
 
 
-  config.time_zone = 'Kyev'
-
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
