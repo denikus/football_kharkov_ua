@@ -28,12 +28,12 @@
         %input{:type => "text", :class => "text", :style => "width:150px;", :size => "20", :name => "email", :value => "Ваш E-mail", :onfocus => "if (this.value=='Ваш E-mail') this.value='';"}
         %input{:type => "submit", :class => "fancy-submit", :style => "font-weight:bold;", :value => "Do it!"}
     .sidebar-block
-      %h4 Партнеры
+      %h4 Магазин
       .sidebar-partners
         - if rand(2).to_i==1
-          = link_to image_tag("/images/banners/intetics_180x90.gif"), 'http://intetics.com/', {:style=>"display: block;", :target => "_blank"}
+          = link_to image_tag("http://shop.football.kharkov.ua/files/products/245_0.jpg", {:width => "150"}) + '<br />Nike Mercurial Victory IC<br /><strong>865.00 грн</strong>', 'http://shop.football.kharkov.ua/products/Nike_Mercurial_Victory_IC', {:style=>"display: block;", :target => "_blank"}
         - else
-          = link_to image_tag("/images/banners/itleague.png"), 'http://itleague.kharkov.ua/', {:style=>"display: block;", :target => "_blank"}
+          = link_to image_tag("http://shop.football.kharkov.ua/files/products/252_0.jpg", {:width => "150"}) + '<br />Манишки<br /><strong>30.00 грн</strong>', 'http://shop.football.kharkov.ua/products/Winner_%D0%9C%D0%B0%D0%BD%D0%B8%D1%88%D0%BA%D0%B8', {:style=>"display: block;", :target => "_blank"}
     .sidebar-block
       %h4 Новенькое
       %ul
