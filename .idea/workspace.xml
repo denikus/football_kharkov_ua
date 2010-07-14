@@ -3,7 +3,6 @@
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="19bd9852-4f19-40fa-8b10-8def3c1530ba" name="Default" comment="fix rememberable">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/football.iml" afterPath="$PROJECT_DIR$/.idea/football.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.haml" afterPath="$PROJECT_DIR$/app/views/layouts/application.haml" />
     </list>
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +30,7 @@
       <file leaf-file-name="application.haml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="169" selection-start="1611" selection-end="1611" vertical-scroll-proportion="0.5436047">
+            <state line="38" column="10" selection-start="2111" selection-end="2111" vertical-scroll-proportion="0.625969">
               <folding />
             </state>
           </provider>
@@ -513,7 +512,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="169" selection-start="1611" selection-end="1611" vertical-scroll-proportion="0.5436047">
+        <state line="38" column="10" selection-start="2111" selection-end="2111" vertical-scroll-proportion="0.625969">
           <folding />
         </state>
       </provider>
