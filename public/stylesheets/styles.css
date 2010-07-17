@@ -561,6 +561,10 @@ div.comment_link_cell a {
     background:transparent url(/images/icons/comment.png) no-repeat scroll left center;
     padding-left:20px;
 }
+div.social_link_cell a {
+    padding: 2px 5px 1px 5px;
+}
+
 div.updating_link_cell span {
     background:transparent url(/images/icons/refresh.gif) no-repeat scroll left center;
     padding-left:20px;

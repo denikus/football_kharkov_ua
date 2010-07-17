@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-#  devise :database_authenticatable, :confirmable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :confirmable, :recoverable, :rememberable, :validatable
   
   has_one :profile
 
@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :subscribers
   has_many :posts, :through => :subscribers
   
-  devise :all
+#  devise :all
   
   validates_presence_of :username
   validates_uniqueness_of :username, :case_sensitive => false
@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
     find_by_username!(param)
   end
   
-def confirm_with_forum!
+
+  def confirm_with_forum!
     ret = confirm_without_forum!
     Net::HTTP.post_form(URI.join(FORUM[:location], FORUM[:confirm_user]), {
       'from_rails' => 'true',
@@ -43,5 +44,6 @@ def confirm_with_forum!
   end
 
   alias_method_chain :confirm!, :forum
+
   
 end

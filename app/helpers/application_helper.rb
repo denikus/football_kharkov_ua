@@ -33,4 +33,16 @@ module ApplicationHelper
       return false
     end
   end
+
+  def retweet_button(title, link)
+    bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
+    short_url = bitly.shorten(link)
+    url_param = "Читаю: #{truncate(decode_entities(title), 109, '...')} #{short_url.bitly_url}"
+    link_to image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet!"}), 'http://twitter.com/home?status=' + url_param, {:rel => "nofollow", :target => "_blank", :title => "Retweet!"} 
+  end
+
+  def to_facebook_button(title, link)
+    link = "http://facebook.com/sharer.php?url=#{link}&title=#{title}"
+    link_to image_tag("/images/icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook!"}), link, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook!"}
+  end
 end

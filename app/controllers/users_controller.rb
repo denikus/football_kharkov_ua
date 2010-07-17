@@ -1,7 +1,7 @@
 require 'uri'
 require 'net/http'
 
-class UsersController < ApplicationController
+class UsersController < Devise::SessionsController
   layout 'application'
   
   # GET /users/1

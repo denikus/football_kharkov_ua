@@ -18,3 +18,8 @@ config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+BITLY = {
+  :username => 'footballkharkov',
+  :api_key => 'R_284aa8534d40494118bf2dadca17695a'
+}.freeze

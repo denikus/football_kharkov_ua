@@ -38,7 +38,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "blog"
   
-  map.devise_for :admin
+  map.devise_for :users, :admin
   map.namespace(:admin) do |admin|
     admin.root :controller => 'main'
     admin.resources :comments
@@ -58,7 +58,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :permissions
   end
   
-  map.devise_for :users
+#  map.devise_for :users
+  
   map.resources :users do |user|
     user.resource :profile do |p|
       p.resource :avatar, :as => :photo, :controller => :profile_avatars

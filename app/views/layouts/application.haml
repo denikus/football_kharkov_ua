@@ -16,7 +16,7 @@
       .sidebar-block-header
         %h4 Подписка
         =link_to image_tag("/images/rss.gif"), {:controller => 'feed'}, {:class => "rss-icon-link"}
-        =link_to image_tag("/images/twit.gif"), 'http://twitter.com/footballkharkov/', {:class => "twitter-icon-link"}
+        =link_to image_tag("http://twitter-badges.s3.amazonaws.com/t_mini-a.png"), 'http://twitter.com/footballkharkov/', {:class => "twitter-icon-link"}
       .clear
       /rss2email
       %form{:action => "http://www.rss2email.ru/ready.asp", :method => "get"}

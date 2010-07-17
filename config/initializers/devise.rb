@@ -35,7 +35,7 @@ Devise.setup do |config|
   config.confirm_within = 5.days
 
   # The time the user will be remembered without asking for credentials again.
-  config.remember_for = 1.month
+  config.remember_for = 3.month
 
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again.

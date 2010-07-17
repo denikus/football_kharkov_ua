@@ -14,11 +14,12 @@ Rails::Initializer.run do |config|
   #config.gem 'yaroslav-russian', :lib => 'russian', :source => 'http://gems.github.com'
   config.gem 'russian', :source => 'http://gemcutter.org'
   config.gem 'warden'
-#  config.gem 'devise', :version => '1.0.8'
   config.gem 'devise'
+#  config.gem 'devise'
 #  , :version => '0.7.3'
   config.gem 'mime-types', :lib => 'mime/types'
   config.gem "nested_layouts", :source => "http://gemcutter.org"
+  config.gem "bitly"
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
