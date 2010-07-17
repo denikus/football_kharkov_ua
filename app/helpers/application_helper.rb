@@ -37,15 +37,35 @@ module ApplicationHelper
     end
   end
 
+  def social_button(type, title, link)
+    result = case type
+      when 'twitter' then
+        bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
+        url = "Читаю: #{truncate(decode_entities(title), 109, '...')} #{bitly.shorten(link).bitly_url}"
+        link_to image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet"}), 'http://twitter.com/home?status=' + url, {:rel => "nofollow", :target => "_blank", :title => "Retweet"}
+    when 'facebook' then
+      url = "http://www.facebook.com/sharer.php?u=#{url_encode(link)}&t=#{title}"
+      link_to image_tag("/images/icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook"}
+    when 'vkontakte' then
+      url = "http://vkontakte.ru/share.php?url=#{url_encode(link)}"
+      link_to image_tag("/images/icons/vkontakte_icon_32x32.png", {:alt => "Опубликовать на Вконтакте", :size => "23x22"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Вконтакте"}
+    end
+  end
+
   def retweet_button(title, link)
     bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
     short_url = bitly.shorten(link)
-    url_param = "Читаю: #{truncate(decode_entities(title), 109, '...')} #{short_url.bitly_url}"
-    link_to image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet!"}), 'http://twitter.com/home?status=' + url_param, {:rel => "nofollow", :target => "_blank", :title => "Retweet!"} 
+    url = "Читаю: #{truncate(decode_entities(title), 109, '...')} #{short_url.bitly_url}"
   end
 
   def to_facebook_button(title, link)
-    facebook_link = "http://www.facebook.com/sharer.php?u=#{url_encode(link)}&t=#{title}"
-    link_to image_tag("/images/icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook!"}), facebook_link, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook!"}
+    url = "http://www.facebook.com/sharer.php?u=#{url_encode(link)}&t=#{title}"
+    link_to image_tag("/images/icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook"}
   end
+
+  def to_vkontakte_button(title, link)
+    url = "http://vkontakte.ru/share.php?url=#{url_encode(link)}"
+    link_to image_tag("/images/icons/vkontakte_icon_32x32.png", {:alt => "Опубликовать на Вконтакте", :size => "23x22"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Вконтакте"}
+  end
+
 end
