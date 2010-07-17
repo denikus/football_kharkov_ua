@@ -45,10 +45,7 @@ module ApplicationHelper
   end
 
   def to_facebook_button(title, link)
-#    href = "http%3A%2F%2Fwww.dirjournal.com%2Farticles%2Fhow-to-add-a-twitter-button-to-your-blog-all-possible-options%2F&amp;t=How+to+Add+a+"
-#&t=#{title}
-    facebook_link = "http://www.facebook.com/sharer.php?u=#{url_encode(link)}"
+    facebook_link = "http://www.facebook.com/sharer.php?u=#{url_encode(link)}&t=#{title}"
     link_to image_tag("/images/icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook!"}), facebook_link, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook!"}
-#    link_to "#{link}", url_encode(link),  {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook!"}
   end
 end
