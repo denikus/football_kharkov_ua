@@ -57,18 +57,18 @@ module ApplicationHelper
   def retweet_button(title, link)
     bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
     short_url = bitly.shorten(link)
-    url = "Читаю: #{truncate(decode_entities(title), 109, '...')} #{short_url.bitly_url}"
-    link_to image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet"}), 'http://twitter.com/home?status=' + url, {:rel => "nofollow", :target => "_blank", :title => "Retweet"}
+    url = "Читаю: #{truncate(decode_entities(title), {:length =>109, :omission => '...'})} #{short_url.bitly_url}"
+    link_to(image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet"}), 'http://twitter.com/home?status=' + url, {:rel => "nofollow", :target => "_blank", :title => "Retweet"})
   end
 
   def to_facebook_button(title, link)
     url = "http://www.facebook.com/sharer.php?u=#{url_encode(link)}&t=#{title}"
-    link_to image_tag("/images/icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook"}
+    link_to(image_tag("/images/icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook"})
   end
 
   def to_vkontakte_button(title, link)
     url = "http://vkontakte.ru/share.php?url=#{url_encode(link)}"
-    link_to image_tag("/images/icons/vkontakte_icon_32x32.png", {:alt => "Опубликовать на Вконтакте", :size => "23x22"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Вконтакте"}
+    link_to(image_tag("/images/icons/vkontakte_icon_32x32.png", {:alt => "Опубликовать на Вконтакте", :size => "23x22"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Вконтакте"})
   end
 
 end
