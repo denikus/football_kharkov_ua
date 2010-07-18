@@ -1,7 +1,4 @@
 # Methods added to this helper will be available to all templates in the application.
-require "erb"
-include ERB::Util
-
 module ApplicationHelper
 
   def article_announce(body)
@@ -55,10 +52,11 @@ module ApplicationHelper
 =end
 
   def retweet_button(title, link)
+    Bitly.use_api_version_3
     bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
     short_url = bitly.shorten(link)
-    url = "Читаю: #{truncate(decode_entities(title), {:length =>109, :omission => '...'})} #{short_url.bitly_url}"
-    link_to(image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet"}), 'http://twitter.com/home?status=' + url, {:rel => "nofollow", :target => "_blank", :title => "Retweet"})
+    url = "Читаю: #{truncate(decode_entities(title), {:length =>109, :omission => '...'})} #{short_url.short_url}"
+    link_to(image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet"}), "http://twitter.com/home?status=#{url}", {:rel => "nofollow", :target => "_blank", :title => "Retweet"})
   end
 
   def to_facebook_button(title, link)
