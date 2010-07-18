@@ -37,6 +37,7 @@ module ApplicationHelper
     end
   end
 
+=begin
   def social_button(type, title, link)
     result = case type
       when 'twitter' then
@@ -51,6 +52,7 @@ module ApplicationHelper
       link_to image_tag("/images/icons/vkontakte_icon_32x32.png", {:alt => "Опубликовать на Вконтакте", :size => "23x22"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Вконтакте"}
     end
   end
+=end
 
   def retweet_button(title, link)
     bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
