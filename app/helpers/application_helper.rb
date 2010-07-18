@@ -58,6 +58,7 @@ module ApplicationHelper
     bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
     short_url = bitly.shorten(link)
     url = "Читаю: #{truncate(decode_entities(title), 109, '...')} #{short_url.bitly_url}"
+    link_to image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet"}), 'http://twitter.com/home?status=' + url, {:rel => "nofollow", :target => "_blank", :title => "Retweet"}
   end
 
   def to_facebook_button(title, link)

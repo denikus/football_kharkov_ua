@@ -13,7 +13,7 @@
         <div class="updating_link_cell" title="Публикация в процессе добавления данных"><span>Обновляется</span></div>
     <% end %>
     <div class="social_link_cell">
-      <%#= retweet_button(post.title, post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : ''})) %>
+      <%= retweet_button(post.title, post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : ''})) %>
       <%= to_facebook_button(post.title, post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : ''})) %>
       <%= to_vkontakte_button(post.title, post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : ''})) %>
     </div>
