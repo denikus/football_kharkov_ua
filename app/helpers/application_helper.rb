@@ -8,7 +8,7 @@ module ApplicationHelper
     unless (break_index = body.index('[[break]]')).nil?
       decode_entities(body[0..break_index-1])
     else
-      truncate(decode_entities(body), 1000, '...')
+      truncate(decode_entities(body), {:length => 1000, :omission =>  '...'})
     end
   end
 
