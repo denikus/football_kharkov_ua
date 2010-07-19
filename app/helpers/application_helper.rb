@@ -52,7 +52,7 @@ module ApplicationHelper
 =end
 
   def retweet_button(title, link)
-    unless link.empty?
+    unless link.nil?
       #      Bitly.use_api_version_3
       #      bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
       #      short_url = bitly.shorten(link)
