@@ -13,6 +13,9 @@ class Post < ActiveRecord::Base
 
   def before_create
     self.url = self.title.dirify
+    Bitly.use_api_version_3
+    bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
+    self.short_url = bitly.shorten(self.url)
   end
 
   def before_save
