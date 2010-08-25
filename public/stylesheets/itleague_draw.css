@@ -61,7 +61,11 @@ ol li {
   padding-bottom: 10px;
 }
 
-/* line 57, ../../app/stylesheets/itleague_draw.scss */
+/* line 55, ../../app/stylesheets/itleague_draw.scss */
+.basket {
+  width: 170px;
+}
+/* line 58, ../../app/stylesheets/itleague_draw.scss */
 .basket ol li.drawed {
   background: none;
   background-color: red;
@@ -69,51 +73,51 @@ ol li {
   font-weight: bold;
 }
 
-/* line 67, ../../app/stylesheets/itleague_draw.scss */
+/* line 68, ../../app/stylesheets/itleague_draw.scss */
 .group ol {
   height: 210px;
 }
-/* line 69, ../../app/stylesheets/itleague_draw.scss */
+/* line 70, ../../app/stylesheets/itleague_draw.scss */
 .group ol li {
   color: green;
   font-weight: bold;
 }
 
-/* line 76, ../../app/stylesheets/itleague_draw.scss */
+/* line 77, ../../app/stylesheets/itleague_draw.scss */
 .portlet {
   margin: 0 1em 1em 0;
 }
 
-/* line 79, ../../app/stylesheets/itleague_draw.scss */
+/* line 80, ../../app/stylesheets/itleague_draw.scss */
 .portlet-header {
   margin: 0.3em;
   padding-bottom: 4px;
   padding-left: 0.2em;
 }
 
-/* line 84, ../../app/stylesheets/itleague_draw.scss */
+/* line 85, ../../app/stylesheets/itleague_draw.scss */
 .portlet-header .ui-icon {
   float: right;
 }
 
-/* line 87, ../../app/stylesheets/itleague_draw.scss */
+/* line 88, ../../app/stylesheets/itleague_draw.scss */
 .portlet-content {
   padding: 0.4em;
 }
 
-/* line 90, ../../app/stylesheets/itleague_draw.scss */
+/* line 91, ../../app/stylesheets/itleague_draw.scss */
 .ui-sortable-placeholder {
   border: 1px dotted black;
   visibility: visible !important;
   height: 50px !important;
 }
 
-/* line 95, ../../app/stylesheets/itleague_draw.scss */
+/* line 96, ../../app/stylesheets/itleague_draw.scss */
 .ui-sortable-placeholder * {
   visibility: hidden;
 }
 
-/* line 98, ../../app/stylesheets/itleague_draw.scss */
+/* line 99, ../../app/stylesheets/itleague_draw.scss */
 .basket .ui-selected {
   background: #F39814;
   color: white;
