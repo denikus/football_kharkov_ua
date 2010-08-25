@@ -23,6 +23,15 @@ class ProfileController < ApplicationController
   end
 
   def edit_photo
+    
+  end
+
+  def update_photo
+    
+  end
+
+  def crop
+    
   end
 
 end

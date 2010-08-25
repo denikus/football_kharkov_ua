@@ -1,7 +1,7 @@
 class ProfileAvatarsController < ApplicationController
-  before_filter :find_user_profile
+#  before_filter :find_user_profile
   before_filter :authenticate_user!
-  before_filter :check_user_profile
+#  before_filter :check_user_profile
   
   def show
   end
@@ -11,8 +11,11 @@ class ProfileAvatarsController < ApplicationController
   end
   
   def create
-    @avatar = ProfileAvatar.new(params[:profile_avatar].merge({:profile_id => @profile.id}))
-    extension = @avatar.filename[/\.[a-z]*$/i]
+#    current_user.profile.attributes = params[:profile_avatar]
+#    current_user.profile.save!
+=begin
+    @avatar = ProfileAvatar.new(params[:profile_avatar].merge({:profile_id => current_user.profile.id}))
+#    extension = @avatar.filename[/\.[a-z]*$/i]
     @avatar.filename = "#{@user.id}_avatar#{extension}"
     if @avatar.save
       flash[:notice] = 'Картинка успешно добавлена.'
@@ -20,6 +23,7 @@ class ProfileAvatarsController < ApplicationController
     else
       render :action => :new
     end
+=end
   end
   
   # GET /users/1/profile/photo/edit
@@ -28,7 +32,12 @@ class ProfileAvatarsController < ApplicationController
   
   # PUT /users/1/profile/photo
   def update
-    @user.profile.profile_avatar.destroy
+#    @user.profile.profile_avatar.destroy
+    current_user.profile.profile_avatar.attributes = params[:profile_avatar]
+    current_user.profile.profile_avatar.save!
+
+    redirect_to edit_user_profile_avatar_path(current_user)
+=begin
     @avatar = ProfileAvatar.new(params[:profile_avatar].merge({:profile_id => @profile.id}))
     extension = @avatar.filename[/\.[a-z]*$/i]
     @avatar.filename = "#{@user.id}_avatar#{extension}"
@@ -38,6 +47,7 @@ class ProfileAvatarsController < ApplicationController
     else
       render :action => :new
     end
+=end
   end
   
   protected

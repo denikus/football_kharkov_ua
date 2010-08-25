@@ -1,0 +1,23 @@
+- content_for :head_declarations do
+  = stylesheet_link_tag "jquery-plugins/jquery.jcrop", :media => "all"
+  = javascript_include_tag "jquery-plugins/jquery.jcrop.min"
+  = javascript_include_tag "application/profile/profile"
+%h1 Кроппинг фотографии
+= image_tag current_user.profile.photo.url(:large), :id => "cropbox"
+- form_for :profile, current_user.profile, {:url => make_crop_user_profile_path} do |f|
+  - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
+    = f.hidden_field attribute, :id => attribute
+  .clear
+  = f.submit 'Отправить', :class=>"fancy-submit"
+%h4 Preview  
+%div{:style => "width: 100px; height: 100px; overflow: hidden;"}
+  = image_tag current_user.profile.photo.url(:large), :id => "preview"
+:javascript
+  $(function() {
+    var options = {
+      original_width: "#{current_user.profile.avatar_geometry(:original).width}",
+      large_width:    "#{current_user.profile.avatar_geometry(:large).width}",
+      large_height:   "#{current_user.profile.avatar_geometry(:large).height}"
+    }
+    Application.crop.init(options);
+  });

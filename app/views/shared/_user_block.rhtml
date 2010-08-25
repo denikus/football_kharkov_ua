@@ -1,10 +1,10 @@
 <div id="user-box">
 <dl>
   <dt>
-    Привет, <%= link_to current_user.username, user_profile_path(current_user) %>! (<%= link_to "Выйти", destroy_user_session_path %>)
+    Привет, <%= link_to current_user.username, user_path(current_user) %>! (<%= link_to "Выйти", destroy_user_session_path %>)
   </dt>
   <dd>
-    <%= link_to 'Редактировать профиль', edit_user_profile_path(current_user) %>
+    <%= link_to 'Редактировать профиль', edit_profile_path %>
   </dd>
   <dd>
     <%= link_to 'Написать что-нибудь интересное!', :controller=>:article, :action=>:new %>

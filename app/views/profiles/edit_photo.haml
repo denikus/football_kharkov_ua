@@ -1,0 +1,36 @@
+- content_for :head_declarations do
+  = stylesheet_link_tag "jquery-plugins/jquery.jcrop", :media => "all"
+  = javascript_include_tag "application/profile/profile"
+  = javascript_include_tag "jquery-plugins/jquery.jcrop.min"
+.image-loading-container{:style=>"display: none;"}
+  = image_tag "/images/ajax-loader.gif"
+  %br/
+  Идет загрузка...
+
+- form_for :profile, @profile, {:url => upload_photo_profile_path, :html => {:multipart => true, :id => "photo-upload-form"}} do |f|
+  %label{:for => "photo-upload-field"} Загрузить новое фото:
+  = f.file_field :photo, {:class=>"text", :id => "photo-upload-field"}
+  .clear
+//cropping
+- unless @profile.avatar.nil?
+  = image_tag @profile.photo.url(:large), :id => "cropbox"
+  - form_for :profile, @profile, {:url => make_crop_profile_path, :html => {:id => "photo-crop-form"}} do |f|
+    - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
+      = f.hidden_field attribute, :id => attribute
+    .clear
+    = f.submit 'Сохранить', :class=>"fancy-submit"
+
+:javascript
+  $(function() {
+    var options = {
+      original_width: "#{@profile.avatar_geometry(:original).width}",
+      large_width:    "#{@profile.avatar_geometry(:large).width}",
+      large_height:   "#{@profile.avatar_geometry(:large).height}",
+      x_left:         "#{@profile.crop_x_left || 0}",
+      y_top:          "#{@profile.crop_y_top || 0}",
+      x_right:        "#{@profile.crop_x_left.nil? ? "200" : (@profile.crop_x_left + @profile.crop_width)}",
+      y_bottom:       "#{@profile.crop_y_top.nil? ? "200" : (@profile.crop_y_top + @profile.crop_height)}"
+    }
+    Application.crop.init(options);
+    Application.photo_upload.init();
+  });

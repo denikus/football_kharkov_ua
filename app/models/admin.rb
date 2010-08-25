@@ -1,5 +1,5 @@
 class Admin < ActiveRecord::Base
-  devise :authenticatable, :rememberable
+  devise :database_authenticatable, :rememberable
   has_many :permissions
   
   named_scope :regular, {:conditions => {:super_admin => false}}

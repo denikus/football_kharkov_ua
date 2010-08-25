@@ -2,12 +2,15 @@
 log/*
 *.log
 
-*temp files and cache
+#temp files and cache
 tmp/*
 *.tmp
 
 #database scheme
 db/schema.rb
+
+#rubymine project files
+.idea/*
 
 #database config file
 config/database.yml

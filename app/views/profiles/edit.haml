@@ -1,0 +1,35 @@
+#profile-data-block
+  -form_for :profile, :url => profile_path, :html => {:method => :put} do |f|
+    %label{:for=>"profile_first_name"} Имя:
+    = f.text_field :first_name, :class=>"text"
+    
+    %label{:for=>"profile_last_name"} Фамилия:
+    = f.text_field :last_name, :class=>"text"
+    
+    %label{:for=>"profile_birthday"} Дата рождения:
+    = f.date_select :birthday, {:include_blank => true, :default => nil, :start_year => Time.now.year, :end_year => Time.now.year - 100}
+    
+    %label{:for=>"profile_gender"}Пол:
+    = f.select :gender, Profile::GENDER_OPTIONS.collect(&:reverse), {:selected => @profile['gender'].to_s}
+    
+    %label{:for=>"profile_user_type"}Статус:
+    = f.select :user_type, Profile::USER_TYPE_OPTIONS.collect(&:reverse), {:selected => @profile['user_type'].to_s}
+    
+    %label{:for=>"profile_role", :id=>"label_profile_role", :style=>(@profile.user_type!='footballer' ? "display:none;" : "")} Амплуа:
+    = f.select :role, Profile::ROLE_OPTIONS.collect(&:reverse), {:selected => @profile['role'].to_s}, {:style => "display:none;"}
+    .clear
+    = f.submit 'Отправить', :class=>"fancy-submit"
+:javascript
+  $(document).ready(function() {
+    $('#profile_user_type').change(function() {
+      if ('footballer' == $('#profile_user_type').val()) {
+        $('#profile_role').slideDown("slow");
+        $('#label_profile_role').slideDown("slow");
+      } else {
+        if ($('#profile_role').is(":visible")) {
+          $('#profile_role').slideUp("slow");
+          $('#label_profile_role').slideUp("slow");
+        }
+      }
+    });
+  });

@@ -1,18 +1,14 @@
 require 'uri'
 require 'net/http'
 
-class UsersController < Devise::SessionsController
-  layout 'application'
+class UsersController < ApplicationController
+  layout 'user'
   
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.from_param(params[:id])
-    
-    respond_to do |format|
-      format.html { redirect_to user_profile_path(@user) }
-      format.xml  { render :xml => @user }
-    end
+    @title = 'Профиль'
+    @profile = User.from_param(params[:id]).profile
   end
 
   # GET /users/new

@@ -1,0 +1,10 @@
+.sidebar-block
+  .sidebar-block-header
+    %h4= @opts[:title]
+  .bd
+    %ul
+      - @posts.each do |item|
+        %li
+          %p.post-title
+            = link_to item.title, post_url({:year => item.created_at.strftime('%Y'), :month => item.created_at.strftime('%m'), :day => item.created_at.strftime('%d'), :url => !item.url.nil? ? item.url : ''})
+          %p.post-date= Russian::strftime(item.created_at, "%B %d, %Y")

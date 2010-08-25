@@ -1,0 +1,8 @@
+%h1 Редактирование фотографии
+- form_for :profile_avatar, current_user.profile, {:url => user_profile_avatar_path(current_user), :html => {:multipart => true, :method => 'PUT'}} do |f|
+  %fieldset
+    = image_tag current_user.profile.photo.url(:large)
+    %label{:for => "profile_avatar_uploaded_data"} Фотография:
+    = f.file_field :photo, :class=>"text"
+    .clear
+    = f.submit 'Отправить', :class=>"fancy-submit"

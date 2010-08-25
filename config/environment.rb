@@ -20,6 +20,9 @@ Rails::Initializer.run do |config|
   config.gem 'mime-types', :lib => 'mime/types'
   config.gem "nested_layouts", :source => "http://gemcutter.org"
   config.gem "bitly"
+  config.gem "paperclip"
+  config.gem "compass", :version => ">= 0.10.2"
+  config.gem "cells"
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

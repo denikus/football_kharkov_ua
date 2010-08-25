@@ -73,4 +73,8 @@ module ApplicationHelper
     link_to(image_tag("/images/icons/vkontakte_icon_32x32.png", {:alt => "Опубликовать на Вконтакте", :size => "23x22"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Вконтакте"})
   end
 
+  def my_data?(user_id)
+    user_signed_in? && current_user.id == user_id 
+  end
+
 end

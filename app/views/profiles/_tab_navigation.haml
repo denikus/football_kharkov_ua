@@ -1,0 +1,8 @@
+- if params[:controller] == 'profiles' && ['edit', 'edit_photo'].include?(params[:action])
+  %ul#tabnav
+    %li.first
+      = link_to_unless_current("Редактировать профиль", edit_profile_path, {:id => "profile-edit"}) do |page|
+        - "<span id=\"profile-edit\">#{page}</span>"
+    %li
+      = link_to_unless_current("Редактировать фото", edit_photo_profile_path, {:id => "photo-edit"}) do |page|
+        - "<span id=\"photo-edit\">#{page}</span>"

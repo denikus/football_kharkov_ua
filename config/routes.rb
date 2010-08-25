@@ -60,11 +60,9 @@ ActionController::Routing::Routes.draw do |map|
   
 #  map.devise_for :users
   
-  map.resources :users do |user|
-    user.resource :profile do |p|
-      p.resource :avatar, :as => :photo, :controller => :profile_avatars
-    end
-  end
+  map.resources :users
+  map.resource :profile, :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :make_crop => :post}
+  map.resource :itleague_draw
 
 
 
