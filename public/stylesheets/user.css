@@ -1,0 +1,113 @@
+/* line 4, ../../app/stylesheets/user.scss */
+div#left-sidebar {
+  width: 250px;
+  float: left;
+  border-right: 1px solid #eeeeee;
+}
+
+/* line 10, ../../app/stylesheets/user.scss */
+div#col-left {
+  width: 650px;
+  float: right;
+  border-right: none;
+}
+/* line 14, ../../app/stylesheets/user.scss */
+div#col-left hr {
+  color: #eeeeee;
+  background-color: #eeeeee;
+  height: 1px;
+  border: none;
+}
+/* line 22, ../../app/stylesheets/user.scss */
+div#col-left div#profile-data-block-view label {
+  display: inline;
+}
+
+/* line 29, ../../app/stylesheets/user.scss */
+div#container h1 {
+  font-size: 180%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* line 36, ../../app/stylesheets/user.scss */
+ul#left-sidebar-menu {
+  margin: 0;
+  margin-top: 10px;
+  text-align: left;
+  list-style-type: none;
+}
+/* line 41, ../../app/stylesheets/user.scss */
+ul#left-sidebar-menu li {
+  display: block;
+  border-bottom: 1px solid #eeeeee;
+}
+/* line 44, ../../app/stylesheets/user.scss */
+ul#left-sidebar-menu li a {
+  text-decoration: none;
+  display: block;
+  padding: 4px;
+}
+/* line 49, ../../app/stylesheets/user.scss */
+ul#left-sidebar-menu li a:hover {
+  background-color: #eeeeee;
+}
+/* line 53, ../../app/stylesheets/user.scss */
+ul#left-sidebar-menu li a.active {
+  background-color: #dcdcdc;
+}
+
+/*Tab Top Navigation*/
+/* line 62, ../../app/stylesheets/user.scss */
+ul#tabnav {
+  height: 27px;
+  color: #292929;
+  /*float:right;*/
+  height: 27px;
+  line-height: 1em;
+  margin: 0;
+  float: right;
+  margin-bottom: -43px;
+  position: relative;
+  top: -40px;
+  /*margin-bottom:-43px;*/
+  /*position:relative;*/
+  /*top:-43px;*/
+}
+/* line 77, ../../app/stylesheets/user.scss */
+ul#tabnav li {
+  border-right: 1px solid #eeeeee;
+  float: left;
+  list-style-type: none;
+  background: url("/images/top_nav_tab_background.gif") repeat-x scroll left top white;
+  padding: 0 5px;
+}
+/* line 85, ../../app/stylesheets/user.scss */
+ul#tabnav li.first {
+  border-left: 1px solid #EEEEEE;
+}
+/* line 89, ../../app/stylesheets/user.scss */
+ul#tabnav a:link, ul#tabnav a:visited, ul#tabnav span {
+  display: block;
+  padding: 9px 9px 6px 20px;
+}
+/* line 94, ../../app/stylesheets/user.scss */
+ul#tabnav span {
+  font-weight: bold;
+}
+/* line 98, ../../app/stylesheets/user.scss */
+ul#tabnav a.current {
+  /*background:url("/images/top_nav_tab_background.gif") repeat-x scroll left top #FFFFFF;*/
+  color: #292929;
+  padding-bottom: 7px !important;
+}
+/* line 104, ../../app/stylesheets/user.scss */
+ul#tabnav #profile-edit {
+  background: url("/images/icons/user_edit.png") no-repeat scroll 0 50% transparent;
+}
+/* line 108, ../../app/stylesheets/user.scss */
+ul#tabnav #photo-edit {
+  background: url("/images/icons/picture_edit.png") no-repeat scroll 0 50% transparent;
+}
+
+/*EOF Tab Top Navigation*/
