@@ -78,7 +78,7 @@ Itleague.draw = {
       i = (i == data.length || i=='undefined') ? 0 : i; // loops the interval
       prev = i;
       $(data[i++]).trigger('click');
-    }, 100);
+    }, 70);
     window.setTimeout(function(){
       window.clearInterval(interval_id);
       if (Itleague.draw.counter<=4) {
