@@ -5,21 +5,28 @@ Itleague.draw = {
   counter: 0,
   stage: 1,
   baskets: ["basket-4", "basket-3", "basket-2", "basket-1"],
-  
+  groups: ["group-e", "group-d", "group-c", "group-b", "group-a"],
+  last_team: '',
   init: function() {
     //buttons
     $("button#mega-button").button({disabled: false});
+    $("button#cancel-button").button({disabled: true});
 
     //first stage button handler
     $("#mega-button").click(function() {
 
       var basket_items = $("ol#" + Itleague.draw.baskets[Itleague.draw.stage-1]).children().not("[class*=drawed]");
 
-      var groups = ["group-e", "group-d", "group-c", "group-b", "group-a"];
+//      var groups = ["group-e", "group-d", "group-c", "group-b", "group-a"];
       $(this).find("span.ui-button-text").text('Продолжить');
+      $("button#cancel-button").button("disable");
+      Itleague.draw.runCarousel(basket_items, 0);
+    });
 
-
-      Itleague.draw.runCarousel(basket_items, groups);
+    $("button#cancel-button").click(function(){
+      $(Itleague.draw.last_team).removeClass("drawed");
+      $("li#" + Itleague.draw.last_team.id + "-group").remove();
+      Itleague.draw.counter--;
     });
 
     //lists
@@ -59,22 +66,28 @@ Itleague.draw = {
       $(this).addClass("drawed");
     });
   },
-  runCarousel: function(data, groups) {
-    var i;
+  runCarousel: function(data, i) {
     var group_id;
     var interval_id = window.setInterval(function() {
-      i = (i == data.length || i==undefined) ? 0 : i; // loops the interval
+      i = (i == data.length || i=='undefined') ? 0 : i; // loops the interval
       prev = i;
       $(data[i++]).trigger('click');
     }, 100);
     window.setTimeout(function(){
       window.clearInterval(interval_id);
       if (Itleague.draw.counter<=4) {
-        group_id = groups[Itleague.draw.counter];
+        group_id = Itleague.draw.groups[Itleague.draw.counter];
       } else {
-        group_id = groups[0];
+        group_id = Itleague.draw.groups[0];
       }
-      $(data[prev]).clone().appendTo("ol#" + group_id + ":first").hide().delay(1000).fadeIn("slow");
+//      console.log("prev: " + prev);
+//      console.log("id: " + data[prev].id);
+//      if (Itleague.draw.stage==2) {
+//        alert(data);
+//      }
+
+      $(data[prev]).clone().attr("id", data[prev].id + "-group").appendTo("ol#" + group_id + ":first").hide().delay(1000).fadeIn("slow");
+      Itleague.draw.last_team = data[prev];
       $(data[prev]).addClass("drawed");
       Itleague.draw.counter++;
 
@@ -84,11 +97,15 @@ Itleague.draw = {
           $("#mega-button").find("span.ui-button-text").text("Жеребьевка завершена!");
         } else {
           $("#mega-button").find("span.ui-button-text").text(++Itleague.draw.stage + "-й Этап");
+
+          $("button#cancel-button").button("disable");
         }
         Itleague.draw.counter = 0;
+      } else {
+        $("button#cancel-button").button("enable");
       }
 
-    }, Math.random()*11*data.length*200 + 5000);
+    }, Math.random()*11*(new Date().getSeconds())*data.length*10);
 
   }
 }
