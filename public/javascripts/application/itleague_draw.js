@@ -11,6 +11,11 @@ Itleague.draw = {
     //buttons
     $("button#mega-button").button({disabled: false});
     $("button#cancel-button").button({disabled: true});
+    $("button#change-button").button({disabled: false});
+    $("#change-button").click(function() {
+      $("h2").text('Жеребьевка (НЕпредвзятый вариант)');
+      $("button#change-button").remove();
+    });
 
     //first stage button handler
     $("#mega-button").click(function() {

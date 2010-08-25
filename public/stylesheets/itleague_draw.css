@@ -123,3 +123,8 @@ ol li {
   color: white;
   font-weight: bold;
 }
+
+/* line 104, ../../app/stylesheets/itleague_draw.scss */
+#change-button {
+  font-size: 14px;
+}
