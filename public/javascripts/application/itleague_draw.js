@@ -4,7 +4,7 @@ if (undefined == Itleague) {
 Itleague.draw = {
   counter: 0,
   stage: 1,
-  baskets: ["basket-4", "basket-3", "basket-2", "basket-1"],
+  baskets: ["basket-1", "basket-2", "basket-3", "basket-4"],
   groups: ["group-e", "group-d", "group-c", "group-b", "group-a"],
   last_team: '',
   init: function() {
