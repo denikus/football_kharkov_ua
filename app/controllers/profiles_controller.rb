@@ -62,7 +62,15 @@ respond_to do |format|
 
     redirect_to :action => :edit_photo
   end
-  
+
+  def destroy_photo
+    current_user.profile.photo = nil
+    if current_user.profile.save!
+      flash[:success] = "Фото успешно удалено"
+    end
+
+    redirect_to :action => :edit_photo
+  end
   
   protected
   

@@ -11,8 +11,7 @@ $(function() {
         btnPrev: ".prev",
         visible: 1,
         auto: 5000,
-        speed: 1000
+        speed: 1000,
+        start: Math.floor(Math.random()*10+1)
   });
-
-  
 });

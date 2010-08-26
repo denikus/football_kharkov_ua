@@ -12,25 +12,35 @@
   = f.file_field :photo, {:class=>"text", :id => "photo-upload-field"}
   .clear
 //cropping
-- unless @profile.avatar.nil?
+- unless @profile.photo.instance.photo_file_name.nil?
   = image_tag @profile.photo.url(:large), :id => "cropbox"
   - form_for :profile, @profile, {:url => make_crop_profile_path, :html => {:id => "photo-crop-form"}} do |f|
     - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
       = f.hidden_field attribute, :id => attribute
     .clear
     = f.submit 'Сохранить', :class=>"fancy-submit"
+  %h3= "Удалить фото"
+  %div{:style => "text-align: center; font-weight: bold;"} Не забудьте загрузить новое фото!
+  %br/
+  - form_for :profile, @profile, {:url => destroy_photo_profile_path, :html => {:method => :delete, :id => "photo-delete-form"}} do |f|
+    %div{:style => "text-align: center;"}
+      %input.fancy-button.blue{:type => "submit", :name => "submit", :value => "Удалить"}
+
+  :javascript
+    $(function() {
+      var options = {
+        original_width: "#{@profile.avatar_geometry(:original).width}",
+        large_width:    "#{@profile.avatar_geometry(:large).width}",
+        large_height:   "#{@profile.avatar_geometry(:large).height}",
+        x_left:         "#{@profile.crop_x_left || 0}",
+        y_top:          "#{@profile.crop_y_top || 0}",
+        x_right:        "#{@profile.crop_x_left.nil? ? "200" : (@profile.crop_x_left + @profile.crop_width)}",
+        y_bottom:       "#{@profile.crop_y_top.nil? ? "200" : (@profile.crop_y_top + @profile.crop_height)}"
+      }
+      Application.crop.init(options);
+    });
 
 :javascript
   $(function() {
-    var options = {
-      original_width: "#{@profile.avatar_geometry(:original).width}",
-      large_width:    "#{@profile.avatar_geometry(:large).width}",
-      large_height:   "#{@profile.avatar_geometry(:large).height}",
-      x_left:         "#{@profile.crop_x_left || 0}",
-      y_top:          "#{@profile.crop_y_top || 0}",
-      x_right:        "#{@profile.crop_x_left.nil? ? "200" : (@profile.crop_x_left + @profile.crop_width)}",
-      y_bottom:       "#{@profile.crop_y_top.nil? ? "200" : (@profile.crop_y_top + @profile.crop_height)}"
-    }
-    Application.crop.init(options);
     Application.photo_upload.init();
   });
