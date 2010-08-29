@@ -494,7 +494,7 @@ input.fancy-submit:hover {
 /* line 437, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li {
   line-height: 1.2em;
-  padding: 0.3em 0.3em 0 0.3em;
+  padding: 0.5em 0.5em 0 0.5em;
   border: 0;
   border-top: 1px solid #d9d9d9;
 }
@@ -505,8 +505,8 @@ input.fancy-submit:hover {
 /* line 447, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.post-date {
   color: #666666;
-  line-height: 1.49em;
-  padding: 0 0 1em;
+  line-height: 1em;
+  padding: 0;
 }
 /* line 454, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.author {
