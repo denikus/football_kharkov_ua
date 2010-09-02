@@ -436,12 +436,13 @@ $block_grey_text_color: #666666;
     list-style-type:none;
     li {
       line-height:1.2em;
-      padding:0.5em 0.5em 0 0.5em;
+      padding:5px;
       border: 0;
       border-top:1px solid $block_border_color;
 
       p.post-title {
         line-height:1.2em;
+        margin-bottom:3px;
       }
 
       p.post-date {
@@ -449,6 +450,7 @@ $block_grey_text_color: #666666;
         //        margin:0 0.6em;
         line-height:1em;
         padding:0;
+        margin-bottom:2px;
       }
 
       p.author {

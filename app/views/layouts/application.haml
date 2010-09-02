@@ -14,9 +14,4 @@
   #col-right
     = render_cell :sidebar_block, :news, :title => "Новенькое"
     = render_cell :sidebar_block, :shop, :title => "Амуниция"
-    -#    .sidebar-block
-    -#      .sidebar-block-header
-    -#        %h4 Подписка
-    -#        =link_to image_tag("/images/rss.gif"), {:controller => 'feed'}, {:class => "rss-icon-link"}
-    -#        =link_to image_tag("http://twitter-badges.s3.amazonaws.com/t_mini-a.png"), 'http://twitter.com/footballkharkov/', {:class => "twitter-icon-link", :target=> "_blank", :rel => "nofollow"}
     = render_cell :sidebar_block, :comments, :title => "Комментарии"     
