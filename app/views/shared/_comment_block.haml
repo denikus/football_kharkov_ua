@@ -9,12 +9,13 @@
       - if !comments.empty?
         - comments.each do |item|
           %li{:id => "comment-#{item.id}"}
+            - author = User.find(item.author_id)
             .comment-content{:style=>"margin-left: #{20 * (item.level-1)}px; "}
               %p.comment-author-photo{:style => "float:left;margin-right: 5px;"}
-                = image_tag "#{User.find(item.author_id).profile.photo.url(:thumb)}"
+                = image_tag "#{author.profile.photo.url(:thumb)}"
               .author-and-comment-container{:style=>"float:left;width:280px"}
                 %p.comment-author
-                  = "#{User.find(item.author_id).username} |"
+                  = link_to "#{author.username}", user_path(author) |
                   = Russian::strftime(item.created_at, "%B %d, %Y; %H:%M")
                 %p.comment-body
                   = show_comment(post, item)
