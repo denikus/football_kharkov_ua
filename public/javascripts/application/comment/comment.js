@@ -33,7 +33,7 @@ function showComment(response_data, response_status) {
   $("#new-comment").fadeOut("slow");
   
   var new_comment = $('<li id="comment-' + response_data.id + '">' + 
-                      '<div style="margin-left: ' + 20 * (response_data.level-1) + 'px; ">' + 
+                      '<div class="comment-content"  style="margin-left: ' + 20 * (response_data.level-1) + 'px; ">' + 
                         '<p class="comment-author">' +
                           response_data.author_login + ' | ' +
                           response_data.comment_date + 
@@ -84,7 +84,7 @@ function showInlineLoading(formData, jqForm, options) {
 function showInlineComment(response_data,response_status) {
   $("#new-comment").fadeOut("slow");
   var new_comment = $('<li id="comment-' + response_data.id + '">' + 
-                      '<div style="margin-left: ' + 20 * (response_data.level-1) + 'px; ">' + 
+                      '<div class="comment-content" style="margin-left: ' + 20 * (response_data.level-1) + 'px; ">' + 
                         '<p class="comment-author">' +
                             response_data.author_login + ' | ' +
                           response_data.comment_date + 

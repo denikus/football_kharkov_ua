@@ -484,7 +484,7 @@ $block_grey_text_color: #666666;
 */
 #comment_body {
     height:100px;
-    width:300px;
+    width:350px;
 }
 
 ul.comment {
@@ -503,10 +503,12 @@ ul.comment li {
   padding: 0;
 }
 
-ul.comment div {
-  border :1px solid #EEE;
-  background-color: #FAFAFA;
-  width: 300px;
+ul.comment div.comment-content {
+//  border :1px solid #EEE;
+//  background-color: #FAFAFA;
+  background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border:1px solid $block_border_color;
+  width: 350px;
   margin: 10px 0 10px 0;
   padding: 3px;
 }

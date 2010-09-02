@@ -1,4 +1,4 @@
 <h2><%= @article.title %></h2>
 <%= @article.body %>
 <%= render :partial => "shared/blog_link_panel", :locals => {:post=>@article.post} %>
-<%= render :partial => "shared/comment_block", :locals => {:post=>@article.post}%>
+<%= render :partial => "shared/x_comment_block", :locals => {:post=>@article.post}%>

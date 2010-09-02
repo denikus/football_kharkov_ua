@@ -1,0 +1,43 @@
+%h2#comments Комментарии:
+.clear
+- if  user_signed_in?
+  = render :partial => "shared/subscribe_comments_block", :locals => {:post_id => post.id}
+%div
+  %ul.comment#comment-tree
+    -if !post.comments.find_by_parent_id(nil).nil?
+      - comments = post.comments.find_by_parent_id(nil).all_children
+      - if !comments.empty?
+        - comments.each do |item|
+          %li{:id => "comment-#{item.id}"}
+            .comment-content{:style=>"margin-left: #{20 * (item.level-1)}px; "}
+              %p.comment-author-photo{:style => "float:left;margin-right: 5px;"}
+                = image_tag "#{User.find(item.author_id).profile.photo.url(:thumb)} |"
+              .author-and-comment-container{:style=>"float:left;width:280px"}
+                %p.comment-author
+                  = "#{User.find(item.author_id).username} |"
+                  = Russian::strftime(item.created_at, "%B %d, %Y; %H:%M")
+                %p.comment-body
+                  = show_comment(post, item)
+                  - if user_signed_in?
+                    %p.comment-reply{:style => "float: right;"}
+                      = "<a href=\"#\" onclick=\"addCommentForm(#{item.id}, #{item.level}, #{post.id});return false;\">ответить</a>"
+                    .clear
+              .clear        
+- unless user_signed_in?
+  = link_to 'Зарегистрируйтесь', {:controller => :users, :action => :new}
+  или
+  = link_to 'Войдите', {:controller => :users, :action => :sign_in}
+  чтобы комментировать!
+- else
+  = javascript_include_tag 'jquery-plugins/jquery_form/jquery.form'
+  = javascript_include_tag 'application/comment/comment.js'
+  .clear
+  %div
+    .error#comment-errors{:style => "display: none;"}
+    #new-comment-loading{:style => "text-align: center; width:300px; display: none;"}= image_tag "/images/ajax-loader.gif"
+    - form_for :comment, Comment.new, :url => {:controller => :comment, :action => :create, :id => 'new'}, :html => {:id => 'new-comment-post', :method => :post} do |f|
+      = f.hidden_field :post_id, :value => post.id
+      = f.text_area :body, :cols => 30, :rows => 5, :style => "height: 100px; width: 300px;"
+      .clear
+      %p
+        %input.fancy-submit{:type=>"submit", :value => "Отправить"}/
