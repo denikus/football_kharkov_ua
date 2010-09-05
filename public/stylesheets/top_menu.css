@@ -121,6 +121,11 @@ ul.topnav li div#top-menu-forum {
   padding-left: 15px;
 }
 /* line 107, ../../app/stylesheets/top_menu.scss */
+ul.topnav li div#top-menu-shop {
+  background: url("/images/icons/cart.png") no-repeat scroll 0 50% transparent;
+  padding-left: 15px;
+}
+/* line 112, ../../app/stylesheets/top_menu.scss */
 ul.topnav li div#top-menu-contacts {
   background: url("/images/icons/address-book-blue.png") no-repeat scroll 0 50% transparent;
   padding-left: 15px;
