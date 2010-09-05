@@ -1,3 +1,4 @@
+
 /*
     Document   : style.css
     Created on : 13.12.2008, 21:18:49
@@ -10,6 +11,11 @@
 TODO customize this sample style
 Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
+
+$block_border_color: #D9D9D9;
+$block_header_color: #BE420E;
+$block_link_color: #006CA2;
+$block_grey_text_color: #666666;
 
 /**
 *Layout
@@ -61,7 +67,7 @@ a#logo-link {
 	width: 100%;
 	clear: both;
 	height: 100px;
-    color: #bbb;
+  color: #bbb;
 	background-color: #222;
 }
 #clearfooter {
@@ -163,7 +169,7 @@ h2 {
   font-weight:bold;
   margin-bottom:0.75em;
   span.right-arrow, a.tournament {
-    color: #A5BE0E;
+    color: $block_grey_text_color;
   }
   a.tournament:hover {
     color: #336999;
@@ -414,10 +420,6 @@ input.fancy-submit:hover {
 }
 
 /* New block design */
-$block_border_color: #D9D9D9;
-$block_header_color: #BE420E;
-$block_link_color: #006CA2;
-$block_grey_text_color: #666666;
 
 #col-right .sidebar-block {
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
