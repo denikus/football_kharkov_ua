@@ -171,6 +171,9 @@ h2 {
   span.right-arrow, a.tournament {
     color: $block_grey_text_color;
   }
+  a.tournament, a.tournament:hover{
+    color: #A5BE0E;
+  }
   a.tournament:hover {
     color: #336999;
   }
