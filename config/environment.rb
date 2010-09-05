@@ -23,6 +23,7 @@ Rails::Initializer.run do |config|
   config.gem "paperclip"
   config.gem "compass", :version => ">= 0.10.2"
   config.gem "cells"
+  config.gem 'subdomain-fu'
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -73,8 +74,8 @@ Rails::Initializer.run do |config|
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
-end
 
+end
 require File.dirname(__FILE__) + '/../lib/lib'
 
 #class CGI::Session

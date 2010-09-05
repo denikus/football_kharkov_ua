@@ -34,7 +34,14 @@ module ApplicationHelper
     end
   end
 
+  def post_item_path(post_item)
+    post_path({:year => post_item.created_at.strftime('%Y'),
+               :month => post_item.created_at.strftime('%m'),
+               :day => post_item.created_at.strftime('%d'),
+               :url => !post_item.url.nil? ? post_item.url : ''})
+  end
 =begin
+
   def social_button(type, title, link)
     result = case type
       when 'twitter' then

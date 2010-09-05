@@ -29,8 +29,8 @@ Devise.setup do |config|
 
 
 
-#  config.default_url_options = { :host => 'localhost:3000' }
-# The time you want give to your user to confirm his account. During this time
+  #  config.default_url_options = { :host => '.localhost:3000' }
+  # The time you want give to your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is nil.
   config.confirm_within = 5.days
 
@@ -71,4 +71,7 @@ Devise.setup do |config|
   #config.default_url_options do
   #  { :locale => I18n.locale }
   #end
+  #  config.default_url_options do
+  #    { :host => 'localhost:3000' }
+  #  end
 end

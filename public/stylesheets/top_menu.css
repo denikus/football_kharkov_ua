@@ -1,64 +1,127 @@
+/* line 1, ../../app/stylesheets/top_menu.scss */
 ul.topnav {
-  font: 12px normal Arial,Helvetica,sans-serif;
-	list-style: none;
-	padding: 0;
-  /*padding-left: 0;*/
-	margin: 0;
-	float: left;
-	width: 970px;
-	/*background: #222;*/
-	font-size: 1.1em;
-	/*font-size: 81.25%;*/
-	/*background: url(/images/top-menu/topnav_bg.gif) repeat-x;*/
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+  width: 970px;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* line 12, ../../app/stylesheets/top_menu.scss */
 ul.topnav li {
-	float: left;
-	margin: 0;
-	padding: 0 15px 0 0;
-	position: relative; /*--Declare X and Y axis base for sub navigation--*/
+  float: left;
+  margin: 0;
+  padding: 0 14px;
+  position: relative;
+  /*--Declare X and Y axis base for sub navigation--*/
+  background: url(/images/top-menu/seperator.gif) no-repeat left;
 }
-ul.topnav li a{
-	/*padding: 10px 5px;*/
-	padding: 3px 5px 5px 5px;
-	color: #fff;
-	display: block;
-	text-decoration: none;
-	float: left;
+/* line 18, ../../app/stylesheets/top_menu.scss */
+ul.topnav li a {
+  padding: 7px 5px 14px;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  float: left;
 }
-ul.topnav li a:hover{
-	/*background: url(/images/top-menu/topnav_hover.gif) no-repeat center top;*/
-}
-ul.topnav li span { /*--Drop down trigger styles--*/
-	width: 17px;
-	height: 35px;
-	float: left;
-	background: url(/images/top-menu/subnav_btn.gif) no-repeat center top;
-}
-ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
+/* line 26, ../../app/stylesheets/top_menu.scss */
 ul.topnav li ul.subnav {
-	list-style: none;
-	position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
-	left: 0; top: 35px;
-	background: #333;
-	margin: 0; padding: 0;
-	display: none;
-	float: left;
-	width: 170px;
-	border: 1px solid #111;
+  list-style: none;
+  position: absolute;
+  /*--Important - Keeps subnav from affecting main navigation flow--*/
+  left: 0;
+  top: 35px;
+  background: #333;
+  margin: 0;
+  padding: 0;
+  display: none;
+  float: left;
+  width: 170px;
+  border: 1px solid #111;
+  z-index: 1;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
 }
-ul.topnav li ul.subnav li{
-	margin: 0; padding: 0;
-	border-top: 1px solid #252525; /*--Create bevel effect--*/
-	border-bottom: 1px solid #444; /*--Create bevel effect--*/
-	clear: both;
-	width: 170px;
+/* line 43, ../../app/stylesheets/top_menu.scss */
+ul.topnav li ul.subnav li {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #252525;
+  /*--Create bevel effect--*/
+  border-bottom: 1px solid #444;
+  /*--Create bevel effect--*/
+  clear: both;
+  width: 170px;
 }
-html ul.topnav li ul.subnav li a {
-	float: left;
-	width: 145px;
-	background: #333 url(/images/top-menu/dropdown_linkbg.gif) no-repeat 10px center;
-	padding-left: 20px;
+/* line 49, ../../app/stylesheets/top_menu.scss */
+ul.topnav li ul.subnav li a {
+  padding: 7px 5px 9px 20px;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  float: left;
 }
-html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
-	background: #222 url(/images/top-menu/dropdown_linkbg.gif) no-repeat 10px center;
+/* line 58, ../../app/stylesheets/top_menu.scss */
+ul.topnav li ul.subnav li {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+}
+/* line 60, ../../app/stylesheets/top_menu.scss */
+ul.topnav li ul.subnav li a {
+  float: left;
+  width: 145px;
+  background: #333333 url(/images/top-menu/dropdown_linkbg.gif) no-repeat 10px center;
+  padding-left: 20px;
+}
+/* line 66, ../../app/stylesheets/top_menu.scss */
+ul.topnav li ul.subnav li a:hover {
+  /*--Hover effect for subnav links--*/
+  background: #222222 url(/images/top-menu/dropdown_linkbg.gif) no-repeat 10px center;
+}
+/* line 71, ../../app/stylesheets/top_menu.scss */
+ul.topnav li.first {
+  border: none;
+  padding: 0 10px 0 0;
+  background: none;
+}
+/* line 75, ../../app/stylesheets/top_menu.scss */
+ul.topnav li a:hover {
+  background: url(/images/top-menu/topnav_hover.gif) no-repeat center top;
+}
+/* line 79, ../../app/stylesheets/top_menu.scss */
+ul.topnav li span {
+  /*--Drop down trigger styles--*/
+  width: 17px;
+  height: 35px;
+  float: left;
+  background: url(/images/top-menu/subnav_btn.gif) no-repeat center top;
+}
+
+/* line 89, ../../app/stylesheets/top_menu.scss */
+ul.topnav li div {
+  height: 35px;
+}
+/* line 92, ../../app/stylesheets/top_menu.scss */
+ul.topnav li div#top-menu-home {
+  background: url("/images/icons/home.png") no-repeat scroll 0 50% transparent;
+  padding-left: 15px;
+}
+/* line 97, ../../app/stylesheets/top_menu.scss */
+ul.topnav li div#top-menu-tournaments {
+  background: url("/images/icons/trophy.png") no-repeat scroll 0 50% transparent;
+  padding-left: 15px;
+}
+/* line 102, ../../app/stylesheets/top_menu.scss */
+ul.topnav li div#top-menu-forum {
+  background: url("/images/icons/balloon.png") no-repeat scroll 0 50% transparent;
+  padding-left: 15px;
+}
+/* line 107, ../../app/stylesheets/top_menu.scss */
+ul.topnav li div#top-menu-contacts {
+  background: url("/images/icons/address-book-blue.png") no-repeat scroll 0 50% transparent;
+  padding-left: 15px;
 }

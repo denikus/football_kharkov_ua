@@ -1,0 +1,112 @@
+ul.topnav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+  width: 970px;
+  font-size:14px;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+ul.topnav {
+  li {
+    float: left;
+    margin: 0;
+    padding: 0 14px;
+    position: relative; /*--Declare X and Y axis base for sub navigation--*/
+    background: url(/images/top-menu/seperator.gif) no-repeat left;
+    a{
+      padding: 7px 5px 14px;
+      color: #fff;
+      display: block;
+      text-decoration: none;
+      float: left;
+    }
+
+    ul.subnav {
+      list-style: none;
+      position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+      left: 0; top: 35px;
+      background: #333;
+      margin: 0; padding: 0;
+      display: none;
+      float: left;
+      width: 170px;
+      border: 1px solid #111;
+      z-index:1;
+      -moz-border-radius-bottomleft: 5px;
+      -moz-border-radius-bottomright: 5px;
+      -webkit-border-bottom-left-radius: 5px;
+      -webkit-border-bottom-right-radius: 5px;
+    }
+
+    ul.subnav li{
+      margin: 0; padding: 0;
+      border-top: 1px solid #252525; /*--Create bevel effect--*/
+      border-bottom: 1px solid #444; /*--Create bevel effect--*/
+      clear: both;
+      width: 170px;
+      a{
+        padding: 7px 5px 9px 20px;
+        color: #fff;
+        display: block;
+        text-decoration: none;
+        float: left;
+      }
+    }
+
+    ul.subnav li {font-family: Tahoma, Geneva, sans-serif; font-size:14px;}
+
+    ul.subnav li a {
+      float: left;
+      width: 145px;
+      background: #333 url(/images/top-menu/dropdown_linkbg.gif) no-repeat 10px center;
+      padding-left: 20px;
+    }
+    ul.subnav li a:hover { /*--Hover effect for subnav links--*/
+      background: #222 url(/images/top-menu/dropdown_linkbg.gif) no-repeat 10px center;
+    }
+  }
+
+  li.first{
+    border:none; padding: 0 10px 0 0; background:none;
+  }
+
+  li a:hover{
+    background: url(/images/top-menu/topnav_hover.gif) no-repeat center top;
+  }
+
+  li span { /*--Drop down trigger styles--*/
+    width: 17px;
+    height: 35px;
+    float: left;
+    background: url(/images/top-menu/subnav_btn.gif) no-repeat center top;
+  }
+}
+
+ul.topnav{
+  li {
+    div {
+      height:35px;
+    }
+    div#top-menu-home {
+      background: url('/images/icons/home.png') no-repeat scroll 0 50% transparent;
+      padding-left: 15px;
+    }
+
+    div#top-menu-tournaments {
+      background: url('/images/icons/trophy.png') no-repeat scroll 0 50% transparent;
+      padding-left: 15px;
+    }
+
+    div#top-menu-forum {
+      background: url('/images/icons/balloon.png') no-repeat scroll 0 50% transparent;
+      padding-left: 15px;
+    }
+
+    div#top-menu-contacts {
+      background: url('/images/icons/address-book-blue.png') no-repeat scroll 0 50% transparent;
+      padding-left: 15px;
+    }
+  }
+}

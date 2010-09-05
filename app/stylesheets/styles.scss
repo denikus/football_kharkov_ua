@@ -94,12 +94,15 @@ html>body #minHeight {
 */
 
 #header {
-    width: 100%;
+        width: 100%;
+//    width: 970px;
     /*height: 85px;*/
-    height: 110px;
-    background: #000 url(../images/bg-top.gif) repeat-x left top;
+//    height: 110px;
+    height: 120px;
+//    background: #000 url(/images/bg-top.gif) repeat-x left top;
+    background: #000 url(/images/header_bg.gif) repeat-x left top;
     margin-bottom: 1.5em;
-
+    position: relative;
 }
 #header-block {
 	width: 970px;
@@ -159,6 +162,12 @@ h2 {
   font-size:164%;
   font-weight:bold;
   margin-bottom:0.75em;
+  span.right-arrow, a.tournament {
+    color: #A5BE0E;
+  }
+  a.tournament:hover {
+    color: #336999;
+  }
 }
 
 h4 {
@@ -905,8 +914,5 @@ table.match-result-table ul.team-players-list {
 
 }
 
-
-
-
-
 /*EOF Shop block*/
+

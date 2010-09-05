@@ -1,0 +1,13 @@
+%ul.topnav
+  %li.first
+    #top-menu-home= link_to 'Главная', root_url(:subdomain => false)
+  %li.drop
+    #top-menu-tournaments
+      = link_to 'Турниры', '#'
+      %ul.subnav
+        %li= link_to 'IT-Лига', tournament_url(:subdomain => "itleague")
+        -#%li= link_to 'Кубок ФК Универ', tournament_url(:subdomain => "univercup")
+  %li
+    #top-menu-forum= link_to 'Форум', 'http://forum.football.kharkov.ua/', {:target => "_blank"}
+  %li
+    #top-menu-contacts= link_to 'Контакты', page_path(:id=>"contacts")

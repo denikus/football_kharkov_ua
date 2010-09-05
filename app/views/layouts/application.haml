@@ -12,6 +12,6 @@
 
   /right column
   #col-right
-    = render_cell :sidebar_block, :news, :title => "Новенькое"
+    = render_cell :sidebar_block, :news, :title => "Новенькое", :subdomain => current_subdomain
     = render_cell :sidebar_block, :shop, :title => "Амуниция"
-    = render_cell :sidebar_block, :comments, :title => "Комментарии"     
+    = render_cell :sidebar_block, :comments, :title => "Комментарии", :subdomain => current_subdomain     

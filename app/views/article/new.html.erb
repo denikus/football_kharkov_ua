@@ -26,6 +26,10 @@
         <%= fckeditor_textarea(:article, :body, :toolbarSet => 'Football', :width => '95%', :height => '500px') %>
     </div>
 
+    <label for="post_title">Относится к турниру:</label>
+    <%= select :post, :tournament_id, Tournament.all.collect {|p| [ p.name, p.id ] }, {:include_blank => true} %>
+    <div class="clear"></div><br />
+
     <label for="post_title">Теги/темы:</label>
     <%= text_field :post, :tag_list, :class=>"text long-input" %>
 
