@@ -1,0 +1,7 @@
+= admin_title 'Этапы'
+
+= jqgrid("Этапы", "stages", admin_season_stages_path(@season), |
+  [ { :field => "id", :label => "ID", :width => 35, :resizable => false }, |
+    { :field => "number", :label => "Номер", :width => 250, :editable => true } |
+  ], |
+  {:add => true, :edit => true, :delete => true, :edit_url => admin_season_stages_path(@season) + '/grid_edit'}) |

@@ -1,0 +1,9 @@
+%fieldset
+  %legend= legend
+  %table= form
+  %div{:style => 'float:left;'}= buttons if buttons
+  %input{:type => 'submit', :value => 'Сохранить', :onclick => "if($('input[name=_method]', $(this).parents('form')).length>1) $('input[name=_method]:last', $(this).parents('form')).remove();"}
+:javascript
+  $(function(){
+    $('##{id}').form();
+  })

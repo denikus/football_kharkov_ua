@@ -1,0 +1,10 @@
+= admin_title 'Футболисты'
+
+= jqgrid("Футболисты", "footballers", "/admin/footballers", |
+  [ { :field => "id", :label => "ID", :width => 35, :resizable => false }, |
+    { :field => "first_name", :label => "Имя", :width => 150, :editable => true }, |
+    { :field => "last_name", :label => "Фамилия", :width => 150, :editable => true }, |
+    { :field => "patronymic", :label => "Отчество", :width => 50, :editable => true }, |
+    { :field => "birth_date", :label => "Дата Рождения", :width => 150, :editable => true}, |
+  ], |
+  {:add => true, :edit => true, :delete => true, :edit_url => '/admin/footballers/grid_edit'}) |

@@ -1,0 +1,11 @@
+= jqgrid("Матчи", "matches", admin_tour_matches_path(tour),
+  [ { :field => "id", :label => "ID", :width => 35, :resizable => false },
+    { :field => "date", :label => "Дата", :width => 100 },
+    { :field => "hosts", :label => "Хозяева", :width => 200 },
+    { :field => "guests", :label => "Гости", :width => 200 },
+    { :field => "score", :label => "Счет", :width => 75 } ],
+  :delete => true, :edit_url => admin_tour_matches_path(tour) + '/grid_edit', :height => 400,
+  :subgrid => {:url => admin_match_events_path, :columns => [{:field => :minute, :label => 'Мин', :width => 35, :resizable => false},
+    {:field => :message, :label => 'Сообщение', :width => 400}]})
+
+= link_to 'Добавить матч', new_admin_tour_match_path(tour)

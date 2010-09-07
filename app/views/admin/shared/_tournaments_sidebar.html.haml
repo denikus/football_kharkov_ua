@@ -1,0 +1,18 @@
+- tournaments = Tournament.all
+- tournaments.each do |t|
+  %h3= t.name
+  %ul.nav
+    - t.seasons.each do |s|
+      %li= link_to s.name, admin_season_leagues_path(s)
+    %li.last= link_to '-- Все Сезоны --', admin_tournament_seasons_path(t)
+
+%h3 Участие команд
+%ul.nav
+  - tournaments.each do |t|
+    %li.last= link_to t.name, admin_tournament_teams_path(t)
+
+%h3 Матчи
+%ul.nav
+  - tournaments.each do |t|
+    %li.last= link_to t.name, admin_tournament_matches_path(t)
+ 

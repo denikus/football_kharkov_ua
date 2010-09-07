@@ -1,0 +1,8 @@
+= admin_title 'Чемпионаты'
+
+= jqgrid("Чемпионаты", "tournaments", "/admin/tournaments", |
+  [ { :field => "id", :label => "ID", :width => 35, :resizable => false }, |
+    { :field => "name", :label => "Имя", :width => 250, :editable => true }, |
+    { :field => "url", :label => "url", :width => 250, :editable => true } |
+  ], |
+  {:add => true, :edit => true, :delete => true, :edit_url => '/admin/tournaments/grid_edit'}) |
