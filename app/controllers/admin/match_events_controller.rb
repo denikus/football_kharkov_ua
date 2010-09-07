@@ -1,27 +1,13 @@
 class Admin::MatchEventsController < ApplicationController
   def index
-    events = MatchEvent.all(
-      :conditions => ['match_id = ?', params[:match_id]],
-      :include => [:match, :event]
-    )
-    result = {
-      :total_count => events.length,
-      :rows => events.collect do |e|
-        {
-          :id => e.id,
-          :match_id => e.match_id,
-          :period => e.minute <= e.match.period_duration ? 1 : 2,
-          :minute => e.minute,
-          :source => case e.event_type
-            when 'MatchMiscEvent': "Общее (#{e.event.event_type})"
-            when 'MatchPlayerEvent': "#{e.event.football_player.number} #{e.event.football_player.footballer.last_name}"
-            when 'MatchTeamEvent': e.event.competitor.team.name
-          end,
-          :message => e.message
-        }
-      end.sort_by{ |e| e[:minute] }.reverse
-    }
-    render :json => result.to_json
+    respond_to do |format|
+      format.json do
+        events = MatchEvent.find(:all, :conditions => {:match_id => params[:id]}, :order => 'minute DESC') do
+          paginate :page => params[:page], :per_page => params[:rows]
+        end
+        render :json => events.to_jqgrid_json([:minute, :message], params[:page], params[:rows], events.total_entries)
+      end
+    end
   end
   
   def create

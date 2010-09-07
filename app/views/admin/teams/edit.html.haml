@@ -1,0 +1,14 @@
+= admin_title @team.name
+
+- form_for [:admin, @team], :builder => JQueryFormBuilder do |f|
+  = f.error_messages
+  - f.draw("Редактирование команды") do
+    = f.text_field :name, 'Имя'
+    = f.text_field :url, 'Url'
+    = f.delimeter 'Игроки, играющие в команде'
+    - footballers = Footballer.all.collect{ |t| [t.full_name, t.id] }
+    - @team.footballer_ids.each do |id|
+      = f.train_select :footballer_ids, footballers, {:selected => id, :include_blank => true}
+      - footballers.delete_if{ |(fn, fid)| fid == id }
+    = f.train_select :footballer_ids, footballers, {:selected => '', :include_blank => true}
+    - f.append_button button_to('Удалить', admin_team_path(@team), :confirm => 'Вы уверены?', :method => :delete)

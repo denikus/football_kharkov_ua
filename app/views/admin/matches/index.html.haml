@@ -1,0 +1,8 @@
+= admin_title @tournament.name + ': Матчи'
+
+- selection 'Сезоны', :seasons, :on => @tournament, :root => true do |seasons|
+  - selection 'Этапы', :stages, :on => seasons do |stages|
+    - selection 'Лиги', :leagues, :on => stages do |leagues|
+      - selection 'Туры', :tours, :on => leagues, :click => lambda{ |t| show_matches(t) }
+
+#matches_grid

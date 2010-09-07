@@ -1,0 +1,42 @@
+= admin_title 'Команды'
+
+- admin_grid do |grid|
+  - grid.headers :id, :name, :url do |h|
+    - h.id 'id'
+    - h.name 'Имя'
+    - h.url 'url'
+    - h.actions do |show, edit, delete|
+      - show.with :admin_team_path
+      - edit.with :edit_admin_team_path
+      - delete.with :admin_team_path
+  - grid.rows @teams
+  - grid.footer do |f|
+    - f.add 'Добавить Команду', new_admin_team_path
+
+<div class="table">
+  <img src="/images/admin/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+  <img src="/images/admin/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+  <table class="listing" cellpadding="0" cellspacing="0">
+    <tr>
+      <th class="first">Name</th>
+      <th>Featured</th>
+      <th>Edit</th>
+      <th class="last">Delete</th>
+    </tr>
+    <% @servers.each_with_index do |server, i| %>
+      <tr <%= 'class="bg"' if i.even? %>>
+        <td class="first style2"><%=h server.name %></td>
+        <td><%= link_to image_tag("/images/admin/icons/#{server.featured? ? 'accept' : 'cross'}.gif", :width => 16, :height => 16), feature_admin_server_path(server) %></td>
+        <td><%= link_to image_tag('/images/admin/icons/edit-icon.gif', :width => 16, :height => 16), edit_admin_server_path(server) %></td>
+        <td class="last"><%= link_to image_tag('/images/admin/icons/del-icon.gif', :width => 16, :height => 16), admin_server_path(server), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="select">
+    <strong><%= link_to 'Back', admin_server_types_path %></strong>
+  </div>
+  <div class="select">
+    <strong>Add Server: </strong>
+    <%= link_to image_tag('/images/admin/icons/add-icon.gif', :width => 16, :height => 16, :style => 'margin: 3px 0 0 5px;'), new_admin_server_type_server_path %>
+  </div>
+</div>

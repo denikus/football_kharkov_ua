@@ -1,0 +1,16 @@
+= admin_title 'Новый матч'
+
+- form_for [:admin, @tour, Match.new], :builder => JQueryFormBuilder do |f|
+  = f.error_messages
+  - f.draw("Данные по матчу") do
+    = f.date_select :played_at, 'Дата проведения'
+    = f.select :referee_id, 'Рефери', Referee.all.collect{ |r| [r.full_name, r.id] }
+    = f.select :match_type, 'Тип игры', [['Мини', :mini], ['Большой', :big]], {}, :onchange => update_page{ |p| p << "$('#match_period_duration').val($(this).val() == 'mini' ? 25 : 40)" }
+    = f.text_field :period_duration, 'Длительность тайма', :value => 25
+    = f.text_area :comment, 'Заметки', :rows => 3
+    = f.delimeter 'Статистика'
+    = f.select :hosts, 'Хозяева', @teams.collect{ |t| [t.name, t.id] }, {:include_blank => true}, :onchange => match_edit_select_team(:hosts)
+    = f.canvas :match_hosts_stats
+    = f.select :guests, 'Гости', @teams.collect{ |t| [t.name, t.id] }, {:include_blank => true}, :onchange => match_edit_select_team(:guests)
+    = f.canvas :match_guests_stats
+    = f.checkbox :create_events, 'Создать игровые события для статистики', :checked => true
