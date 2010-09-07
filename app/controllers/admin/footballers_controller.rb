@@ -1,39 +1,62 @@
 class Admin::FootballersController < ApplicationController
+  layout 'admin/main'
+  
+  admin_section :personnel
+  
   def index
-    prepare_footballer = lambda{ |item|
-      {:id => item[:id], :first_name => item[:first_name], :last_name => item[:last_name], :patronymic => item[:patronymic], :full_name => item.full_name}
-    }
-    
-    result = unless params[:team_id].nil?
-      footballers = Team.find(params[:team_id]).footballers
-      {:total_count => footballers.length, :rows => footballers.collect(&prepare_footballer) }
-    else
-      start = (params[:start] || 0).to_i
-      size = (params[:limit] || 1000).to_i 
-      page = (start/size).to_i + 1
-      
-      footballers = Footballer.paginate(:all, :page => page, :per_page => size)
-      {:total_count => Footballer.count, :rows => footballers.collect(&prepare_footballer)}
+    footballers = Footballer.find(:all) do
+      paginate :page => params[:page], :per_page => params[:rows]
     end
-    
-    render :json => result.to_json
+    respond_to do |format|
+      format.html
+      format.json do
+        render :json => footballers.to_jqgrid_json([:id, :first_name, :last_name, :patronymic, :birth_date], params[:page], params[:rows], footballers.total_entries)
+      end
+    end
+  end
+  
+  def grid_edit
+    params[:format] = 'json'
+    params[:footballer] = [:first_name, :last_name, :patronymic, :birth_date].inject({}){ |p, k| p[k] = params.delete(k); p }
+    case params[:oper].to_sym
+    when :add: create
+    when :del: destroy
+    when :edit: update
+    end
   end
 
   def create
     @footballer = Footballer.new(params[:footballer])
-
     respond_to do |format|
       if @footballer.save
-        format.html { redirect_to(root_path) }
-        format.xml  { render :xml => @footballer, :status => :created, :location => @footballer }
-        format.ext_json  { render :json => {:success => true} }
-#        format.ext_json { render :json => Post.find(:all).to_ext_json }
+        format.json { render :json => {:success => true} }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @footballer.errors, :status => :unprocessable_entity }
-        format.ext_json {render  :json => @footballer.to_ext_json(:success => false) }
-
+        format.json{ render :json => {:success => false} }
       end
+    end
+  end
+  
+  def update
+    @footballer = Footballer.find params[:id]
+    
+    respond_to do |format|
+      if @footballer.update_attributes(params[:footballer])
+        format.html { redirect_to([:admin, @footballer]) }
+        format.json  { render :json => {:success => true} }
+      else
+        format.html { redirect_to([:admin, @footballer]) }
+        format.json { render  :json => @footballer.to_ext_json(:success => false) }
+      end
+    end
+  end
+  
+  def destroy
+    @footballer = Footballer.find params[:id]
+    @footballer.destroy
+    
+    respond_to do |format|
+      format.html{ redirect_to admin_footballers_path }
+      format.json{ render :json => {:success => true} }
     end
   end
   

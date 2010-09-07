@@ -1,53 +1,71 @@
 class Admin::TeamsController < ApplicationController
+  layout 'admin/main'
+  admin_section :personnel
+  
   def index
-    prepare_team = lambda{ |item|
-      {:id => item[:id], :name => item[:name], :url => item[:url]}
-    }
-    result = unless params[:league_id].nil?
-      teams = League.find(params[:league_id]).teams
-      {:total_count => teams.length, :rows => teams.collect(&prepare_team) }
+    if params[:tournament_id]
+      @tournament = Tournament.from params[:tournament_id]
+      render :action => 'leagues', :section => :tournaments
+    elsif params[:league_id]
+      @league = League.find params[:league_id]
+      render :update do |page|
+        page[:teams_selection].replace_html :partial => 'league_teams'
+      end
     else
-      start = (params[:start] || 0).to_i
-      size = (params[:limit] || 30).to_i
-      page = (start/size).to_i + 1
-      
-      teams = Team.paginate(:all, :page => page, :per_page => size)
-      {:total_count => Team.count, :rows => teams.collect(&prepare_team)}
+      teams = Team.find(:all) do
+        paginate :page => params[:page], :per_page => params[:rows]
+      end
+      respond_to do |format|
+        format.html
+        format.json do
+          render :json => teams.to_jqgrid_json([:id, :name, :url], params[:page], params[:rows], teams.total_entries)
+        end
+      end
     end
-    
-    render :json => result.to_json
+  end
+  
+  def grid_edit
+    params[:format] = 'json'
+    destroy if params[:oper].to_sym == :del
+  end
+  
+  def new
+  end
+  
+  def edit
+    @team = Team.find(params[:id])
   end
   
   def update
     @team = Team.find(params[:id])
-    @team.footballer_ids = params[:footballer_ids].split(',').collect(&:to_i)
     
     respond_to do |format|
-      if @team.save
+      if @team.update_attributes(params[:team])
         format.html { redirect_to(admin_teams_path) }
-        format.json  { render :json => {:success => true} }
       else
         format.html { redirect_to(admin_teams_path) }
-        format.json { render  :json => @team.to_ext_json(:success => false) }
       end
     end
   end
 
   def create
     @team = Team.new(params[:team])
-
+    
     respond_to do |format|
       if @team.save
-        format.html { redirect_to(root_path) }
-        format.xml  { render :xml => @team, :status => :created, :location => @team }
-        format.ext_json  { render :json => {:success => true} }
-#        format.ext_json { render :json => Post.find(:all).to_ext_json }
+        format.html { redirect_to(admin_teams_path) }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @team.errors, :status => :unprocessable_entity }
-        format.ext_json {render  :json => @team.to_ext_json(:success => false) }
-
       end
+    end
+  end
+  
+  def destroy
+    @team = Team.find params[:id]
+    @team.destroy
+    
+    respond_to do |format|
+      format.html{ redirect_to admin_teams_path }
     end
   end
 end

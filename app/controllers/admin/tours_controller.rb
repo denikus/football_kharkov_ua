@@ -1,21 +1,25 @@
 class Admin::ToursController < ApplicationController
   def index
-    prepare_tour = lambda{ |item|
-      {:id => item.id, :league_id => item.league_id, :name => item.name}
-    }
-    result = unless params[:league_id].nil?
-      tours = League.find(params[:league_id]).tours
-      {:total_count => tours.length, :rows => tours.collect(&prepare_tour) }
-    else
-      start = (params[:start] || 0).to_i
-      size = (params[:limit] || 30).to_i
-      page = (start/size).to_i + 1
-      
-      tours = Tour.paginate(:all, :page => page, :per_page => size)
-      {:total_count => Tour.count, :rows => tours.collect(&prepare_tour)}
+    tours = Tour.find(:all, :conditions => {:league_id => params[:id]}) do
+      paginate :page => params[:page], :per_page => params[:rows]
     end
-    
-    render :json => result.to_json
+    respond_to do |format|
+      format.html
+      format.json do
+        render :json => tours.to_jqgrid_json([:id, :name], params[:page], params[:rows], tours.total_entries)
+      end
+    end
+  end
+  
+  def grid_edit
+    params[:format] = 'json'
+    params[:tour] = [:name].inject({}){ |p, k| p[k] = params.delete(k); p }
+    params[:tour][:league_id] = params.delete(:parent_id) if params.key?(:parent_id)
+    case params[:oper].to_sym
+    when :add: create
+    when :del: destroy
+    when :edit: update
+    end
   end
 
   def create
@@ -23,14 +27,21 @@ class Admin::ToursController < ApplicationController
     
     respond_to do |format|
       if @tour.save
-        format.html { redirect_to(root_path) }
-        format.xml  { render :xml => @tour, :status => :created, :location => @tour }
+        format.json  { render :json => {:success => true} }
         format.ext_json  { render :json => {:success => true} }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @tour.errors, :status => :unprocessable_entity }
         format.ext_json {render  :json => @tour.to_ext_json(:success => false) }
       end
+    end
+  end
+  
+  def destroy
+    @tour = Tour.find params[:id]
+    @tour.destroy
+    
+    respond_to do |format|
+      format.json{ render :json => {:success => true} }
     end
   end
   

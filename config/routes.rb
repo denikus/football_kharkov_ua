@@ -40,18 +40,23 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :users, :admin
   map.namespace(:admin) do |admin|
     admin.root :controller => 'main'
+    admin.ext_root '.ext', :controller => :main, :format => :ext
     admin.resources :comments
-    admin.resources :tournaments, :has_many => :seasons
-    admin.resources :seasons, :has_many => :stages
-    admin.resources :stages, :has_many => :leagues
-    admin.resources :leagues, :has_many => [:teams, :tours]
-    admin.resources :teams, :has_many => [:leagues, :footballers]
-    admin.resources :tours, :has_many => :matches
+    admin.resources :tournaments, :has_many => [:seasons, :matches, :teams], :collection => {:grid_edit => :post}
+    admin.resources :seasons do |s|
+      s.resources :stages, :collection => {:grid_edit => :post}
+      s.resources :leagues, :collection => {:grid_edit => :post}
+      s.resources :tours, :collection => {:grid_edit => :post}
+    end
+    admin.resources :stages, :has_many => :leagues, :collection => {:grid_edit => :post}
+    admin.resources :leagues, :has_many => [:teams, :tours], :collection => {:grid_edit => :post}
+    admin.resources :teams, :has_many => [:leagues, :footballers], :collection => {:grid_edit => :post}
+    admin.resources :tours, :has_many => :matches, :collection => {:grid_edit => :post}
     admin.resources :matches do |m|
-      m.resources :match_events, :as => :events
       m.resources :competitors
       m.resource :stats
     end
+    admin.resources :match_events
     admin.resources :referees
     admin.resources :footballers
     admin.resources :permissions

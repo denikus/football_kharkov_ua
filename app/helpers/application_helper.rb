@@ -83,5 +83,55 @@ module ApplicationHelper
   def my_data?(user_id)
     user_signed_in? && current_user.id == user_id 
   end
+  
+  def admin_top_menu
+    tabs = [[:main, 'Главная', admin_root_path],
+      [:content, 'Контент', admin_comments_path],
+      [:personnel, 'Личный Состав', admin_teams_path],
+      [:tournaments, 'Чемпионаты', admin_tournaments_path],
+      [:permissions, 'Администрация', admin_permissions_path]]
+    
+    current_tab = controller.instance_variable_get('@admin_section') || controller.class.instance_variable_get('@admin_section')
+    content_tag :ul, :id => 'top-navigation' do
+      tabs.collect do |(tab, name, path)|
+        content_tag(:li, :class => tab == current_tab ? 'active' : '') do
+          content_tag :span do
+            content_tag :span, tab == current_tab ? name : link_to(name, path)
+          end
+        end
+      end
+    end
+  end
+  
+  def admin_sidebar
+    case controller.instance_variable_get('@admin_section') || controller.class.instance_variable_get('@admin_section')
+    when :personnel: render(:partial => 'admin/shared/personnel_sidebar')
+    when :tournaments: render(:partial => 'admin/shared/tournaments_sidebar')
+    end
+  end
+  
+  def admin_title title
+    render :partial => 'admin/shared/title', :object => title
+  end
+  
+  def selection name, method, options={}, &block
+    source = options[:on] or raise ArgumentError
+    collection = source.send(method)
+    html = @template.content_tag(:div, :id => dom_id(source), :style => ("display: none;" unless options[:root])) do
+      @template.content_tag(:span, name + ': ', :style => 'font-weight:bold;') +
+      collection.collect do |element|
+        h = block_given? ? link_to_function(element.name){ |p| p[dom_id(element)].show.siblings('div').hide } :
+          options[:click] ? link_to_function(element.name, options[:click][element]) : element.name
+        @template.content_tag(:span, h)
+      end.join(' | ') +
+      if block_given?
+        collection.collect do |element|
+          @template.capture(element, &block)
+        end.join
+      else; ''
+      end
+    end
+    @template.concat html
+  end
 
 end

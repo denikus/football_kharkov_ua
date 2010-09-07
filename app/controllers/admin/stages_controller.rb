@@ -1,29 +1,53 @@
 class Admin::StagesController < ApplicationController
+  layout 'admin/main'
+  
   def index
-    prepare_stage = lambda{ |item|
-      {:id => item[:id], :number => item[:number], :season => item.season[:name], :name => item.name}
-    }
-    result = unless params[:season_id].nil?
-      stages = Season.find(params[:season_id]).stages
-      {:total_count => stages.length, :rows => stages.collect(&prepare_stage) }
-    else
-      start = (params[:start] || 0).to_i
-      size = (params[:limit] || 30).to_i
-      page = (start/size).to_i + 1
-      
-      stages = Stage.paginate(:all, :page => page, :per_page => size, :joins => :season)
-      {:total_count => Stage.count, :rows => stages.collect(&prepare_stage)}
+    #prepare_stage = lambda{ |item|
+    #  {:id => item[:id], :number => item[:number], :season => item.season[:name], :name => item.name}
+    #}
+    #result = unless params[:season_id].nil?
+    #  stages = Season.find(params[:season_id]).stages
+    #  {:total_count => stages.length, :rows => stages.collect(&prepare_stage) }
+    #else
+    #  start = (params[:start] || 0).to_i
+    #  size = (params[:limit] || 30).to_i
+    #  page = (start/size).to_i + 1
+    #  
+    #  stages = Stage.paginate(:all, :page => page, :per_page => size, :joins => :season)
+    #  {:total_count => Stage.count, :rows => stages.collect(&prepare_stage)}
+    #end
+    #
+    #render :json => result.to_json
+    @season = Season.find(params[:season_id])
+    stages = Stage.find(:all, :conditions => {:season_id => @season.id}) do
+      paginate :page => params[:page], :per_page => params[:rows]
     end
-    
-    render :json => result.to_json
+    respond_to do |format|
+      format.html
+      format.json do
+        render :json => stages.to_jqgrid_json([:id, :number], params[:page], params[:rows], stages.total_entries)
+      end
+    end
+  end
+  
+  def grid_edit
+    params[:format] = 'json'
+    params[:stage] = [:number].inject({}){ |p, k| p[k] = params.delete(k); p }
+    case params[:oper].to_sym
+    when :add: create
+    when :del: destroy
+    when :edit: update
+    end
   end
 
   def create
+    params[:stage][:season_id] = params[:season_id]
     @stage = Stage.new(params[:stage])
 
     respond_to do |format|
       if @stage.save
         format.html { redirect_to(root_path) }
+        format.json { render :json => {:success => true} }
         format.xml  { render :xml => @stage, :status => :created, :location => @stage }
         format.ext_json  { render :json => {:success => true} }
 #        format.ext_json { render :json => Post.find(:all).to_ext_json }
@@ -33,6 +57,31 @@ class Admin::StagesController < ApplicationController
         format.ext_json {render  :json => @stage.to_ext_json(:success => false) }
 
       end
+    end
+  end
+  
+  def update
+    params[:stage][:season_id] = params[:season_id]
+    @stage = Stage.find params[:id]
+    
+    respond_to do |format|
+      if @stage.update_attributes(params[:stage])
+        format.html { redirect_to(admin_stages_path) }
+        format.json  { render :json => {:success => true} }
+      else
+        format.html { redirect_to(admin_stages_path) }
+        format.json { render  :json => @team.to_ext_json(:success => false) }
+      end
+    end
+  end
+  
+  def destroy
+    @stage = Stage.find params[:id]
+    @stage.destroy
+    
+    respond_to do |format|
+      format.html{ redirect_to admin_stages_path }
+      format.json{ render :json => {:success => true} }
     end
   end
 end

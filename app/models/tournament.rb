@@ -9,7 +9,11 @@ class Tournament < ActiveRecord::Base
     url
   end
   
-  def self.from_param(param)
-    find_by_url!(param)
+  class << self
+    def from_param(param)
+      find_by_url!(param)
+    end
+    
+    alias_method :from, :from_param
   end
 end
