@@ -14,4 +14,7 @@ class SidebarBlockCell < ::Cell::Base
     render
   end
 
+  def it_forecast
+    render
+  end
 end
