@@ -14,6 +14,7 @@ config.action_controller.consider_all_requests_local = true
 config.action_mailer.default_url_options             = { :host => 'localhost:3000' }
 config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
+config.action_controller.session[:domain]            = 'fb.denix.sv' 
 #config.action_controller.session                     = { :domain => '.localhost' }
 #config.action_view.cache_template_extensions         = false
 
