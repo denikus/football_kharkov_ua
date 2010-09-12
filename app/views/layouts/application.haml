@@ -12,6 +12,8 @@
 
   /right column
   #col-right
+    - unless current_subdomain.nil?
+      = render_cell :sidebar_block, :quick_results, :title => "Блиц-результаты", :subdomain => current_subdomain
     = render_cell :sidebar_block, :news, :title => "Новенькое", :subdomain => current_subdomain
     = render_cell :sidebar_block, :shop, :title => "Амуниция"
     - if current_subdomain=='itleague'

@@ -134,4 +134,18 @@ module ApplicationHelper
     @template.concat html
   end
 
+  def quick_match_result_formatted(match_item)
+    winner_class = "winner"
+    loser_class = "loser"
+    hosts_class = guests_class = ""
+    if match_item.hosts_score > match_item.guests_score
+      hosts_class = winner_class
+      guests_class = loser_class
+    elsif match_item.hosts_score < match_item.guests_score
+      hosts_class = loser_class
+      guests_class = winner_class
+    end
+    return "<span class=\"#{hosts_class}\">#{match_item.hosts}</span> <span class=\"score\"></span> : <span class=\"score\"></span> <span class=\"#{guests_class}\">#{match_item.guests}</span>"
+  end
+
 end

@@ -921,3 +921,13 @@ table.match-result-table ul.team-players-list {
 
 /*EOF Shop block*/
 
+/*Quick Match Results block*/
+ul.quick_match_results {
+  li {
+    span.winner {color: green;}
+    span.loser {color: #BE420E;}
+    span.score {font-weight: bold;border: 1px solid $block_border_color;padding:0 2px;}
+  }
+}
+/*EOF Quick Match Results block*/
+

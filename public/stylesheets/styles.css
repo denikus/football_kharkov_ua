@@ -1022,3 +1022,20 @@ table.match-result-table ul.team-players-list {
 }
 
 /*EOF Shop block*/
+/*Quick Match Results block*/
+/* line 927, ../../app/stylesheets/styles.scss */
+ul.quick_match_results li span.winner {
+  color: green;
+}
+/* line 928, ../../app/stylesheets/styles.scss */
+ul.quick_match_results li span.loser {
+  color: #BE420E;
+}
+/* line 929, ../../app/stylesheets/styles.scss */
+ul.quick_match_results li span.score {
+  font-weight: bold;
+  border: 1px solid #d9d9d9;
+  padding: 0 2px;
+}
+
+/*EOF Quick Match Results block*/
