@@ -25,6 +25,13 @@ ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => false
 }
 
+FORUM = {
+  :location => 'http://forum.football.kharkov.ua/',
+  :create_user => 'create_user.php',
+  :confirm_user => 'confirm_user.php',
+  :secret => 'b261638d90968ece3bc564296fa28c486c8e4963c6a380247a4875508c6b9f5f686df12f9f9464e6520ced86a0602ccc1ed6cdff0cfd4d8bd1b480187313c859'
+}.freeze
+
 BITLY = {
   :username => 'footballkharkov',
   :api_key => 'R_284aa8534d40494118bf2dadca17695a'
