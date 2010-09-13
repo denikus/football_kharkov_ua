@@ -925,12 +925,13 @@ table.match-result-table ul.team-players-list {
 #col-right .sidebar-block ul.quick_match_results {
   li {
     padding:5px 0;
+    div.score-container{float: left;width: 38px;margin:0 3px;}
     div.score{
       font-weight:bold;
       padding:1px;
       padding-top:0;
       color: #FFF;
-      width: 14px;
+      width: 16px;
       float:left;
       text-align:center;
       background-color: #7BB2E7;
@@ -938,10 +939,10 @@ table.match-result-table ul.team-players-list {
     div.score-right {margin-left: 2px;}
     div.winner_score {background-color: #6BA231;}
     div.loser_score {background-color: #DF0500;}
-    div.hosts {float:left; width: 114px; text-align:right;}
-    div.guests {float:left;width: 114px;text-align:left;}
+    div.hosts {float:left; width: 112px; text-align:right;}
+    div.guests {float:left;width: 112px;text-align:left;}
   }
-  li.even {background-color:#FAFAFA;}
+  li.odd {background-color:#FAFAFA;}
 }
 /*EOF Quick Match Results block*/
 

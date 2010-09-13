@@ -1028,42 +1028,48 @@ table.match-result-table ul.team-players-list {
   padding: 5px 0;
 }
 /* line 928, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li div.score-container {
+  float: left;
+  width: 38px;
+  margin: 0 3px;
+}
+/* line 929, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score {
   font-weight: bold;
   padding: 1px;
   padding-top: 0;
   color: #FFF;
-  width: 14px;
+  width: 16px;
   float: left;
   text-align: center;
   background-color: #7BB2E7;
 }
-/* line 938, ../../app/stylesheets/styles.scss */
+/* line 939, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score-right {
   margin-left: 2px;
 }
-/* line 939, ../../app/stylesheets/styles.scss */
+/* line 940, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.winner_score {
   background-color: #6BA231;
 }
-/* line 940, ../../app/stylesheets/styles.scss */
+/* line 941, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.loser_score {
   background-color: #DF0500;
 }
-/* line 941, ../../app/stylesheets/styles.scss */
+/* line 942, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.hosts {
   float: left;
-  width: 114px;
+  width: 112px;
   text-align: right;
 }
-/* line 942, ../../app/stylesheets/styles.scss */
+/* line 943, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.guests {
   float: left;
-  width: 114px;
+  width: 112px;
   text-align: left;
 }
-/* line 944, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li.even {
+/* line 945, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li.odd {
   background-color: #FAFAFA;
 }
 

@@ -14,10 +14,10 @@
         - elsif item.hosts_score < item.guests_score
           - hosts_class = loser_class
           - guests_class = winner_class
-        -row_class = i%2 == 0 ? "even" : ""
+        -row_class = i%2 == 0 ? "" : "odd"
         %li{:class => row_class}
           .hosts{:style=> ""}= item.hosts
-          .score-container{:style=>"float: left;width: 34px;margin:0 3px;"}
+          .score-container
             .score{:class => hosts_class }= item.hosts_score
             .score.score-right{:class => guests_class }= item.guests_score
           .guests= item.guests
