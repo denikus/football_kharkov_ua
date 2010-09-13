@@ -2,7 +2,7 @@ require 'uri'
 require 'net/http'
 
 class UsersController < ApplicationController
-  layout 'user'
+  #  layout 'user'
   layout 'application', :only => [:new, :create]
   
   # GET /users/1
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def show
     @title = 'Профиль'
     @profile = User.from_param(params[:id]).profile
+    render :layout => "user"
   end
 
   # GET /users/new
