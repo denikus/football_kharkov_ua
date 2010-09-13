@@ -10,7 +10,7 @@ config.cache_classes = true
 # Full error reports are disabled and caching is turned on
 config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
-config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
+config.action_mailer.default_url_options             = { :host => 'football.kharkov.ua' }
 config.action_controller.session[:domain]            = 'football.kharkov.ua'
 #config.action_view.cache_template_loading            = true
 
@@ -19,6 +19,11 @@ config.action_controller.session[:domain]            = 'football.kharkov.ua'
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
+
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  :enable_starttls_auto => false
+}
 
 BITLY = {
   :username => 'footballkharkov',
