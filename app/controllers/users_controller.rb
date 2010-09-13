@@ -3,7 +3,7 @@ require 'net/http'
 
 class UsersController < ApplicationController
   layout 'user'
-  layout 'application', :only => [:new]
+  layout 'application', :only => [:new, :create]
   
   # GET /users/1
   # GET /users/1.xml

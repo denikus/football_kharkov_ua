@@ -27,4 +27,7 @@ BITLY = {
 
 
 ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
-ExceptionNotification::Notifier.sender_address = %("Football.kharkov.ua" <info@football.kharkov.ua>)
+ExceptionNotification::Notifier.sender_address = %w(info@football.kharkov.ua)
+ActionMailer::Base.smtp_settings = {
+  :enable_starttls_auto => false
+}
