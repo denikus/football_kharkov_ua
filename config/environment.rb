@@ -24,7 +24,8 @@ Rails::Initializer.run do |config|
   config.gem "compass", :version => ">= 0.10.2"
   config.gem "cells"
   config.gem 'subdomain-fu'
-  
+  config.gem 'exception_notification'
+
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -80,9 +81,6 @@ Rails::Initializer.run do |config|
 
 end
 require File.dirname(__FILE__) + '/../lib/lib'
-
-#ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
-#ExceptionNotification::Notifier.sender_address = %("Football.kharkov.ua" <football.kharkov.ua@gmail.com>)
 
 #class CGI::Session
 #  alias original_initialize initialize

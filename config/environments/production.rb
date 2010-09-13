@@ -24,3 +24,7 @@ BITLY = {
   :username => 'footballkharkov',
   :api_key => 'R_284aa8534d40494118bf2dadca17695a'
 }.freeze
+
+
+ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
+ExceptionNotification::Notifier.sender_address = %("Football.kharkov.ua" <football.kharkov.ua@gmail.com>)

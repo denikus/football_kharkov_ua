@@ -2,9 +2,9 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-#  if RAILS_ENV=="production"
-#    include ExceptionNotification::Notifiable
-#  end
+  if RAILS_ENV=="development"
+    include ExceptionNotification::Notifiable
+  end
   
   helper :all # include all helpers, all the time
   # See ActionController::RequestForgeryProtection for details
