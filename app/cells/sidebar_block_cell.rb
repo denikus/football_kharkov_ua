@@ -22,7 +22,7 @@ class SidebarBlockCell < ::Cell::Base
   end
 
   def quick_results
-    @quick_results = QuickMatchResult.find(:all, :joins => "INNER JOIN tournaments ON (tournaments.id = quick_match_results.tournament_id)", :conditions =>["tournaments.url = ? ", @opts[:subdomain]], :order => "match_on DESC");
+    @quick_results = QuickMatchResult.find(:all, :joins => "INNER JOIN tournaments ON (tournaments.id = quick_match_results.tournament_id)", :conditions =>["tournaments.url = ? ", @opts[:subdomain]], :order => "match_on, created_at DESC");
     render
   end
 end

@@ -3,9 +3,9 @@
     %h4= @opts[:title]
   .bd
     %ul.quick_match_results
-      - @quick_results.each do |item|
-        - winner_class = "winner"
-        - loser_class = "loser"
+      - @quick_results.each_with_index do |item, i|
+        - winner_class = "winner_score"
+        - loser_class = "loser_score"
         - hosts_class = ""
         - guests_class = ""
         - if item.hosts_score > item.guests_score
@@ -14,4 +14,13 @@
         - elsif item.hosts_score < item.guests_score
           - hosts_class = loser_class
           - guests_class = winner_class
-        %li= "<span class=\"#{hosts_class}\">#{item.hosts}</span> <span class=\"score #{hosts_class}\">#{item.hosts_score}</span> : <span class=\"score #{guests_class} \">#{item.guests_score}</span> <span class=\"#{guests_class}\">#{item.guests}</span>"
+        -row_class = i%2 == 0 ? "even" : ""
+        %li{:class => row_class}
+          .hosts{:style=> ""}= item.hosts
+          .score-container{:style=>"float: left;width: 34px;margin:0 3px;"}
+            .score{:class => hosts_class }= item.hosts_score
+            .score.score-right{:class => guests_class }= item.guests_score
+          .guests= item.guests
+          .clear
+
+
