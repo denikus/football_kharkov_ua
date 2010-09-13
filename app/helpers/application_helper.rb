@@ -34,11 +34,13 @@ module ApplicationHelper
     end
   end
 
-  def post_item_path(post_item)
+  def post_item_path(post_item, with_anchor =false)
     post_path({:year => post_item.created_at.strftime('%Y'),
                :month => post_item.created_at.strftime('%m'),
                :day => post_item.created_at.strftime('%d'),
-               :url => !post_item.url.nil? ? post_item.url : ''})
+               :url => !post_item.url.nil? ? post_item.url : '',
+               :anchor => with_anchor ? "announce-breaker" : "" 
+              })
   end
 =begin
 
@@ -146,6 +148,22 @@ module ApplicationHelper
       guests_class = winner_class
     end
     return "<span class=\"#{hosts_class}\">#{match_item.hosts}</span> <span class=\"score\"></span> : <span class=\"score\"></span> <span class=\"#{guests_class}\">#{match_item.guests}</span>"
+  end
+
+  def post_belongs_2_subdomain?
+    if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
+      !Post.find_by_url(params[:url]).tournament.nil? ? true : false
+    else
+      return false
+    end
+  end
+
+  def post_subdomain
+    if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
+      Post.find_by_url(params[:url]).tournament.url
+    else
+      false
+    end
   end
 
 end

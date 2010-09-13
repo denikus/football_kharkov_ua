@@ -8,7 +8,4 @@
   = Hpricot(title_image + article_announce(post.resource.body)).to_html
   %br/
   .clear
-  = link_to("читать дальше".capitalize, post_url({:year => post.created_at.strftime('%Y'),
-                                                  :month => post.created_at.strftime('%m'),
-                                                  :day => post.created_at.strftime('%d'),
-                                                  :url => !post.url.nil? ? post.url : '', :anchor => "announce-breaker"}))
+  = link_to("читать дальше".capitalize, post_item_path(post, true))
