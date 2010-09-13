@@ -82,6 +82,14 @@ Rails::Initializer.run do |config|
 end
 require File.dirname(__FILE__) + '/../lib/lib'
 
+if RAILS_ENV == "production"
+  ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
+  ExceptionNotification::Notifier.sender_address = %w(info@football.kharkov.ua)
+  ActionMailer::Base.smtp_settings = {
+    :enable_starttls_auto => false
+  }
+end
+
 #class CGI::Session
 #  alias original_initialize initialize
 #
