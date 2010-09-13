@@ -27,4 +27,4 @@ BITLY = {
 
 
 ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
-ExceptionNotification::Notifier.sender_address = %("Football.kharkov.ua" <football.kharkov.ua@gmail.com>)
+ExceptionNotification::Notifier.sender_address = %("Football.kharkov.ua" <info@football.kharkov.ua>)
