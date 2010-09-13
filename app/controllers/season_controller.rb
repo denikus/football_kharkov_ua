@@ -9,4 +9,8 @@ class SeasonController < ApplicationController
       format.json {render :text => result_data.to_json, :layout => false}
     end
   end
+
+  def pass
+    @profile = User.find(15000).pofile
+  end
 end

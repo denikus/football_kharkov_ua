@@ -23,10 +23,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def pass
-    @profile = User.find(15000).pofile
-  end
-
   # POST /users
   # POST /user.xml
   def create
