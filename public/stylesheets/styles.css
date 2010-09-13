@@ -1030,7 +1030,7 @@ table.match-result-table ul.team-players-list {
 /* line 928, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score-container {
   float: left;
-  width: 38px;
+  width: 42px;
   margin: 0 3px;
 }
 /* line 929, ../../app/stylesheets/styles.scss */
@@ -1039,7 +1039,7 @@ table.match-result-table ul.team-players-list {
   padding: 1px;
   padding-top: 0;
   color: #FFF;
-  width: 16px;
+  width: 18px;
   float: left;
   text-align: center;
   background-color: #7BB2E7;
@@ -1059,13 +1059,13 @@ table.match-result-table ul.team-players-list {
 /* line 942, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.hosts {
   float: left;
-  width: 112px;
+  width: 110px;
   text-align: right;
 }
 /* line 943, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.guests {
   float: left;
-  width: 112px;
+  width: 110px;
   text-align: left;
 }
 /* line 945, ../../app/stylesheets/styles.scss */
