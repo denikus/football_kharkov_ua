@@ -81,8 +81,8 @@ Rails::Initializer.run do |config|
 end
 require File.dirname(__FILE__) + '/../lib/lib'
 
-ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
-ExceptionNotification::Notifier.sender_address = %("Football.kharkov.ua" <football.kharkov.ua@gmail.com>)
+#ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
+#ExceptionNotification::Notifier.sender_address = %("Football.kharkov.ua" <football.kharkov.ua@gmail.com>)
 
 #class CGI::Session
 #  alias original_initialize initialize
