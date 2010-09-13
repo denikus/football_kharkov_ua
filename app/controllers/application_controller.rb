@@ -2,7 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  if RAILS_ENV=="development"
+  if RAILS_ENV=="production"
     include ExceptionNotification::Notifiable
   end
   
