@@ -3,6 +3,7 @@ require 'net/http'
 
 class UsersController < ApplicationController
   layout 'user'
+  layout 'application', :only => [:new]
   
   # GET /users/1
   # GET /users/1.xml
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
         format.html { redirect_to(root_path) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout => "application" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
