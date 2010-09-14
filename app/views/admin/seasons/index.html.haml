@@ -1,0 +1,17 @@
+= admin_title "#{@tournament.name}: Сезоны"
+
+= jqgrid("Сезоны", "seasons", admin_tournament_seasons_path(@tournament),
+  [{:field => "id", :label => "ID", :width => 35, :resizable => false },
+  {:field => "name", :label => "Имя", :width => 150, :editable => true},
+  {:field => "url", :label => "url", :width => 150, :editable => true}],
+  :add => true,
+  :edit => true,
+  :delete => true,
+  :edit_url => admin_tournament_seasons_path(@tournament) + '/grid_edit',
+  :subgrid => {:url => admin_stages_path,
+    :columns => [{:field => "id", :label => "ID", :width => 35, :resizable => false },
+      {:field => "number", :label => "Номер", :width => 50, :editable => true}],
+    :add => true,
+    :edit => true,
+    :delete => true,
+    :edit_url => admin_stages_path + '/grid_edit'})
