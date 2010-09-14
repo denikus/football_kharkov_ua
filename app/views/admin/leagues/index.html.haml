@@ -1,23 +1,19 @@
 = admin_title "#{@season.tournament.name} - #{@season.name}: Лиги"
 
-- available_stages = @season.stages.collect{ |s| [s.id, s.number] }.unshift(['', ''])
-= jqgrid("Лиги", "leagues", admin_season_leagues_path(@season), |
-  [ { :field => "id", :label => "ID", :width => 35, :resizable => false }, |
-    { :field => "stage_id", :label => "Этап", :width => 50, :editable => true, :edittype => 'select', |
-      :editoptions => { :value => available_stages } }, |
-    { :field => "name", :label => "Имя", :width => 150, :editable => true }, |
-    { :field => "url", :label => "url", :width => 150, :editable => true } |
-  ], { |
-    :subgrid => { |
-      :url => admin_season_tours_path(@season), |
-      :columns => [{:field => "id", :label => "ID", :width => 35, :resizable => false }, {:field => "name", :label => "Имя Тура", :width => 250, :editable => true}], |
-      :add => true, |
-      :delete => :true, |
-      :edit_url => admin_season_tours_path(@season) + '/grid_edit' |
-    }, |
-    :add => true, |
-    :edit => true, |
-    :delete => true, |
-    :edit_url => admin_season_leagues_path(@season) + '/grid_edit', |
-    :height => 300 |
-  }) |
+- available_stages = @season.stages.collect{ |s| [s.id, s.number] }
+= jqgrid("Лиги", "leagues", admin_season_leagues_path(@season),
+    [{:field => "id", :label => "ID", :width => 35, :resizable => false },
+    {:field => "stage_id", :label => "Этап", :width => 50, :editable => true, :edittype => 'select',
+      :editoptions => {:value => available_stages}},
+    {:field => "name", :label => "Имя", :width => 150, :editable => true},
+    {:field => "url", :label => "url", :width => 150, :editable => true}],
+    {:subgrid => {:url => admin_season_tours_path(@season),
+      :columns => [{:field => "id", :label => "ID", :width => 35, :resizable => false }, {:field => "name", :label => "Имя Тура", :width => 250, :editable => true}],
+      :add => true,
+      :delete => :true,
+      :edit_url => admin_season_tours_path(@season) + '/grid_edit'},
+    :add => true,
+    :edit => true,
+    :delete => true,
+    :edit_url => admin_season_leagues_path(@season) + '/grid_edit',
+    :height => 300})

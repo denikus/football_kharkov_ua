@@ -18,8 +18,7 @@ class Admin::StagesController < ApplicationController
     #end
     #
     #render :json => result.to_json
-    @season = Season.find(params[:season_id])
-    stages = Stage.find(:all, :conditions => {:season_id => @season.id}) do
+    stages = Stage.find(:all, :conditions => {:season_id => params[:id]}) do
       paginate :page => params[:page], :per_page => params[:rows]
     end
     respond_to do |format|
@@ -32,7 +31,9 @@ class Admin::StagesController < ApplicationController
   
   def grid_edit
     params[:format] = 'json'
-    params[:stage] = [:number].inject({}){ |p, k| p[k] = params.delete(k); p }
+    #params[:stage] = [:number].inject({}){ |p, k| p[k] = params.delete(k); p }
+    params[:stage] = {:number => params.delete(:number)}
+    params[:stage][:season_id] = params[:parent_id] if params[:parent_id]
     case params[:oper].to_sym
     when :add: create
     when :del: destroy
@@ -41,16 +42,14 @@ class Admin::StagesController < ApplicationController
   end
 
   def create
-    params[:stage][:season_id] = params[:season_id]
     @stage = Stage.new(params[:stage])
-
+    
     respond_to do |format|
       if @stage.save
         format.html { redirect_to(root_path) }
         format.json { render :json => {:success => true} }
         format.xml  { render :xml => @stage, :status => :created, :location => @stage }
         format.ext_json  { render :json => {:success => true} }
-#        format.ext_json { render :json => Post.find(:all).to_ext_json }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @stage.errors, :status => :unprocessable_entity }
@@ -61,7 +60,6 @@ class Admin::StagesController < ApplicationController
   end
   
   def update
-    params[:stage][:season_id] = params[:season_id]
     @stage = Stage.find params[:id]
     
     respond_to do |format|

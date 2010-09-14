@@ -1,37 +1,71 @@
 class Admin::SeasonsController < ApplicationController
+  layout 'admin/main'
+  admin_section :tournaments
+  
   def index
-    prepare_season = lambda{ |item|
-      {:id => item[:id], :name => item[:name], :tournament => item.tournament[:name], :url => item[:url]}
-    }
-    result = unless params[:tournament_id].nil?
-      seasons = Tournament.from_param(params[:tournament_id]).seasons
-      {:total_count => seasons.length, :rows => seasons.collect(&prepare_season) }
-    else
-      start = (params[:start] || 0).to_i
-      size = (params[:limit] || 30).to_i
-      page = (start/size).to_i + 1
-      
-      seasons = Season.paginate(:all, :page => page, :per_page => size, :joins => :tournament)
-      {:total_count => Season.count, :rows => seasons.collect(&prepare_season)}
+    @tournament = Tournament.from params[:tournament_id]
+    seasons = Season.find(:all, :conditions => {:tournament_id => @tournament.id}) do
+      paginate :page => params[:page], :per_page => params[:rows]
     end
-    render :json => result.to_json
+    respond_to do |format|
+      format.html
+      format.json do
+        render :json => seasons.to_jqgrid_json([:id, :name, :url], params[:page], params[:rows], seasons.total_entries)
+      end
+    end
+  end
+  
+  def grid_edit
+    params[:format] = 'json'
+    @tournament = Tournament.from params[:tournament_id]
+    params[:season] = [:name, :url].inject({}){ |p, k| p[k] = params.delete(k); p }
+    params[:season][:tournament_id] = @tournament.id
+    case params[:oper].to_sym
+    when :add: create
+    when :del: destroy
+    when :edit: update
+    end
+  end
+  
+  def update
+    @season = Season.find params[:id]
+    
+    respond_to do |format|
+      if @season.update_attributes(params[:season])
+        format.json { render :json => {:success => true} }
+      else
+        format.json { render :json => {:success => false} }
+      end
+    end
   end
 
   def create
-    @season = Season.new(params[:season])
-
+    @season = Season.new params[:season]
+    
     respond_to do |format|
       if @season.save
-        format.html { redirect_to(root_path) }
-        format.xml  { render :xml => @season, :status => :created, :location => @season }
-        format.ext_json  { render :json => {:success => true} }
-#        format.ext_json { render :json => Post.find(:all).to_ext_json }
+        format.json { render :json => {:success => true} }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @season.errors, :status => :unprocessable_entity }
-        format.ext_json {render  :json => @season.to_ext_json(:success => false) }
-
+        format.json { render :json => {:success => false} }
       end
     end
+    #@season = Season.new(params[:season])
+    #
+    #respond_to do |format|
+    #  if @season.save
+    #    format.html { redirect_to(root_path) }
+    #    format.xml  { render :xml => @season, :status => :created, :location => @season }
+    #    format.ext_json  { render :json => {:success => true} }
+    #  else
+    #    format.html { render :action => "new" }
+    #    format.xml  { render :xml => @season.errors, :status => :unprocessable_entity }
+    #    format.ext_json {render  :json => @season.to_ext_json(:success => false) }
+    #  end
+    #end
+  end
+  
+  def destroy
+    Season.find(params[:id]).destroy
+    render :json => {:success => true}
   end
 end

@@ -42,7 +42,11 @@ ActionController::Routing::Routes.draw do |map|
     admin.root :controller => 'main'
     admin.ext_root '.ext', :controller => :main, :format => :ext
     admin.resources :comments
-    admin.resources :tournaments, :has_many => [:seasons, :matches, :teams], :collection => {:grid_edit => :post}
+    admin.resources :tournaments, :collection => {:grid_edit => :post} do |t|
+      t.resources :seasons, :collection => {:grid_edit => :post}
+      t.resources :matches, :collection => {:grid_edit => :post}
+      t.resources :teams
+    end
     admin.resources :seasons do |s|
       s.resources :stages, :collection => {:grid_edit => :post}
       s.resources :leagues, :collection => {:grid_edit => :post}
