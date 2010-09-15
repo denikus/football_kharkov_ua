@@ -67,9 +67,8 @@ class PostController < ApplicationController
     if !@post.tournament.nil? && current_subdomain.nil?
       redirect_params = {:subdomain => @post.tournament.url}
       redirect_params.merge!(params)
-
       redirect_params.delete_if {|key,value| !["year", "month", "day", "url", :subdomain].include?(key)}
-      redirect_to subdomain_post_url(redirect_params), :status=>301
+      redirect_to post_url(redirect_params), :status=>301
     end
   end
 

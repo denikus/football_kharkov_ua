@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
 
 #  devise_for :users
 
-  map.tournament '', :controller => "tournaments", :action => "index", :conditions => {:subdomain => /.+/}
+#  map.tournament '', :controller => "tournaments", :action => "index", :conditions => {:subdomain => /.+/}
 
   map.devise_for :users, :admin
   map.namespace(:admin) do |admin|
@@ -73,14 +73,20 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :profile, :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :destroy_photo => :delete, :make_crop => :post}
   map.resource :itleague_draw
 
+  map.with_options :conditions => {:subdomain => /.+/} do |tournament|
+    tournament.tournament '', :controller => "tournaments", :action => "index" #, :conditions => {:subdomain => /.+/}
+    tournament.post 'post', :controller=>'post', :action=>'show', :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
+    tournament.resources :teams, :only => ["show"]
+  end
+
 
   map.root :controller => "blog"
 
-  map.subdomain_post ':year/:month/:day/:url',
-    :controller=>'post',
-    :action=>'show',
-    :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/},
-    :conditions => {:subdomain => /.+/}
+#  map.subdomain_post ':year/:month/:day/:url',
+#    :controller=>'post',
+#    :action=>'show',
+#    :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/},
+#    :conditions => {:subdomain => /.+/}
   
   map.post ':year/:month/:day/:url',
     :controller=>'post',
