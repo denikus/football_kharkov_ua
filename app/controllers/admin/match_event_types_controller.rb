@@ -1,85 +1,59 @@
-class MatchEventTypesController < ApplicationController
-  # GET /match_event_types
-  # GET /match_event_types.xml
+class Admin::MatchEventTypesController < ApplicationController
+  layout 'admin/main'
+  
+  admin_section :tournaments
+  
   def index
-    @match_event_types = MatchEventType.all
-
+    types = MatchEventType.find(:all) do
+      paginate :page => params[:page], :per_page => params[:rows]
+    end
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @match_event_types }
+      format.html
+      format.json do
+        render :json => types.to_jqgrid_json([:id, :symbol, :template], params[:page], params[:rows], types.total_entries)
+      end
+    end
+  end
+  
+  def grid_edit
+    params[:format] = 'json'
+    params[:match_event_type] = [:symbol, :template].inject({}){ |p, k| p[k] = params.delete(k); p }
+    case params[:oper].to_sym
+    when :add: create
+    when :del: destroy
+    when :edit: update
     end
   end
 
-  # GET /match_event_types/1
-  # GET /match_event_types/1.xml
-  def show
-    @match_event_type = MatchEventType.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @match_event_type }
-    end
-  end
-
-  # GET /match_event_types/new
-  # GET /match_event_types/new.xml
-  def new
-    @match_event_type = MatchEventType.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @match_event_type }
-    end
-  end
-
-  # GET /match_event_types/1/edit
-  def edit
-    @match_event_type = MatchEventType.find(params[:id])
-  end
-
-  # POST /match_event_types
-  # POST /match_event_types.xml
   def create
-    @match_event_type = MatchEventType.new(params[:match_event_type])
-
+    @type = MatchEventType.new(params[:match_event_type])
     respond_to do |format|
-      if @match_event_type.save
-        flash[:notice] = 'MatchEventType was successfully created.'
-        format.html { redirect_to(@match_event_type) }
-        format.xml  { render :xml => @match_event_type, :status => :created, :location => @match_event_type }
+      if @type.save
+        format.json { render :json => {:success => true} }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @match_event_type.errors, :status => :unprocessable_entity }
+        format.json{ render :json => {:success => false} }
       end
     end
   end
-
-  # PUT /match_event_types/1
-  # PUT /match_event_types/1.xml
+  
   def update
-    @match_event_type = MatchEventType.find(params[:id])
-
+    @type = MatchEventType.find params[:id]
+    
     respond_to do |format|
-      if @match_event_type.update_attributes(params[:match_event_type])
-        flash[:notice] = 'MatchEventType was successfully updated.'
-        format.html { redirect_to(@match_event_type) }
-        format.xml  { head :ok }
+      if @type.update_attributes(params[:match_event_type])
+        format.json  { render :json => {:success => true} }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @match_event_type.errors, :status => :unprocessable_entity }
+        format.json { render  :json => {:success => false} }
       end
     end
   end
-
-  # DELETE /match_event_types/1
-  # DELETE /match_event_types/1.xml
+  
   def destroy
-    @match_event_type = MatchEventType.find(params[:id])
-    @match_event_type.destroy
-
+    @type = MatchEventType.find params[:id]
+    @type.destroy
+    
     respond_to do |format|
-      format.html { redirect_to(match_event_types_url) }
-      format.xml  { head :ok }
+      format.json{ render :json => {:success => true} }
     end
   end
 end

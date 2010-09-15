@@ -1,9 +1,10 @@
-= admin_title 'Футболисты'
+= admin_title 'Судьи'
 
-= jqgrid("Футболисты", "footballers", admin_footballers_path,
+= jqgrid("Судьи", "referees", admin_referees_path,
   [ { :field => "id", :label => "ID", :width => 35, :resizable => false },
     { :field => "first_name", :label => "Имя", :width => 150, :editable => true },
     { :field => "last_name", :label => "Фамилия", :width => 150, :editable => true },
     { :field => "patronymic", :label => "Отчество", :width => 50, :editable => true },
     { :field => "birth_date", :label => "Дата Рождения", :width => 150, :editable => true}],
-  {:add => true, :edit => true, :delete => true, :edit_url => admin_footballers_path + '/grid_edit'})
+  {:add => true, :edit => true, :delete => true, :edit_url => admin_referees_path + '/grid_edit'})
+

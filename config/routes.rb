@@ -61,7 +61,8 @@ ActionController::Routing::Routes.draw do |map|
       m.resource :stats
     end
     admin.resources :match_events
-    admin.resources :referees
+    admin.resources :match_event_types, :collection => {:grid_edit => :post}
+    admin.resources :referees, :collection => {:grid_edit => :post}
     admin.resources :footballers
     admin.resources :permissions
   end

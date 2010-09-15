@@ -1,3 +1,8 @@
+%h3 Судьи
+%ul.nav
+  %li.last= link_to '-- Все --', admin_referees_path
+
+
 %h3 Команды
 %ul.nav
   - Team.all.each do |team|

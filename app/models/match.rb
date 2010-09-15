@@ -1,5 +1,6 @@
 class Match < ActiveRecord::Base
   belongs_to :tour
+  belongs_to :referee
   
   has_many :competitors do
     [:hosts, :guests].each do |side|
@@ -10,6 +11,8 @@ class Match < ActiveRecord::Base
   
   has_many :match_events
   has_many :match_links
+  
+  validates_presence_of :referee
   
   def self.build_from_form params
     competitors = Competitor::SIDES.collect do |side|
@@ -28,22 +31,6 @@ class Match < ActiveRecord::Base
       cmp.update_stats stats[cmp.side], create_events
     end
   end
-  
-  #def stats
-  #  Competitor::SIDES.inject({}) do |res, c|
-  #    res[c] = send(c).stats.inject({}){ |r, s| r[s.statistic.symbol.to_sym] = s.statistic_value; r }
-  #    res[c][:football_players] = send(c).football_players.inject({}) do |re, f|
-  #      re[f.id] = f.stats.inject(Hash.new{ |h, k| h[k] = [] }) do |r, s|
-  #        r[s.statistic.symbol.to_sym] << s.statistic_value; r
-  #      end
-  #      re[f.id].each{ |s, v| re[f.id][s] = v.join(', ') }
-  #      re[f.id][:number] = f.number
-  #      re[f.id][:full_name] = ([f.footballer.last_name] + [f.footballer.first_name, f.footballer.patronymic].collect{ |n| n[0..0]+'.' unless n.empty? }.compact).join(' ')
-  #      re
-  #    end
-  #    res
-  #  end
-  #end
   
   def hosts_name
     hosts.team.name

@@ -1,32 +1,62 @@
 class Admin::RefereesController < ApplicationController
+  layout 'admin/main'
+  
+  admin_section :personnel
+  
   def index
-    start = (params[:start] || 0).to_i
-    size = (params[:limit] || 30).to_i
-    page = (start/size).to_i + 1
-    
-    referees = Referee.paginate(:all, :page => page, :per_page => size)
-    result = {
-      :total_count => Referee.count,
-      :rows => referees.collect{ |r| {:id => r.id, :first_name => r.first_name, :last_name => r.last_name, :patronymic => r.patronymic, :full_name => r.full_name}  }
-    }
-    
-    render :json => result.to_json
-  end
-
-  def create
-    @referee = Referee.new(params[:referee])
-    
+    referees = Referee.find(:all) do
+      paginate :page => params[:page], :per_page => params[:rows]
+    end
     respond_to do |format|
-      if @referee.save
-        format.html { redirect_to(root_path) }
-        format.xml  { render :xml => @referee, :status => :created, :location => @referee }
-        format.ext_json  { render :json => {:success => true} }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @referee.errors, :status => :unprocessable_entity }
-        format.ext_json {render  :json => @referee.to_ext_json(:success => false) }
+      format.html
+      format.json do
+        render :json => referees.to_jqgrid_json([:id, :first_name, :last_name, :patronymic, :birth_date], params[:page], params[:rows], referees.total_entries)
       end
     end
   end
   
+  def grid_edit
+    params[:format] = 'json'
+    params[:referee] = [:first_name, :last_name, :patronymic, :birth_date].inject({}){ |p, k| p[k] = params.delete(k); p }
+    case params[:oper].to_sym
+    when :add: create
+    when :del: destroy
+    when :edit: update
+    end
+  end
+
+  def create
+    @referee = Referee.new(params[:referee])
+    respond_to do |format|
+      if @referee.save
+        format.json { render :json => {:success => true} }
+      else
+        format.json{ render :json => {:success => false} }
+      end
+    end
+  end
+  
+  def update
+    @referee = Referee.find params[:id]
+    
+    respond_to do |format|
+      if @referee.update_attributes(params[:referee])
+        format.html { redirect_to([:admin, @referee]) }
+        format.json  { render :json => {:success => true} }
+      else
+        format.html { redirect_to([:admin, @referee]) }
+        format.json { render  :json => @referee.to_ext_json(:success => false) }
+      end
+    end
+  end
+  
+  def destroy
+    @referee = Referee.find params[:id]
+    @referee.destroy
+    
+    respond_to do |format|
+      format.html{ redirect_to admin_referees_path }
+      format.json{ render :json => {:success => true} }
+    end
+  end
 end

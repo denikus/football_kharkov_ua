@@ -1,7 +1,7 @@
 %table.ui-state-default.ui-corner-all
   %tr
     %td Счёт / ФПТ / ФВТ
-    %td{:colspan => 3}
+    %td{:colspan => 4}
       = text_field "match[stats][#{side}]", "score", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       = text_field "match[stats][#{side}]", "first_period_fouls", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       = text_field "match[stats][#{side}]", "second_period_fouls", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
@@ -9,10 +9,12 @@
     %td Имя
     %td Номер
     %td Голы
-    %td Кр. Карточки
+    %td Жт. Ктчки
+    %td Кр. Ктчки
   - team.footballers.each do |f|
     %tr
       %td= f.full_name
       %td= text_field "match[football_player_numbers][#{side}]", "#{f.id}", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       %td= text_field "match[stats][#{side}][players][#{f.id}]", "goal", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+      %td= text_field "match[stats][#{side}][players][#{f.id}]", "yellow_card", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       %td= text_field "match[stats][#{side}][players][#{f.id}]", "red_card", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"

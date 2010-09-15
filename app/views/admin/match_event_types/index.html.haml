@@ -1,0 +1,7 @@
+= admin_title 'Типы событий'
+
+= jqgrid("Типы событий", "match_event_types", admin_match_event_types_path,
+  [ { :field => "id", :label => "ID", :width => 35, :resizable => false },
+    { :field => "symbol", :label => "Символ", :width => 150, :editable => true },
+    { :field => "template", :label => "Шаблон", :width => 250, :editable => true } ],
+  {:add => true, :edit => true, :delete => true, :edit_url => admin_match_event_types_path + '/grid_edit'})
