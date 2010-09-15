@@ -62,10 +62,15 @@ class PostController < ApplicationController
   def show
     @post = Post.find(:first, :conditions => ["YEAR(created_at) = :year AND MONTH(created_at) = :month AND DAY(created_at) = :day AND url = :url ", params])
     @page_title = @post.title
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.xml  { render :xml => @post }
-#    end
+
+
+    if !@post.tournament.nil? && current_subdomain.nil?
+      redirect_params = {:subdomain => @post.tournament.url}
+      redirect_params.merge!(params)
+
+      redirect_params.delete_if {|key,value| !["year", "month", "day", "url", :subdomain].include?(key)}
+      redirect_to subdomain_post_url(redirect_params), :status=>301
+    end
   end
 
   def subscribe

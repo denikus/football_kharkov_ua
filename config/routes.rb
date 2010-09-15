@@ -76,10 +76,17 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "blog"
 
+  map.subdomain_post ':year/:month/:day/:url',
+    :controller=>'post',
+    :action=>'show',
+    :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/},
+    :conditions => {:subdomain => /.+/}
+  
   map.post ':year/:month/:day/:url',
     :controller=>'post',
     :action=>'show',
     :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
+
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
