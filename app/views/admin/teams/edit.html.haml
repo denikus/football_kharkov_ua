@@ -6,7 +6,6 @@
     = f.text_field :name, 'Имя'
     = f.text_field :url, 'Url'
     = f.delimeter 'Игроки, играющие в команде'
-    = f.collection_select :season_ids, seasons
     - footballers = Footballer.all.collect{ |t| [t.full_name, t.id] }
     - @team.footballer_ids.each do |id|
       = f.train_select :footballer_ids, footballers, {:selected => id, :include_blank => true}
