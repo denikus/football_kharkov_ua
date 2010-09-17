@@ -8,3 +8,8 @@
     .clear
 = will_paginate @posts
 
+-content_for :head_title do
+  %h1
+    %span= tournament_title
+    = link_to "Команды", teams_path
+    .clear

@@ -1,0 +1,12 @@
+%ul.team-list
+  -@teams.each do |item|
+    %li=item.name
+%br/
+%br/
+%br/
+%span{:style => "font-size: 10px;"}= "*Страница в стадии доработки!"
+-content_for :head_title do
+  %h1
+    = "#{tournament_title}:"
+    = "Список команд"
+    .clear

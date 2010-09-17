@@ -77,7 +77,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :conditions => {:subdomain => /.+/} do |tournament|
     tournament.tournament '', :controller => "tournaments", :action => "index" #, :conditions => {:subdomain => /.+/}
     tournament.post 'post', :controller=>'post', :action=>'show', :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
-    tournament.resources :teams, :only => ["show"]
+    tournament.resources :teams, :only => ["index"]
   end
 
 

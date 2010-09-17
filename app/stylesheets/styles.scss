@@ -107,7 +107,7 @@ html>body #minHeight {
     height: 120px;
 //    background: #000 url(/images/bg-top.gif) repeat-x left top;
     background: #000 url(/images/header_bg.gif) repeat-x left top;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.1em;
     position: relative;
 }
 #header-block {
@@ -405,6 +405,34 @@ input.fancy-submit:hover {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
+	h1 {
+	  padding: 0 0 5px 0;
+	  margin-bottom: 15px;
+	  color: #336999;
+	  width: 950px;
+	  line-height: 1;
+	  font-size: 22px;
+	  border-bottom:1px solid #EEEEEE;
+	  display:block;
+	  height: 25px;
+    span {
+      float:left;
+      display:block;
+      margin-right: 50px;
+    }
+	  a, a:hover, a:visited {
+      float:left;
+      display:block;
+//      color: #A5BE0E;
+      color: #BE420E;
+      font-size:14px;
+      padding:5px;
+	  }
+	  a:hover {
+      color: #336999;
+      text-decoration: none;
+	  }
+	}
 }
 #col-left, #col-right {
 	float: left;
@@ -946,3 +974,6 @@ table.match-result-table ul.team-players-list {
 }
 /*EOF Quick Match Results block*/
 
+ul.team-list {
+  list-style-type: none;
+}

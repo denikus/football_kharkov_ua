@@ -111,7 +111,7 @@ html > body #minHeight {
   /*height: 85px;*/
   height: 120px;
   background: black url(/images/header_bg.gif) repeat-x left top;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.1em;
   position: relative;
 }
 
@@ -458,34 +458,65 @@ input.fancy-submit:hover {
   margin-right: auto;
   position: relative;
 }
+/* line 408, ../../app/stylesheets/styles.scss */
+#container h1 {
+  padding: 0 0 5px 0;
+  margin-bottom: 15px;
+  color: #336999;
+  width: 950px;
+  line-height: 1;
+  font-size: 22px;
+  border-bottom: 1px solid #EEEEEE;
+  display: block;
+  height: 25px;
+}
+/* line 418, ../../app/stylesheets/styles.scss */
+#container h1 span {
+  float: left;
+  display: block;
+  margin-right: 50px;
+}
+/* line 423, ../../app/stylesheets/styles.scss */
+#container h1 a, #container h1 a:hover, #container h1 a:visited {
+  float: left;
+  display: block;
+  color: #BE420E;
+  font-size: 14px;
+  padding: 5px;
+}
+/* line 431, ../../app/stylesheets/styles.scss */
+#container h1 a:hover {
+  color: #336999;
+  text-decoration: none;
+}
 
-/* line 409, ../../app/stylesheets/styles.scss */
+/* line 437, ../../app/stylesheets/styles.scss */
 #col-left, #col-right {
   float: left;
   margin-bottom: 25px;
 }
 
 /* left column */
-/* line 415, ../../app/stylesheets/styles.scss */
+/* line 443, ../../app/stylesheets/styles.scss */
 #col-left {
   width: 650px;
   margin-right: 10px;
   padding-right: 20px;
 }
 
-/* line 421, ../../app/stylesheets/styles.scss */
+/* line 449, ../../app/stylesheets/styles.scss */
 #col-right {
   width: 270px;
 }
 
 /* New block design */
-/* line 427, ../../app/stylesheets/styles.scss */
+/* line 455, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
   margin: 0 0 1em 0;
 }
-/* line 432, ../../app/stylesheets/styles.scss */
+/* line 460, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block a {
   text-decoration: none;
   color: #006ca2;
@@ -493,46 +524,46 @@ input.fancy-submit:hover {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 442, ../../app/stylesheets/styles.scss */
+/* line 470, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block a:hover {
   color: #be420e;
 }
-/* line 446, ../../app/stylesheets/styles.scss */
+/* line 474, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul {
   margin: 0;
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
 }
-/* line 451, ../../app/stylesheets/styles.scss */
+/* line 479, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li {
   line-height: 1.2em;
   padding: 5px;
   border: 0;
   border-top: 1px solid #d9d9d9;
 }
-/* line 457, ../../app/stylesheets/styles.scss */
+/* line 485, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.post-title {
   line-height: 1.2em;
   margin-bottom: 3px;
 }
-/* line 462, ../../app/stylesheets/styles.scss */
+/* line 490, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.post-date {
   color: #666666;
   line-height: 1em;
   padding: 0;
   margin-bottom: 2px;
 }
-/* line 470, ../../app/stylesheets/styles.scss */
+/* line 498, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.author {
   line-height: 1.2em;
 }
 
-/* line 478, ../../app/stylesheets/styles.scss */
+/* line 506, ../../app/stylesheets/styles.scss */
 .sidebar-block-header {
   background-color: transparent;
 }
-/* line 481, ../../app/stylesheets/styles.scss */
+/* line 509, ../../app/stylesheets/styles.scss */
 .sidebar-block-header h4 {
   font-size: 100%;
   color: #be420e;
@@ -549,13 +580,13 @@ input.fancy-submit:hover {
 /**
 *Comment block
 */
-/* line 501, ../../app/stylesheets/styles.scss */
+/* line 529, ../../app/stylesheets/styles.scss */
 #comment_body {
   height: 100px;
   width: 350px;
 }
 
-/* line 506, ../../app/stylesheets/styles.scss */
+/* line 534, ../../app/stylesheets/styles.scss */
 ul.comment {
   clear: both;
   width: auto;
@@ -565,7 +596,7 @@ ul.comment {
   margin: 0;
 }
 
-/* line 515, ../../app/stylesheets/styles.scss */
+/* line 543, ../../app/stylesheets/styles.scss */
 ul.comment li {
   float: left;
   width: 100%;
@@ -573,7 +604,7 @@ ul.comment li {
   padding: 0;
 }
 
-/* line 522, ../../app/stylesheets/styles.scss */
+/* line 550, ../../app/stylesheets/styles.scss */
 ul.comment div.comment-content {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
@@ -582,12 +613,12 @@ ul.comment div.comment-content {
   padding: 3px;
 }
 
-/* line 532, ../../app/stylesheets/styles.scss */
+/* line 560, ../../app/stylesheets/styles.scss */
 ul.comment p {
   padding: 3px;
 }
 
-/* line 536, ../../app/stylesheets/styles.scss */
+/* line 564, ../../app/stylesheets/styles.scss */
 ul.comment p.comment-author {
   margin-bottom: 5px;
   border-bottom: 1px solid #EEE;
@@ -598,7 +629,7 @@ ul.comment p.comment-author {
 *EOF Comment block
 */
 /*blog link panel*/
-/* line 552, ../../app/stylesheets/styles.scss */
+/* line 580, ../../app/stylesheets/styles.scss */
 .blog_link_panel {
   white-space: nowrap;
   /*height: 50px;*/
@@ -614,7 +645,7 @@ ul.comment p.comment-author {
 /*.blog_link_panel_wrap {
     clear:both;
 }*/
-/* line 567, ../../app/stylesheets/styles.scss */
+/* line 595, ../../app/stylesheets/styles.scss */
 .blog_link_panel div {
   float: left;
   border-right: 1px solid #EEEEEE;
@@ -625,7 +656,7 @@ ul.comment p.comment-author {
   padding: 1px 20px;
 }
 
-/* line 578, ../../app/stylesheets/styles.scss */
+/* line 606, ../../app/stylesheets/styles.scss */
 .blog_link_panel a, .blog_link_panel span {
   display: block;
   float: left;
@@ -633,14 +664,14 @@ ul.comment p.comment-author {
   text-decoration: none;
 }
 
-/* line 585, ../../app/stylesheets/styles.scss */
+/* line 613, ../../app/stylesheets/styles.scss */
 .blog_link_panel div.first {
   margin-bottom: -2px;
   padding-bottom: 1px;
   white-space: nowrap;
 }
 
-/* line 591, ../../app/stylesheets/styles.scss */
+/* line 619, ../../app/stylesheets/styles.scss */
 .blog_link_panel div.last {
   margin-bottom: -2px;
   border-right: 0;
@@ -649,42 +680,42 @@ ul.comment p.comment-author {
 }
 
 /* EOF blog panel links */
-/* line 599, ../../app/stylesheets/styles.scss */
+/* line 627, ../../app/stylesheets/styles.scss */
 div.date_link_cell span {
   background: transparent url(/images/icons/calendar.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 603, ../../app/stylesheets/styles.scss */
+/* line 631, ../../app/stylesheets/styles.scss */
 div.edit_link_cell a {
   background: transparent url(/images/icons/pencil.png) no-repeat scroll left center;
   padding-left: 22px;
 }
 
-/* line 607, ../../app/stylesheets/styles.scss */
+/* line 635, ../../app/stylesheets/styles.scss */
 div.delete_link_cell a {
   background: transparent url(/images/icons/delete.png) no-repeat scroll left center;
   padding-left: 18px;
 }
 
-/* line 611, ../../app/stylesheets/styles.scss */
+/* line 639, ../../app/stylesheets/styles.scss */
 div.author_link_cell a {
   background: transparent url(/images/icons/man.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 615, ../../app/stylesheets/styles.scss */
+/* line 643, ../../app/stylesheets/styles.scss */
 div.comment_link_cell a {
   background: transparent url(/images/icons/comment.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 619, ../../app/stylesheets/styles.scss */
+/* line 647, ../../app/stylesheets/styles.scss */
 div.social_link_cell a {
   padding: 2px 5px 1px 5px;
 }
 
-/* line 623, ../../app/stylesheets/styles.scss */
+/* line 651, ../../app/stylesheets/styles.scss */
 div.updating_link_cell span {
   background: transparent url(/images/icons/refresh.gif) no-repeat scroll left center;
   padding-left: 20px;
@@ -693,7 +724,7 @@ div.updating_link_cell span {
 /**
 *links with icons
 */
-/* line 632, ../../app/stylesheets/styles.scss */
+/* line 660, ../../app/stylesheets/styles.scss */
 .link-with-icon-container div {
   float: left;
   margin-right: -1px;
@@ -702,7 +733,7 @@ div.updating_link_cell span {
   padding: 1px 20px;
 }
 
-/* line 640, ../../app/stylesheets/styles.scss */
+/* line 668, ../../app/stylesheets/styles.scss */
 a.add-image-link {
   background: transparent url(/images/icons/picture.png) no-repeat scroll left center;
   padding-left: 20px;
@@ -715,14 +746,14 @@ a.add-image-link {
 /**
 * Right Sidebar
 */
-/* line 653, ../../app/stylesheets/styles.scss */
+/* line 681, ../../app/stylesheets/styles.scss */
 #col-right ul {
   margin-left: 5px;
   margin-right: 0;
   list-style: none;
 }
 
-/* line 660, ../../app/stylesheets/styles.scss */
+/* line 688, ../../app/stylesheets/styles.scss */
 #col-right ul li {
   padding: 10px 0 10px 0;
   border-bottom: 1px dotted #EEE;
@@ -731,60 +762,60 @@ a.add-image-link {
 /**
 * Pagination
 */
-/* line 669, ../../app/stylesheets/styles.scss */
+/* line 697, ../../app/stylesheets/styles.scss */
 .football_pagination {
   text-align: center;
   padding: .3em;
 }
 
-/* line 674, ../../app/stylesheets/styles.scss */
+/* line 702, ../../app/stylesheets/styles.scss */
 .football_pagination a, .football_pagination span {
   color: #336999;
   padding: .2em .5em;
 }
 
-/* line 678, ../../app/stylesheets/styles.scss */
+/* line 706, ../../app/stylesheets/styles.scss */
 .football_pagination span.disabled {
   color: #AAA;
 }
 
-/* line 681, ../../app/stylesheets/styles.scss */
+/* line 709, ../../app/stylesheets/styles.scss */
 .football_pagination span.current {
   font-weight: bold;
   color: #BE420E;
 }
 
-/* line 685, ../../app/stylesheets/styles.scss */
+/* line 713, ../../app/stylesheets/styles.scss */
 .football_pagination a {
   border: 1px solid #DDDDDD;
   color: #0063DC;
   text-decoration: none;
 }
 
-/* line 690, ../../app/stylesheets/styles.scss */
+/* line 718, ../../app/stylesheets/styles.scss */
 .football_pagination a:hover, .football_pagination a:focus {
   border-color: #888888;
   background: #555555;
   color: white;
 }
 
-/* line 695, ../../app/stylesheets/styles.scss */
+/* line 723, ../../app/stylesheets/styles.scss */
 .football_pagination .page_info {
   color: #aaa;
   padding-top: .8em;
 }
 
-/* line 699, ../../app/stylesheets/styles.scss */
+/* line 727, ../../app/stylesheets/styles.scss */
 .football_pagination .prev_page, .football_pagination .next_page {
   border-width: 2px;
 }
 
-/* line 702, ../../app/stylesheets/styles.scss */
+/* line 730, ../../app/stylesheets/styles.scss */
 .football_pagination .prev_page {
   margin-right: 1em;
 }
 
-/* line 705, ../../app/stylesheets/styles.scss */
+/* line 733, ../../app/stylesheets/styles.scss */
 .football_pagination .next_page {
   margin-left: 1em;
 }
@@ -792,21 +823,21 @@ a.add-image-link {
 /**
 *Notification blocks
 */
-/* line 713, ../../app/stylesheets/styles.scss */
+/* line 741, ../../app/stylesheets/styles.scss */
 .error, .notice, .success {
   border: 2px solid #DDDDDD;
   margin-bottom: 1em;
   padding: 0.8em;
 }
 
-/* line 719, ../../app/stylesheets/styles.scss */
+/* line 747, ../../app/stylesheets/styles.scss */
 .error {
   background: #FBE3E4 none repeat scroll 0% 0%;
   border-color: #FBC2C4;
   color: #8A1F11;
 }
 
-/* line 725, ../../app/stylesheets/styles.scss */
+/* line 753, ../../app/stylesheets/styles.scss */
 .success {
   background: #E6EFC2 none repeat scroll 0% 0%;
   border-color: #C6D880;
@@ -816,7 +847,7 @@ a.add-image-link {
 /**
 * Articles
 */
-/* line 736, ../../app/stylesheets/styles.scss */
+/* line 764, ../../app/stylesheets/styles.scss */
 .article-title-image {
   border: 1px solid #EEE;
   margin: 0pt 7px 7px 0pt;
@@ -830,21 +861,21 @@ a.add-image-link {
 /**
 * Gallery
 */
-/* line 751, ../../app/stylesheets/styles.scss */
+/* line 779, ../../app/stylesheets/styles.scss */
 #uploaded-files {
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
 }
 
-/* line 757, ../../app/stylesheets/styles.scss */
+/* line 785, ../../app/stylesheets/styles.scss */
 #uploaded-files img {
   width: 150px;
   float: left;
   margin-right: 10px;
 }
 
-/* line 763, ../../app/stylesheets/styles.scss */
+/* line 791, ../../app/stylesheets/styles.scss */
 #uploaded-files li {
   clear: both;
   display: block;
@@ -854,12 +885,12 @@ a.add-image-link {
 /**
 * Tournament and result tables
 */
-/* line 772, ../../app/stylesheets/styles.scss */
+/* line 800, ../../app/stylesheets/styles.scss */
 table.game-result {
   border-collapse: collapse;
 }
 
-/* line 776, ../../app/stylesheets/styles.scss */
+/* line 804, ../../app/stylesheets/styles.scss */
 table.game-result td {
   font-style: italic;
   padding: 5px;
@@ -867,30 +898,30 @@ table.game-result td {
   text-align: center;
 }
 
-/* line 782, ../../app/stylesheets/styles.scss */
+/* line 810, ../../app/stylesheets/styles.scss */
 table.game-result td.result {
   font-style: normal;
   font-weight: bold;
 }
 
-/* line 787, ../../app/stylesheets/styles.scss */
+/* line 815, ../../app/stylesheets/styles.scss */
 table.tournament {
   border-collapse: collapse;
 }
 
-/* line 791, ../../app/stylesheets/styles.scss */
+/* line 819, ../../app/stylesheets/styles.scss */
 table.tournament tr.even {
   background-color: #FAFAFA;
 }
 
-/* line 795, ../../app/stylesheets/styles.scss */
+/* line 823, ../../app/stylesheets/styles.scss */
 table.tournament td, table.tournament th {
   border: 1px solid #EEEEEE;
   padding: 8px;
   text-align: center;
 }
 
-/* line 800, ../../app/stylesheets/styles.scss */
+/* line 828, ../../app/stylesheets/styles.scss */
 table.tournament td.team {
   text-align: left;
 }
@@ -901,7 +932,7 @@ table.tournament td.team {
 /**
 *Public profile
 **/
-/* line 812, ../../app/stylesheets/styles.scss */
+/* line 840, ../../app/stylesheets/styles.scss */
 #profile-photo-block {
   border: 1px solid #EEEEEE;
   float: left;
@@ -910,7 +941,7 @@ table.tournament td.team {
   height: 300px;*/
 }
 
-/* line 819, ../../app/stylesheets/styles.scss */
+/* line 847, ../../app/stylesheets/styles.scss */
 #profile-data-block {
   border: 1px solid #EEEEEE;
   float: left;
@@ -921,12 +952,12 @@ table.tournament td.team {
   padding: 10px;
 }
 
-/* line 829, ../../app/stylesheets/styles.scss */
+/* line 857, ../../app/stylesheets/styles.scss */
 #profile-data-block dt, #profile-data-block dd {
   margin-bottom: 10px;
 }
 
-/* line 833, ../../app/stylesheets/styles.scss */
+/* line 861, ../../app/stylesheets/styles.scss */
 #profile-data-block dt {
   clear: both;
   float: left;
@@ -936,7 +967,7 @@ table.tournament td.team {
   width: 70px;
 }
 
-/* line 842, ../../app/stylesheets/styles.scss */
+/* line 870, ../../app/stylesheets/styles.scss */
 #profile-data-block dd {
   float: left;
 }
@@ -944,7 +975,7 @@ table.tournament td.team {
 /**
 *EOF Public profile
 **/
-/* line 849, ../../app/stylesheets/styles.scss */
+/* line 877, ../../app/stylesheets/styles.scss */
 div.image-loading-container {
   display: none;
   text-align: center;
@@ -953,14 +984,14 @@ div.image-loading-container {
 /**
 *Match result table
 **/
-/* line 857, ../../app/stylesheets/styles.scss */
+/* line 885, ../../app/stylesheets/styles.scss */
 table.match-result-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-/* line 863, ../../app/stylesheets/styles.scss */
+/* line 891, ../../app/stylesheets/styles.scss */
 table.match-result-table caption {
   padding: 0 0 5px 0;
   width: 100%;
@@ -969,7 +1000,7 @@ table.match-result-table caption {
   text-align: right;
 }
 
-/* line 872, ../../app/stylesheets/styles.scss */
+/* line 900, ../../app/stylesheets/styles.scss */
 table.match-result-table th {
   text-align: center;
   background-color: #F5FAFA;
@@ -978,7 +1009,7 @@ table.match-result-table th {
   font-size: 118%;
 }
 
-/* line 880, ../../app/stylesheets/styles.scss */
+/* line 908, ../../app/stylesheets/styles.scss */
 table.match-result-table td.team-name, table.match-result-table td.match-score {
   width: 33%;
   text-align: center;
@@ -987,7 +1018,7 @@ table.match-result-table td.team-name, table.match-result-table td.match-score {
   font-weight: bold;
 }
 
-/* line 888, ../../app/stylesheets/styles.scss */
+/* line 916, ../../app/stylesheets/styles.scss */
 table.match-result-table ul.team-players-list {
   list-style-type: none;
   text-align: left;
@@ -995,45 +1026,45 @@ table.match-result-table ul.team-players-list {
 }
 
 /*Shop block*/
-/* line 896, ../../app/stylesheets/styles.scss */
+/* line 924, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block a.prev, #col-right .sidebar-block a.next {
   float: right;
   margin-right: 3px;
 }
-/* line 900, ../../app/stylesheets/styles.scss */
+/* line 928, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content {
   border-top: 1px solid #d9d9d9;
   padding: 0.6em 0.6em 0 0.6em;
   text-align: center;
 }
-/* line 905, ../../app/stylesheets/styles.scss */
+/* line 933, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap {
   margin: 0 auto;
 }
-/* line 908, ../../app/stylesheets/styles.scss */
+/* line 936, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul li {
   border: none;
   height: 200px;
   width: 100%;
 }
-/* line 912, ../../app/stylesheets/styles.scss */
+/* line 940, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul li a {
   font-weight: normal;
 }
 
 /*EOF Shop block*/
 /*Quick Match Results block*/
-/* line 926, ../../app/stylesheets/styles.scss */
+/* line 954, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li {
   padding: 5px 0;
 }
-/* line 928, ../../app/stylesheets/styles.scss */
+/* line 956, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score-container {
   float: left;
   width: 42px;
   margin: 0 3px;
 }
-/* line 929, ../../app/stylesheets/styles.scss */
+/* line 957, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score {
   font-weight: bold;
   padding: 1px;
@@ -1044,33 +1075,37 @@ table.match-result-table ul.team-players-list {
   text-align: center;
   background-color: #7BB2E7;
 }
-/* line 939, ../../app/stylesheets/styles.scss */
+/* line 967, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score-right {
   margin-left: 2px;
 }
-/* line 940, ../../app/stylesheets/styles.scss */
+/* line 968, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.winner_score {
   background-color: #6BA231;
 }
-/* line 941, ../../app/stylesheets/styles.scss */
+/* line 969, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.loser_score {
   background-color: #DF0500;
 }
-/* line 942, ../../app/stylesheets/styles.scss */
+/* line 970, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.hosts {
   float: left;
   width: 110px;
   text-align: right;
 }
-/* line 943, ../../app/stylesheets/styles.scss */
+/* line 971, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.guests {
   float: left;
   width: 110px;
   text-align: left;
 }
-/* line 945, ../../app/stylesheets/styles.scss */
+/* line 973, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li.odd {
   background-color: #FAFAFA;
 }
 
 /*EOF Quick Match Results block*/
+/* line 977, ../../app/stylesheets/styles.scss */
+ul.team-list {
+  list-style-type: none;
+}

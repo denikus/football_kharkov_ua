@@ -4,6 +4,8 @@ class CreateSeasonsTeams < ActiveRecord::Migration
       t.integer :season_id
       t.integer :team_id
     end
+    add_index :seasons_teams, :season_id
+    add_index :seasons_teams, :team_id
   end
 
   def self.down

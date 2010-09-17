@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :user, :foreign_key => :author_id
+  belongs_to :post
   acts_as_nested_set
 
   named_scope :tournament, lambda{ |tournament_subdomain|
