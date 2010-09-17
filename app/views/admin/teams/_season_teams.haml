@@ -1,0 +1,7 @@
+- teams = Team.all.collect{ |t| [t.name, t.id] }
+- form_for [:admin, @season], :builder => JQueryFormBuilder do |f|
+  - f.draw("Команды, играющие в Сезоне") do
+    - @season.team_ids.each do |id|
+      = f.train_select :team_ids, teams, {:selected => id, :include_blank => true}
+      - teams.delete_if{ |(tn, tid)| tid == id }
+    = f.train_select :team_ids, teams, {:selected => '', :include_blank => true}

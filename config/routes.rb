@@ -45,9 +45,9 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :tournaments, :collection => {:grid_edit => :post} do |t|
       t.resources :seasons, :collection => {:grid_edit => :post}
       t.resources :matches, :collection => {:grid_edit => :post}
-      t.resources :teams
+      t.resources :teams, :collection => {:team_2_season => :get}
     end
-    admin.resources :seasons do |s|
+    admin.resources :seasons, :has_many => [:teams] do |s|
       s.resources :stages, :collection => {:grid_edit => :post}
       s.resources :leagues, :collection => {:grid_edit => :post}
       s.resources :tours, :collection => {:grid_edit => :post}

@@ -11,6 +11,11 @@ class Admin::TeamsController < ApplicationController
       render :update do |page|
         page[:teams_selection].replace_html :partial => 'league_teams'
       end
+    elsif params[:season_id]
+      @season = Season.find params[:season_id]
+      render :update do |page|
+        page[:teams_selection].replace_html :partial => 'season_teams'
+      end
     else
       teams = Team.find(:all) do
         paginate :page => params[:page], :per_page => params[:rows]
@@ -66,6 +71,13 @@ class Admin::TeamsController < ApplicationController
     
     respond_to do |format|
       format.html{ redirect_to admin_teams_path }
+    end
+  end
+
+  def team_2_season
+    if params[:tournament_id]
+      @tournament = Tournament.from params[:tournament_id]
+      render :action => 'team_2_season', :section => :tournaments
     end
   end
 end

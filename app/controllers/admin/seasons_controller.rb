@@ -33,8 +33,10 @@ class Admin::SeasonsController < ApplicationController
     respond_to do |format|
       if @season.update_attributes(params[:season])
         format.json { render :json => {:success => true} }
+        format.html { redirect_to(team_2_season_admin_tournament_teams_path(@season.tournament)) }
       else
         format.json { render :json => {:success => false} }
+        format.html { redirect_to(team_2_season_admin_tournament_teams_path(@season.tournament)) }
       end
     end
   end

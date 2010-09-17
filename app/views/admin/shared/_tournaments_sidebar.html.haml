@@ -6,7 +6,12 @@
       %li= link_to s.name, admin_season_leagues_path(s)
     %li.last= link_to '-- Все Сезоны --', admin_tournament_seasons_path(t)
 
-%h3 Участие команд
+%h3 Участие команд (Сезоны)
+%ul.nav
+  - tournaments.each do |t|
+    %li.last= link_to t.name, team_2_season_admin_tournament_teams_path(t)
+
+%h3 Участие команд (Лиги)
 %ul.nav
   - tournaments.each do |t|
     %li.last= link_to t.name, admin_tournament_teams_path(t)
