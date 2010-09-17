@@ -109,11 +109,11 @@ $.widget("ui.form", {
     if($(element).attr('train') == 'true') {
       $(element).change(function(){
         if($(element).val() == '') {
-          while($(element).parents('tr').next().length > 0){ $(element).parents('tr').next().remove(); }
+          while($(element).parents('tr:first').next().length > 0){ $(element).parents('tr').next().remove(); }
         } else {
-          if($(element).parents('tr').next().length == 0) {
-            $(element).parents('table').append($('<tr><td>&nbsp;</td><td></td>'));
-            var $td = $(element).parents('tr').next().children(':last');
+          if($(element).parents('tr:first').next().length == 0) {
+            $(element).parents('table:first').append($('<tr><td>&nbsp;</td><td></td>'));
+            var $td = $(element).parents('tr:first').next().children(':last');
             var $copy = $(element).clone().val('');
             $copy.children().each(function(){
               if($(this).val() == $(element).val()) {

@@ -117,9 +117,13 @@ module ApplicationHelper
     render :partial => 'admin/shared/title', :object => title
   end
   
-  def selection name, method, options={}, &block
-    source = options[:on] or raise ArgumentError
-    collection = source.send(method)
+  def selection *args, &block
+    #source = options[:on] or raise ArgumentError
+    #collection = source.send(method)
+    options = args.extract_options!
+    name, method = args
+    source = options[:on]
+    collection = options[:collection] || (source.send(method) rescue raise ArgumentError)
     html = @template.content_tag(:div, :id => dom_id(source), :style => ("display: none;" unless options[:root])) do
       @template.content_tag(:span, name + ': ', :style => 'font-weight:bold;') +
       collection.collect do |element|
