@@ -64,10 +64,11 @@ class JQueryFormBuilder < ActionView::Helpers::FormBuilder
     (@buttons ||= []) << html
   end
   
-  def draw legend, &block
+  def draw legend, options={}, &block
     body = @template.capture(&block)
-    form_id = @template.dom_id(@object)
-    form_id = 'edit_' + form_id unless @object.new_record?
-    @template.concat(@template.render(:partial => 'admin/shared/form.html.haml', :object => body, :locals => {:legend => legend, :id => form_id, :buttons => @buttons}), block.binding)
+    form_id = @template.dom_id(@object) rescue 'fieldset'
+    form_id = 'edit_' + form_id unless @object.nil? or @object.new_record?
+    options[:submit] = true unless options.key? :submit
+    @template.concat(@template.render(:partial => 'admin/shared/form.html.haml', :object => body, :locals => {:legend => legend, :id => form_id, :buttons => @buttons, :options => options}), block.binding)
   end
 end
