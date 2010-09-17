@@ -1,0 +1,13 @@
+- fields_for 'team', :builder => JQueryFormBuilder do |f|
+  = f.hidden_field :season_id, :value => team.season_id
+  - f.draw 'Выберите игроков', :submit => false do
+    - footballers = Footballer.all.collect{ |t| [t.full_name, t.id] }
+    - team.footballer_ids.each do |id|
+      = f.train_select :footballer_ids, footballers, {:selected => id, :include_blank => true}
+      - footballers.delete_if{ |(fn, fid)| fid == id }
+    = f.train_select :footballer_ids, footballers, {:selected => '', :include_blank => true}
+
+:javascript
+  $(function(){
+    $('#footballers').form();
+  });
