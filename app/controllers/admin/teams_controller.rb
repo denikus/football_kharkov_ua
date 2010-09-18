@@ -18,7 +18,7 @@ class Admin::TeamsController < ApplicationController
       end
     else
       teams = Team.find(:all) do
-        paginate :page => params[:page], :per_page => params[:rows]
+        paginate :page => params[:page], :per_page => params[:rows], :order => "last_name ASC"
       end
       respond_to do |format|
         format.html

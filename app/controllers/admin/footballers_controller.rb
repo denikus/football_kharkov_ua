@@ -12,7 +12,9 @@ class Admin::FootballersController < ApplicationController
       end
     else
       footballers = Footballer.find(:all) do
-        paginate :page => params[:page], :per_page => params[:rows]
+        order_by  = params[:sidx].nil? ? "id" : params[:sidx]
+        order_dir = params[:sortd].nil? ? "ASC" : params[:sortd]
+        paginate :page => params[:page], :per_page => params[:rows], :order => "#{order_by} #{order_dir}"
       end
       respond_to do |format|
         format.html
