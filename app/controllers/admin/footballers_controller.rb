@@ -13,7 +13,12 @@ class Admin::FootballersController < ApplicationController
     else
       order_by  = (params[:sidx].nil? || params[:sidx].empty?) ? "id" : params[:sidx]
       order_dir = (params[:sord].nil? || params[:sord].empty?) ? "ASC" : params[:sord]
-      footballers = Footballer.find(:all, :order => "#{order_by} #{order_dir}") do
+      conditions = nil
+      if params[:_search] && !params[:last_name].nil? && !params[:last_name].empty? 
+        conditions = "last_name LIKE \"#{params[:last_name]}%\""
+      end
+
+      footballers = Footballer.find(:all, :conditions => conditions, :order => "#{order_by} #{order_dir}") do
         paginate :page => params[:page], :per_page => params[:rows]
       end
       respond_to do |format|
