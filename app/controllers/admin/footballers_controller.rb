@@ -11,10 +11,10 @@ class Admin::FootballersController < ApplicationController
         page[:footballers].replace_html :partial => 'team_footballers', :locals => {:team => team}
       end
     else
-      footballers = Footballer.find(:all) do
-        order_by  = params[:sidx].nil? ? "id" : params[:sidx]
-        order_dir = params[:sortd].nil? ? "ASC" : params[:sortd]
-        paginate :page => params[:page], :per_page => params[:rows], :order => "#{order_by} #{order_dir}"
+      order_by  = (params[:sidx].nil? || params[:sidx].empty?) ? "id" : params[:sidx]
+      order_dir = (params[:sord].nil? || params[:sord].empty?) ? "ASC" : params[:sord]
+      footballers = Footballer.find(:all, :order => "#{order_by} #{order_dir}") do
+        paginate :page => params[:page], :per_page => params[:rows]
       end
       respond_to do |format|
         format.html
