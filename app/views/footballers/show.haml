@@ -1,0 +1,8 @@
+%h3= "Принимал участие в турнирах:"
+%ul.team-list
+  -@tournaments_take_part.each do |item|
+    %li= "#{item.tournament_name} #{item.season_name}: в составе команды \"#{link_to(item.team_name, item.team_url, :target => "_blank")}\""
+-content_for :head_title do
+  %h1
+    = "Футболист: "
+    %span.team_name= @footballer.full_name

@@ -1,0 +1,9 @@
+= admin_title 'Спорткомплексы'
+
+= jqgrid("Спорткомплексы", "venues", admin_venues_path,
+  [ { :field => "id", :label => "ID", :width => 35, :resizable => false },
+    { :field => "name", :label => "Название", :width => 150, :editable => true },
+    { :field => "short_name", :label => "Краткое название", :width => 150, :editable => true },
+    { :field => "url", :label => "URL", :width => 50, :editable => true },
+    { :field => "icon", :label => "Файл иконки", :width => 150, :editable => true}],
+  {:add => true, :edit => true, :delete => true, :edit_url => admin_venues_path + '/grid_edit'})

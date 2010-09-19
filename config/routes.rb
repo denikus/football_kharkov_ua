@@ -46,6 +46,7 @@ ActionController::Routing::Routes.draw do |map|
       t.resources :seasons, :collection => {:grid_edit => :post}
       t.resources :matches, :collection => {:grid_edit => :post}
       t.resources :teams, :collection => {:team_2_season => :get}
+      t.resources :schedules
     end
     admin.resources :seasons, :has_many => [:teams] do |s|
       s.resources :stages, :collection => {:grid_edit => :post}
@@ -65,6 +66,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :referees, :collection => {:grid_edit => :post}
     admin.resources :footballers
     admin.resources :permissions
+    admin.resources :venues
   end
   
 #  map.devise_for :users
@@ -77,7 +79,8 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :conditions => {:subdomain => /.+/} do |tournament|
     tournament.tournament '', :controller => "tournaments", :action => "index" #, :conditions => {:subdomain => /.+/}
     tournament.post 'post', :controller=>'post', :action=>'show', :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
-    tournament.resources :teams, :only => ["index"]
+    tournament.resources :teams, :only => ["index", "show"]
+    tournament.resources :footballers, :only => ["index", "show"]
   end
 
 

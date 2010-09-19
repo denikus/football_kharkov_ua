@@ -1,10 +1,8 @@
 %ul.team-list
   -@teams.each do |item|
-    %li=item.name
+    %li= link_to item.name, team_path(item.url), :target => "_blank"
 %br/
 %br/
-%br/
-%span{:style => "font-size: 10px;"}= "*Страница в стадии доработки!"
 -content_for :head_title do
   %h1
     = "#{tournament_title}:"

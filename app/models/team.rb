@@ -12,12 +12,16 @@ class Team < ActiveRecord::Base
   has_and_belongs_to_many :leagues
   has_and_belongs_to_many :seasons
   has_many :competitors, :dependent => :destroy
-  
+
   def season_id= id
     @season_id = id
     set_footballer_ids if @footballer_ids
   end
-  
+
+  #  def to_param
+  #    url
+  #  end
+
   def footballer_ids
     footballers_teams.season(@season_id).footballers.collect(&:id)
   end
