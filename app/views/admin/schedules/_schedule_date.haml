@@ -1,0 +1,2 @@
+%div
+  = link_to_function(schedule_date){ |p| p[:schedule_match_on].val(schedule_date); p.call 'loadSchedules' }

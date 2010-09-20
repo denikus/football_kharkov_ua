@@ -1,15 +1,38 @@
 = admin_title "Расписание матчей \"#{@tournament.name}\""
 
-- form_for [:admin_tournament, Schedule.new], :builder => JQueryFormBuilder do |f|
-  %label Сезон
-  = f.train_select :season_id, @seasons.collect{ |t| [t.name, t.id] }, {:selected => @seasons.last.id}
-  %br/
-  = f.date_select :match_on, 'Дата проведения'
-  - f.draw("Данные по матчу") do
-    =render :partial => "match_schedule", :locals => {:f => f}
-  -#, {:selected => @seasons.last.id}
-  -#  - f.draw("Расписание матчей") do
-  -#    - @league.team_ids.each do |id|
-  -#      = f.train_select :team_ids, teams, {:selected => id, :include_blank => true}
-  -#      - teams.delete_if{ |(tn, tid)| tid == id }
-  -#= f.train_select :team_ids, teams, {:selected => '', :include_blank => true}
+%div
+  %label Сезон:
+  %span= select 'schedule', 'season_id', @seasons.collect{ |s| [s.name, s.id] }, {:selected => @seasons.first.id}, :onchange => 'loadDates()'
+#schedule_date
+  = render :partial => 'schedule_date', :collection => @seasons.first.schedule_dates
+%div
+  %label Дата проведения:
+  %span= text_field 'schedule', 'match_on', :style => 'width: 100px;'
+
+#schedules
+#new_sched
+
+:javascript
+  loadDates = function() {
+    $('#schedules, #new_sched').html('');
+    $('#schedule_match_on').val('');
+    $.ajax({
+      url:'/admin/schedules.js',
+      data:'season_id='+$('#schedule_season_id').val(),
+      dataType:'script'
+    });
+  }
+  loadSchedules = function() {
+    $.ajax({
+      url:'/admin/schedules.js',
+      data:'season_id='+$('#schedule_season_id').val() + '&match_on='+$('#schedule_match_on').val(),
+      dataType:'script'
+    });
+  }
+  $(function(){
+    $('#schedule_match_on').val('').datepicker({
+      dateFormat: 'yy-mm-dd',
+      showAnim: 'fadeIn',
+      onSelect: loadSchedules
+    });
+  })

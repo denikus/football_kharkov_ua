@@ -18,6 +18,11 @@ class JQueryFormBuilder < ActionView::Helpers::FormBuilder
   #    @template.content_tag(:th, name, :class => 'full', :colspan => 2)
   #  end
   #end
+  @@default_options = {
+    :submit => true,
+    :collapsible => false,
+    :collapsed => false
+  }.freeze
   
   [:text_field, :text_area, :select, :date_select].each do |method|
     define_method method do |field, lbl, *args|
@@ -68,7 +73,7 @@ class JQueryFormBuilder < ActionView::Helpers::FormBuilder
     body = @template.capture(&block)
     form_id = @template.dom_id(@object) rescue 'fieldset'
     form_id = 'edit_' + form_id unless @object.nil? or @object.new_record?
-    options[:submit] = true unless options.key? :submit
-    @template.concat(@template.render(:partial => 'admin/shared/form.html.haml', :object => body, :locals => {:legend => legend, :id => form_id, :buttons => @buttons, :options => options}), block.binding)
+    options.merge!(@@default_options){ |k, o, n| o || n }
+    @template.concat(@template.render(:partial => 'admin/shared/form.html.haml', :object => body, :locals => {:legend => legend, :id => form_id, :buttons => @buttons, :options => options}))
   end
 end

@@ -2,9 +2,7 @@ class Competitor < ActiveRecord::Base
   belongs_to :match
   belongs_to :team
   has_many :football_players
-  #has_many :stats, :as => :statable, :include => :statistic, :extend => Statistic::Ext
   has_many :stats, :as => :statable, :extend => [Stat::Ext, MatchEvent::Ext]
-  #delegate :score, :to => :stats
   
   SIDES = [:hosts, :guests].freeze
   

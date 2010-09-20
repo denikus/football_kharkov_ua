@@ -6,7 +6,7 @@ class CreateSchedules < ActiveRecord::Migration
       t.date :match_on
       t.time :match_at
       t.integer :host_team_id, :references => [:teams, :id], :name => :fk_schedule_2_host_team, :on_delete => :no_action 
-      t.integer :guest_team_id, :references => [:guests, :id], :name => :fk_schedule_2_guest_team, :on_delete => :no_action
+      t.integer :guest_team_id, :references => [:teams, :id], :name => :fk_schedule_2_guest_team, :on_delete => :no_action
       t.timestamps
     end
   end

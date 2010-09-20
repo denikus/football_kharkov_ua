@@ -4,10 +4,15 @@ class Season < ActiveRecord::Base
   has_many :tour_results
   has_and_belongs_to_many :teams
   has_many :footballers, :through => :footballers_teams
+  has_many :schedules
 
   named_scope :by_tournament, lambda{|tournament_id|  {:conditions => ["seasons.tournament_id = ?", tournament_id]}}
 
   def full_name
     [tournament.name, name] * ' '
+  end
+  
+  def schedule_dates
+    schedules.collect(&:match_on).collect(&:strftime).uniq.sort
   end
 end
