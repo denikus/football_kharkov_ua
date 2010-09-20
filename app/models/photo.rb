@@ -2,6 +2,8 @@ class Photo < ActiveRecord::Base
   
   attr_accessor :file
   attr_accessor :user_id
+
+  belongs_to :photo_gallery
   
   @@gallery_path       = ''
   @@gallery_thumb_path = ''
