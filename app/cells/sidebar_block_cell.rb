@@ -26,4 +26,8 @@ class SidebarBlockCell < ::Cell::Base
     # , :group => "quick_match_results.id"   
     render
   end
+
+  def advertisement
+    render
+  end
 end
