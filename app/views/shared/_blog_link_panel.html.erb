@@ -1,6 +1,8 @@
 <div class="blog_link_panel">
     <% if post.resource_type=='Article' %>
       <% controller = 'article' %>
+    <% elsif post.resource_type=='SchedulePost' %>
+      <% controller = 'schedule_post' %>
     <% elsif post.resource_type=='PhotoGallery' %>
       <% controller = 'photo_gallery' %>
     <% end %>

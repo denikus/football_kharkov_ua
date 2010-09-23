@@ -1,0 +1,10 @@
+%h2
+  = link_to(post.tournament.short_name, tournament_url(:subdomain => post.tournament.url), :class => "tournament") if !post.tournament.nil? & current_subdomain.nil?
+  - if !post.tournament.nil? & current_subdomain.nil?
+    %span.right-arrow= ">"
+  = link_to post.title, post_item_path(post)
+%div
+  = Hpricot(article_announce(post.resource.generated_body)).to_html
+  %br/
+  .clear
+  = link_to("читать дальше".capitalize, post_item_path(post, true))

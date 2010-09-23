@@ -2,12 +2,12 @@
 = error_messages_for :schedule_post
 = error_messages_for :post
 
-- form_for @article, :url => {:action=>'create', :id=>'new'} do |f|
+- form_for @schedule_post, :url => {:action=>'create', :id=>'new'} do |f|
   %fieldset
     %label{:for=>"post_title"}Заголовок:
     = text_field :post, :title, :class=>"text long-input"
 
-    %label{:for=>"article_body"}Текст:
+    %label{:for=>"schedule_post_body"}Текст:
     %div
       = text_area(:schedule_post, :body, :cols =>80)
 

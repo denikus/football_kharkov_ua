@@ -1,0 +1,12 @@
+- for post in @posts
+  .content
+    - if post.resource_type=='Article'
+      = render(:partial => "article_item", :locals => { :post => post })
+    - elsif post.resource_type=='SchedulePost'
+      = render(:partial => "schedule_post_item", :locals => { :post => post })
+    - elsif post.resource_type=='PhotoGallery'
+      = render(:partial => "photo_gallery_item", :locals => { :post => post })
+    = render :partial => "shared/blog_link_panel", :locals => {:post=>post}
+  .clear
+= will_paginate @posts
+
