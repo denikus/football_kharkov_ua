@@ -11,6 +11,6 @@
       -row_class = i%2 == 0 ? "" : "odd"
       %tr{:class => row_class}
         %td= schedule_item.venue.short_name
-        %td= schedule_item.match_at
+        %td.time= schedule_item.match_at
         %td= "#{schedule_item.hosts.name} - #{schedule_item.guests.name}"
         %td= "-"
