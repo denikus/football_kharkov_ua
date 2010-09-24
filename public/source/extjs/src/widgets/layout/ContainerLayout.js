@@ -143,7 +143,7 @@ Ext.layout.ContainerLayout = Ext.extend(Object, {
         // Not having an ownerCt negates the buffering: floating and top level
         // Containers (Viewport, Window, ToolTip, Menu) need to lay out ASAP.
         if (b && ct.ownerCt) {
-            // If we do NOT already have a layout pending from an ancestor, schedule one.
+            // If we do NOT already have a layout pending from an ancestor, schedule_post one.
             // If there is a layout pending, we do nothing here.
             // buffering to be deprecated soon
             if (!ct.hasLayoutPending()){

@@ -6,7 +6,7 @@
     <% elsif post.resource_type=='PhotoGallery' %>
       <% controller = 'photo_gallery' %>
     <% end %>
-    <div class="date_link_cell first"><span><%= Russian::strftime(post.created_at, "%B %d, %Y") %></span></div>
+    <div class="date_link_cell first"><span><%= Russian::strftime(post.created_at, "%d %B %Y") %></span></div>
     <div class="author_link_cell"><%= link_to User.find(post.author_id).username, '#' %></div>
     <div class="comment_link_cell">
       <%= link_to( post.comments.count(:conditions => ['parent_id IS NOT NULL']).to_s, post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : '', :anchor => "comments"})) %>

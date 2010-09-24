@@ -1,0 +1,30 @@
+%h1 Редактирование расписания тура
+= error_messages_for :schedule_post
+= error_messages_for :post
+
+- form_for @schedule_post, :url => {:action=>'update', :id=>@schedule_post.id} do |f|
+  %fieldset
+    %label{:for=>"post_title"}Заголовок:
+    = text_field :post, :title, :class=>"text long-input", :value => @schedule_post.post.title
+
+    %label{:for=>"schedule_post_body"}Текст:
+    %div
+      = text_area(:schedule_post, :body, :cols =>80)
+
+    %label{:for=>"post_title"}Относится к турниру:
+    = select :post, :tournament_id, Tournament.all.collect {|p| [ p.name, p.id ] }, {:selected => @schedule_post.post[:tournament_id], :include_blank => true}
+    .clear
+    %br/
+
+    %label{:for=>"post_title"}Теги/темы:
+    = text_field :post, :tag_list, :class=>"text long-input"
+
+    %label{:for=>"post_status"}Статус публикации:
+    = select :post, :status, Post::STATUSES.collect(&:reverse), {:selected => @schedule_post.post[:status]}
+    .clear
+    %br/
+
+    = check_box :post, :hide_comments
+    %label{:for=>"post_hide_comments", :style=>"display:inline;"}Спрятать комментарии
+    .clear
+  = f.submit "Сохранить", :class=>"fancy-submit"

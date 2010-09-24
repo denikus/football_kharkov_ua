@@ -1,0 +1,16 @@
+- schedule_blocks.each do |key, value|
+  %table.schedule
+    %tr
+      %th{:colspan=>"4"}= Russian::strftime(value[0].match_on, "%A, %d %B %Y")
+    %tr
+      %th Спорткомплекс
+      %th Время
+      %th Команды
+      %th Лига/Группа
+    - value.each_with_index do |schedule_item, i|
+      -row_class = i%2 == 0 ? "" : "odd"
+      %tr{:class => row_class}
+        %td= schedule_item.venue.short_name
+        %td= schedule_item.match_at
+        %td= "#{schedule_item.hosts.name} - #{schedule_item.guests.name}"
+        %td= schedule_item.league.name

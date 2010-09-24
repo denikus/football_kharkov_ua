@@ -380,7 +380,7 @@ input.fancy-submit:hover {
 }
 #user-box a.selected, #login-box a.selected
 {
-  font-weight:    bold !important;
+ font-weight:    bold !important;
  color: #A5BE0E;
 }
 #user-box a:hover,
@@ -983,3 +983,27 @@ table.match-result-table ul.team-players-list {
 ul.team-list {
   list-style-type: none;
 }
+
+table.schedule {
+  background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border-collapse: collapse;
+  tr.odd {
+    background-color:#FAFAFA;
+  }
+  td,th  {
+    border: 1px solid $block_border_color;
+    padding: 5px;
+  }
+  td {
+    text-align: center;
+  }
+  th {
+    color:$block_header_color;
+    font-size:100%;
+    font-weight:bold;
+    margin:0.6em 0 0.6em 0.4em;
+    text-transform:uppercase;
+    padding: 5px;
+  }
+}
+

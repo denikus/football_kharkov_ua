@@ -1,4 +1,0 @@
-- schedule_blocks.each do |key, value|
-  %h3= value[0].match_on
-  - value.each do |schedule_item|
-    ="#{schedule_item.match_at} - #{schedule_item.hosts.name} - #{schedule_item.guests.name}"

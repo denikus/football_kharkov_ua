@@ -6,4 +6,5 @@
       %li
         %p.author= item.user.username
         %p.post-title= link_to(item.post.title, post_url({:year => item.post.created_at.strftime('%Y'), :month => item.post.created_at.strftime('%m'), :day => item.post.created_at.strftime('%d'), :url => !item.post.url.nil? ? item.post.url : '', :anchor => "comment-#{item.id}"}))
-        %p.post-date= Russian::strftime(item.created_at, "%B %d; %H:%M")
+        %p.post-date= "#{time_ago_in_words(item.created_at)} назад" 
+        -#%p.post-date= Russian::strftime(item.created_at, "%B %d; %H:%M")

@@ -26,7 +26,7 @@ class SchedulePost < ActiveRecord::Base
           end  
           grouped_schedules[item[:match_on].to_s] << item
         end
-        generated_block = ActionView::Base.new(Rails::Configuration.new.view_path).render(:partial => "/schedule/schedule_block", :locals =>{:schedule_blocks => grouped_schedules})
+        generated_block = ActionView::Base.new(Rails::Configuration.new.view_path).render(:partial => "/schedule_post/schedule_block", :locals =>{:schedule_blocks => grouped_schedules})
         generated_body.gsub!(/\[\[schedule::#{widget_params_str[0]}\]\]/, generated_block)
       end
     end
