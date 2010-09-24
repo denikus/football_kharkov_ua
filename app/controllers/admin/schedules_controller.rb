@@ -14,7 +14,7 @@ class Admin::SchedulesController < ApplicationController
         season = Season.find params[:season_id]
         unless params[:match_on].nil?
           schedules = Schedule.all(:conditions => ['season_id = ? AND match_on = ?', params[:season_id], params[:match_on]], :include => [:venue, :hosts, :guests])
-          locals = {:venues => Venue.all.collect{ |v| [v.name, v.id] }, :teams => season.teams.all.collect{ |t| [t.name, t.id] }}
+          locals = {:venues => Venue.all.collect{ |v| [v.name, v.id] }, :teams => season.teams.find(:all, :order => "name ASC").collect{ |t| [t.name, t.id] }}
           render :update do |page|
             page.replace_html :schedules, :partial => 'schedule', :collection => schedules, :locals => locals
             page.replace_html :new_sched, :partial => 'schedule', :object => Schedule.new(:season_id => params[:season_id], :match_on => params[:match_on]), :locals => locals
