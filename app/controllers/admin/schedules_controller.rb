@@ -32,7 +32,7 @@ class Admin::SchedulesController < ApplicationController
     season = Season.find params[:schedule][:season_id]
     schedule = Schedule.new params[:schedule]
     schedule.save
-    locals = {:venues => Venue.all.collect{ |v| [v.name, v.id] }, :teams => season.teams.collect{ |t| [t.name, t.id] }}
+    locals = {:venues => Venue.all.collect{ |v| [v.name, v.id] }, :teams => season.teams.find(:all, :order => "name ASC").collect{ |t| [t.name, t.id] }}
     render :update do |page|
       page.replace_html :schedule_date, :partial => 'schedule_date', :collection => season.schedule_dates
       page.insert_html :append, 'schedules', :partial => 'schedule', :object => schedule, :locals => locals
