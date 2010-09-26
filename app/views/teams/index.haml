@@ -1,10 +1,12 @@
-%ul.team-list
-  -@teams.each do |item|
-    %li= link_to item.name, team_path(item.url), :target => "_blank"
+- @teams.each_slice( (@teams.length.to_f/4).round ) do |block|
+  %ul.team-list
+    - block.each do |item|
+      %li= link_to item.name, team_path(item.url), :target => "_blank"
+.clear
 %br/
 %br/
 -content_for :head_title do
-  %h1
+  %h1.tourament-header
     = "#{tournament_title}:"
     = "Список команд"
     .clear

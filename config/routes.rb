@@ -79,6 +79,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :footballers, :only => ["index", "show"]
 
   map.with_options :conditions => {:subdomain => /.+/} do |tournament|
+    tournament.tournament 'feed', :controller => "tournaments", :action => "feed" #, :conditions => {:subdomain => /.+/}
     tournament.tournament '', :controller => "tournaments", :action => "index" #, :conditions => {:subdomain => /.+/}
     tournament.post 'post', :controller=>'post', :action=>'show', :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
     tournament.resources :teams, :only => ["index", "show"]

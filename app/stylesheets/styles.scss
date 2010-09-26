@@ -405,7 +405,7 @@ input.fancy-submit:hover {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	h1 {
+	h1.tourament-header {
 	  padding: 0 0 5px 0;
 	  margin-bottom: 15px;
 	  color: #336999;
@@ -418,7 +418,13 @@ input.fancy-submit:hover {
     span {
       float:left;
       display:block;
-      margin-right: 50px;
+    }
+    a.feed-link {
+      display: block;
+//      float:right;
+//      padding:0;
+//      padding-top:5px;
+      margin-right: 30px;
     }
     span.team_name{
       color: #BE420E;
@@ -980,8 +986,16 @@ table.match-result-table ul.team-players-list {
 }
 /*EOF Quick Match Results block*/
 
-ul.team-list {
+ul.team-list, ul.player-list {
   list-style-type: none;
+  li {
+    padding: 5px 0;
+  }
+}
+
+ul.team-list {
+  float:left;
+  width: 230px;
 }
 
 table.schedule {

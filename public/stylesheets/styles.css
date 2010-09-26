@@ -459,7 +459,7 @@ input.fancy-submit:hover {
   position: relative;
 }
 /* line 408, ../../app/stylesheets/styles.scss */
-#container h1 {
+#container h1.tourament-header {
   padding: 0 0 5px 0;
   margin-bottom: 15px;
   color: #336999;
@@ -471,59 +471,63 @@ input.fancy-submit:hover {
   height: 25px;
 }
 /* line 418, ../../app/stylesheets/styles.scss */
-#container h1 span {
+#container h1.tourament-header span {
   float: left;
   display: block;
-  margin-right: 50px;
 }
-/* line 423, ../../app/stylesheets/styles.scss */
-#container h1 span.team_name {
+/* line 422, ../../app/stylesheets/styles.scss */
+#container h1.tourament-header a.feed-link {
+  display: block;
+  margin-right: 30px;
+}
+/* line 429, ../../app/stylesheets/styles.scss */
+#container h1.tourament-header span.team_name {
   color: #BE420E;
   float: none;
   display: inline;
   margin-right: 0px;
 }
-/* line 429, ../../app/stylesheets/styles.scss */
-#container h1 a, #container h1 a:hover, #container h1 a:visited {
+/* line 435, ../../app/stylesheets/styles.scss */
+#container h1.tourament-header a, #container h1.tourament-header a:hover, #container h1.tourament-header a:visited {
   float: left;
   display: block;
   color: #BE420E;
   font-size: 14px;
   padding: 5px;
 }
-/* line 437, ../../app/stylesheets/styles.scss */
-#container h1 a:hover {
+/* line 443, ../../app/stylesheets/styles.scss */
+#container h1.tourament-header a:hover {
   color: #336999;
   text-decoration: none;
 }
 
-/* line 443, ../../app/stylesheets/styles.scss */
+/* line 449, ../../app/stylesheets/styles.scss */
 #col-left, #col-right {
   float: left;
   margin-bottom: 25px;
 }
 
 /* left column */
-/* line 449, ../../app/stylesheets/styles.scss */
+/* line 455, ../../app/stylesheets/styles.scss */
 #col-left {
   width: 650px;
   margin-right: 10px;
   padding-right: 20px;
 }
 
-/* line 455, ../../app/stylesheets/styles.scss */
+/* line 461, ../../app/stylesheets/styles.scss */
 #col-right {
   width: 270px;
 }
 
 /* New block design */
-/* line 461, ../../app/stylesheets/styles.scss */
+/* line 467, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
   margin: 0 0 1em 0;
 }
-/* line 466, ../../app/stylesheets/styles.scss */
+/* line 472, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block a {
   text-decoration: none;
   color: #006ca2;
@@ -531,46 +535,46 @@ input.fancy-submit:hover {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 476, ../../app/stylesheets/styles.scss */
+/* line 482, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block a:hover {
   color: #be420e;
 }
-/* line 480, ../../app/stylesheets/styles.scss */
+/* line 486, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul {
   margin: 0;
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
 }
-/* line 485, ../../app/stylesheets/styles.scss */
+/* line 491, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li {
   line-height: 1.2em;
   padding: 5px;
   border: 0;
   border-top: 1px solid #d9d9d9;
 }
-/* line 491, ../../app/stylesheets/styles.scss */
+/* line 497, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.post-title {
   line-height: 1.2em;
   margin-bottom: 3px;
 }
-/* line 496, ../../app/stylesheets/styles.scss */
+/* line 502, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.post-date {
   color: #666666;
   line-height: 1em;
   padding: 0;
   margin-bottom: 2px;
 }
-/* line 504, ../../app/stylesheets/styles.scss */
+/* line 510, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.author {
   line-height: 1.2em;
 }
 
-/* line 512, ../../app/stylesheets/styles.scss */
+/* line 518, ../../app/stylesheets/styles.scss */
 .sidebar-block-header {
   background-color: transparent;
 }
-/* line 515, ../../app/stylesheets/styles.scss */
+/* line 521, ../../app/stylesheets/styles.scss */
 .sidebar-block-header h4 {
   font-size: 100%;
   color: #be420e;
@@ -587,13 +591,13 @@ input.fancy-submit:hover {
 /**
 *Comment block
 */
-/* line 535, ../../app/stylesheets/styles.scss */
+/* line 541, ../../app/stylesheets/styles.scss */
 #comment_body {
   height: 100px;
   width: 350px;
 }
 
-/* line 540, ../../app/stylesheets/styles.scss */
+/* line 546, ../../app/stylesheets/styles.scss */
 ul.comment {
   clear: both;
   width: auto;
@@ -603,7 +607,7 @@ ul.comment {
   margin: 0;
 }
 
-/* line 549, ../../app/stylesheets/styles.scss */
+/* line 555, ../../app/stylesheets/styles.scss */
 ul.comment li {
   float: left;
   width: 100%;
@@ -611,7 +615,7 @@ ul.comment li {
   padding: 0;
 }
 
-/* line 556, ../../app/stylesheets/styles.scss */
+/* line 562, ../../app/stylesheets/styles.scss */
 ul.comment div.comment-content {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
@@ -620,12 +624,12 @@ ul.comment div.comment-content {
   padding: 3px;
 }
 
-/* line 566, ../../app/stylesheets/styles.scss */
+/* line 572, ../../app/stylesheets/styles.scss */
 ul.comment p {
   padding: 3px;
 }
 
-/* line 570, ../../app/stylesheets/styles.scss */
+/* line 576, ../../app/stylesheets/styles.scss */
 ul.comment p.comment-author {
   margin-bottom: 5px;
   border-bottom: 1px solid #EEE;
@@ -636,7 +640,7 @@ ul.comment p.comment-author {
 *EOF Comment block
 */
 /*blog link panel*/
-/* line 586, ../../app/stylesheets/styles.scss */
+/* line 592, ../../app/stylesheets/styles.scss */
 .blog_link_panel {
   white-space: nowrap;
   /*height: 50px;*/
@@ -652,7 +656,7 @@ ul.comment p.comment-author {
 /*.blog_link_panel_wrap {
     clear:both;
 }*/
-/* line 601, ../../app/stylesheets/styles.scss */
+/* line 607, ../../app/stylesheets/styles.scss */
 .blog_link_panel div {
   float: left;
   border-right: 1px solid #EEEEEE;
@@ -663,7 +667,7 @@ ul.comment p.comment-author {
   padding: 1px 20px;
 }
 
-/* line 612, ../../app/stylesheets/styles.scss */
+/* line 618, ../../app/stylesheets/styles.scss */
 .blog_link_panel a, .blog_link_panel span {
   display: block;
   float: left;
@@ -671,14 +675,14 @@ ul.comment p.comment-author {
   text-decoration: none;
 }
 
-/* line 619, ../../app/stylesheets/styles.scss */
+/* line 625, ../../app/stylesheets/styles.scss */
 .blog_link_panel div.first {
   margin-bottom: -2px;
   padding-bottom: 1px;
   white-space: nowrap;
 }
 
-/* line 625, ../../app/stylesheets/styles.scss */
+/* line 631, ../../app/stylesheets/styles.scss */
 .blog_link_panel div.last {
   margin-bottom: -2px;
   border-right: 0;
@@ -687,42 +691,42 @@ ul.comment p.comment-author {
 }
 
 /* EOF blog panel links */
-/* line 633, ../../app/stylesheets/styles.scss */
+/* line 639, ../../app/stylesheets/styles.scss */
 div.date_link_cell span {
   background: transparent url(/images/icons/calendar.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 637, ../../app/stylesheets/styles.scss */
+/* line 643, ../../app/stylesheets/styles.scss */
 div.edit_link_cell a {
   background: transparent url(/images/icons/pencil.png) no-repeat scroll left center;
   padding-left: 22px;
 }
 
-/* line 641, ../../app/stylesheets/styles.scss */
+/* line 647, ../../app/stylesheets/styles.scss */
 div.delete_link_cell a {
   background: transparent url(/images/icons/delete.png) no-repeat scroll left center;
   padding-left: 18px;
 }
 
-/* line 645, ../../app/stylesheets/styles.scss */
+/* line 651, ../../app/stylesheets/styles.scss */
 div.author_link_cell a {
   background: transparent url(/images/icons/man.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 649, ../../app/stylesheets/styles.scss */
+/* line 655, ../../app/stylesheets/styles.scss */
 div.comment_link_cell a {
   background: transparent url(/images/icons/comment.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 653, ../../app/stylesheets/styles.scss */
+/* line 659, ../../app/stylesheets/styles.scss */
 div.social_link_cell a {
   padding: 2px 5px 1px 5px;
 }
 
-/* line 657, ../../app/stylesheets/styles.scss */
+/* line 663, ../../app/stylesheets/styles.scss */
 div.updating_link_cell span {
   background: transparent url(/images/icons/refresh.gif) no-repeat scroll left center;
   padding-left: 20px;
@@ -731,7 +735,7 @@ div.updating_link_cell span {
 /**
 *links with icons
 */
-/* line 666, ../../app/stylesheets/styles.scss */
+/* line 672, ../../app/stylesheets/styles.scss */
 .link-with-icon-container div {
   float: left;
   margin-right: -1px;
@@ -740,7 +744,7 @@ div.updating_link_cell span {
   padding: 1px 20px;
 }
 
-/* line 674, ../../app/stylesheets/styles.scss */
+/* line 680, ../../app/stylesheets/styles.scss */
 a.add-image-link {
   background: transparent url(/images/icons/picture.png) no-repeat scroll left center;
   padding-left: 20px;
@@ -753,14 +757,14 @@ a.add-image-link {
 /**
 * Right Sidebar
 */
-/* line 687, ../../app/stylesheets/styles.scss */
+/* line 693, ../../app/stylesheets/styles.scss */
 #col-right ul {
   margin-left: 5px;
   margin-right: 0;
   list-style: none;
 }
 
-/* line 694, ../../app/stylesheets/styles.scss */
+/* line 700, ../../app/stylesheets/styles.scss */
 #col-right ul li {
   padding: 10px 0 10px 0;
   border-bottom: 1px dotted #EEE;
@@ -769,60 +773,60 @@ a.add-image-link {
 /**
 * Pagination
 */
-/* line 703, ../../app/stylesheets/styles.scss */
+/* line 709, ../../app/stylesheets/styles.scss */
 .football_pagination {
   text-align: center;
   padding: .3em;
 }
 
-/* line 708, ../../app/stylesheets/styles.scss */
+/* line 714, ../../app/stylesheets/styles.scss */
 .football_pagination a, .football_pagination span {
   color: #336999;
   padding: .2em .5em;
 }
 
-/* line 712, ../../app/stylesheets/styles.scss */
+/* line 718, ../../app/stylesheets/styles.scss */
 .football_pagination span.disabled {
   color: #AAA;
 }
 
-/* line 715, ../../app/stylesheets/styles.scss */
+/* line 721, ../../app/stylesheets/styles.scss */
 .football_pagination span.current {
   font-weight: bold;
   color: #BE420E;
 }
 
-/* line 719, ../../app/stylesheets/styles.scss */
+/* line 725, ../../app/stylesheets/styles.scss */
 .football_pagination a {
   border: 1px solid #DDDDDD;
   color: #0063DC;
   text-decoration: none;
 }
 
-/* line 724, ../../app/stylesheets/styles.scss */
+/* line 730, ../../app/stylesheets/styles.scss */
 .football_pagination a:hover, .football_pagination a:focus {
   border-color: #888888;
   background: #555555;
   color: white;
 }
 
-/* line 729, ../../app/stylesheets/styles.scss */
+/* line 735, ../../app/stylesheets/styles.scss */
 .football_pagination .page_info {
   color: #aaa;
   padding-top: .8em;
 }
 
-/* line 733, ../../app/stylesheets/styles.scss */
+/* line 739, ../../app/stylesheets/styles.scss */
 .football_pagination .prev_page, .football_pagination .next_page {
   border-width: 2px;
 }
 
-/* line 736, ../../app/stylesheets/styles.scss */
+/* line 742, ../../app/stylesheets/styles.scss */
 .football_pagination .prev_page {
   margin-right: 1em;
 }
 
-/* line 739, ../../app/stylesheets/styles.scss */
+/* line 745, ../../app/stylesheets/styles.scss */
 .football_pagination .next_page {
   margin-left: 1em;
 }
@@ -830,21 +834,21 @@ a.add-image-link {
 /**
 *Notification blocks
 */
-/* line 747, ../../app/stylesheets/styles.scss */
+/* line 753, ../../app/stylesheets/styles.scss */
 .error, .notice, .success {
   border: 2px solid #DDDDDD;
   margin-bottom: 1em;
   padding: 0.8em;
 }
 
-/* line 753, ../../app/stylesheets/styles.scss */
+/* line 759, ../../app/stylesheets/styles.scss */
 .error {
   background: #FBE3E4 none repeat scroll 0% 0%;
   border-color: #FBC2C4;
   color: #8A1F11;
 }
 
-/* line 759, ../../app/stylesheets/styles.scss */
+/* line 765, ../../app/stylesheets/styles.scss */
 .success {
   background: #E6EFC2 none repeat scroll 0% 0%;
   border-color: #C6D880;
@@ -854,7 +858,7 @@ a.add-image-link {
 /**
 * Articles
 */
-/* line 770, ../../app/stylesheets/styles.scss */
+/* line 776, ../../app/stylesheets/styles.scss */
 .article-title-image {
   border: 1px solid #EEE;
   margin: 0pt 7px 7px 0pt;
@@ -868,21 +872,21 @@ a.add-image-link {
 /**
 * Gallery
 */
-/* line 785, ../../app/stylesheets/styles.scss */
+/* line 791, ../../app/stylesheets/styles.scss */
 #uploaded-files {
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
 }
 
-/* line 791, ../../app/stylesheets/styles.scss */
+/* line 797, ../../app/stylesheets/styles.scss */
 #uploaded-files img {
   width: 150px;
   float: left;
   margin-right: 10px;
 }
 
-/* line 797, ../../app/stylesheets/styles.scss */
+/* line 803, ../../app/stylesheets/styles.scss */
 #uploaded-files li {
   clear: both;
   display: block;
@@ -892,12 +896,12 @@ a.add-image-link {
 /**
 * Tournament and result tables
 */
-/* line 806, ../../app/stylesheets/styles.scss */
+/* line 812, ../../app/stylesheets/styles.scss */
 table.game-result {
   border-collapse: collapse;
 }
 
-/* line 810, ../../app/stylesheets/styles.scss */
+/* line 816, ../../app/stylesheets/styles.scss */
 table.game-result td {
   font-style: italic;
   padding: 5px;
@@ -905,30 +909,30 @@ table.game-result td {
   text-align: center;
 }
 
-/* line 816, ../../app/stylesheets/styles.scss */
+/* line 822, ../../app/stylesheets/styles.scss */
 table.game-result td.result {
   font-style: normal;
   font-weight: bold;
 }
 
-/* line 821, ../../app/stylesheets/styles.scss */
+/* line 827, ../../app/stylesheets/styles.scss */
 table.tournament {
   border-collapse: collapse;
 }
 
-/* line 825, ../../app/stylesheets/styles.scss */
+/* line 831, ../../app/stylesheets/styles.scss */
 table.tournament tr.even {
   background-color: #FAFAFA;
 }
 
-/* line 829, ../../app/stylesheets/styles.scss */
+/* line 835, ../../app/stylesheets/styles.scss */
 table.tournament td, table.tournament th {
   border: 1px solid #EEEEEE;
   padding: 8px;
   text-align: center;
 }
 
-/* line 834, ../../app/stylesheets/styles.scss */
+/* line 840, ../../app/stylesheets/styles.scss */
 table.tournament td.team {
   text-align: left;
 }
@@ -939,7 +943,7 @@ table.tournament td.team {
 /**
 *Public profile
 **/
-/* line 846, ../../app/stylesheets/styles.scss */
+/* line 852, ../../app/stylesheets/styles.scss */
 #profile-photo-block {
   border: 1px solid #EEEEEE;
   float: left;
@@ -948,7 +952,7 @@ table.tournament td.team {
   height: 300px;*/
 }
 
-/* line 853, ../../app/stylesheets/styles.scss */
+/* line 859, ../../app/stylesheets/styles.scss */
 #profile-data-block {
   border: 1px solid #EEEEEE;
   float: left;
@@ -959,12 +963,12 @@ table.tournament td.team {
   padding: 10px;
 }
 
-/* line 863, ../../app/stylesheets/styles.scss */
+/* line 869, ../../app/stylesheets/styles.scss */
 #profile-data-block dt, #profile-data-block dd {
   margin-bottom: 10px;
 }
 
-/* line 867, ../../app/stylesheets/styles.scss */
+/* line 873, ../../app/stylesheets/styles.scss */
 #profile-data-block dt {
   clear: both;
   float: left;
@@ -974,7 +978,7 @@ table.tournament td.team {
   width: 70px;
 }
 
-/* line 876, ../../app/stylesheets/styles.scss */
+/* line 882, ../../app/stylesheets/styles.scss */
 #profile-data-block dd {
   float: left;
 }
@@ -982,7 +986,7 @@ table.tournament td.team {
 /**
 *EOF Public profile
 **/
-/* line 883, ../../app/stylesheets/styles.scss */
+/* line 889, ../../app/stylesheets/styles.scss */
 div.image-loading-container {
   display: none;
   text-align: center;
@@ -991,14 +995,14 @@ div.image-loading-container {
 /**
 *Match result table
 **/
-/* line 891, ../../app/stylesheets/styles.scss */
+/* line 897, ../../app/stylesheets/styles.scss */
 table.match-result-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-/* line 897, ../../app/stylesheets/styles.scss */
+/* line 903, ../../app/stylesheets/styles.scss */
 table.match-result-table caption {
   padding: 0 0 5px 0;
   width: 100%;
@@ -1007,7 +1011,7 @@ table.match-result-table caption {
   text-align: right;
 }
 
-/* line 906, ../../app/stylesheets/styles.scss */
+/* line 912, ../../app/stylesheets/styles.scss */
 table.match-result-table th {
   text-align: center;
   background-color: #F5FAFA;
@@ -1016,7 +1020,7 @@ table.match-result-table th {
   font-size: 118%;
 }
 
-/* line 914, ../../app/stylesheets/styles.scss */
+/* line 920, ../../app/stylesheets/styles.scss */
 table.match-result-table td.team-name, table.match-result-table td.match-score {
   width: 33%;
   text-align: center;
@@ -1025,7 +1029,7 @@ table.match-result-table td.team-name, table.match-result-table td.match-score {
   font-weight: bold;
 }
 
-/* line 922, ../../app/stylesheets/styles.scss */
+/* line 928, ../../app/stylesheets/styles.scss */
 table.match-result-table ul.team-players-list {
   list-style-type: none;
   text-align: left;
@@ -1033,45 +1037,45 @@ table.match-result-table ul.team-players-list {
 }
 
 /*Shop block*/
-/* line 930, ../../app/stylesheets/styles.scss */
+/* line 936, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block a.prev, #col-right .sidebar-block a.next {
   float: right;
   margin-right: 3px;
 }
-/* line 934, ../../app/stylesheets/styles.scss */
+/* line 940, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content {
   border-top: 1px solid #d9d9d9;
   padding: 0.6em 0.6em 0 0.6em;
   text-align: center;
 }
-/* line 939, ../../app/stylesheets/styles.scss */
+/* line 945, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap {
   margin: 0 auto;
 }
-/* line 942, ../../app/stylesheets/styles.scss */
+/* line 948, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul li {
   border: none;
   height: 200px;
   width: 100%;
 }
-/* line 946, ../../app/stylesheets/styles.scss */
+/* line 952, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul li a {
   font-weight: normal;
 }
 
 /*EOF Shop block*/
 /*Quick Match Results block*/
-/* line 960, ../../app/stylesheets/styles.scss */
+/* line 966, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li {
   padding: 5px 0;
 }
-/* line 962, ../../app/stylesheets/styles.scss */
+/* line 968, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score-container {
   float: left;
   width: 42px;
   margin: 0 3px;
 }
-/* line 963, ../../app/stylesheets/styles.scss */
+/* line 969, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score {
   font-weight: bold;
   padding: 1px;
@@ -1082,65 +1086,75 @@ table.match-result-table ul.team-players-list {
   text-align: center;
   background-color: #7BB2E7;
 }
-/* line 973, ../../app/stylesheets/styles.scss */
+/* line 979, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score-right {
   margin-left: 2px;
 }
-/* line 974, ../../app/stylesheets/styles.scss */
+/* line 980, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.winner_score {
   background-color: #6BA231;
 }
-/* line 975, ../../app/stylesheets/styles.scss */
+/* line 981, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.loser_score {
   background-color: #DF0500;
 }
-/* line 976, ../../app/stylesheets/styles.scss */
+/* line 982, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.hosts {
   float: left;
   width: 110px;
   text-align: right;
 }
-/* line 977, ../../app/stylesheets/styles.scss */
+/* line 983, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.guests {
   float: left;
   width: 110px;
   text-align: left;
 }
-/* line 979, ../../app/stylesheets/styles.scss */
+/* line 985, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li.odd {
   background-color: #FAFAFA;
 }
 
 /*EOF Quick Match Results block*/
-/* line 983, ../../app/stylesheets/styles.scss */
-ul.team-list {
+/* line 989, ../../app/stylesheets/styles.scss */
+ul.team-list, ul.player-list {
   list-style-type: none;
 }
+/* line 991, ../../app/stylesheets/styles.scss */
+ul.team-list li, ul.player-list li {
+  padding: 5px 0;
+}
 
-/* line 987, ../../app/stylesheets/styles.scss */
+/* line 996, ../../app/stylesheets/styles.scss */
+ul.team-list {
+  float: left;
+  width: 230px;
+}
+
+/* line 1001, ../../app/stylesheets/styles.scss */
 table.schedule {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom: 15px;
 }
-/* line 991, ../../app/stylesheets/styles.scss */
+/* line 1005, ../../app/stylesheets/styles.scss */
 table.schedule tr.odd {
   background-color: #FAFAFA;
 }
-/* line 994, ../../app/stylesheets/styles.scss */
+/* line 1008, ../../app/stylesheets/styles.scss */
 table.schedule td, table.schedule th {
   border: 1px solid #d9d9d9;
   padding: 5px;
 }
-/* line 998, ../../app/stylesheets/styles.scss */
+/* line 1012, ../../app/stylesheets/styles.scss */
 table.schedule td {
   text-align: left;
 }
-/* line 1001, ../../app/stylesheets/styles.scss */
+/* line 1015, ../../app/stylesheets/styles.scss */
 table.schedule td.time {
   text-align: center;
 }
-/* line 1004, ../../app/stylesheets/styles.scss */
+/* line 1018, ../../app/stylesheets/styles.scss */
 table.schedule th {
   color: #be420e;
   font-size: 100%;

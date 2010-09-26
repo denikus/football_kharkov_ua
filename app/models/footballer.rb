@@ -2,7 +2,9 @@ class Footballer < ActiveRecord::Base
   #has_and_belongs_to_many :teams
   has_one :footballers_team
   named_scope :by_team_season, lambda{ |options|
-      {:joins => "INNER JOIN footballers_teams ON (footballers_teams.footballer_id=footballers.id)", :conditions => ["footballers_teams.season_id = ? AND footballers_teams.team_id = ?", options[:season_id], options[:team_id]]}
+      {:joins => "INNER JOIN footballers_teams ON (footballers_teams.footballer_id=footballers.id)",
+       :conditions => ["footballers_teams.season_id = ? AND footballers_teams.team_id = ?", options[:season_id], options[:team_id]],
+       :order => "footballers.last_name ASC"}
   }
 
   def full_name
