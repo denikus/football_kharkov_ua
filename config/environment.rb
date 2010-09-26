@@ -74,10 +74,10 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
   config.active_record.observers = :comment_observer
 
-#  config.time_zone = 'Kyev'
+  config.time_zone = 'Kyev'
 
   # Make Active Record use UTC-base instead of local time
-  config.active_record.default_timezone = 'Kyev'
+  #config.active_record.default_timezone = 'Kyev'
 
 end
 require File.dirname(__FILE__) + '/../lib/lib'
