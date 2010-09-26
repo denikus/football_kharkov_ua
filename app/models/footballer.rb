@@ -20,6 +20,9 @@ class Footballer < ActiveRecord::Base
   end
 
   def before_save
+    self.last_name.strip!
+    self.first_name.strip!
+    self.patronymic.strip!
     self.url = [self.last_name, self.first_name, self.patronymic].join("-")
   end
 end
