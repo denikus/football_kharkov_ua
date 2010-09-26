@@ -12,7 +12,7 @@ config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
 config.action_mailer.default_url_options             = { :host => 'football.kharkov.ua' }
 config.action_controller.session[:domain]            = 'football.kharkov.ua'
-default_url_options[:host]                           = 'football.kharkov.ua'
+#default_url_options[:host]                           = 'football.kharkov.ua'
 #config.action_view.cache_template_loading            = true
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
