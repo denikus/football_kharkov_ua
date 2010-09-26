@@ -1121,21 +1121,26 @@ ul.team-list {
 table.schedule {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
+  margin-bottom: 15px;
 }
-/* line 990, ../../app/stylesheets/styles.scss */
+/* line 991, ../../app/stylesheets/styles.scss */
 table.schedule tr.odd {
   background-color: #FAFAFA;
 }
-/* line 993, ../../app/stylesheets/styles.scss */
+/* line 994, ../../app/stylesheets/styles.scss */
 table.schedule td, table.schedule th {
   border: 1px solid #d9d9d9;
   padding: 5px;
 }
-/* line 997, ../../app/stylesheets/styles.scss */
+/* line 998, ../../app/stylesheets/styles.scss */
 table.schedule td {
+  text-align: left;
+}
+/* line 1001, ../../app/stylesheets/styles.scss */
+table.schedule td.time {
   text-align: center;
 }
-/* line 1000, ../../app/stylesheets/styles.scss */
+/* line 1004, ../../app/stylesheets/styles.scss */
 table.schedule th {
   color: #be420e;
   font-size: 100%;
