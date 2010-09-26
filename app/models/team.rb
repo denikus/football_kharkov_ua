@@ -13,6 +13,10 @@ class Team < ActiveRecord::Base
   has_and_belongs_to_many :seasons
   has_many :competitors, :dependent => :destroy
 
+  def before_save
+    self.url = self.name.gsub(/[^a-zA-Zа-яА-Я0-9\-]/, '-')
+  end  
+
   def season_id= id
     @season_id = id
     set_footballer_ids if @footballer_ids
