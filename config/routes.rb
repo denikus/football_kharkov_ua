@@ -76,12 +76,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :pages
   map.resource :profile, :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :destroy_photo => :delete, :make_crop => :post}
   map.resource :itleague_draw
+  map.resources :footballers, :only => ["index", "show"]
 
   map.with_options :conditions => {:subdomain => /.+/} do |tournament|
     tournament.tournament '', :controller => "tournaments", :action => "index" #, :conditions => {:subdomain => /.+/}
     tournament.post 'post', :controller=>'post', :action=>'show', :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
     tournament.resources :teams, :only => ["index", "show"]
-    tournament.resources :footballers, :only => ["index", "show"]
   end
 
 
