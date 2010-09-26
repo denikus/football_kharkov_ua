@@ -83,6 +83,7 @@ end
 require File.dirname(__FILE__) + '/../lib/lib'
 
 if RAILS_ENV == "production"
+  ActionMailer::Base.default_url_options[:host] = 'football.kharkov.ua'
   ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
   ExceptionNotification::Notifier.sender_address = "football.kharkov.ua@gmail.com"
 end
