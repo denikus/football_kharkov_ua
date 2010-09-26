@@ -11,7 +11,7 @@ class Footballer < ActiveRecord::Base
 
   def get_teams_seasons
     Tournament.find(:all,
-                    :select => "tournaments.name AS tournament_name, seasons.name AS season_name, teams.name AS team_name, teams.url AS team_url",
+                    :select => "tournaments.name AS tournament_name, seasons.name AS season_name, teams.name AS team_name, teams.url AS team_address",
                     :joins => "INNER JOIN seasons ON (seasons.tournament_id = tournaments.id) " +
                               "INNER JOIN footballers_teams ON (footballers_teams.season_id = seasons.id) " +
                               "INNER JOIN teams ON (footballers_teams.team_id = teams.id) ",
