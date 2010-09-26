@@ -84,7 +84,7 @@ require File.dirname(__FILE__) + '/../lib/lib'
 
 if RAILS_ENV == "production"
   ExceptionNotification::Notifier.exception_recipients = %w(denis.soloshenko@gmail.com)
-  ExceptionNotification::Notifier.sender_address = "info@football.kharkov.ua"
+  ExceptionNotification::Notifier.sender_address = "football.kharkov.ua@gmail.com"
 end
 
 #class CGI::Session
