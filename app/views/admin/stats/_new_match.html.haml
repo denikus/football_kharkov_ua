@@ -11,7 +11,7 @@
     %td Голы
     %td Жт. Ктчки
     %td Кр. Ктчки
-  - team.footballers.each do |f|
+  - team.footballers.find(:all, :order => "last_name ASC").each do |f|
     %tr
       %td= f.full_name
       %td= text_field "match[football_player_numbers][#{side}]", "#{f.id}", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"

@@ -33,7 +33,6 @@ class Admin::MatchesController < ApplicationController
     create_events = params[:match].delete(:create_events) != '0'
     params[:match][:tour_id] = params[:tour_id]
     @match = Match.build_from_form params[:match]
-    debugger
     respond_to do |format|
       if @match.save
         @match.update_stats match_stats, create_events

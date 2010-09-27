@@ -8,7 +8,9 @@ class Admin::StatsController < ApplicationController
         if params[:team_id].empty?
           page['match_'+params[:side]+'_stats'].replace_html ''
         else
-          page['match_'+params[:side]+'_stats'].replace_html :partial => 'new_match', :locals => {:team => Team.find(params[:team_id]), :side => params[:side]}
+          page['match_'+params[:side]+'_stats'].replace_html :partial => 'new_match',
+                                                             :locals => {:team => Team.find(params[:team_id], :joins => :footballers), 
+                                                                         :side => params[:side]}
         end
       end
     end
