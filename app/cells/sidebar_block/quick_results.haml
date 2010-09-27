@@ -4,8 +4,8 @@
   .bd
     %ul.quick_match_results
       - @quick_results.each_with_index do |item, i|
-        - winner_class = "winner_score"
-        - loser_class = "loser_score"
+        - winner_class = "fancy-score-winner"
+        - loser_class = "fancy-score-loser"
         - hosts_class = ""
         - guests_class = ""
         - if item.hosts_score > item.guests_score
@@ -16,10 +16,10 @@
           - guests_class = winner_class
         -row_class = i%2 == 0 ? "" : "odd"
         %li{:class => row_class}
-          .hosts{:style=> ""}= item.hosts
+          .hosts= item.hosts
           .score-container
-            .score{:class => hosts_class }= item.hosts_score
-            .score.score-right{:class => guests_class }= item.guests_score
+            .fancy-score{:class => hosts_class }= item.hosts_score
+            .fancy-score.fancy-score-right{:class => guests_class }= item.guests_score
           .guests= item.guests
           .clear
 

@@ -1067,94 +1067,74 @@ table.match-result-table ul.team-players-list {
 /*Quick Match Results block*/
 /* line 966, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li {
-  padding: 5px 0;
+  padding: 3px 0;
 }
 /* line 968, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score-container {
   float: left;
-  width: 42px;
-  margin: 0 3px;
-}
-/* line 969, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.score {
-  font-weight: bold;
-  padding: 1px;
-  padding-top: 0;
-  color: #FFF;
-  width: 18px;
-  float: left;
-  text-align: center;
-  background-color: #7BB2E7;
-}
-/* line 979, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.score-right {
-  margin-left: 2px;
-}
-/* line 980, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.winner_score {
-  background-color: #6BA231;
-}
-/* line 981, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.loser_score {
-  background-color: #DF0500;
+  width: 45px;
+  margin: 0 2px;
 }
 /* line 982, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.hosts {
+#col-right .sidebar-block ul.quick_match_results li div.hosts, #col-right .sidebar-block ul.quick_match_results li div.guests {
   float: left;
-  width: 110px;
+  width: 109px;
+  padding-top: 1px;
+  font-size: 12px;
+}
+/* line 988, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li div.hosts {
   text-align: right;
 }
-/* line 983, ../../app/stylesheets/styles.scss */
+/* line 989, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.guests {
-  float: left;
-  width: 110px;
   text-align: left;
 }
-/* line 985, ../../app/stylesheets/styles.scss */
+/* line 991, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li.odd {
   background-color: #FAFAFA;
 }
 
 /*EOF Quick Match Results block*/
-/* line 989, ../../app/stylesheets/styles.scss */
+/* line 995, ../../app/stylesheets/styles.scss */
 ul.team-list, ul.player-list {
   list-style-type: none;
 }
-/* line 991, ../../app/stylesheets/styles.scss */
+/* line 997, ../../app/stylesheets/styles.scss */
 ul.team-list li, ul.player-list li {
   padding: 5px 0;
 }
 
-/* line 996, ../../app/stylesheets/styles.scss */
+/* line 1002, ../../app/stylesheets/styles.scss */
 ul.team-list {
   float: left;
   width: 230px;
 }
 
-/* line 1001, ../../app/stylesheets/styles.scss */
+/* line 1007, ../../app/stylesheets/styles.scss */
 table.schedule {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom: 15px;
 }
-/* line 1005, ../../app/stylesheets/styles.scss */
+/* line 1011, ../../app/stylesheets/styles.scss */
 table.schedule tr.odd {
   background-color: #FAFAFA;
 }
-/* line 1008, ../../app/stylesheets/styles.scss */
+/* line 1014, ../../app/stylesheets/styles.scss */
 table.schedule td, table.schedule th {
   border: 1px solid #d9d9d9;
   padding: 5px;
 }
-/* line 1012, ../../app/stylesheets/styles.scss */
+/* line 1018, ../../app/stylesheets/styles.scss */
 table.schedule td {
   text-align: left;
 }
-/* line 1015, ../../app/stylesheets/styles.scss */
+/* line 1021, ../../app/stylesheets/styles.scss */
 table.schedule td.time {
   text-align: center;
 }
-/* line 1018, ../../app/stylesheets/styles.scss */
+/* line 1024, ../../app/stylesheets/styles.scss */
 table.schedule th {
   color: #be420e;
   font-size: 100%;

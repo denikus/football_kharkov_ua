@@ -25,6 +25,7 @@ Rails::Initializer.run do |config|
   config.gem "cells"
   config.gem 'subdomain-fu'
   config.gem 'exception_notification'
+  config.gem 'fancy-buttons'
 
 
   # Settings in config/environments/* take precedence over those specified here.

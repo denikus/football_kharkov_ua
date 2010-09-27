@@ -964,23 +964,29 @@ table.match-result-table ul.team-players-list {
 /*Quick Match Results block*/
 #col-right .sidebar-block ul.quick_match_results {
   li {
-    padding:5px 0;
-    div.score-container{float: left;width: 42px;margin:0 3px;}
-    div.score{
-      font-weight:bold;
-      padding:1px;
-      padding-top:0;
-      color: #FFF;
-      width: 18px;
+    padding:3px 0;
+    div.score-container{float: left;width: 45px;margin:0 2px;}
+//    div.score{
+//      font-weight:bold;
+//      padding:1px;
+//      padding-top:0;
+//      color: #FFF;
+//      width: 18px;
+//      float:left;
+//      text-align:center;
+//      background-color: #7BB2E7;
+//    }
+//    div.score-right {margin-left: 2px;}
+//    div.winner_score {background-color: #6BA231;}
+//    div.loser_score {background-color: #DF0500;}
+    div.hosts, div.guests {
       float:left;
-      text-align:center;
-      background-color: #7BB2E7;
+      width: 109px;
+      padding-top:1px;
+      font-size: 12px;
     }
-    div.score-right {margin-left: 2px;}
-    div.winner_score {background-color: #6BA231;}
-    div.loser_score {background-color: #DF0500;}
-    div.hosts {float:left; width: 110px; text-align:right;}
-    div.guests {float:left;width: 110px;text-align:left;}
+    div.hosts {text-align:right;}
+    div.guests {text-align:left;}
   }
   li.odd {background-color:#FAFAFA;}
 }

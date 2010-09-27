@@ -11,7 +11,7 @@
     <p><%= f.label "Повторите пароль" %></p>
     <p><%= f.password_field :password_confirmation, :class => "text" %></p>
 
-    <p><%= f.submit "Изменить мой пароль", :class => "fancy-submit" %></p>
+    <p><%= f.submit "Изменить мой пароль", :class => "fancy-button" %></p>
 
     <%- if devise_mapping.confirmable? %>
       <%= link_to "Не получили инструкций по активации аккаунта?", new_confirmation_path(resource_name) %><br />

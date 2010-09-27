@@ -7,7 +7,7 @@
     <%= f.label :Email %>
     <p><%= f.text_field :email, :class => "text" %></p>
 
-    <p><%= f.submit "Отправить инструкции по активации аккаунта", :class => "fancy-submit" %></p>
+    <p><%= f.submit "Отправить инструкции по активации аккаунта", :class => "fancy-button" %></p>
 
     <%- if devise_mapping.recoverable? %>
       <%= link_to "Забыли пароль?", new_password_path(resource_name) %><br />

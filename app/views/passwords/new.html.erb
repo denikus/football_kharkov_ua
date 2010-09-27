@@ -7,7 +7,7 @@
     <%= f.label :Email %>
     <p><%= f.text_field :email, :class => "text" %></p>
 
-    <p><%= f.submit "Выслать инструкции по восстановлению пароля", :class=>"fancy-submit" %></p>
+    <p><%= f.submit "Выслать инструкции по восстановлению пароля", :class=>"fancy-button" %></p>
 
     <%- if devise_mapping.confirmable? %>
       <%= link_to "Не получили инструкций по подтверждению аккаунта?", new_confirmation_path(resource_name) %><br />

@@ -8,7 +8,7 @@
   - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
     = f.hidden_field attribute, :id => attribute
   .clear
-  = f.submit 'Отправить', :class=>"fancy-submit"
+  = f.submit 'Отправить', :class=>"fancy-button"
 %h4 Preview  
 %div{:style => "width: 100px; height: 100px; overflow: hidden;"}
   = image_tag current_user.profile.photo.url(:large), :id => "preview"

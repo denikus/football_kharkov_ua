@@ -18,7 +18,7 @@
     %label{:for=>"profile_role", :id=>"label_profile_role", :style=>(@profile.user_type!='footballer' ? "display:none;" : "")} Амплуа:
     = f.select :role, Profile::ROLE_OPTIONS.collect(&:reverse), {:selected => @profile['role'].to_s}, {:style => "display:none;"}
     .clear
-    = f.submit 'Отправить', :class=>"fancy-submit"
+    = f.submit 'Отправить', :class=>"fancy-button"
 :javascript
   $(document).ready(function() {
     $('#profile_user_type').change(function() {

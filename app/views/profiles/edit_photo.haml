@@ -18,7 +18,7 @@
     - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
       = f.hidden_field attribute, :id => attribute
     .clear
-    = f.submit 'Сохранить', :class=>"fancy-submit"
+    = f.submit 'Сохранить', :class=>"fancy-button"
   %h3= "Удалить фото"
   %div{:style => "text-align: center; font-weight: bold;"} Не забудьте загрузить новое фото!
   %br/
