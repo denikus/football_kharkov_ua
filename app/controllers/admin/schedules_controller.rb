@@ -21,7 +21,7 @@ class Admin::SchedulesController < ApplicationController
           end
         else
           render :update do |page|
-            page.replace_html :schedule_date, :partial => 'schedule_date', :collection => season.schedule_dates
+            page.replace_html :schedule_guest_team_id, :partial => 'schedule_date', :collection => season.schedule_dates
           end
         end
       end

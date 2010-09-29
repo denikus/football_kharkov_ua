@@ -11,12 +11,12 @@
           %li{:id => "comment-#{item.id}"}
             - author = User.find(item.author_id)
             .comment-content{:style=>"margin-left: #{20 * (item.level-1)}px; "}
-              %p.comment-author-photo{:style => "float:left;margin-right: 5px;"}
+              %p.comment-author-photo{:style => "float:left;margin-right: 5px;width: 10%;"}
                 = image_tag "#{author.profile.photo.url(:thumb)}"
-              .author-and-comment-container{:style=>"float:left;width:280px"}
+              .author-and-comment-container{:style=>"float:left;width: 87%;"}
                 %p.comment-author
                   = link_to "#{author.username}", user_path(author) |
-                  = Russian::strftime(item.created_at, "%B %d, %Y; %H:%M")
+                  = Russian::strftime(item.created_at, "%d %B %Y; %H:%M")
                 %p.comment-body
                   = show_comment(post, item)
                   - if user_signed_in?

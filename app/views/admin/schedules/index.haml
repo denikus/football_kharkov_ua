@@ -29,6 +29,13 @@
       dataType:'script'
     });
   }
+  loadTeamCompetitors = function() {
+    $.ajax({
+      url:'/admin/teams.js',
+      data:'season_id='+$('#schedule_season_id').val() + '&competitor_team_id='+$('#schedule_host_team_id').val(),
+      dataType:'script'
+    });
+  }
   $(function(){
     $('#schedule_match_on').val('').datepicker({
       dateFormat: 'yy-mm-dd',

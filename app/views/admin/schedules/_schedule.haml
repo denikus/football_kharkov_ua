@@ -4,7 +4,7 @@
     = f.hidden_field :match_on
     = f.text_field :match_at, 'Время начала (часы:минуты)', :style => "width: 40px;"
     = f.select :venue_id, 'Место проведения', venues
-    = f.select :host_team_id, 'Хозяева', teams
+    = f.select :host_team_id, 'Хозяева', teams, {} , :onchange => 'loadTeamCompetitors()'
     = f.select :guest_team_id, 'Гости', teams
     - unless schedule.new_record?
       - f.append_button button_to_remote('Удалить', :url => admin_schedule_path(schedule), :method => 'DELETE', :confirm => 'Удалить матч из расписания?')

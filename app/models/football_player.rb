@@ -16,7 +16,7 @@ class FootballPlayer < ActiveRecord::Base
   #    obj.__send__(:"#{name}=", *st) unless value.empty?
   #  end
   #end
-  
+
   def update_stats params, create_events=false
     #obj = create_events ? stats.with_events(:team => competitor.team.name, :minute => :stat) : stats
     #params.each do |name, value|
@@ -41,6 +41,6 @@ class FootballPlayer < ActiveRecord::Base
   end
   
   def to_tpl
-    footballer.full_name
+    "#{footballer.first_name} #{footballer.last_name}"
   end
 end

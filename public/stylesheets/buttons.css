@@ -1,5 +1,5 @@
 /* incase an inverted custom gradient isn't specified */
-/* line 11, ../../app/stylesheets/buttons.sass */
+/* line 12, ../../app/stylesheets/buttons.sass */
 .fancy-button-base, .fancy-score, .fancy-button {
   font-family: "Lucida Grande", Lucida, Arial, sans_serif;
   background: url('/images/button_bg.png?1285610919') repeat-x bottom left;
@@ -73,7 +73,7 @@
   color: white;
 }
 
-/* line 17, ../../app/stylesheets/buttons.sass */
+/* line 18, ../../app/stylesheets/buttons.sass */
 .fancy-score {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -142,7 +142,7 @@
   border-width: 2px;
 }
 
-/* line 26, ../../app/stylesheets/buttons.sass */
+/* line 27, ../../app/stylesheets/buttons.sass */
 .fancy-score-winner {
   background-color: #42d100;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #76d34a), color-stop(100%, #458f23));
@@ -179,7 +179,7 @@
   color: white;
 }
 
-/* line 29, ../../app/stylesheets/buttons.sass */
+/* line 30, ../../app/stylesheets/buttons.sass */
 .fancy-score-loser {
   background-color: #ff5038;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #fd9586), color-stop(100%, #fb381d));
@@ -216,12 +216,12 @@
   color: white;
 }
 
-/* line 32, ../../app/stylesheets/buttons.sass */
+/* line 33, ../../app/stylesheets/buttons.sass */
 .fancy-score-right {
   margin-left: 2px;
 }
 
-/* line 35, ../../app/stylesheets/buttons.sass */
+/* line 36, ../../app/stylesheets/buttons.sass */
 .fancy-button {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -241,7 +241,7 @@
   border-width: 2px;
 }
 
-/* line 40, ../../app/stylesheets/buttons.sass */
+/* line 41, ../../app/stylesheets/buttons.sass */
 .login {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -260,8 +260,8 @@
   border-width: 2px;
 }
 
-/* line 43, ../../app/stylesheets/buttons.sass */
-.light {
+/* line 44, ../../app/stylesheets/buttons.sass */
+.score-light {
   padding: 2px 5px;
   border-width: 1px;
   background-color: white;
@@ -269,18 +269,19 @@
   background-image: -moz-linear-gradient(top, #fcfcfc 0%, #c6c6c6 100%);
   border-color: #afafaf;
   text-shadow: white 0px 1px 1px;
+  color: #be420e;
 }
 /* line 152, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-.light:active {
+.score-light:active {
   padding: 1px 4px;
   border-width: 2px;
 }
 /* line 102, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-.light, .light:visited {
+.score-light, .score-light:visited {
   color: #222222;
 }
 /* line 28, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-.light:hover, .light:focus {
+.score-light:hover, .score-light:focus {
   background-color: white;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f4f4f4), color-stop(100%, #bebebe));
   background-image: -moz-linear-gradient(top, #f4f4f4 0%, #bebebe 100%);
@@ -288,11 +289,11 @@
   text-shadow: white 0px 1px 1px;
 }
 /* line 102, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-.light:hover, .light:hover:visited, .light:focus, .light:focus:visited {
+.score-light:hover, .score-light:hover:visited, .score-light:focus, .score-light:focus:visited {
   color: #222222;
 }
 /* line 33, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-.light:active {
+.score-light:active {
   background-color: #f9f9f9;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #c4c4c4), color-stop(40%, #cbcbcb), color-stop(85%, #cbcbcb), color-stop(100%, #dddddd));
   background-image: -moz-linear-gradient(top, #c4c4c4 0%, #cbcbcb 40%, #cbcbcb 85%, #dddddd 100%);
@@ -300,6 +301,14 @@
   text-shadow: white 0px -1px -1px;
 }
 /* line 102, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
-.light:active, .light:active:visited {
+.score-light:active, .score-light:active:visited {
   color: #222222;
+}
+/* line 108, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+.score-light:hover, .score-light:focus {
+  color: #fea22c;
+}
+/* line 111, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+.score-light:active {
+  color: #dddddd;
 }

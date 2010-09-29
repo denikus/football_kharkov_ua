@@ -619,7 +619,6 @@ ul.comment li {
 ul.comment div.comment-content {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
-  width: 350px;
   margin: 10px 0 10px 0;
   padding: 3px;
 }
@@ -992,35 +991,143 @@ div.image-loading-container {
   text-align: center;
 }
 
+/*Shop block*/
+/* line 898, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block a.prev, #col-right .sidebar-block a.next {
+  float: right;
+  margin-right: 3px;
+}
+/* line 902, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block .sidebar-shop-content {
+  border-top: 1px solid #d9d9d9;
+  padding: 0.6em 0.6em 0 0.6em;
+  text-align: center;
+}
+/* line 907, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap {
+  margin: 0 auto;
+}
+/* line 910, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul li {
+  border: none;
+  height: 200px;
+  width: 100%;
+}
+/* line 914, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul li a {
+  font-weight: normal;
+}
+
+/*EOF Shop block*/
+/*Quick Match Results block*/
+/* line 928, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li {
+  padding: 3px 0;
+}
+/* line 930, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li div.score-container {
+  float: left;
+  width: 45px;
+  margin: 0 2px;
+}
+/* line 944, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li div.hosts, #col-right .sidebar-block ul.quick_match_results li div.guests {
+  float: left;
+  width: 109px;
+  padding-top: 1px;
+  font-size: 12px;
+}
+/* line 950, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li div.hosts {
+  text-align: right;
+}
+/* line 951, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li div.guests {
+  text-align: left;
+}
+/* line 953, ../../app/stylesheets/styles.scss */
+#col-right .sidebar-block ul.quick_match_results li.odd {
+  background-color: #FAFAFA;
+}
+
+/*EOF Quick Match Results block*/
+/* line 957, ../../app/stylesheets/styles.scss */
+ul.team-list, ul.player-list {
+  list-style-type: none;
+}
+/* line 959, ../../app/stylesheets/styles.scss */
+ul.team-list li, ul.player-list li {
+  padding: 5px 0;
+}
+
+/* line 964, ../../app/stylesheets/styles.scss */
+ul.team-list {
+  float: left;
+  width: 230px;
+}
+
+/* line 969, ../../app/stylesheets/styles.scss */
+table.schedule {
+  background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+/* line 973, ../../app/stylesheets/styles.scss */
+table.schedule tr.odd {
+  background-color: #FAFAFA;
+}
+/* line 976, ../../app/stylesheets/styles.scss */
+table.schedule td, table.schedule th {
+  border: 1px solid #d9d9d9;
+  padding: 5px;
+}
+/* line 980, ../../app/stylesheets/styles.scss */
+table.schedule td {
+  text-align: left;
+}
+/* line 983, ../../app/stylesheets/styles.scss */
+table.schedule td.time {
+  text-align: center;
+}
+/* line 986, ../../app/stylesheets/styles.scss */
+table.schedule th {
+  color: #be420e;
+  font-size: 100%;
+  font-weight: bold;
+  margin: 0.6em 0 0.6em 0.4em;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
 /**
 *Match result table
 **/
-/* line 897, ../../app/stylesheets/styles.scss */
+/* line 1006, ../../app/stylesheets/styles.scss */
 table.match-result-table {
+  background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border-collapse: collapse;
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-/* line 903, ../../app/stylesheets/styles.scss */
+/* line 1014, ../../app/stylesheets/styles.scss */
 table.match-result-table caption {
   padding: 0 0 5px 0;
   width: 100%;
   font-size: 11px;
-  /*font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
   text-align: right;
 }
 
-/* line 912, ../../app/stylesheets/styles.scss */
+/* line 1022, ../../app/stylesheets/styles.scss */
 table.match-result-table th {
   text-align: center;
-  background-color: #F5FAFA;
   color: #BE420E;
   border: 1px solid #EEEEEE;
   font-size: 118%;
 }
 
-/* line 920, ../../app/stylesheets/styles.scss */
+/* line 1030, ../../app/stylesheets/styles.scss */
 table.match-result-table td.team-name, table.match-result-table td.match-score {
   width: 33%;
   text-align: center;
@@ -1029,117 +1136,9 @@ table.match-result-table td.team-name, table.match-result-table td.match-score {
   font-weight: bold;
 }
 
-/* line 928, ../../app/stylesheets/styles.scss */
+/* line 1038, ../../app/stylesheets/styles.scss */
 table.match-result-table ul.team-players-list {
   list-style-type: none;
   text-align: left;
   margin-left: 3px;
-}
-
-/*Shop block*/
-/* line 936, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block a.prev, #col-right .sidebar-block a.next {
-  float: right;
-  margin-right: 3px;
-}
-/* line 940, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block .sidebar-shop-content {
-  border-top: 1px solid #d9d9d9;
-  padding: 0.6em 0.6em 0 0.6em;
-  text-align: center;
-}
-/* line 945, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap {
-  margin: 0 auto;
-}
-/* line 948, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul li {
-  border: none;
-  height: 200px;
-  width: 100%;
-}
-/* line 952, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul li a {
-  font-weight: normal;
-}
-
-/*EOF Shop block*/
-/*Quick Match Results block*/
-/* line 966, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li {
-  padding: 3px 0;
-}
-/* line 968, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.score-container {
-  float: left;
-  width: 45px;
-  margin: 0 2px;
-}
-/* line 982, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.hosts, #col-right .sidebar-block ul.quick_match_results li div.guests {
-  float: left;
-  width: 109px;
-  padding-top: 1px;
-  font-size: 12px;
-}
-/* line 988, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.hosts {
-  text-align: right;
-}
-/* line 989, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li div.guests {
-  text-align: left;
-}
-/* line 991, ../../app/stylesheets/styles.scss */
-#col-right .sidebar-block ul.quick_match_results li.odd {
-  background-color: #FAFAFA;
-}
-
-/*EOF Quick Match Results block*/
-/* line 995, ../../app/stylesheets/styles.scss */
-ul.team-list, ul.player-list {
-  list-style-type: none;
-}
-/* line 997, ../../app/stylesheets/styles.scss */
-ul.team-list li, ul.player-list li {
-  padding: 5px 0;
-}
-
-/* line 1002, ../../app/stylesheets/styles.scss */
-ul.team-list {
-  float: left;
-  width: 230px;
-}
-
-/* line 1007, ../../app/stylesheets/styles.scss */
-table.schedule {
-  background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
-  border-collapse: collapse;
-  margin-bottom: 15px;
-}
-/* line 1011, ../../app/stylesheets/styles.scss */
-table.schedule tr.odd {
-  background-color: #FAFAFA;
-}
-/* line 1014, ../../app/stylesheets/styles.scss */
-table.schedule td, table.schedule th {
-  border: 1px solid #d9d9d9;
-  padding: 5px;
-}
-/* line 1018, ../../app/stylesheets/styles.scss */
-table.schedule td {
-  text-align: left;
-}
-/* line 1021, ../../app/stylesheets/styles.scss */
-table.schedule td.time {
-  text-align: center;
-}
-/* line 1024, ../../app/stylesheets/styles.scss */
-table.schedule th {
-  color: #be420e;
-  font-size: 100%;
-  font-weight: bold;
-  margin: 0.6em 0 0.6em 0.4em;
-  text-transform: uppercase;
-  padding: 5px;
 }

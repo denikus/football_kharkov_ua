@@ -564,7 +564,7 @@ ul.comment div.comment-content {
 //  background-color: #FAFAFA;
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border:1px solid $block_border_color;
-  width: 350px;
+//  width: 350px;
   margin: 10px 0 10px 0;
   padding: 3px;
 }
@@ -891,45 +891,7 @@ div.image-loading-container {
   text-align:center;
 }
 
-/**
-*Match result table
-**/
-table.match-result-table {
-  width: 100%;
-  border-collapse:collapse;
-  margin-bottom:20px;
-}
 
-table.match-result-table caption {
-	padding: 0 0 5px 0;
-	width: 100%;
-  font-size: 11px;
-	/*font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;*/
-	text-align: right;
-}
-
-
-table.match-result-table th {
-  text-align: center;
-  background-color: #F5FAFA;
-  color: #BE420E;
-  border: 1px solid #EEEEEE;
-  font-size: 118%;
-}
-
-table.match-result-table td.team-name, table.match-result-table td.match-score {
-  width: 33%;
-  text-align:center;
-  border: 1px solid #EEEEEE;
-  color: #BE420E;
-  font-weight:bold;
-}
-
-table.match-result-table ul.team-players-list {
-  list-style-type: none;
-  text-align: left;
-  margin-left:3px;
-}
 
 /*Shop block*/
 #col-right .sidebar-block {
@@ -1031,3 +993,50 @@ table.schedule {
   }
 }
 
+/**
+*Match result table
+**/
+
+table.match-report {
+
+  
+}
+
+
+table.match-result-table {
+  background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border-collapse: collapse;
+  width: 100%;
+  border-collapse:collapse;
+  margin-bottom:20px;
+}
+
+table.match-result-table caption {
+	padding: 0 0 5px 0;
+	width: 100%;
+  font-size: 11px;
+	text-align: right;
+}
+
+
+table.match-result-table th {
+  text-align: center;
+//  background-color: #F5FAFA;
+  color: #BE420E;
+  border: 1px solid #EEEEEE;
+  font-size: 118%;
+}
+
+table.match-result-table td.team-name, table.match-result-table td.match-score {
+  width: 33%;
+  text-align:center;
+  border: 1px solid #EEEEEE;
+  color: #BE420E;
+  font-weight:bold;
+}
+
+table.match-result-table ul.team-players-list {
+  list-style-type: none;
+  text-align: left;
+  margin-left:3px;
+}

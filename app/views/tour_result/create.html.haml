@@ -9,18 +9,20 @@
       %td{:class=>"team-name"}
         =item.hosts.team.name
       %td{:class=>"match-score"}
-        = "#{item.hosts.stats.score} - #{item.guests.stats.score}"
+          
+        .fancy-score.score-light= item.hosts.stats.find_by_name("score").value
+        .fancy-score.score-light= item.guests.stats.find_by_name("score").value
       %td{:class=>"team-name"}
         =item.guests.team.name
     %tr
       %td
         %ul{:class=>"team-players-list"}
-          -item.hosts.football_players.each do |football_player|
+          -item.hosts.football_players.find(:all, :order => "number ASC").each do |football_player|
             %li= "№#{football_player.number} #{football_player.footballer.last_name} #{football_player.footballer.first_name} "
       %td
         %ul{:class=>"team-players-list"}
           -item.match_events.each do |match_event|
-            %li=match_event.minute
+            %li= "#{match_event.minute} #{match_event.message}"
       %td
         %ul{:class=>"team-players-list"}
           -item.guests.football_players.each do |football_player|
