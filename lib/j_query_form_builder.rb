@@ -59,10 +59,12 @@ class JQueryFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
   
-  def canvas id
-    @template.content_tag(:tr) do
-      @template.content_tag(:td, '', :colspan => 2, :id => id)
+  def canvas id, &block
+    body = block_given? ? @template.capture(&block) : ''
+    canvas = @template.content_tag(:tr) do
+      @template.content_tag(:td, body, :colspan => 2, :id => id)
     end
+    block_given? ? @template.concat(canvas) : canvas
   end
   
   def append_button html

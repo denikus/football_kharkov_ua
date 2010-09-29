@@ -2,9 +2,9 @@ class Match < ActiveRecord::Base
   belongs_to :tour
   belongs_to :referee
   
-  has_many :competitors do
+  has_many :competitors, :include => :football_players do
     [:hosts, :guests].each do |side|
-      define_method(side){ target.find{ |s| s.side == side } }
+      define_method(side){ load_target unless loaded?; target.find{ |s| s.side == side } }
     end
   end
   delegate :hosts, :guests, :to => :competitors
@@ -30,6 +30,31 @@ class Match < ActiveRecord::Base
     competitors.each do |cmp|
       cmp.update_stats stats[cmp.side], create_events
     end
+  end
+  
+  def hosts= team_id
+    hosts.team_id = team_id
+  end
+  
+  def guests= team_id
+    guests.team_id = team_id
+  end
+  
+  def football_player_numbers= number
+    @football_player_numbers = number
+  end
+  
+  def update
+    [:hosts, :guests].each do |side|
+      cmp = competitors.send(side)
+      cmp.football_players = @football_player_numbers[side].collect do |(fid, number)|
+        FootballPlayer.new :footballer_id => fid, :number => number unless number.empty?
+      end.compact
+    end
+  end
+  
+  def date
+    played_at.strftime('%Y-%m-%d')
   end
   
   def hosts_name

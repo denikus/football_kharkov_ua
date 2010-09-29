@@ -1,8 +1,8 @@
 class Competitor < ActiveRecord::Base
   belongs_to :match
   belongs_to :team
-  has_many :football_players
-  has_many :stats, :as => :statable, :extend => [Stat::Ext, MatchEvent::Ext]
+  has_many :football_players, :dependent => :destroy
+  has_many :stats, :as => :statable, :extend => [Stat::Ext, MatchEvent::Ext], :dependent => :destroy
   
   SIDES = [:hosts, :guests].freeze
   

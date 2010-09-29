@@ -2,7 +2,7 @@ class FootballPlayer < ActiveRecord::Base
   belongs_to :competitor
   belongs_to :footballer
   
-  has_many :stats, :as => :statable, :extend => [Stat::Ext, MatchEvent::Ext]
+  has_many :stats, :as => :statable, :extend => [Stat::Ext, MatchEvent::Ext], :dependent => :destroy
   #has_many :stats, :as => :statable, :include => :statistic, :extend => [Statistic::Ext, MatchEvent::Ext]
   #has_many :stats, :as => :statable, :include => :statistic, :extend => Statistic::Ext
   

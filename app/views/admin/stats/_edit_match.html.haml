@@ -1,0 +1,21 @@
+%table.ui-state-default.ui-corner-all
+  %tr
+    %td Счёт / ФПТ / ФВТ
+    %td{:colspan => 4}
+      = text_field "match[stats][#{side}]", "score", :value => competitor.stats.get('score'), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+      = text_field "match[stats][#{side}]", "first_period_fouls", :value => competitor.stats.get('first_period_fouls'), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+      = text_field "match[stats][#{side}]", "second_period_fouls", :value => competitor.stats.get('second_period_fouls'), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+  %tr
+    %td Имя
+    %td Номер
+    %td Голы
+    %td Жт. Ктчки
+    %td Кр. Ктчки
+  - footballers.each do |f|
+    - player = competitor.football_players.target.find{ |p| p.footballer_id == f.id }
+    %tr
+      %td= f.full_name
+      %td= text_field "match[football_player_numbers][#{side}]", "#{f.id}", :value => (player.number rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+      %td= text_field "match[stats][#{side}][players][#{f.id}]", "goal", :value => (Array(player.stats.get('goal')).join(', ') rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+      %td= text_field "match[stats][#{side}][players][#{f.id}]", "yellow_card", :value => (Array(player.stats.get('yellow_card')).join(', ') rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+      %td= text_field "match[stats][#{side}][players][#{f.id}]", "red_card", :value => (Array(player.stats.get('red_card')).join(', ') rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"

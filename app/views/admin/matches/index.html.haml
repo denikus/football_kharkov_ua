@@ -6,3 +6,13 @@
       - selection 'Туры', :tours, :on => leagues, :click => lambda{ |t| show_matches(t) }
 
 #matches_grid
+
+:javascript
+  selected_id = false;
+  selectionHandler = function(id) {
+    if(selected_id && selected_id == id) {
+      window.location = '#{edit_admin_match_path(0)}'.replace(/(0)/, id);
+    } else {
+      selected_id = id;
+    }
+  }

@@ -21,11 +21,7 @@ class Team < ActiveRecord::Base
     @season_id = id
     set_footballer_ids if @footballer_ids
   end
-
-  #  def to_param
-  #    url
-  #  end
-
+  
   def footballer_ids
     footballers_teams.season(@season_id).footballers.collect(&:id)
   end
