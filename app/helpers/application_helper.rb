@@ -15,7 +15,8 @@ module ApplicationHelper
 
   def show_comment(post, comment)
     unless post.hide_comments
-      return comment.body.gsub!(/\n/, '<br />')
+      return comment.body
+#      .gsub!(/\n/, '<br />')
     end
     
     can_see = [post.author_id, comment.author_id]
