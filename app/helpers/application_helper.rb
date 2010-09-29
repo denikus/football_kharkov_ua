@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def show_comment(post, comment)
     unless post.hide_comments
-      return comment.body
+      return simple_format(comment.body)
 #      .gsub!(/\n/, '<br />')
     end
     
