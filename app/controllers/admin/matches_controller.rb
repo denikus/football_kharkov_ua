@@ -46,7 +46,7 @@ class Admin::MatchesController < ApplicationController
         format.html { redirect_to(admin_tournament_matches_path(Tour.find(params[:tour_id]).league.stage.season.tournament)) }
       else
         logger.info('Match not saved')
-        logger.info(@match.errors)
+        logger.info(@match.errors.to_xml)
         format.html { render :action => "new" }
         format.xml  { render :xml => @match.errors, :status => :unprocessable_entity }
         format.ext_json {render  :json => @match.to_ext_json(:success => false) }
