@@ -3,27 +3,35 @@
     %caption
       = "Дата(Время): #{Russian::strftime(item.played_at, "%Y, %B %d (%H:%M)")}"
     %tr
-      %th{:style => "text-align: center;", :colspan => 3}
+      %th{:style => "text-align: left;", :colspan => 3}
         =item.tour.league.name
     %tr
       %td{:class=>"team-name"}
         =item.hosts.team.name
       %td{:class=>"match-score"}
-          
-        .fancy-score.score-light= item.hosts.stats.find_by_name("score").value
-        .fancy-score.score-light= item.guests.stats.find_by_name("score").value
+        - score_classes = get_score_classes(item.hosts.stats.find_by_name("score").value, item.guests.stats.find_by_name("score").value)
+        %div{:style => "text-align:center;width:100px;margin: 0 auto;"}
+          .fancy-score{:class => score_classes[:hosts_class]}= item.hosts.stats.find_by_name("score").value
+          %div{:style => "float: left;margin:0 5px;"}="-"
+          .fancy-score{:class => score_classes[:guests_class]}= item.guests.stats.find_by_name("score").value
+          .clear
       %td{:class=>"team-name"}
         =item.guests.team.name
     %tr
-      %td
+      %td.content
         %ul{:class=>"team-players-list"}
-          -item.hosts.football_players.find(:all, :order => "number ASC").each do |football_player|
-            %li= "№#{football_player.number} #{football_player.footballer.last_name} #{football_player.footballer.first_name} "
-      %td
+          -item.hosts.football_players.find(:all, :order => "number ASC").each_with_index do |football_player, i|
+            -row_class = i%2 == 0 ? "" : "odd"
+            %li{:class => row_class}= "№#{football_player.number} #{football_player.footballer.last_name} #{football_player.footballer.first_name} "
+      %td.content
         %ul{:class=>"team-players-list"}
-          -item.match_events.each do |match_event|
-            %li= "#{match_event.minute} #{match_event.message}"
-      %td
+          -item.match_events.each_with_index do |match_event, i|
+            -row_class = i%2 == 0 ? "" : "odd"
+            %li{:class => row_class}
+              %strong= "#{match_event.minute}'"
+              = " #{match_event.message}"
+      %td.content
         %ul{:class=>"team-players-list"}
-          -item.guests.football_players.each do |football_player|
-            %li= "№#{football_player.number} #{football_player.footballer.last_name} #{football_player.footballer.first_name} "
+          -item.guests.football_players.each_with_index do |football_player, i|
+            -row_class = i%2 == 0 ? "" : "odd"
+            %li{:class => row_class}= "№#{football_player.number} #{football_player.footballer.last_name} #{football_player.footballer.first_name} "

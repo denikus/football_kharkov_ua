@@ -1122,23 +1122,42 @@ table.match-result-table caption {
 /* line 1022, ../../app/stylesheets/styles.scss */
 table.match-result-table th {
   text-align: center;
-  color: #BE420E;
+  color: #336999;
   border: 1px solid #EEEEEE;
   font-size: 118%;
 }
 
-/* line 1030, ../../app/stylesheets/styles.scss */
+/* line 1031, ../../app/stylesheets/styles.scss */
 table.match-result-table td.team-name, table.match-result-table td.match-score {
-  width: 33%;
+  width: 25%;
   text-align: center;
   border: 1px solid #EEEEEE;
   color: #BE420E;
   font-weight: bold;
+  padding: 3px;
 }
 
-/* line 1038, ../../app/stylesheets/styles.scss */
+/* line 1040, ../../app/stylesheets/styles.scss */
+table.match-result-table td.content {
+  vertical-align: top;
+  border: 1px solid #EEEEEE;
+}
+
+/* line 1045, ../../app/stylesheets/styles.scss */
+table.match-result-table td.match-score {
+  width: 50%;
+}
+
+/* line 1049, ../../app/stylesheets/styles.scss */
 table.match-result-table ul.team-players-list {
   list-style-type: none;
   text-align: left;
-  margin-left: 3px;
+}
+/* line 1053, ../../app/stylesheets/styles.scss */
+table.match-result-table ul.team-players-list li {
+  padding: 3px 5px;
+}
+/* line 1054, ../../app/stylesheets/styles.scss */
+table.match-result-table ul.team-players-list li.odd {
+  background-color: #FAFAFA;
 }

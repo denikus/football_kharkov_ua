@@ -1021,22 +1021,35 @@ table.match-result-table caption {
 
 table.match-result-table th {
   text-align: center;
-//  background-color: #F5FAFA;
-  color: #BE420E;
+  //background-color: #F5FAFA;
+//  color: #BE420E;
+  color: #336999;
   border: 1px solid #EEEEEE;
   font-size: 118%;
 }
 
 table.match-result-table td.team-name, table.match-result-table td.match-score {
-  width: 33%;
+  width: 25%;
   text-align:center;
   border: 1px solid #EEEEEE;
   color: #BE420E;
   font-weight:bold;
+  padding: 3px;
+}
+
+table.match-result-table td.content {
+  vertical-align: top;
+  border:1px solid #EEEEEE;
+}
+
+table.match-result-table  td.match-score {
+  width: 50%;
 }
 
 table.match-result-table ul.team-players-list {
   list-style-type: none;
   text-align: left;
-  margin-left:3px;
+  //  margin-left:3px;
+  li {padding:3px 5px;}
+  li.odd {background-color:#FAFAFA;}
 }
