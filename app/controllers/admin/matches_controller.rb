@@ -41,9 +41,12 @@ class Admin::MatchesController < ApplicationController
     @match = Match.build_from_form params[:match]
     respond_to do |format|
       if @match.save
+        logger.info('Match saved')
         @match.update_stats match_stats, create_events
         format.html { redirect_to(admin_tournament_matches_path(Tour.find(params[:tour_id]).league.stage.season.tournament)) }
       else
+        logger.info('Match not saved')
+        logger.info(@match.errors.to_s)
         format.html { render :action => "new" }
         format.xml  { render :xml => @match.errors, :status => :unprocessable_entity }
         format.ext_json {render  :json => @match.to_ext_json(:success => false) }
@@ -52,7 +55,6 @@ class Admin::MatchesController < ApplicationController
   end
   
   def update
-    debugger
     match_stats = params[:match].delete :stats
     create_events = params[:match].delete(:create_events) != '0'
     @match = Match.find params[:id]
