@@ -1102,16 +1102,15 @@ table.schedule th {
 /**
 *Match result table
 **/
-/* line 1006, ../../app/stylesheets/styles.scss */
-table.match-result-table {
+/* line 1000, ../../app/stylesheets/styles.scss */
+table.match-result-table, table.tournament-position {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
-  border-collapse: collapse;
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-/* line 1014, ../../app/stylesheets/styles.scss */
+/* line 1007, ../../app/stylesheets/styles.scss */
 table.match-result-table caption {
   padding: 0 0 5px 0;
   width: 100%;
@@ -1119,7 +1118,7 @@ table.match-result-table caption {
   text-align: right;
 }
 
-/* line 1022, ../../app/stylesheets/styles.scss */
+/* line 1015, ../../app/stylesheets/styles.scss */
 table.match-result-table th {
   text-align: center;
   color: #336999;
@@ -1127,7 +1126,7 @@ table.match-result-table th {
   font-size: 118%;
 }
 
-/* line 1031, ../../app/stylesheets/styles.scss */
+/* line 1024, ../../app/stylesheets/styles.scss */
 table.match-result-table td.team-name, table.match-result-table td.match-score {
   width: 25%;
   text-align: center;
@@ -1137,27 +1136,88 @@ table.match-result-table td.team-name, table.match-result-table td.match-score {
   padding: 3px;
 }
 
-/* line 1040, ../../app/stylesheets/styles.scss */
+/* line 1033, ../../app/stylesheets/styles.scss */
 table.match-result-table td.content {
   vertical-align: top;
   border: 1px solid #EEEEEE;
 }
 
-/* line 1045, ../../app/stylesheets/styles.scss */
+/* line 1038, ../../app/stylesheets/styles.scss */
 table.match-result-table td.match-score {
   width: 50%;
 }
 
-/* line 1049, ../../app/stylesheets/styles.scss */
+/* line 1042, ../../app/stylesheets/styles.scss */
 table.match-result-table ul.team-players-list {
   list-style-type: none;
   text-align: left;
 }
-/* line 1053, ../../app/stylesheets/styles.scss */
+/* line 1046, ../../app/stylesheets/styles.scss */
 table.match-result-table ul.team-players-list li {
   padding: 3px 5px;
 }
-/* line 1054, ../../app/stylesheets/styles.scss */
+/* line 1047, ../../app/stylesheets/styles.scss */
 table.match-result-table ul.team-players-list li.odd {
+  background-color: #FAFAFA;
+}
+
+/**
+*Tournament tables
+*/
+/* line 1053, ../../app/stylesheets/styles.scss */
+table.tournament-position {
+  background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  width: 600px;
+}
+/* line 1058, ../../app/stylesheets/styles.scss */
+table.tournament-position th {
+  text-align: center;
+  color: #336999;
+  border: 1px solid #EEEEEE;
+  font-size: 118%;
+}
+/* line 1065, ../../app/stylesheets/styles.scss */
+table.tournament-position td {
+  padding: 3px;
+  border: 1px solid #EEEEEE;
+}
+/* line 1069, ../../app/stylesheets/styles.scss */
+table.tournament-position td.place {
+  width: 30px;
+  text-align: center;
+}
+/* line 1070, ../../app/stylesheets/styles.scss */
+table.tournament-position td.team {
+  width: 200px;
+}
+/* line 1071, ../../app/stylesheets/styles.scss */
+table.tournament-position td.games {
+  width: 50px;
+  text-align: center;
+}
+/* line 1072, ../../app/stylesheets/styles.scss */
+table.tournament-position td.goals {
+  width: 50px;
+  text-align: center;
+}
+/* line 1073, ../../app/stylesheets/styles.scss */
+table.tournament-position td.scores {
+  width: 50px;
+  text-align: center;
+}
+/* line 1074, ../../app/stylesheets/styles.scss */
+table.tournament-position td.diff {
+  width: 50px;
+  text-align: center;
+}
+/* line 1076, ../../app/stylesheets/styles.scss */
+table.tournament-position tr.header td {
+  color: #be420e;
+  font-weight: bold;
+}
+/* line 1081, ../../app/stylesheets/styles.scss */
+table.tournament-position tr.odd {
   background-color: #FAFAFA;
 }

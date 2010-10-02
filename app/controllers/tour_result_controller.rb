@@ -16,8 +16,13 @@ class TourResultController < ApplicationController
     end
   end
 
-  def matches_block
+  def tour_matches_block
     @leagues = League.find(:all, :conditions => {:stage_id => params[:stage_id]})
+    render :layout => false
+  end
+
+  def matches_by_tour
+    @tour = Tour.find(params[:tour_id])
     render :layout => false
   end
 

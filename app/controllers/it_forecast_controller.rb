@@ -1,0 +1,2 @@
+class ItForecastController < ApplicationController
+end

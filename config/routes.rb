@@ -83,6 +83,9 @@ ActionController::Routing::Routes.draw do |map|
     tournament.tournament '', :controller => "tournaments", :action => "index" #, :conditions => {:subdomain => /.+/}
     tournament.post 'post', :controller=>'post', :action=>'show', :requirements=> {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
     tournament.resources :teams, :only => ["index", "show"]
+    tournament.resources :tables, :only => ["index"]
+    tournament.resources :bombardiers, :only => ["index"]
+    tournament.resources :it_forecast, :only => ["index"]
   end
 
 

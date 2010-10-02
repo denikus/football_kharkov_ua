@@ -1,0 +1,11 @@
+-@leagues.each do |item|
+  %strong
+    =item[:name]
+  .clear
+  =select_tag "tour", options_for_select(item.tours.collect{|x| [x.name, x.id]}), {:selected => item.tours.last.nil? ? '' :  item.tours.last[:id], :id => "tour_#{item["id"]}"}
+  .clear
+  %div{:id =>"league_tour_content_#{item[:id]}"}
+    =render :template => "matches_by_tour", :layout => false, :object => item.tours.last
+  %hr
+.clear
+%input{:type=> "submit", :value => "Сохранить", :name => "commit", :id=>"article_submit", :class => "fancy-button"}

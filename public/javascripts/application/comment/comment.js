@@ -121,7 +121,7 @@ $("[id^=subscribe_unsibscribe_comments_]").live('click', function(obj) {
         $("#subscribe_status").text("(Вы подписаны)");
       }
     }
-  })
+  });
 });
 
 

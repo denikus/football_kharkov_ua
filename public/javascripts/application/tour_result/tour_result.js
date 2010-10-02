@@ -30,13 +30,27 @@ $(function () {
         data: {}
      }).trigger('change');
 
+    $("[id^=tour_]").live('change', function() {
 
+      var tour_id = $(this).val();
+      regex = new RegExp("tour_(.*)");
+      match = regex.exec(this.id);
+
+      $.ajax({
+        url: '/tour_result/matches_by_tour',
+        data: {tour_id: tour_id},
+        type: 'post',
+        success: function(data) {
+          $("[id=league_tour_content_" + match[1] + "]").html(data);
+        }
+      });
+    });
 });
 
 //load template with matches grouped by leagues and tours
 function create_mathes_block(stage_id) {
   $.ajax({
-    url: '/tour_result/matches_block',
+    url: '/tour_result/tour_matches_block',
     data: {stage_id: stage_id},
     type: 'post',
     dataType: 'html',

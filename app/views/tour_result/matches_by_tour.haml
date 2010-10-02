@@ -1,0 +1,10 @@
+- unless @tour.nil?
+  -@tour.matches.each do |match|
+    %div
+      =check_box_tag "match[]", match[:id], false, {:id=>"match_#{@tour.league.id}_#{match[:id]}"}
+      %label{:style=>"display:inline;", :for => "match_#{@tour.league.id}_#{match[:id]}"}= match_label(match)
+    .clear
+  %div
+    =check_box_tag "check_all_#{@tour.league.id}", 1, false, {:id=>"check_all_id_#{@tour.league.id}"}
+    %label{:style=>"display:inline;", :for => "check_all_id_#{@tour.league.id}"} Выбрать все
+  .clear
