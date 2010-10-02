@@ -1,3 +1,6 @@
+%p
+  %em Турнирное положение на 1 октября 2010г.
+%br/
 %table.tournament-position
   %tr
     %th{:colspan => 9} Группа A
@@ -529,3 +532,8 @@
       \-21
     %td.scores
       0
+-content_for :head_title do
+  %h1.tourament-header
+    = "#{tournament_title}:"
+    = "Турнирные таблицы"
+    .clear
