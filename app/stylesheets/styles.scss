@@ -1067,7 +1067,22 @@ table.tournament-position {
     padding: 3px;
     border: 1px solid #EEEEEE;
   }
-  td.place {width: 30px;text-align: center;}
+  td.place {
+    width: 30px;
+    text-align: right;
+    div.position-change {
+      float: left;
+      font-weight: bold;
+      background-repeat: no-repeat; 
+      background-attachment: scroll;
+      background-position: center right;
+      padding-right: 10px;
+      width: 20px;
+    }
+    div.up {color: #60B571;background-image: url("/images/icons/raise-arrow.png");}
+    div.down {color: #BE420E;background-image: url("/images/icons/down-arrow.png");}
+
+  }
   td.team {width: 170px;}
   td.games {width: 40px;text-align: center;}
   td.goals {width: 50px;text-align: center;}

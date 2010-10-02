@@ -1187,43 +1187,63 @@ table.tournament-position td {
 /* line 1070, ../../app/stylesheets/styles.scss */
 table.tournament-position td.place {
   width: 30px;
-  text-align: center;
+  text-align: right;
 }
-/* line 1071, ../../app/stylesheets/styles.scss */
+/* line 1073, ../../app/stylesheets/styles.scss */
+table.tournament-position td.place div.position-change {
+  float: left;
+  font-weight: bold;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center right;
+  padding-right: 10px;
+  width: 20px;
+}
+/* line 1082, ../../app/stylesheets/styles.scss */
+table.tournament-position td.place div.up {
+  color: #60B571;
+  background-image: url("/images/icons/raise-arrow.png");
+}
+/* line 1083, ../../app/stylesheets/styles.scss */
+table.tournament-position td.place div.down {
+  color: #BE420E;
+  background-image: url("/images/icons/down-arrow.png");
+}
+/* line 1086, ../../app/stylesheets/styles.scss */
 table.tournament-position td.team {
   width: 170px;
 }
-/* line 1072, ../../app/stylesheets/styles.scss */
+/* line 1087, ../../app/stylesheets/styles.scss */
 table.tournament-position td.games {
   width: 40px;
   text-align: center;
 }
-/* line 1073, ../../app/stylesheets/styles.scss */
+/* line 1088, ../../app/stylesheets/styles.scss */
 table.tournament-position td.goals {
   width: 50px;
   text-align: center;
 }
-/* line 1074, ../../app/stylesheets/styles.scss */
+/* line 1089, ../../app/stylesheets/styles.scss */
 table.tournament-position td.scores {
   width: 40px;
   text-align: center;
 }
-/* line 1075, ../../app/stylesheets/styles.scss */
+/* line 1090, ../../app/stylesheets/styles.scss */
 table.tournament-position td.diff {
   width: 40px;
   text-align: center;
 }
-/* line 1077, ../../app/stylesheets/styles.scss */
+/* line 1092, ../../app/stylesheets/styles.scss */
 table.tournament-position tr.header td {
   color: #be420e;
   font-weight: bold;
 }
-/* line 1082, ../../app/stylesheets/styles.scss */
+/* line 1097, ../../app/stylesheets/styles.scss */
 table.tournament-position tr.odd {
   background-color: #FAFAFA;
 }
 
-/* line 1087, ../../app/stylesheets/styles.scss */
+/* line 1102, ../../app/stylesheets/styles.scss */
 table.tournament-position.even {
   margin-left: 10px;
 }
