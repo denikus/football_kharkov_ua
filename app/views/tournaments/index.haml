@@ -16,5 +16,6 @@
       = tournament_title
     = link_to image_tag("/images/icons/feed.png", :size => "16x16"), url_for({:action=>"feed", :controller=>"tournaments"}), :class => "feed-link"
     = link_to "Команды", teams_path
-    = link_to "Таблицы", tables_path
+    - if current_subdomain=='itleague'
+      = link_to "Таблицы", tables_path
     .clear
