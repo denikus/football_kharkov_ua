@@ -1170,54 +1170,60 @@ table.tournament-position {
   border-collapse: collapse;
   margin-bottom: 20px;
   width: 450px;
+  float: left;
 }
-/* line 1058, ../../app/stylesheets/styles.scss */
+/* line 1059, ../../app/stylesheets/styles.scss */
 table.tournament-position th {
   text-align: center;
   color: #336999;
   border: 1px solid #EEEEEE;
   font-size: 118%;
 }
-/* line 1065, ../../app/stylesheets/styles.scss */
+/* line 1066, ../../app/stylesheets/styles.scss */
 table.tournament-position td {
   padding: 3px;
   border: 1px solid #EEEEEE;
 }
-/* line 1069, ../../app/stylesheets/styles.scss */
+/* line 1070, ../../app/stylesheets/styles.scss */
 table.tournament-position td.place {
   width: 30px;
   text-align: center;
 }
-/* line 1070, ../../app/stylesheets/styles.scss */
+/* line 1071, ../../app/stylesheets/styles.scss */
 table.tournament-position td.team {
   width: 170px;
 }
-/* line 1071, ../../app/stylesheets/styles.scss */
+/* line 1072, ../../app/stylesheets/styles.scss */
 table.tournament-position td.games {
   width: 40px;
   text-align: center;
 }
-/* line 1072, ../../app/stylesheets/styles.scss */
+/* line 1073, ../../app/stylesheets/styles.scss */
 table.tournament-position td.goals {
   width: 50px;
   text-align: center;
 }
-/* line 1073, ../../app/stylesheets/styles.scss */
+/* line 1074, ../../app/stylesheets/styles.scss */
 table.tournament-position td.scores {
   width: 40px;
   text-align: center;
 }
-/* line 1074, ../../app/stylesheets/styles.scss */
+/* line 1075, ../../app/stylesheets/styles.scss */
 table.tournament-position td.diff {
   width: 40px;
   text-align: center;
 }
-/* line 1076, ../../app/stylesheets/styles.scss */
+/* line 1077, ../../app/stylesheets/styles.scss */
 table.tournament-position tr.header td {
   color: #be420e;
   font-weight: bold;
 }
-/* line 1081, ../../app/stylesheets/styles.scss */
+/* line 1082, ../../app/stylesheets/styles.scss */
 table.tournament-position tr.odd {
   background-color: #FAFAFA;
+}
+
+/* line 1087, ../../app/stylesheets/styles.scss */
+table.tournament-position.even {
+  margin-left: 10px;
 }

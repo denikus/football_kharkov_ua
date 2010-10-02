@@ -1055,6 +1055,7 @@ table.tournament-position {
   border-collapse: collapse;
   margin-bottom:20px;
   width: 450px;
+  float: left;
   th {
     text-align: center;
     color: #336999;
@@ -1083,4 +1084,6 @@ table.tournament-position {
   }
 }
 
-
+table.tournament-position.even {
+  margin-left: 10px;
+}
