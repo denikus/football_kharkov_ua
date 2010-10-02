@@ -1054,7 +1054,7 @@ table.tournament-position {
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom:20px;
-  width: 600px;
+  width: 450px;
   th {
     text-align: center;
     color: #336999;
@@ -1067,11 +1067,11 @@ table.tournament-position {
     border: 1px solid #EEEEEE;
   }
   td.place {width: 30px;text-align: center;}
-  td.team {width: 200px;}
-  td.games {width: 50px;text-align: center;}
+  td.team {width: 170px;}
+  td.games {width: 40px;text-align: center;}
   td.goals {width: 50px;text-align: center;}
-  td.scores {width: 50px;text-align: center;}
-  td.diff {width: 50px;text-align: center;}
+  td.scores {width: 40px;text-align: center;}
+  td.diff {width: 40px;text-align: center;}
   tr.header {
     td {
       color: $block_header_color;

@@ -1169,7 +1169,7 @@ table.tournament-position {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom: 20px;
-  width: 600px;
+  width: 450px;
 }
 /* line 1058, ../../app/stylesheets/styles.scss */
 table.tournament-position th {
@@ -1190,11 +1190,11 @@ table.tournament-position td.place {
 }
 /* line 1070, ../../app/stylesheets/styles.scss */
 table.tournament-position td.team {
-  width: 200px;
+  width: 170px;
 }
 /* line 1071, ../../app/stylesheets/styles.scss */
 table.tournament-position td.games {
-  width: 50px;
+  width: 40px;
   text-align: center;
 }
 /* line 1072, ../../app/stylesheets/styles.scss */
@@ -1204,12 +1204,12 @@ table.tournament-position td.goals {
 }
 /* line 1073, ../../app/stylesheets/styles.scss */
 table.tournament-position td.scores {
-  width: 50px;
+  width: 40px;
   text-align: center;
 }
 /* line 1074, ../../app/stylesheets/styles.scss */
 table.tournament-position td.diff {
-  width: 50px;
+  width: 40px;
   text-align: center;
 }
 /* line 1076, ../../app/stylesheets/styles.scss */
