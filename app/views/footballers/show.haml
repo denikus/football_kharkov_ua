@@ -1,8 +1,5 @@
+%h2.tournament-subtitle= "Футболист: #{@footballer.full_name}"
 %h3= "Принимал участие в турнирах:"
 %ul.team-list
   -@tournaments_take_part.each do |item|
     %li= "#{item.tournament_name} #{item.season_name}: в составе команды \"#{link_to(item.team_name, team_path(item.team_address), :target => "_blank")}\""
--content_for :head_title do
-  %h1.tourament-header
-    = "Футболист: "
-    %span.team_name= @footballer.full_name

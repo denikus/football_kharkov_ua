@@ -2,7 +2,9 @@
 module ApplicationHelper
 
   def article_announce(body)
-    unless (break_index = body.index('[[break]]')).nil?
+    if !(break_index = body.index('[[break]]')).nil?
+      decode_entities(body[0..break_index-1])
+    elsif !(break_index = body.index('<div style="page-break-after: always;">')).nil?
       decode_entities(body[0..break_index-1])
     else
       truncate(decode_entities(body), {:length => 1000, :omission =>  '...'})
@@ -11,6 +13,7 @@ module ApplicationHelper
 
   def full_article(body)
     decode_entities(body.sub(/\[\[break\]\]/, '<a href="#" id="announce-breaker"></a>'))
+    decode_entities(body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
   end
 
   def show_comment(post, comment)

@@ -34,7 +34,9 @@
         / EOF Header
       / Container
       #container
-        = yield :head_title
+        -unless current_subdomain.nil?
+          = render :partial => "tournaments/#{current_subdomain}_top_submenu"
+          -#= yield :head_title
         #near-scroll-panel
           = link_to(image_tag("http://twitter-badges.s3.amazonaws.com/t_logo-b.png", :alt => "Follow Footballkharkov on Twitter", :title => "Follow Footballkharkov on Twitter"), "http://www.twitter.com/footballkharkov" , {:class => "button-container", :rel => "nofollow", :target => "_blank"})
           = link_to(image_tag("/images/rss_icon.png", :alt => "RSS Лента новостей", :title => "RSS Лента новостей"), "/feed" , {:class => "button-container", :target => "_blank"})

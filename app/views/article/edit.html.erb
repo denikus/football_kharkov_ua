@@ -1,4 +1,4 @@
-<%= javascript_include_tag :fckeditor %>
+<%= javascript_include_tag :ckeditor %>
 <%= javascript_include_tag 'jquery-plugins/one_click_upload/jquery.ocupload-1.1.2.packed' %>
 <%= javascript_include_tag 'application/article/main_image.js' %>
 <h1>Редактирование записи</h1>
@@ -22,7 +22,7 @@
 
     <label for="article_body">Текст:</label>
     <div>
-        <%= fckeditor_textarea(:article, :body, :toolbarSet => 'Football', :width => '95%', :height => '500px') %>
+        <%= ckeditor_textarea(:article, :body, :toolbarSet => 'Football', :width => '95%', :height => '500px') %>
     </div>
 
     <label for="post_title">Относится к турниру:</label>

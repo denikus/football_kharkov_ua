@@ -410,9 +410,9 @@ input.fancy-submit:hover {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	h1.tourament-header {
+	h1.tournament-header {
 	  padding: 0 0 5px 0;
-	  margin-bottom: 15px;
+	  margin-bottom: 10px;
 	  color: #336999;
 	  width: 950px;
 	  line-height: 1;
@@ -424,12 +424,13 @@ input.fancy-submit:hover {
       float:left;
       display:block;
     }
-    a.feed-link {
+    a.feed-link, a.feed-link:hover, a.feed-link:visited {
       display: block;
 //      float:right;
 //      padding:0;
 //      padding-top:5px;
       margin-right: 20px;
+      margin-lefT:0;
     }
     span.team_name{
       color: #BE420E;
@@ -461,6 +462,17 @@ input.fancy-submit:hover {
 	  }
 	  a#top-submenu-it-forecast {
 	    background-image: url("/images/icons/money-coin.png");
+	  }
+
+	  a.tournament-main-title, a.tournament-main-title:hover, a.tournament-main-title:visited {
+	    float:left;
+      display:block;
+	    color: #A5BE0E;
+	    font-size: 20px;
+	    padding-left: 0;
+	    margin-left: 0;
+	    height: 15px;
+	    text-decoration: none;
 	  }
 	}
 }
@@ -1135,4 +1147,10 @@ table.tournament-position.even {
       margin-bottom: 10px;
     }
   }
+}
+
+h2.tournament-subtitle {
+  border-bottom: 0;
+  line-height: 1em;
+  margin-bottom: 5px;
 }

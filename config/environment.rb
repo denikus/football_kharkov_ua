@@ -26,6 +26,9 @@ Rails::Initializer.run do |config|
   config.gem 'subdomain-fu'
   config.gem 'exception_notification'
   config.gem 'fancy-buttons'
+  config.gem 'ckeditor', '3.4.2'
+  config.gem 'sanitize'
+  
 
 
   # Settings in config/environments/* take precedence over those specified here.
@@ -60,6 +63,7 @@ Rails::Initializer.run do |config|
   }
 
 #  config.load_paths << "#{RAILS_ROOT}/app/middleware"
+  config.load_paths += %W( #{RAILS_ROOT}/app/models/ckeditor )
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information

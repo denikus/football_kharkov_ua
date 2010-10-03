@@ -6,6 +6,7 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
   def new
     @article = Article.new
     @article_image = ArticleImage.new
+    render :layout => "app_without_sidebar"
   end
 
   def create
@@ -39,6 +40,7 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
   def edit
     @article = Article.find(params[:id])
     @article_image = @article.article_image
+    render :layout => "app_without_sidebar"
   end
 
   def update
