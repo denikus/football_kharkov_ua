@@ -150,7 +150,7 @@ a {
   text-decoration:underline;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     color:#BE420E;
 }
 
@@ -186,6 +186,11 @@ h4 {
     padding-top:0.4em;
     line-height:1.25em;
     margin-bottom:1.25em;
+}
+h5 {
+    font-size:110%;
+    font-weight:bold;
+    margin-bottom:1em;
 }
 
 input.text, input.title, textarea, select {
@@ -424,7 +429,7 @@ input.fancy-submit:hover {
 //      float:right;
 //      padding:0;
 //      padding-top:5px;
-      margin-right: 30px;
+      margin-right: 20px;
     }
     span.team_name{
       color: #BE420E;
@@ -435,14 +440,27 @@ input.fancy-submit:hover {
 	  a, a:hover, a:visited {
       float:left;
       display:block;
-//      color: #A5BE0E;
       color: #BE420E;
       font-size:14px;
       padding:5px;
+      padding-left: 20px;
+      margin-left: 10px;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-position: center left;
 	  }
 	  a:hover {
       color: #336999;
       text-decoration: none;
+	  }
+	  a#top-submenu-teams {
+	    background-image: url("/images/icons/group.png");
+	  }
+	  a#top-submenu-tables {
+	    background-image: url("/images/icons/table.png");
+	  }
+	  a#top-submenu-it-forecast {
+	    background-image: url("/images/icons/money-coin.png");
 	  }
 	}
 }
@@ -1101,4 +1119,20 @@ table.tournament-position {
 
 table.tournament-position.even {
   margin-left: 10px;
+}
+
+
+#container {
+  ol {
+    list-style-position: inside;
+    li {
+      margin-bottom: 5px;
+      font-style: italic;
+    }
+  }
+  div#it-forecast-container {
+    p {
+      margin-bottom: 10px;
+    }
+  }
 }
