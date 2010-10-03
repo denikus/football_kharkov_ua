@@ -12,8 +12,8 @@ module ApplicationHelper
   end
 
   def full_article(body)
-    decode_entities(body.sub(/\[\[break\]\]/, '<a href="#" id="announce-breaker"></a>'))
-    decode_entities(body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
+    new_body = body.sub(/\[\[break\]\]/, '<a href="#" id="announce-breaker"></a>')
+    decode_entities(new_body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
   end
 
   def show_comment(post, comment)
