@@ -535,6 +535,7 @@ input.fancy-submit:hover {
   margin-left: 0;
   height: 15px;
   padding: 0px;
+  text-decoration: none;
 }
 
 /* line 480, ../../app/stylesheets/styles.scss */

@@ -49,7 +49,7 @@ CKEDITOR.editorConfig = function( config )
         ['NumberedList','BulletedList','Blockquote'],
         ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
         ['Link','Unlink','Anchor'],
-        ['Image', 'MediaEmbed', 'Table', 'PasteFromWord']
+        ['Image', 'MediaEmbed', 'Table', 'PasteFromWord', 'Source']
     ];
 };
 
