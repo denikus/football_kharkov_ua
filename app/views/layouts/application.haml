@@ -19,6 +19,4 @@
     - if current_subdomain=='itleague'  || (post_belongs_2_subdomain? && post_subdomain == "itleague")
       = render_cell :sidebar_block, :advertisement, :title => "Спонсоры", :subdomain => current_subdomain
     = render_cell :sidebar_block, :shop, :title => "Амуниция"
-    - if current_subdomain=='itleague'  || (post_belongs_2_subdomain? && post_subdomain == "itleague")
-      = render_cell :sidebar_block, :it_forecast, :title => "Конкурс прогнозистов", :subdomain => current_subdomain
     = render_cell :sidebar_block, :comments, :title => "Комментарии", :subdomain => current_subdomain
