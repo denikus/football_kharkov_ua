@@ -18,4 +18,4 @@
     - f.canvas :match_guests_stats do
       - @match.guests.team.season_id = season_id
       = render :partial => '/admin/stats/edit_match', :locals => {:side => :guests, :competitor =>  @match.guests, :footballers => Footballer.find(@match.guests.team.footballer_ids)}
-    = f.checkbox :create_events, 'Создать игровые события для статистики', :checked => false
+    = f.checkbox :create_events, 'Создать игровые события для статистики', :checked => true
