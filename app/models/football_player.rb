@@ -30,6 +30,8 @@ class FootballPlayer < ActiveRecord::Base
     end
     if create_events
       stats.with_events(:team => competitor.team.name, :minute => :stat).set('goal', *params[:goal]) if params.key? :goal
+      stats.with_events(:team => competitor.team.name, :minute => :stat).set('auto_goal', *params[:auto_goal]) if params.key? :auto_goal
+      stats.with_events(:minute => :stat).set('yellow_card', *params[:yellow_card]) if params.key? :yellow_card
       stats.with_events(:minute => :stat).set('red_card', *params[:red_card]) if params.key? :red_card
     else
       params.each{ |s, v| stats.set(s, *v) }
