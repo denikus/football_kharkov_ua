@@ -9,6 +9,7 @@
     %td Имя
     %td Номер
     %td Голы
+    %td Автоголы
     %td Жт. Ктчки
     %td Кр. Ктчки
   - footballers.each do |f|
@@ -17,5 +18,6 @@
       %td= f.full_name
       %td= text_field "match[football_player_numbers][#{side}]", "#{f.id}", :value => (player.number rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       %td= text_field "match[stats][#{side}][players][#{f.id}]", "goal", :value => (Array(player.stats.get('goal')).join(', ') rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+      %td= text_field "match[stats][#{side}][players][#{f.id}]", "auto_goal", :value => (Array(player.stats.get('auto_goal')).join(', ') rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       %td= text_field "match[stats][#{side}][players][#{f.id}]", "yellow_card", :value => (Array(player.stats.get('yellow_card')).join(', ') rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       %td= text_field "match[stats][#{side}][players][#{f.id}]", "red_card", :value => (Array(player.stats.get('red_card')).join(', ') rescue ''), :class => "ui-state-default ui-corner-all", :style => "width: 50px;"

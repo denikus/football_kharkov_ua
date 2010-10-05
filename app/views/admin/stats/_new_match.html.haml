@@ -9,6 +9,7 @@
     %td Имя
     %td Номер
     %td Голы
+    %td Автоголы
     %td Жт. Ктчки
     %td Кр. Ктчки
   - Footballer.find(team.footballer_ids, :order => "last_name ASC").each do |f|
@@ -16,5 +17,6 @@
       %td= f.full_name
       %td= text_field "match[football_player_numbers][#{side}]", "#{f.id}", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       %td= text_field "match[stats][#{side}][players][#{f.id}]", "goal", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
+      %td= text_field "match[stats][#{side}][players][#{f.id}]", "auto_goal", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       %td= text_field "match[stats][#{side}][players][#{f.id}]", "yellow_card", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"
       %td= text_field "match[stats][#{side}][players][#{f.id}]", "red_card", :class => "ui-state-default ui-corner-all", :style => "width: 50px;"

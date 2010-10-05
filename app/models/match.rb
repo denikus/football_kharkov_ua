@@ -44,7 +44,7 @@ class Match < ActiveRecord::Base
     @football_player_numbers = number
   end
   
-  def update
+  def update_competitors
     [:hosts, :guests].each do |side|
       cmp = competitors.send(side)
       cmp.football_players = @football_player_numbers[side].collect do |(fid, number)|

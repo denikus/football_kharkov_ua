@@ -56,13 +56,14 @@ class Admin::MatchesController < ApplicationController
   
   def update
     match_stats = params[:match].delete :stats
+    params[:match][:played_at] = Date.new(*(1..3).collect{ |i| params[:match].delete("played_at(#{i}i)").to_i })
     create_events = params[:match].delete(:create_events) != '0'
     @match = Match.find params[:id]
     @match.attributes = params[:match]
     respond_to do |format|
-      if @match.update and @match.save
+      if @match.update_competitors and @match.save
         @match.update_stats match_stats, create_events
-        format.html { redirect_to(admin_tournament_matches_path(Tour.find(params[:tour_id]).league.stage.season.tournament)) }
+        format.html { redirect_to(admin_tournament_matches_path(@match.tour.league.stage.season.tournament)) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @match.errors, :status => :unprocessable_entity }
