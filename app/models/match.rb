@@ -27,7 +27,7 @@ class Match < ActiveRecord::Base
   end
   
   def update_stats stats, create_events
-    match_events.delete_all if create_events
+    match_events.destroy_all if create_events
     competitors.each do |cmp|
       cmp.update_stats stats[cmp.side], create_events
     end
