@@ -1081,7 +1081,7 @@ table.match-result-table ul.team-players-list {
 /**
 *Tournament tables
 */
-table.tournament-position {
+table.tournament-position, table.bombardier-position {
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom:20px;
@@ -1154,4 +1154,15 @@ h2.tournament-subtitle {
   border-bottom: 0;
   line-height: 1em;
   margin-bottom: 5px;
+}
+
+table.bombardier-position {
+  td.place {
+    width: 30px;
+    text-align:center;
+  }
+  td.goals {
+    width: 20px;
+    text-align:center;
+  }
 }

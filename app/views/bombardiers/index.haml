@@ -1,2 +1,15 @@
-<h1>Bombardiers#index</h1>
-<p>Find me in app/views/bombardiers/index.html.erb</p>
+%h2.tournament-subtitle Бомбардиры
+%br/ 
+%table.bombardier-position
+  %tr.header
+    %td
+      Место
+    %td
+      Игрок
+    %td
+      Голы
+  - @bombardiers.each_with_index do |item, index|
+    %tr
+      %td.place= index+1
+      %td= link_to "#{item.last_name} #{item.first_name}", footballer_path(item.url)
+      %td.goals= "#{item.statable_total}"

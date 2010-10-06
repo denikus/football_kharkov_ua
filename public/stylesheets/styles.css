@@ -1202,7 +1202,7 @@ table.match-result-table ul.team-players-list li.odd {
 *Tournament tables
 */
 /* line 1084, ../../app/stylesheets/styles.scss */
-table.tournament-position {
+table.tournament-position, table.bombardier-position {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom: 20px;
@@ -1210,24 +1210,24 @@ table.tournament-position {
   float: left;
 }
 /* line 1090, ../../app/stylesheets/styles.scss */
-table.tournament-position th {
+table.tournament-position th, table.bombardier-position th {
   text-align: center;
   color: #336999;
   border: 1px solid #EEEEEE;
   font-size: 118%;
 }
 /* line 1097, ../../app/stylesheets/styles.scss */
-table.tournament-position td {
+table.tournament-position td, table.bombardier-position td {
   padding: 3px;
   border: 1px solid #EEEEEE;
 }
 /* line 1101, ../../app/stylesheets/styles.scss */
-table.tournament-position td.place {
+table.tournament-position td.place, table.bombardier-position td.place {
   width: 30px;
   text-align: right;
 }
 /* line 1104, ../../app/stylesheets/styles.scss */
-table.tournament-position td.place div.position-change {
+table.tournament-position td.place div.position-change, table.bombardier-position td.place div.position-change {
   float: left;
   font-weight: bold;
   background-repeat: no-repeat;
@@ -1237,46 +1237,46 @@ table.tournament-position td.place div.position-change {
   width: 20px;
 }
 /* line 1113, ../../app/stylesheets/styles.scss */
-table.tournament-position td.place div.up {
+table.tournament-position td.place div.up, table.bombardier-position td.place div.up {
   color: #60B571;
   background-image: url("/images/icons/raise-arrow.png");
 }
 /* line 1114, ../../app/stylesheets/styles.scss */
-table.tournament-position td.place div.down {
+table.tournament-position td.place div.down, table.bombardier-position td.place div.down {
   color: #BE420E;
   background-image: url("/images/icons/down-arrow.png");
 }
 /* line 1117, ../../app/stylesheets/styles.scss */
-table.tournament-position td.team {
+table.tournament-position td.team, table.bombardier-position td.team {
   width: 170px;
 }
 /* line 1118, ../../app/stylesheets/styles.scss */
-table.tournament-position td.games {
+table.tournament-position td.games, table.bombardier-position td.games {
   width: 40px;
   text-align: center;
 }
 /* line 1119, ../../app/stylesheets/styles.scss */
-table.tournament-position td.goals {
+table.tournament-position td.goals, table.bombardier-position td.goals {
   width: 50px;
   text-align: center;
 }
 /* line 1120, ../../app/stylesheets/styles.scss */
-table.tournament-position td.scores {
+table.tournament-position td.scores, table.bombardier-position td.scores {
   width: 40px;
   text-align: center;
 }
 /* line 1121, ../../app/stylesheets/styles.scss */
-table.tournament-position td.diff {
+table.tournament-position td.diff, table.bombardier-position td.diff {
   width: 40px;
   text-align: center;
 }
 /* line 1123, ../../app/stylesheets/styles.scss */
-table.tournament-position tr.header td {
+table.tournament-position tr.header td, table.bombardier-position tr.header td {
   color: #be420e;
   font-weight: bold;
 }
 /* line 1128, ../../app/stylesheets/styles.scss */
-table.tournament-position tr.odd {
+table.tournament-position tr.odd, table.bombardier-position tr.odd {
   background-color: #FAFAFA;
 }
 
@@ -1304,4 +1304,15 @@ h2.tournament-subtitle {
   border-bottom: 0;
   line-height: 1em;
   margin-bottom: 5px;
+}
+
+/* line 1160, ../../app/stylesheets/styles.scss */
+table.bombardier-position td.place {
+  width: 30px;
+  text-align: center;
+}
+/* line 1164, ../../app/stylesheets/styles.scss */
+table.bombardier-position td.goals {
+  width: 20px;
+  text-align: center;
 }
