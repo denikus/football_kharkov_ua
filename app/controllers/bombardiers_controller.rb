@@ -18,6 +18,5 @@ class BombardiersController < ApplicationController
                     :per_page => 30,
                     :page => 1 
                   )
-    
   end
 end

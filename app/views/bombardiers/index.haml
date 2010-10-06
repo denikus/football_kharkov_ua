@@ -12,7 +12,11 @@
     %td
       Голы
   - @bombardiers.each_with_index do |item, index|
+    -teams = []
+    -item.footballers_teams.find(:all, :conditions => ["season_id = ?", 2]).each do |f_t|
+      -team = Team.find(f_t[:team_id])
+      -teams << link_to(team.name, team_path(team.url))
     %tr
       %td.place= index+1
-      %td= link_to "#{item.last_name} #{item.first_name}", footballer_path(item.url)
+      %td= "#{link_to("#{item.last_name} #{item.first_name}", footballer_path(item.url))} (#{teams.join(",")})" 
       %td.goals= "#{item.statable_sum}"
