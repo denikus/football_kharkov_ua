@@ -22,5 +22,5 @@
             -team = Team.find(f_t[:team_id])
             -teams << link_to(team.name, team_path(team.url))
           = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{teams.join(", ")})"
-            %br/ 
+          %br/ 
       %td.goals= "#{item[0]}"
