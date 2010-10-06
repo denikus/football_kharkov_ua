@@ -20,15 +20,20 @@ class BombardiersController < ApplicationController
                   )
     bombardiers_grouped = {}
     @bombardiers.each do |item|
-      if bombardiers_grouped[item[:statable_sum]].nil?
-        bombardiers_grouped[item[:statable_sum]] = []
-      end  
-      bombardiers_grouped[item[:statable_sum]] << item
+      if item[:statable_sum].to_i > 1
+        if bombardiers_grouped[item[:statable_sum]].nil? &&
+          bombardiers_grouped[item[:statable_sum]] = []
+        end
+        bombardiers_grouped[item[:statable_sum]] << item
+      end
+
     end
     @bombardier_list = bombardiers_grouped.sort
+#    ap bombardiers_grouped = @bombardiers.collect{|x| [x[:statable_sum], x]}
+#    debugger
     @bombardier_list.reverse!
-    @bombardier_list.delete_if{|x| x[0].to_i<3}
-    @bombardier_list.reverse!
+#    @bombardier_list.delete_if{|x| x[0].to_i<3}
+#    @bombardier_list.reverse!
   end
 end
 
