@@ -12,15 +12,16 @@
     %td
       Голы
   - @bombardier_list.each_with_index do |item, index|
-    -row_class = index%2 == 0 ? "" : "odd"
-    %tr{:class => row_class}
-      %td.place= index+1
-      %td
-        -item[1].each do |footballer|
-          -teams = []
-          -footballer.footballers_teams.find(:all, :conditions => ["season_id = ?", 2]).each do |f_t|
-            -team = Team.find(f_t[:team_id])
-            -teams << link_to(team.name, team_path(team.url))
-          = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{teams.join(", ")})"
-          %br/ 
-      %td.goals= "#{item[0]}"
+    -unless index>10
+      -row_class = index%2 == 0 ? "" : "odd"
+      %tr{:class => row_class}
+        %td.place= index+1
+        %td
+          -item[1].each do |footballer|
+            -teams = []
+            -footballer.footballers_teams.find(:all, :conditions => ["season_id = ?", 2]).each do |f_t|
+              -team = Team.find(f_t[:team_id])
+              -teams << link_to(team.name, team_path(team.url))
+            = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{teams.join(", ")})"
+            %br/
+        %td.goals= "#{item[0]}"
