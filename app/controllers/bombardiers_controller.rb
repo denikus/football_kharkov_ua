@@ -13,7 +13,7 @@ class BombardiersController < ApplicationController
                                         	 "GROUP BY stats.statable_id) AS statistic " +
                                 "ON (statistic.statable_id=football_players.id)",
                     :conditions => "footballers.id > 0",
-                    :order => "statistic.statable_total DESC, footballers.last_name ASC",
+                    :order => "statable_sum DESC, footballers.last_name ASC",
                     :per_page => 10,
                     :page => 1 
                   )
