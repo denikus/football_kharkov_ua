@@ -15,7 +15,8 @@ class BombardiersController < ApplicationController
                     :conditions => "footballers.id > 0",
                     :group => "footballers.id ",
                     :order => "statable_sum DESC, footballers.last_name ASC",
-                    :per_page => 30,
+                    :having => "statable_sum>2",
+                    :per_page => 50,
                     :page => 1 
                   )
     bombardiers_grouped = {}
