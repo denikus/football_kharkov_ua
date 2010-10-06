@@ -6,7 +6,7 @@ class BombardiersController < ApplicationController
                     :select => "`footballers`.*, `football_players`.id AS football_player_id, statistic.statable_total",
                     :joins => "INNER JOIN `football_players` " +
                                 "ON (footballers.id = football_players.footballer_id) " +
-                              "INNER JOIN (SELECT stats.statable_id, COUNT(stats.value) AS statable_total " + 
+                              "INNER JOIN (SELECT stats.statable_id, COUNT(stats.id) AS statable_total " + 
 		                                       "FROM`stats` " +
 		                                       "WHERE " +
 		                                       "stats.statable_type='FootballPlayer' AND stats.name='goal' " +
