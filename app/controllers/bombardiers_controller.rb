@@ -28,6 +28,7 @@ class BombardiersController < ApplicationController
     @bombardier_list = bombardiers_grouped.sort
     @bombardier_list.reverse!
     @bombardier_list.delete_if{|x| x[0].to_i<3}
+    @bombardier_list.reverse!
   end
 end
 
