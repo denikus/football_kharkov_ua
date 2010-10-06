@@ -18,5 +18,16 @@ class BombardiersController < ApplicationController
                     :per_page => 30,
                     :page => 1 
                   )
+    bombardiers_grouped = {}
+    @bombardiers.each do |item|
+      if bombardiers_grouped[item[:statable_sum]].nil?
+        bombardiers_grouped[item[:statable_sum]] = []
+      end  
+      bombardiers_grouped[item[:statable_sum]] << item
+    end
+    @bombardier_list = bombardiers_grouped.sort
+    @bombardier_list.reverse!
+    @bombardier_list.delete_if{|x| x[0].to_i<3}
   end
 end
+

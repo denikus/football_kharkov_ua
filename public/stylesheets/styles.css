@@ -1310,12 +1310,16 @@ h2.tournament-subtitle {
   margin-bottom: 5px;
 }
 
-/* line 1163, ../../app/stylesheets/styles.scss */
+/* line 1162, ../../app/stylesheets/styles.scss */
+table.bombardier-position {
+  width: 600px;
+}
+/* line 1164, ../../app/stylesheets/styles.scss */
 table.bombardier-position td.place {
   width: 30px;
   text-align: center;
 }
-/* line 1167, ../../app/stylesheets/styles.scss */
+/* line 1168, ../../app/stylesheets/styles.scss */
 table.bombardier-position td.goals {
   width: 20px;
   text-align: center;
