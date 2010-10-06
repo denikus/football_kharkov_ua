@@ -3,7 +3,7 @@ class BombardiersController < ApplicationController
 
   def index
     @bombardiers = Footballer.paginate(:all,
-                    :select => "`footballers`.*, `football_players`.id AS football_player_id, statistic.statable_total",
+                    :select => "`footballers`.*, `football_players`.id AS football_player_id, SUM(statistic.statable_total) AS statable_sum",
                     :joins => "INNER JOIN `football_players` " +
                                 "ON (footballers.id = football_players.footballer_id) " +
                               "INNER JOIN (SELECT stats.statable_id, COUNT(stats.id) AS statable_total " + 
