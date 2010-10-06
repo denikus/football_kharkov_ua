@@ -22,9 +22,9 @@ class BombardiersController < ApplicationController
     @bombardiers.each do |item|
       if item[:statable_sum].to_i > 1
         if bombardiers_grouped[item[:statable_sum]].nil? &&
-          bombardiers_grouped[item[:statable_sum]] = []
+          bombardiers_grouped[item[:statable_sum].to_i] = []
         end
-        bombardiers_grouped[item[:statable_sum]] << item
+        bombardiers_grouped[item[:statable_sum].to_i] << item
       end
 
     end
