@@ -21,6 +21,6 @@
           -footballer.footballers_teams.find(:all, :conditions => ["season_id = ?", 2]).each do |f_t|
             -team = Team.find(f_t[:team_id])
             -teams << link_to(team.name, team_path(team.url))
-            = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{teams.join(", ")})"
+          = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{teams.join(", ")})"
             %br/ 
       %td.goals= "#{item[0]}"
