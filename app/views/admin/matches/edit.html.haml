@@ -13,9 +13,9 @@
     - season_id = @match.tour.league.stage.season_id
     - f.canvas :match_hosts_stats do
       - @match.hosts.team.season_id = season_id
-      = render :partial => '/admin/stats/edit_match', :locals => {:side => :hosts, :competitor =>  @match.hosts, :footballers => Footballer.find(@match.hosts.team.footballer_ids)}
+      = render :partial => '/admin/stats/edit_match', :locals => {:side => :hosts, :competitor =>  @match.hosts, :footballers => Footballer.find(@match.hosts.team.footballer_ids, :order => "last_name ASC")}
     = f.select :guests, 'Гости', @teams.collect{ |t| [t.name, t.id] }, {:selected => @match.guests.team_id, :include_blank => true}, :onchange => match_edit_select_team(:guests)
     - f.canvas :match_guests_stats do
       - @match.guests.team.season_id = season_id
-      = render :partial => '/admin/stats/edit_match', :locals => {:side => :guests, :competitor =>  @match.guests, :footballers => Footballer.find(@match.guests.team.footballer_ids)}
+      = render :partial => '/admin/stats/edit_match', :locals => {:side => :guests, :competitor =>  @match.guests, :footballers => Footballer.find(@match.guests.team.footballer_ids, :order => "last_name ASC")}
     = f.checkbox :create_events, 'Создать игровые события для статистики', :checked => true
