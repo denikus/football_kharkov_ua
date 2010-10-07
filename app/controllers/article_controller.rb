@@ -94,6 +94,7 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
   def upload_image
     picture_path = RAILS_ROOT + '/public/user/' + current_user[:id].to_s + '/images/'
     picture = Picture.new
+    picture.prepare_directory(RAILS_ROOT + '/public/user/' + current_user[:id].to_s)
     picture.prepare_directory(picture_path)
     picture.set_picture_path(picture_path)
     picture.save(params['file'])

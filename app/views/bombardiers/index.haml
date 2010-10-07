@@ -1,0 +1,27 @@
+%h2.tournament-subtitle Бомбардиры
+%br/
+%em На стадии тестирования (заменитили неточность в статистике - сообщайте на контактный email)
+%br/
+%br/ 
+%table.bombardier-position
+  %tr.header
+    %td
+      Место
+    %td
+      Игрок
+    %td
+      Голы
+  - @bombardier_list.each_with_index do |item, index|
+    -unless index>10
+      -row_class = index%2 == 0 ? "" : "odd"
+      %tr{:class => row_class}
+        %td.place= index+1
+        %td
+          -item[1].each do |footballer|
+            -teams = []
+            -footballer.footballers_teams.find(:all, :conditions => ["season_id = ?", 2]).each do |f_t|
+              -team = Team.find(f_t[:team_id])
+              -teams << link_to(team.name, team_path(team.url))
+            = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{teams.join(", ")})"
+            %br/
+        %td.goals= "#{item[0]}"
