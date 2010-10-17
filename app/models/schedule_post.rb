@@ -19,12 +19,16 @@ class SchedulePost < ActiveRecord::Base
         tournament = Tournament.find_by_url(widget_options[:tournament_url])
 
         season = tournament.seasons.find_by_url(widget_options[:season_url])
-        schedules = Schedule.find(:all, :conditions => ["season_id = ? AND match_on >= ? AND match_on <= ?", season.id, widget_options[:start_date], widget_options[:final_date]], :order => "match_on, match_at ASC" )
+        schedules = Schedule.find(:all, :conditions => ["season_id = ? AND match_on >= ? AND match_on <= ?", season.id, widget_options[:start_date], widget_options[:final_date]], :order => "match_on ASC" )
+
         schedules.each do |item|
+          day_matches = Schedule.find(:all, :conditions => ["season_id = ? AND match_on = ? ", item[:season_id], item[:match_on]], :order => "match_at ASC" )
           if grouped_schedules[item[:match_on].to_s].nil?
             grouped_schedules[item[:match_on].to_s] = []
-          end  
-          grouped_schedules[item[:match_on].to_s] << item
+          end
+          day_matches.each do |day_item|
+            grouped_schedules[item[:match_on].to_s] << day_item
+          end
         end
         generated_block = ActionView::Base.new(Rails::Configuration.new.view_path).render(:partial => "/schedule_post/schedule_block", :locals =>{:schedule_blocks => grouped_schedules})
         generated_body.gsub!(/\[\[schedule::#{widget_params_str[0]}\]\]/, generated_block)

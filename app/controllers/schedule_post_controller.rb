@@ -4,6 +4,12 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
 
   def new
     @schedule_post = SchedulePost.new
+=begin
+    body = "jhkjh [[schedule::univercup--autumn-winter-2010--2010--10--07----2010--10--14]] kljlkj"
+    @schedule = SchedulePost.new
+    k = @schedule.generate_schedule_widget(body)
+=end
+  
   end
 
   def create
@@ -46,7 +52,6 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
   end
 
   def show
-
   end
 
   private
