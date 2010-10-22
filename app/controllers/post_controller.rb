@@ -60,7 +60,7 @@ class PostController < ApplicationController
   end
   
   def show
-    @post = Post.find(:first, :conditions => ["YEAR(created_at) = :year AND MONTH(created_at) = :month AND DAY(created_at) = :day AND url = :url ", params])
+    @post = Post.find(:first, :conditions => ["url_year = :year AND url_month = :month AND url_day = :day AND url = :url ", params])
     @page_title = @post.title
 
 

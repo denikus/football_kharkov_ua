@@ -39,9 +39,9 @@ module ApplicationHelper
   end
 
   def post_item_path(post_item, with_anchor =false)
-    post_url({:year => post_item.created_at.strftime('%Y'),
-               :month => post_item.created_at.strftime('%m'),
-               :day => post_item.created_at.strftime('%d'),
+    post_url({:year => post_item.url_year,
+               :month => post_item.url_month,
+               :day => post_item.url_day,
                :url => !post_item.url.nil? ? post_item.url : '',
                :anchor => with_anchor ? "announce-breaker" : "",
                :subdomain => (post_item.tournament.nil? ? false : post_item.tournament.url)
