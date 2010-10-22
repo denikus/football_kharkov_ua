@@ -81,5 +81,10 @@ class PostController < ApplicationController
     Subscriber.destroy_all({:user_id => current_user[:id], :post_id => params[:id]}) unless params[:id].nil? && current_user[:id].nil?
     render :json => {:success => true}
   end
-  
+
+
+  def test
+    params = {:year => "2010", :month => "08", :day => "02", :url => "metallist-metallurg-donetsk-metallist-harkov-0-3"}
+    @post = Post.find(:first, :conditions => ["YEAR(created_at) = :year AND MONTH(created_at) = :month AND DAY(created_at) = :day AND url = :url ", params])
+  end
 end
