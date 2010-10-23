@@ -21,6 +21,9 @@ class Post < ActiveRecord::Base
 
   def before_create
     self.url = self.title.dirify
+    self.url_year  = Time.now.strftime("%Y")
+    self.url_month = Time.now.strftime("%m")
+    self.url_day  = Time.now.strftime("%d")
   end
 
   def after_create

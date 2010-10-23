@@ -28,6 +28,9 @@ Rails::Initializer.run do |config|
   config.gem 'fancy-buttons'
   config.gem 'ckeditor', '3.4.2'
   config.gem 'sanitize'
+  if RAILS_ENV=="development"
+    config.gem "newrelic_rpm"
+  end  
   
 
 
