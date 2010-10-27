@@ -35,7 +35,7 @@ class SidebarBlockCell < ::Cell::Base
     unless  @last_date.nil?
       @schedules = Schedule.find(:all,
                                  :include => [:quick_match_result, :hosts, :guests],
-                                 :conditions => ["schedules.match_on = ? ", @last_date[:match_on]],
+                                 :conditions => ["schedules.match_on = ? AND season_id = ? ", @last_date[:match_on], @season.id],
                                  :order => "schedules.match_at ASC"
                                  )
     else
