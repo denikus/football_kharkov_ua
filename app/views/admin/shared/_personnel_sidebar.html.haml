@@ -5,7 +5,7 @@
 
 %h3 Команды
 %ul.nav
-  - Team.all.each do |team|
+  - Team.find(:all, :order => "name ASC").each do |team|
     %li= link_to team.name, edit_admin_team_path(team)
   %li.last= link_to '-- Все --', admin_teams_path
 

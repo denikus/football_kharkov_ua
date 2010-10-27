@@ -3,24 +3,28 @@
     %h4= @opts[:title]
   .bd
     %ul.quick_match_results
-      - @quick_results.each_with_index do |item, i|
+      - @schedules.each_with_index do |item, i|
         - winner_class = "fancy-score-winner"
         - loser_class = "fancy-score-loser"
         - hosts_class = ""
         - guests_class = ""
-        - if item.hosts_score > item.guests_score
-          - hosts_class = winner_class
-          - guests_class = loser_class
-        - elsif item.hosts_score < item.guests_score
-          - hosts_class = loser_class
-          - guests_class = winner_class
+        - unless item.quick_match_result.nil? 
+          - if item.quick_match_result.hosts_score > item.quick_match_result.guests_score
+            - hosts_class = winner_class
+            - guests_class = loser_class
+          - elsif item.quick_match_result.hosts_score < item.quick_match_result.guests_score
+            - hosts_class = loser_class
+            - guests_class = winner_class
+          - else
+            - hosts_class = "fancy-score-equal"
+            - guests_class = "fancy-score-equal"
         -row_class = i%2 == 0 ? "" : "odd"
         %li{:class => row_class}
-          .hosts= item.hosts
+          .hosts= item.hosts.name
           .score-container
-            .fancy-score{:class => hosts_class }= item.hosts_score
-            .fancy-score.fancy-score-right{:class => guests_class }= item.guests_score
-          .guests= item.guests
+            .fancy-score{:class => hosts_class }= !item.quick_match_result.nil? ? item.quick_match_result.hosts_score : "-" 
+            .fancy-score.fancy-score-right{:class => guests_class }= !item.quick_match_result.nil? ? item.quick_match_result.guests_score : "-" 
+          .guests= item.guests.name
           .clear
 
 

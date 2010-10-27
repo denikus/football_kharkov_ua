@@ -4,6 +4,9 @@ class Schedule < ActiveRecord::Base
   belongs_to :hosts, :class_name => 'Team', :foreign_key => 'host_team_id'
   belongs_to :guests, :class_name => 'Team', :foreign_key => 'guest_team_id'
   belongs_to :league
+  has_one :quick_match_result
+#  accepts_nested_attributes_for :quick_match_result, :allow_destroy => false
+  
 
   def before_save
     self.league_id = Season.find(:first,

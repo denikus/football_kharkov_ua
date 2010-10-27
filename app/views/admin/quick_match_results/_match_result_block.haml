@@ -1,0 +1,17 @@
+- form_tag 'quick_match_results/update_all', :method => "PUT" do
+  %fieldset{:class => "ui-widget-content"}
+    %legend{:class => "ui-widget-header ui-corner-all"}= Russian::strftime(match_on.to_date, "%d %B %Y, %A")
+    -@schedules.each do |schedule|
+      %div
+        %table
+          %tr
+            %td= "Время: #{schedule.match_at}"
+          %tr
+            %td
+              = "#{schedule.hosts.name} "
+              = text_field_tag "schedule[#{schedule.id}]hosts_score", schedule.quick_match_result.nil? ? nil : schedule.quick_match_result.hosts_score, :class => "ui-state-default ui-corner-all", :style => "width: 20px;"
+              = " - "
+              = text_field_tag "schedule[#{schedule.id}]guests_score", schedule.quick_match_result.nil? ? nil : schedule.quick_match_result.guests_score, :class => "ui-state-default ui-corner-all", :style => "width: 20px;"
+              = "#{schedule.guests.name}"
+    = submit_tag "Сохранить", :class => "ui-state-default ui-corner-all ui-priority-primary ui-state-active"
+           

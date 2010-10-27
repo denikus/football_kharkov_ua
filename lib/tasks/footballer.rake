@@ -41,5 +41,29 @@ namespace :footballer do
 
   end
 
+  desc "Check if footballer play in more than one chemp"
+  task :duplicates, [:season_id] => :environment do |t, args|
+    unless args.season_id.nil?
+      season_id = args.season_id.to_i
+
+      fh = File.open("#{RAILS_ROOT}/lib/footballers.txt", "r")
+      fh.readlines.each do |line|
+        team_footballers = line.split(';')
+        team_name = team_footballers.delete_at(0)
+        team_footballers.each do |footballer|
+          footballer_name = footballer.split(' ')
+          unless Footballer.find(:first,
+                                 :joins => "INNER JOIN footballers_teams ON (footballers_teams.footballer_id = footballers.id) ",
+                                 :conditions => ["footballers.last_name = ? AND footballers.first_name = ? AND footballers_teams.season_id = ? ", footballer_name[0].strip, footballer_name[1].strip, season_id]).nil?
+            puts "----------------"
+            puts "#{team_name}: #{footballer_name[0].strip} #{footballer_name[1].strip}"
+            puts "----------------"
+          end
+        end
+        
+      end
+    end  
+  end
+
 
 end

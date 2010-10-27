@@ -30,25 +30,25 @@
   text-align: center;
   vertical-align: middle;
 }
-/* line 172, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 172, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button-base::-moz-focus-inner, .fancy-score::-moz-focus-inner, .fancy-button::-moz-focus-inner {
   border: none;
   padding: 0;
 }
-/* line 175, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 175, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button-base:focus, .fancy-score:focus, .fancy-button:focus {
   outline: none;
 }
-/* line 152, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 152, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button-base:active, .fancy-score:active, .fancy-button:active {
   padding: 4px 17px;
   border-width: 2px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button-base, .fancy-score, .fancy-button, .fancy-button-base:visited, .fancy-score:visited, .fancy-button:visited {
   color: white;
 }
-/* line 28, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 28, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button-base:hover, .fancy-score:hover, .fancy-button:hover, .fancy-button-base:focus, .fancy-score:focus, .fancy-button:focus {
   background-color: #3c3c3c;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #919191), color-stop(10%, #636363), color-stop(50%, #353535), color-stop(50%, #2d2d2d), color-stop(100%, #474747));
@@ -56,11 +56,11 @@
   border-color: #161616;
   text-shadow: black 0px 1px 1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button-base:hover, .fancy-score:hover, .fancy-button:hover, .fancy-button-base:hover:visited, .fancy-score:hover:visited, .fancy-button:hover:visited, .fancy-button-base:focus, .fancy-score:focus, .fancy-button:focus, .fancy-button-base:focus:visited, .fancy-score:focus:visited, .fancy-button:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 33, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button-base:active, .fancy-score:active, .fancy-button:active {
   background-color: #353535;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #353535), color-stop(30%, #3a3a3a), color-stop(50%, #303030), color-stop(50%, #282828), color-stop(100%, #494949));
@@ -68,7 +68,7 @@
   border-color: #0e0e0e;
   text-shadow: black 0px -1px -1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button-base:active, .fancy-score:active, .fancy-button:active, .fancy-button-base:active:visited, .fancy-score:active:visited, .fancy-button:active:visited {
   color: white;
 }
@@ -85,11 +85,11 @@
   line-height: 15px;
   padding: 2px 11px;
   border-width: 1px;
-  background-color: #54abff;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #afd0f0), color-stop(100%, #549be0));
-  background-image: -moz-linear-gradient(top, #afd0f0 0%, #549be0 100%);
-  border-color: #2d85d9;
-  text-shadow: #006cd3 0px 1px 1px;
+  background-color: white;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #fcfcfc), color-stop(100%, #c6c6c6));
+  background-image: -moz-linear-gradient(top, #fcfcfc 0%, #c6c6c6 100%);
+  border-color: #afafaf;
+  text-shadow: white 0px 1px 1px;
   padding: 1px 2px;
   border-width: 1px;
   -moz-opacity: 0.7;
@@ -103,40 +103,40 @@
   cursor: default !important;
   float: left;
 }
-/* line 152, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 152, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score:active {
   padding: 1px 10px;
   border-width: 2px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 102, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score, .fancy-score:visited {
-  color: white;
+  color: #222222;
 }
-/* line 28, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 28, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score:hover, .fancy-score:focus {
-  background-color: #44a3ff;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #a2c9ee), color-stop(100%, #4794de));
-  background-image: -moz-linear-gradient(top, #a2c9ee 0%, #4794de 100%);
-  border-color: #267dd1;
-  text-shadow: #0064c4 0px 1px 1px;
+  background-color: white;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f4f4f4), color-stop(100%, #bebebe));
+  background-image: -moz-linear-gradient(top, #f4f4f4 0%, #bebebe 100%);
+  border-color: #a7a7a7;
+  text-shadow: white 0px 1px 1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 102, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score:hover, .fancy-score:hover:visited, .fancy-score:focus, .fancy-score:focus:visited {
-  color: white;
+  color: #222222;
 }
-/* line 33, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 33, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score:active {
-  background-color: #359cff;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #5099df), color-stop(40%, #5da0e2), color-stop(85%, #5da0e2), color-stop(100%, #7bb2e7));
-  background-image: -moz-linear-gradient(top, #5099df 0%, #5da0e2 40%, #5da0e2 85%, #7bb2e7 100%);
-  border-color: #2475c4;
-  text-shadow: #005cb5 0px -1px -1px;
+  background-color: #f9f9f9;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #c4c4c4), color-stop(40%, #cbcbcb), color-stop(85%, #cbcbcb), color-stop(100%, #dddddd));
+  background-image: -moz-linear-gradient(top, #c4c4c4 0%, #cbcbcb 40%, #cbcbcb 85%, #dddddd 100%);
+  border-color: #a0a0a0;
+  text-shadow: white 0px -1px -1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 102, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score:active, .fancy-score:active:visited {
-  color: white;
+  color: #222222;
 }
-/* line 152, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 152, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score:active {
   padding: 0px 1px;
   border-width: 2px;
@@ -150,11 +150,11 @@
   border-color: #336a1a;
   text-shadow: #1a5100 0px 1px 1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-winner, .fancy-score-winner:visited {
   color: white;
 }
-/* line 28, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 28, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-winner:hover, .fancy-score-winner:focus {
   background-color: #3dc100;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #6cd03e), color-stop(100%, #3f8320));
@@ -162,11 +162,11 @@
   border-color: #2d5e17;
   text-shadow: #154200 0px 1px 1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-winner:hover, .fancy-score-winner:hover:visited, .fancy-score-winner:focus, .fancy-score-winner:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 33, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-winner:active {
   background-color: #38b200;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #438b22), color-stop(40%, #499725), color-stop(85%, #499725), color-stop(100%, #57b42c));
@@ -174,7 +174,7 @@
   border-color: #275214;
   text-shadow: #103300 0px -1px -1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-winner:active, .fancy-score-winner:active:visited {
   color: white;
 }
@@ -187,11 +187,11 @@
   border-color: #e62004;
   text-shadow: #b71700 0px 1px 1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-loser, .fancy-score-loser:visited {
   color: white;
 }
-/* line 28, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 28, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-loser:hover, .fancy-score-loser:focus {
   background-color: #ff4328;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #fd8877), color-stop(100%, #fb2b0e));
@@ -199,11 +199,11 @@
   border-color: #d71e04;
   text-shadow: #a81500 0px 1px 1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-loser:hover, .fancy-score-loser:hover:visited, .fancy-score-loser:focus, .fancy-score-loser:focus:visited {
   color: white;
 }
-/* line 33, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 33, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-loser:active {
   background-color: #ff3619;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #fb3418), color-stop(40%, #fb4127), color-stop(85%, #fb4127), color-stop(100%, #fc604a));
@@ -211,17 +211,54 @@
   border-color: #c81c03;
   text-shadow: #991300 0px -1px -1px;
 }
-/* line 98, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-score-loser:active, .fancy-score-loser:active:visited {
   color: white;
 }
 
 /* line 33, ../../app/stylesheets/buttons.sass */
+.fancy-score-equal {
+  background-color: #54abff;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #afd0f0), color-stop(100%, #549be0));
+  background-image: -moz-linear-gradient(top, #afd0f0 0%, #549be0 100%);
+  border-color: #2d85d9;
+  text-shadow: #006cd3 0px 1px 1px;
+}
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+.fancy-score-equal, .fancy-score-equal:visited {
+  color: white;
+}
+/* line 28, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+.fancy-score-equal:hover, .fancy-score-equal:focus {
+  background-color: #44a3ff;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #a2c9ee), color-stop(100%, #4794de));
+  background-image: -moz-linear-gradient(top, #a2c9ee 0%, #4794de 100%);
+  border-color: #267dd1;
+  text-shadow: #0064c4 0px 1px 1px;
+}
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+.fancy-score-equal:hover, .fancy-score-equal:hover:visited, .fancy-score-equal:focus, .fancy-score-equal:focus:visited {
+  color: white;
+}
+/* line 33, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+.fancy-score-equal:active {
+  background-color: #359cff;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #5099df), color-stop(40%, #5da0e2), color-stop(85%, #5da0e2), color-stop(100%, #7bb2e7));
+  background-image: -moz-linear-gradient(top, #5099df 0%, #5da0e2 40%, #5da0e2 85%, #7bb2e7 100%);
+  border-color: #2475c4;
+  text-shadow: #005cb5 0px -1px -1px;
+}
+/* line 98, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+.fancy-score-equal:active, .fancy-score-equal:active:visited {
+  color: white;
+}
+
+/* line 36, ../../app/stylesheets/buttons.sass */
 .fancy-score-right {
   margin-left: 2px;
 }
 
-/* line 36, ../../app/stylesheets/buttons.sass */
+/* line 39, ../../app/stylesheets/buttons.sass */
 .fancy-button {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -235,13 +272,13 @@
   border-width: 1px;
   vertical-align: top;
 }
-/* line 152, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 152, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .fancy-button:active {
   padding: 1px 10px;
   border-width: 2px;
 }
 
-/* line 41, ../../app/stylesheets/buttons.sass */
+/* line 44, ../../app/stylesheets/buttons.sass */
 .login {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -254,13 +291,13 @@
   padding: 2px 10px;
   border-width: 1px;
 }
-/* line 152, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 152, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .login:active {
   padding: 1px 9px;
   border-width: 2px;
 }
 
-/* line 44, ../../app/stylesheets/buttons.sass */
+/* line 47, ../../app/stylesheets/buttons.sass */
 .score-light {
   padding: 2px 5px;
   border-width: 1px;
@@ -271,16 +308,16 @@
   text-shadow: white 0px 1px 1px;
   color: #be420e;
 }
-/* line 152, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 152, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .score-light:active {
   padding: 1px 4px;
   border-width: 2px;
 }
-/* line 102, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 102, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .score-light, .score-light:visited {
   color: #222222;
 }
-/* line 28, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 28, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .score-light:hover, .score-light:focus {
   background-color: white;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #f4f4f4), color-stop(100%, #bebebe));
@@ -288,11 +325,11 @@
   border-color: #a7a7a7;
   text-shadow: white 0px 1px 1px;
 }
-/* line 102, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 102, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .score-light:hover, .score-light:hover:visited, .score-light:focus, .score-light:focus:visited {
   color: #222222;
 }
-/* line 33, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 33, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .score-light:active {
   background-color: #f9f9f9;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #c4c4c4), color-stop(40%, #cbcbcb), color-stop(85%, #cbcbcb), color-stop(100%, #dddddd));
@@ -300,15 +337,15 @@
   border-color: #a0a0a0;
   text-shadow: white 0px -1px -1px;
 }
-/* line 102, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 102, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .score-light:active, .score-light:active:visited {
   color: #222222;
 }
-/* line 108, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 108, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .score-light:hover, .score-light:focus {
   color: #fea22c;
 }
-/* line 111, ../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
+/* line 111, ../../../../../../usr/local/lib/ruby/gems/1.8/gems/fancy-buttons-0.5.5/lib/stylesheets/_fancy-buttons.sass */
 .score-light:active {
   color: #dddddd;
 }

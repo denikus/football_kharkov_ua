@@ -22,8 +22,25 @@ class SidebarBlockCell < ::Cell::Base
   end
 
   def quick_results
-    @quick_results = QuickMatchResult.find(:all, :joins => "INNER JOIN tournaments ON (tournaments.id = quick_match_results.tournament_id)", :conditions =>["tournaments.url = ? AND match_on='2010-10-23'", @opts[:subdomain]], :order => "match_on DESC, id ASC", :limit => 11);
-    # , :group => "quick_match_results.id"   
+    @season = Season.find(:first,
+                          :joins => :tournament,
+                          :conditions => ["tournaments.url = ? ", @opts[:subdomain]],
+                          :order => "seasons.id DESC"
+                          )  
+    @last_date = Schedule.find(:first,
+                               :joins => "INNER JOIN quick_match_results ON (quick_match_results.schedule_id = schedules.id) ", 
+                               :conditions => ["quick_match_results.hosts_score IS NOT NULL AND quick_match_results.guests_score IS NOT NULL AND season_id = ? ", @season.id],
+                               :order => "schedules.match_on DESC"
+                               )
+    unless  @last_date.nil?
+      @schedules = Schedule.find(:all,
+                                 :include => [:quick_match_result, :hosts, :guests],
+                                 :conditions => ["schedules.match_on = ? ", @last_date[:match_on]],
+                                 :order => "schedules.match_at ASC"
+                                 )
+    else
+      @schedules = []
+    end
     render
   end
 

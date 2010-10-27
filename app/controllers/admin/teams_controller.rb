@@ -14,14 +14,20 @@ class Admin::TeamsController < ApplicationController
     elsif params[:season_id]
       unless params[:competitor_team_id].nil?
         #select teams in same league as current
+        #last stage
         respond_to do |format|
+          stage = Stage.find(:first,
+                             :conditions => ["season_id = ?", params[:season_id]],
+                             :order => "number DESC" 
+                              )
+
           competitor = Team.find(:first,
                   :select => "teams.*, leagues.id AS league_id",
                   :joins => "INNER JOIN leagues_teams ON (leagues_teams.team_id = teams.id) " +
                             "INNER JOIN leagues ON (leagues_teams.league_id = leagues.id) " +
                             "INNER JOIN stages ON (stages.id = leagues.stage_id) " +
                             "INNER JOIN seasons ON (seasons.id = stages.season_id) ",
-                  :conditions => ["teams.id = ? AND seasons.id = ?", params[:competitor_team_id], params[:season_id] ])
+                  :conditions => ["teams.id = ? AND seasons.id = ? AND stage_id = ? ", params[:competitor_team_id], params[:season_id], stage.id ])
           #search teams in same league
           @competitor_teams = Team.find(:all,
                    :joins => "INNER JOIN leagues_teams ON (leagues_teams.team_id = teams.id) ",

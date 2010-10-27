@@ -1,0 +1,36 @@
+= admin_title "Расписание матчей \"#{@tournament.name}\""
+
+%div
+  %label Сезон:
+  %span= select 'schedule', 'season_id', @seasons.collect{ |s| [s.name, s.id] }, {:selected => @seasons.first.id}, :onchange => 'loadDates()'
+-##schedule_date
+-#  = render :partial => 'schedule_date', :collection => @seasons.first.schedule_dates
+%div
+  %label Дата проведения:
+  %span= text_field 'schedule', 'match_on', :style => 'width: 100px;'
+
+#schedules
+#new_sched
+
+:javascript
+  loadSchedules = function() {
+    $.ajax({
+      url:'/admin/quick_match_results.js',
+      data:'season_id='+$('#schedule_season_id').val() + '&match_on='+$('#schedule_match_on').val(),
+      dataType:'script'
+    });
+  }
+  loadTeamCompetitors = function() {
+    $.ajax({
+      url:'/admin/teams.js',
+      data:'season_id='+$('#schedule_season_id').val() + '&competitor_team_id='+$('#schedule_host_team_id').val(),
+      dataType:'script'
+    });
+  }
+  $(function(){
+    $('#schedule_match_on').val('').datepicker({
+      dateFormat: 'yy-mm-dd',
+      showAnim: 'fadeIn',
+      onSelect: loadSchedules
+    });
+  })
