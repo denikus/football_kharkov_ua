@@ -3,8 +3,7 @@ class Tour < ActiveRecord::Base
   has_many :matches
   
   def tour_table
-    table = Table.new
-    matches.inject(table){ |res, m| res << m }
+    table = Table.new self
   end
   
   class Table
@@ -17,13 +16,13 @@ class Tour < ActiveRecord::Base
       def update match
         comps = match.competitors
         comps.reverse! if self.team.id != comps.first.team_id
-        goals = comps.collect(&:score)
+        goals = comps.collect{ |c| c.stats.get('score') || 0 }
         self[:results][comps.last.team_id] = goals
         self[:games_count] += 1
         self[:games] = self[:games].zip(lambda{ |a, i| a[i] += 1; a }[[0, 0, 0], (1-goals.inject(&:<=>)).abs]).collect{ |e| e.inject(&:+) }
         self[:goals] = self[:goals].zip(goals).collect{ |e| e.inject(&:+) }
         self[:score] = self[:games].zip([3, 1, 0]).collect{ |e| e.inject(&:*) }.inject(&:+)
-        self[:fouls] = self[:fouls] + comps.first.fouls
+        self[:fouls] = self[:fouls] + (comps.first.stats.get('first_period_fouls') || 0) + (comps.first.stats.get('second_period_fouls') || 0)
       end
       
       def <=> other
@@ -39,10 +38,25 @@ class Tour < ActiveRecord::Base
       end
     end
     
-    attr_accessor :records
+    class Set < ::Array
+      def << tour
+        push Table.new(tour, length.zero? ? nil : last)
+        self
+      end
+    end
     
-    def initialize
-      @records = {}
+    attr_accessor :records
+    attr_accessor :values
+    
+    def initialize tour, table=nil
+      @tour = tour
+      @processed = false
+      if table
+        table.process unless table.processed?
+        @records = table.records.clone
+      else
+        @records = {}
+      end
     end
     
     def << match
@@ -57,7 +71,18 @@ class Tour < ActiveRecord::Base
     end
     
     def get
-      @records.values.sort
+      process unless processed?
+      values
+    end
+    
+    def process
+      @tour.matches.inject(self){ |res, m| res << m }
+      @values = @records.values.sort
+      @processed = true
+    end
+    
+    def processed?
+      @processed
     end
   end
 end

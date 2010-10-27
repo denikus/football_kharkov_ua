@@ -5,10 +5,9 @@
   - f.draw("Редактирование команды") do
     = f.text_field :name, 'Имя'
     = f.text_field :url, 'Url'
-    = f.delimeter 'Игроки, играющие в команде'
-    %tr
-      %td{:colspan => 2}
-        - selection 'Чемпионаты', :on => @team, :collection => Tournament.all(:include => :seasons), :root => true do |tournaments|
-          - selection 'Сезоны', :seasons, :on => tournaments, :click => lambda{ |s| team_footballers_season_select @team, s }
-    %tr
-      %td#footballers{:colspan => 2}
+%div
+  %div{:class => 'ui-widget-header ui-corner-all', :style => "width: 400px"} Игроки, играющие в команде
+  %div
+    - selection 'Чемпионаты', :on => @team, :collection => Tournament.all(:include => :seasons), :root => true do |tournaments|
+      - selection 'Сезоны', :seasons, :on => tournaments, :click => lambda{ |s| team_footballers_season_select @team, s }
+    #footballers

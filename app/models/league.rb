@@ -7,4 +7,11 @@ class League < ActiveRecord::Base
   def stage_number
     stage.number
   end
+  
+  def table_set
+    returning Tour::Table::Set.new do |set|
+      tours.each{ |t| set << t }
+      set.reverse!
+    end
+  end
 end

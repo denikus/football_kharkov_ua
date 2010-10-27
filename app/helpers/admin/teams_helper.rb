@@ -8,7 +8,7 @@ module Admin::TeamsHelper
   end
   
   def team_footballers_season_select team, season
-    remote_function :url => admin_team_footballers_path(team), :with => "'season_id=#{season.id}'"
+    remote_function :url => admin_team_footballers_path(team), :with => "'season_id=#{season.id}&token=#{Time.now.to_i}'"
   end
 end
 

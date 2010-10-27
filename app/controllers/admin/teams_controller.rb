@@ -115,5 +115,42 @@ class Admin::TeamsController < ApplicationController
       render :action => 'team_2_season', :section => :tournaments
     end
   end
+  
+  def add_footballer
+    team = Team.find(params[:id])
+    team.season_id = params[:season_id].to_i
+    footballer_id = params[:footballer_id].to_i
+    footballer_ids = team.footballer_ids
+    
+    render :update do |page|
+      unless footballer_ids.include? footballer_id
+        team.footballer_ids = footballer_ids.push(footballer_id)
+        footballers = Footballer.find(footballer_ids, :order => 'last_name ASC')
+        position = footballers.index{ |f| f.id == footballer_id }
+        if position.zero?
+          page.insert_html :after, "#footballers fieldset>legend", :partial => 'admin/footballers/team_footballer', :object => footballers[position], :locals => {:season_id => team.season_id, :team_id => team.id}
+        else
+          page.insert_html :after, "#footballers fieldset>div:nth(#{position-1})", :partial => 'admin/footballers/team_footballer', :object => footballers[position], :locals => {:season_id => team.season_id, :team_id => team.id}
+        end
+      end
+      page[:footballer_autocomplete].val ''
+      page[:new_footballer_id].val ''
+      page[:add_footballer_btn].hide
+    end
+  end
+  
+  def del_footballer
+    team = Team.find(params[:id])
+    team.season_id = params[:season_id].to_i
+    footballer_id = params[:footballer_id].to_i
+    footballer_ids = team.footballer_ids
+    
+    render :update do |page|
+      if footballer_ids.include? footballer_id
+        team.footballer_ids = footballer_ids.delete_if{ |i| i == footballer_id }
+        page["footballer_#{footballer_id}"].remove
+      end
+    end
+  end
 
 end

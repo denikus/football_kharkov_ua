@@ -6,7 +6,12 @@
     = stylesheet_link_tag "admin/admin"
     = javascript_include_tag 'admin/jquery/1.4.min.js'
     = jqgrid_stylesheets
-    = jqgrid_javascripts
+    - jqgrid_javascripts
+    = javascript_include_tag 'jqgrid/jquery.layout.js'
+    = javascript_include_tag 'jqgrid/i18n/grid.locale-ru.js'
+    = javascript_include_tag 'jqgrid/jquery.jqGrid.min.js'
+    = javascript_include_tag 'jqgrid/jquery.tablednd.js'
+    = javascript_include_tag 'jqgrid/jquery.contextmenu.js'
     = javascript_include_tag 'admin/jquery/ui.min.js'
     = javascript_include_tag 'admin/jquery/form.js'
   %body

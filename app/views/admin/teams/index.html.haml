@@ -3,6 +3,7 @@
 = jqgrid("Команды", "teams", "/admin/teams",
   [ { :field => "id", :label => "ID", :width => 35, :resizable => false },
     { :field => "name", :label => "Имя", :width => 250, :editable => true },
-    { :field => "url", :label => "url", :width => 250, :editable => true } ])
+    { :field => "url", :label => "url", :width => 250, :editable => true } ],
+  :rows_per_page => 20, :height => 440)
 
 = link_to 'Добавить Команду', new_admin_team_path

@@ -1,13 +1,41 @@
-- fields_for 'team', :builder => JQueryFormBuilder do |f|
-  = f.hidden_field :season_id, :value => team.season_id
-  - f.draw 'Выберите игроков', :submit => false do
-    - footballers = Footballer.find(:all, :order => "last_name ASC").collect{ |t| [t.full_name, t.id] }
-    - team.footballer_ids.each do |id|
-      = f.train_select :footballer_ids, footballers, {:selected => id, :include_blank => true}
-      - footballers.delete_if{ |(fn, fid)| fid == id }
-    = f.train_select :footballer_ids, footballers, {:selected => '', :include_blank => true}
+%fieldset{:class => 'ui-widget-content'}
+  %legend{:class => 'ui-widget-header ui-corner-all'} Выберите игроков
+  - Footballer.find(team.footballer_ids, :order => "last_name ASC").each do |footballer|
+    = render :partial => 'team_footballer', :object => footballer, :locals => {:season_id => team.season_id, :team_id => team.id}
+%div{:style => "width: 400px;"}
+  %input{:type => 'text', :id => 'footballer_autocomplete', :style => "width: 300px;"}
+  %input{:type => 'hidden', :id => 'new_footballer_id'}
+  %input{:type => 'button', :id => 'add_footballer_btn', :value => 'Добавить', :style => 'display: none; float: right'}
+  %div{:style => "clear: both"}
 
 :javascript
+  var available_footballers = #{Footballer.find(:all, :order => "last_name ASC").collect{ |t| {:value => [t.full_name, t.birth_date].join(', '), :id => t.id} }.to_json};
   $(function(){
     $('#footballers').form();
+    $('#footballer_autocomplete').autocomplete({
+      source: available_footballers,
+      minLength: 3,
+      select: function(event, ui) {
+        if(ui.item) {
+          $("#footballer_autocomplete").val(ui.item.value);
+          $("#new_footballer_id").val(ui.item.id);
+          $("#add_footballer_btn").show();
+        } else {
+          $("#footballer_autocomplete").val('');
+          $("#new_footballer_id").val('');
+          $("#add_footballer_btn").hide();
+        }
+        return false;
+      }
+    });
+    $('#add_footballer_btn').click(function() {
+      $.ajax({
+        type: 'POST',
+        url: '/admin/teams/#{team.id}/add_footballer',
+        data: {
+          season_id: #{team.season_id},
+          footballer_id: $("#new_footballer_id").val()
+        }
+      })
+    });
   });

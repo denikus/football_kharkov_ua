@@ -1,0 +1,7 @@
+- footballer = team_footballer
+- div_for footballer, :id => "footballer_#{footballer.id}", :class => "ui-widget-content ui-corner-all", :style => "margin-bottom: 3px; padding: 2px; width: 500px" do
+  %div
+    = [footballer.full_name, footballer.birth_date].join(', ')
+    %span{:style => "float: right"}
+      = link_to_remote 'Удалить', :url => del_footballer_admin_team_path(team_id), :confirm => 'Удалить?', :method => 'POST', :with => "'footballer_id=#{footballer.id}&season_id=#{season_id}'"
+

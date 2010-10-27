@@ -75,7 +75,7 @@ class JQueryFormBuilder < ActionView::Helpers::FormBuilder
     body = @template.capture(&block)
     form_id = @template.dom_id(@object) rescue 'fieldset'
     form_id = 'edit_' + form_id unless @object.nil? or @object.new_record?
-    options.merge!(@@default_options){ |k, o, n| o || n }
+    options.merge!(@@default_options){ |k, o, n| options.key?(k) ? o : n }
     @template.concat(@template.render(:partial => 'admin/shared/form.html.haml', :object => body, :locals => {:legend => legend, :id => form_id, :buttons => @buttons, :options => options}))
   end
 end

@@ -27,7 +27,7 @@ class Team < ActiveRecord::Base
   end
   
   def footballer_ids= ids
-    @footballer_ids = ids.delete_if{ |id| id.empty? }
+    @footballer_ids = ids.delete_if{ |id| id.is_a?(String) and id.empty? }
     set_footballer_ids if @season_id
   end
   

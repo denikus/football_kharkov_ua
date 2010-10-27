@@ -59,5 +59,10 @@ class Admin::LeaguesController < ApplicationController
   
   def destroy
   end
+  
+  def table
+    @records = League.find(params[:id]).table_set.first.get
+    render :layout => false
+  end
 
 end
