@@ -4,7 +4,6 @@ if (undefined == QuickMatchResults) {
 
 QuickMatchResults = {
   init: function() {
-    $("#next-result-day").hide();
     $("#prev-result-day").click(QuickMatchResults.load_results);
     $("#next-result-day").click(QuickMatchResults.load_results);
   },

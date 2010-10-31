@@ -4,9 +4,9 @@
     .header-bottom
       %table
         %tr
-          %td.control=link_to image_tag("/images/buttons/prev.png"), "#", {:id => "prev-result-day"}
+          %td.control=link_to image_tag("/images/buttons/prev.png"), "#", {:id => "prev-result-day", :style =>  @last_dates[1].nil? ? "display: none;" : "" }
           %td#quick-result-current-date= Russian::strftime(@last_dates[0].match_on.to_date, "%a, %d %B '%y")
-          %td.control= link_to image_tag("/images/buttons/next.png"), "#", {:id => "next-result-day"}
+          %td.control= link_to image_tag("/images/buttons/next.png"), "#", {:id => "next-result-day", :style => "display: none;"}
   .bd#quick-match-results-content
     =render :view => 'quick_results_content.haml', :locals => {:schedules => @schedules, :prev_date => prev_date, :current_date => current_date, :next_date => next_date}
 :javascript
