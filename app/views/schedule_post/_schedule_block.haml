@@ -10,7 +10,7 @@
     - value.each_with_index do |schedule_item, i|
       -row_class = i%2 == 0 ? "" : "odd"
       %tr{:class => row_class}
-        %td= schedule_item.venue.short_name
+        %td.venue= schedule_item.venue.short_name
         %td.time= schedule_item.match_at
         %td= "#{schedule_item.hosts.name} - #{schedule_item.guests.name}"
-        %td= "-"
+        %td.league= "-"

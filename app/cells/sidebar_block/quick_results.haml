@@ -1,30 +1,15 @@
 .sidebar-block
   .sidebar-block-header
     %h4= @opts[:title]
-  .bd
-    %ul.quick_match_results
-      - @schedules.each_with_index do |item, i|
-        - winner_class = "fancy-score-winner"
-        - loser_class = "fancy-score-loser"
-        - hosts_class = ""
-        - guests_class = ""
-        - unless item.quick_match_result.nil? 
-          - if item.quick_match_result.hosts_score > item.quick_match_result.guests_score
-            - hosts_class = winner_class
-            - guests_class = loser_class
-          - elsif item.quick_match_result.hosts_score < item.quick_match_result.guests_score
-            - hosts_class = loser_class
-            - guests_class = winner_class
-          - else
-            - hosts_class = "fancy-score-equal"
-            - guests_class = "fancy-score-equal"
-        -row_class = i%2 == 0 ? "" : "odd"
-        %li{:class => row_class}
-          .hosts= item.hosts.name
-          .score-container
-            .fancy-score{:class => hosts_class }= !item.quick_match_result.nil? ? item.quick_match_result.hosts_score : "-" 
-            .fancy-score.fancy-score-right{:class => guests_class }= !item.quick_match_result.nil? ? item.quick_match_result.guests_score : "-" 
-          .guests= item.guests.name
-          .clear
-
-
+    .header-bottom
+      %table
+        %tr
+          %td.control=link_to image_tag("/images/buttons/prev.png"), "#", {:id => "prev-result-day"}
+          %td#quick-result-current-date= Russian::strftime(@last_dates[0].match_on.to_date, "%a, %d %B '%y")
+          %td.control= link_to image_tag("/images/buttons/next.png"), "#", {:id => "next-result-day"}
+  .bd#quick-match-results-content
+    =render :view => 'quick_results_content.haml', :locals => {:schedules => @schedules, :prev_date => prev_date, :current_date => current_date, :next_date => next_date}
+:javascript
+  $(function() {
+    QuickMatchResults.init();
+  });

@@ -1,0 +1,2 @@
+module QuickMatchResultsHelper
+end

@@ -79,6 +79,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :profile, :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :destroy_photo => :delete, :make_crop => :post}
   map.resource :itleague_draw
   map.resources :footballers, :only => ["index", "show"]
+  map.resources :quick_match_results, :only => ["show"]
 
   map.with_options :conditions => {:subdomain => /.+/} do |tournament|
     tournament.tournament 'feed', :controller => "tournaments", :action => "feed" #, :conditions => {:subdomain => /.+/}

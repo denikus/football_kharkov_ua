@@ -562,6 +562,21 @@ input.fancy-submit:hover {
   }
 }
 
+
+div.header-bottom{
+  table {
+    width: 100%;
+    color: $block_header_color;
+    td {
+      font-size: 12px;
+      text-align: center;
+    }
+    td.control {
+      width: 20px;
+    }
+  }
+}
+
 /* EOF New block design */
 
 
@@ -1004,6 +1019,7 @@ table.schedule {
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom: 15px;
+  width: 100%;
   tr.odd {
     background-color:#FAFAFA;
   }
@@ -1014,7 +1030,16 @@ table.schedule {
   td {
     text-align: left;
   }
+  td.venue {
+    width: 150px;
+    text-align: center;
+  }
   td.time {
+    width: 50px;
+    text-align: center;
+  }
+  td.league {
+    width: 100px;
     text-align: center;
   }
   th {
