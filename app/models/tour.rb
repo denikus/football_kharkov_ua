@@ -53,7 +53,7 @@ class Tour < ActiveRecord::Base
       @processed = false
       if table
         table.process unless table.processed?
-        @records = table.records.clone
+        @records = table.clone_records
       else
         @records = {}
       end
@@ -76,6 +76,7 @@ class Tour < ActiveRecord::Base
     end
     
     def process
+      return if @processed
       @tour.matches.inject(self){ |res, m| res << m }
       @values = @records.values.sort
       @processed = true
@@ -83,6 +84,10 @@ class Tour < ActiveRecord::Base
     
     def processed?
       @processed
+    end
+    
+    def clone_records
+      Hash[*@records.map{ |k, r| [k, Record.new(r.team, r.results.clone, r.games_count, r.games.clone, r.goals.clone, r.score, r.fouls, r.position_change)] }.flatten]
     end
   end
 end

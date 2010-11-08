@@ -60,8 +60,8 @@ class Admin::LeaguesController < ApplicationController
   def destroy
   end
   
-  def table
-    @records = League.find(params[:id]).table_set.first.get
+  def table_set
+    @set = League.for_table.find(params[:id]).table_set
     render :layout => false
   end
 
