@@ -1,0 +1,2 @@
+- @set.each do |table|
+  %div{:style => "float: left"}= render :partial => 'table', :locals => {:records => table.get}
