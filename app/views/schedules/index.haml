@@ -1,0 +1,33 @@
+- content_for :head_declarations do
+  = javascript_include_tag "jquery-plugins/jquery.sudoSlider.min"
+.schedule-page-header
+  %h4 Расписание
+  = image_tag"/images/buttons/next.png", {:class => "next"} unless @next_date.nil?
+  = image_tag"/images/buttons/prev.png", {:class => "prev"} unless @prev_date.nil?
+.schedule-content-wrap
+  %ul.schedule-list
+    -#    -@schedules.each do |schedule_day|
+    -#      %li{:id => schedule_day[:match_day].to_date.strftime("%Y-%m-%d")}
+    -#        .schedule-header
+    -#          =Russian::strftime(schedule_day[:match_day].to_date, "%A, %d %B %Y")
+    -#        .schedule-content
+    -#          %table
+    -#            -schedule_day[:day_matches].each do |schedule_item|
+    -#              %tr
+    -#                %td= schedule_item.venue_id
+    -#                %td= schedule_item.match_at
+    -#                %td= "#{schedule_item.hosts.name} - #{schedule_item.guests.name}"
+    -#                %td= schedule_item.league_id
+
+:javascript
+  $(function() {
+    var ajaxData = ['/schedules/#{@dates[0].match_on.to_date.strftime("%Y-%m-%d")}', '/schedules/#{@dates[1].match_on.to_date.strftime("%Y-%m-%d")}', '/schedules/#{@dates[2].match_on.to_date.strftime("%Y-%m-%d")}']
+    $(".schedule-content-wrap").sudoSlider({
+      autoheight: true,
+      prevNext:true,
+      startSlide: 2,
+      ajax: ajaxData,
+      insertAfter: false
+    });
+
+  });

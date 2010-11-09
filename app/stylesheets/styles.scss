@@ -466,6 +466,10 @@ input.fancy-submit:hover {
 	  a#top-submenu-it-forecast {
 	    background-image: url("/images/icons/money-coin.png");
 	  }
+	  
+	  a#top-submenu-schedules {
+	    background-image: url("/images/icons/calendar-select.png");
+	  }
 
 	  a.tournament-main-title, a.tournament-main-title:hover, a.tournament-main-title:visited {
 	    float:left;
@@ -944,9 +948,12 @@ div.image-loading-container {
 
 /*Shop block*/
 #col-right .sidebar-block {
-  a.prev, a.next {
+  img.prev, img.next {
     float: right;
     margin-right: 3px;
+  }
+  img.prev:hover, img.next:hover {
+    cursor: pointer;
   }
   .sidebar-shop-content {
     border-top:1px solid $block_border_color;
@@ -955,11 +962,18 @@ div.image-loading-container {
 
     .sidebar-shop-content-wrap {
       margin: 0 auto;
-      ul {
+      position:relative;
+      overflow:hidden;
+      width: 251px;
+      height:200px;
+      ul.sidebar-shop-content-list {
+        width:20000em;
+      	position:absolute;
         li {
           border: none;
           height: 200px;
-          width: 100%;
+          width: 251px;
+          float:left;
           a {
             font-weight: normal;
           }
@@ -977,19 +991,6 @@ div.image-loading-container {
   li {
     padding:3px 0;
     div.score-container{float: left;width: 45px;margin:0 2px;}
-//    div.score{
-//      font-weight:bold;
-//      padding:1px;
-//      padding-top:0;
-//      color: #FFF;
-//      width: 18px;
-//      float:left;
-//      text-align:center;
-//      background-color: #7BB2E7;
-//    }
-//    div.score-right {margin-left: 2px;}
-//    div.winner_score {background-color: #6BA231;}
-//    div.loser_score {background-color: #DF0500;}
     div.hosts, div.guests {
       float:left;
       width: 109px;
@@ -1193,5 +1194,55 @@ table.bombardier-position {
   td.goals {
     width: 20px;
     text-align:center;
+  }
+}
+
+/**
+*
+*Schedules
+*
+*/
+.schedule-page-header {
+  img.prev, img.next {
+    float: right;
+    margin-right: 3px;
+  }
+  img.prev:hover, img.next:hover {
+    cursor: pointer;
+  }
+}
+
+div.schedule-content-wrap {
+  position:relative;
+  overflow:hidden;
+  width: 900px;
+  //height:600px;
+  background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border:1px solid $block_border_color;
+  ul.schedule-list {
+    list-style-type: none;
+    width: 900px;
+//    width:20000em;
+    position:relative;
+    li {
+      display: block;
+//      height: 600px;
+      width: 450px;
+      float:left;
+//      overflow: auto;
+//      border-right:1px solid $block_border_color;
+      div.schedule-header {
+        font-size: 100%;
+        color:$block_header_color;
+        text-align:center;
+        padding: 3px;
+        height: 30px;
+        border-bottom: 1px solid $block_border_color;
+      }
+      div.schedule-content {
+//        height: 570px;
+//        overflow: auto;
+      }
+    }    
   }
 }

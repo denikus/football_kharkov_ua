@@ -2,12 +2,14 @@
   .sidebar-block-header
     %h4
       = @opts[:title]
-      = link_to image_tag("/images/buttons/next.png"), "#", {:class => "next"}
-      = link_to image_tag("/images/buttons/prev.png"), "#", {:class => "prev"}
+      = image_tag"/images/buttons/next.png", {:class => "next"}
+      = image_tag"/images/buttons/prev.png", {:class => "prev"}
+      -#= "<a class=\"next\"><img src=\"/images/buttons/next.png\" /></a>"
+      -#= "<a class=\"prev\"><img src=\"/images/buttons/prev.png\" /></a>"
       .clear
   .sidebar-shop-content
     .sidebar-shop-content-wrap
-      %ul
+      %ul.sidebar-shop-content-list
         -#%li
         -#=render :partial => 'shop_item.haml', :locals => {:image => "http://shop.football.kharkov.ua/files/products/245_0.jpg", :url => "http://shop.football.kharkov.ua/products/Nike_Mercurial_Victory_IC", :name => "Nike Mercurial Victory IC", :price => "740.00 грн"}
         -#%li
@@ -36,4 +38,8 @@
           =render :partial => 'shop_item.haml', :locals => {:image => "http://shop.football.kharkov.ua/files/products/322_large.jpg", :url => "http://shop.football.kharkov.ua/products/Joma_%D0%A0%D1%8E%D0%BA%D0%B7%D0%B0%D0%BA_Diamond", :name => "Рюкзак Joma Diamond", :price => "272.00 грн"}
         %li
           =render :partial => 'shop_item.haml', :locals => {:image => "http://shop.football.kharkov.ua/files/products/329_large.jpg", :url => "http://shop.football.kharkov.ua/products/%D0%9C%D1%8F%D1%87_%D0%B4%D0%BB%D1%8F_%D1%84%D1%83%D1%82%D0%B1%D0%BE%D0%BB%D0%B0_Select_Sport_Numero_10", :name => "Select Numero 10", :price => "370.00 грн"}
-
+:javascript
+  $(function() {
+    // initialize scrollable
+    $(".sidebar-shop-content-wrap").scrollable({circular: true, speed:2000,  easing: "dance"}).autoscroll({interval: 7000});
+  });
