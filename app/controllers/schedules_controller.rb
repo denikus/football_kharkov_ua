@@ -16,13 +16,12 @@ class SchedulesController < ApplicationController
                                :per_page => 3,
                                :page => 1
                                )
-    #get prev and nex dates    
-#    @next_date = nil
-#    if @dates.length==3
-#      @prev_date = @dates.delete_at(0).match_on
-#    end
+    #get prev and nex dates
+    @next_date = nil
+    if @dates.length==3
+      @prev_date = @dates.delete_at(0).match_on
+    end
     #fetch schedules by days
-=begin
     @schedules = []
     i = 0
     @dates.each do |date_item|
@@ -34,7 +33,6 @@ class SchedulesController < ApplicationController
                                  )
       i += 1
     end
-=end
 
   end
 
@@ -52,6 +50,44 @@ class SchedulesController < ApplicationController
                                   :order => "match_at ASC"
                                  )
 
-    render :layout => false
+#    ap next_date = Schedule.find(:first, :conditions => ["match_on > ? AND season_id = ?  ", match_on, @season.id], :order => "match_on ASC")
+#    debugger
+
+    if 'prev'==params[:date_type]
+      @arrow_date = Schedule.find(:first,
+                    :select => "match_on",
+                    :conditions => ["match_on < ? AND season_id = ? ", match_on, @season.id],
+                    :group => "match_on",
+                    :order => "match_on DESC"
+                    )
+      @arrow_date ||= ''
+    end
+
+=begin
+
+#    unless (next_date = Schedule.find(:first, :conditions => ["match_on > ? AND season_id = ?  ", match_on, @season.id], :order => "match_on ASC")).nil?
+#      @dates = Schedule.paginate(
+#                               :select => "match_on",
+#                               :conditions => ["match_on <= ? AND season_id = ?", next_date.match_on, @season.id],
+#                               :group => "match_on",
+#                               :order => "match_on DESC",
+#                               :per_page => 3,
+#                               :page => 1
+#                               )
+#      @dates.reverse!
+#      ap @dates
+#    else
+#      @dates = []
+#      puts "---------------------------------------------"
+#      puts "no data"
+#      puts "---------------------------------------------"
+#    end
+
+=end
+    respond_to  do |format|
+      format.html {render :layout => false}
+      format.json {render :json => {:data => render_to_string(:template => "schedules/show", :layout => false), :arrow_date => @arrow_date}}
+    end
+
   end
 end

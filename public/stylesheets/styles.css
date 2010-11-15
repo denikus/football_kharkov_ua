@@ -1390,6 +1390,7 @@ div.schedule-content-wrap {
   position: relative;
   overflow: hidden;
   width: 900px;
+  height: 600px;
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
 }
@@ -1402,6 +1403,7 @@ div.schedule-content-wrap ul.schedule-list {
 /* line 1227, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap ul.schedule-list li {
   display: block;
+  height: 600px;
   width: 450px;
   float: left;
 }
@@ -1413,4 +1415,9 @@ div.schedule-content-wrap ul.schedule-list li div.schedule-header {
   padding: 3px;
   height: 30px;
   border-bottom: 1px solid #d9d9d9;
+}
+/* line 1242, ../../app/stylesheets/styles.scss */
+div.schedule-content-wrap ul.schedule-list li div.schedule-content {
+  height: 600px;
+  overflow: auto;
 }

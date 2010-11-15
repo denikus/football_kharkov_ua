@@ -1216,7 +1216,7 @@ div.schedule-content-wrap {
   position:relative;
   overflow:hidden;
   width: 900px;
-  //height:600px;
+  height:600px;
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border:1px solid $block_border_color;
   ul.schedule-list {
@@ -1226,7 +1226,7 @@ div.schedule-content-wrap {
     position:relative;
     li {
       display: block;
-//      height: 600px;
+      height: 600px;
       width: 450px;
       float:left;
 //      overflow: auto;
@@ -1240,8 +1240,8 @@ div.schedule-content-wrap {
         border-bottom: 1px solid $block_border_color;
       }
       div.schedule-content {
-//        height: 570px;
-//        overflow: auto;
+        height: 600px;
+        overflow: auto;
       }
     }    
   }
