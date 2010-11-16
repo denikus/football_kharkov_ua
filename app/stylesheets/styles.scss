@@ -1235,12 +1235,10 @@ div.schedule-content-wrap {
 //    width:20000em;
     position:relative;
     li {
-      display: block;
+      display: block; 
       height: 600px;
       width: 449px;
       float:left;
-
-//      overflow: auto;
       border-right:1px solid $block_border_color;
       div.schedule-header {
         font-size: 100%;
