@@ -1375,17 +1375,31 @@ table.bombardier-position td.goals {
 *Schedules
 *
 */
-/* line 1206, ../../app/stylesheets/styles.scss */
-.schedule-page-header img.prev, .schedule-page-header img.next {
-  float: right;
-  margin-right: 3px;
+/* line 1205, ../../app/stylesheets/styles.scss */
+.schedule-page-header {
+  text-align: center;
 }
-/* line 1210, ../../app/stylesheets/styles.scss */
-.schedule-page-header img.prev:hover, .schedule-page-header img.next:hover {
-  cursor: pointer;
+/* line 1207, ../../app/stylesheets/styles.scss */
+.schedule-page-header div.schedule-page-wrap {
+  width: 210px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+/* line 1213, ../../app/stylesheets/styles.scss */
+.schedule-page-header a.prev, .schedule-page-header a.next {
+  display: block;
+  margin-right: 3px;
+  margin-top: 5px;
+}
+/* line 1218, ../../app/stylesheets/styles.scss */
+.schedule-page-header h4 {
+  margin: 0 15px;
+  padding: 0;
+  float: left;
 }
 
-/* line 1215, ../../app/stylesheets/styles.scss */
+/* line 1225, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap {
   position: relative;
   overflow: hidden;
@@ -1394,20 +1408,21 @@ div.schedule-content-wrap {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
 }
-/* line 1222, ../../app/stylesheets/styles.scss */
+/* line 1232, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap ul.schedule-list {
   list-style-type: none;
   width: 900px;
   position: relative;
 }
-/* line 1227, ../../app/stylesheets/styles.scss */
+/* line 1237, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap ul.schedule-list li {
   display: block;
   height: 600px;
-  width: 450px;
+  width: 449px;
   float: left;
+  border-right: 1px solid #d9d9d9;
 }
-/* line 1234, ../../app/stylesheets/styles.scss */
+/* line 1245, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap ul.schedule-list li div.schedule-header {
   font-size: 100%;
   color: #be420e;
@@ -1416,8 +1431,48 @@ div.schedule-content-wrap ul.schedule-list li div.schedule-header {
   height: 30px;
   border-bottom: 1px solid #d9d9d9;
 }
-/* line 1242, ../../app/stylesheets/styles.scss */
+/* line 1253, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap ul.schedule-list li div.schedule-content {
   height: 600px;
   overflow: auto;
+}
+
+/* line 1262, ../../app/stylesheets/styles.scss */
+div.schedule-content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+/* line 1265, ../../app/stylesheets/styles.scss */
+div.schedule-content table tr.odd {
+  background-color: #FAFAFA;
+}
+/* line 1268, ../../app/stylesheets/styles.scss */
+div.schedule-content table td {
+  border: 1px solid #d9d9d9;
+  padding: 5px;
+  text-align: left;
+}
+/* line 1273, ../../app/stylesheets/styles.scss */
+div.schedule-content table td.score-container {
+  width: 45px;
+  margin: 0 2px;
+}
+/* line 1274, ../../app/stylesheets/styles.scss */
+div.schedule-content table td.hosts, div.schedule-content table td.guests {
+  width: 145px;
+}
+/* line 1275, ../../app/stylesheets/styles.scss */
+div.schedule-content table td.venue {
+  width: 30px;
+  text-align: center;
+}
+/* line 1279, ../../app/stylesheets/styles.scss */
+div.schedule-content table td.time {
+  width: 40px;
+  text-align: center;
+}
+/* line 1283, ../../app/stylesheets/styles.scss */
+div.schedule-content table td.league {
+  width: 100px;
+  text-align: center;
 }

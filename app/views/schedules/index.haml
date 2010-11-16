@@ -1,23 +1,15 @@
 - content_for :head_declarations do
   = javascript_include_tag "application/schedule/schedule"
 .schedule-page-header
-  %h4 Расписание
-  = image_tag"/images/buttons/next.png", {:class => "next"}
-  = image_tag"/images/buttons/prev.png", {:class => "prev"}
+  .schedule-page-wrap
+    = link_to image_tag("/images/buttons/prev.png"), "#", {:class => "prev", :style => "float:left;"}
+    %h4{:style => "float:left;display:block;"} Расписание
+    = link_to image_tag("/images/buttons/next.png"), "#", {:class => "next", :style => "float:left;"}
+    .clear
 .schedule-content-wrap
   %ul.schedule-list
     -@schedules.each do |schedule_day|
-      %li{:id => schedule_day[:match_day].to_date.strftime("%Y-%m-%d")}
-        .schedule-header
-          =Russian::strftime(schedule_day[:match_day].to_date, "%A, %d %B %Y")
-        .schedule-content
-          %table
-            -schedule_day[:day_matches].each do |schedule_item|
-              %tr
-                %td= schedule_item.venue_id
-                %td= schedule_item.match_at
-                %td= "#{schedule_item.hosts.name} - #{schedule_item.guests.name}"
-                %td= schedule_item.league_id
+      = render :partial => "/schedules/day", :layout => false, :locals => {:schedule_day => schedule_day}
 
 :javascript
   $(function() {

@@ -1203,12 +1203,22 @@ table.bombardier-position {
 *
 */
 .schedule-page-header {
-  img.prev, img.next {
-    float: right;
-    margin-right: 3px;
+  text-align:center;
+  div.schedule-page-wrap {
+    width: 210px;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-bottom: 5px;
   }
-  img.prev:hover, img.next:hover {
-    cursor: pointer;
+  a.prev, a.next {
+    display: block;
+    margin-right: 3px;
+    margin-top: 5px;
+  }
+  h4 {
+    margin: 0 15px;
+    padding:0;
+    float: left;
   }
 }
 
@@ -1227,10 +1237,11 @@ div.schedule-content-wrap {
     li {
       display: block;
       height: 600px;
-      width: 450px;
+      width: 449px;
       float:left;
+
 //      overflow: auto;
-//      border-right:1px solid $block_border_color;
+      border-right:1px solid $block_border_color;
       div.schedule-header {
         font-size: 100%;
         color:$block_header_color;
@@ -1244,5 +1255,34 @@ div.schedule-content-wrap {
         overflow: auto;
       }
     }    
+  }
+}
+
+div.schedule-content {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    tr.odd {
+      background-color:#FAFAFA;
+    }
+    td{
+      border: 1px solid $block_border_color;
+      padding: 5px;
+      text-align: left;
+    }
+    td.score-container{width: 45px;margin:0 2px;}
+    td.hosts, td.guests{width: 145px;}
+    td.venue {
+      width: 30px;
+      text-align: center;
+    }
+    td.time {
+      width: 40px;
+      text-align: center;
+    }
+    td.league {
+      width: 100px;
+      text-align: center;
+    }
   }
 }

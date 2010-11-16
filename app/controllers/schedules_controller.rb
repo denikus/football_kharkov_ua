@@ -12,10 +12,11 @@ class SchedulesController < ApplicationController
                                :select => "match_on",
                                :conditions => ["season_id = ? ", @season.id],
                                :group => "match_on",
-                               :order => "match_on ASC",
+                               :order => "match_on DESC",
                                :per_page => 3,
                                :page => 1
                                )
+    @dates.reverse!
     #get prev and nex dates
     @next_date = nil
     if @dates.length==3
@@ -60,8 +61,16 @@ class SchedulesController < ApplicationController
                     :group => "match_on",
                     :order => "match_on DESC"
                     )
-      @arrow_date ||= ''
+    elsif 'next'==params[:date_type]
+      @arrow_date = Schedule.find(:first,
+                    :select => "match_on",
+                    :conditions => ["match_on > ? AND season_id = ? ", match_on, @season.id],
+                    :group => "match_on",
+                    :order => "match_on ASC"
+                    )
+
     end
+    @arrow_date ||= ''
 
 =begin
 
@@ -86,7 +95,7 @@ class SchedulesController < ApplicationController
 =end
     respond_to  do |format|
       format.html {render :layout => false}
-      format.json {render :json => {:data => render_to_string(:template => "schedules/show", :layout => false), :arrow_date => @arrow_date}}
+      format.json {render :json => {:data => render_to_string(:partial => "schedules/day", :layout => false, :locals => {:schedule_day => @schedule_day}), :arrow_date => @arrow_date[:match_on].to_s}}
     end
 
   end

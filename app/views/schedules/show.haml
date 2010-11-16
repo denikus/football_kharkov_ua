@@ -1,12 +1,13 @@
-.schedule-header
-  =Russian::strftime(@schedule_day[:match_day].to_date, "%A, %d %B %Y")
-.schedule-content
-  %table
-    -@schedule_day[:day_matches].each do |schedule_item|
-      %tr
-        %td= schedule_item.venue_id
-        %td= schedule_item.match_at
-        %td= "#{schedule_item.hosts.name} - #{schedule_item.guests.name}"
-        %td= schedule_item.league_id
+%li{:id => @schedule_day[:match_day].to_date.strftime("%Y-%m-%d")}
+  .schedule-header
+    =Russian::strftime(@schedule_day[:match_day].to_date, "%A, %d %B %Y")
+  .schedule-content
+    %table
+      -@schedule_day[:day_matches].each do |schedule_item|
+        %tr
+          %td= schedule_item.venue_id
+          %td= schedule_item.match_at
+          %td= "#{schedule_item.hosts.name} - #{schedule_item.guests.name}"
+          %td= schedule_item.league_id
 -#:javascript
 -#  Schedule.slider.itemsUrls = ['/schedules/#{@dates[0].match_on.to_date.strftime("%Y-%m-%d")}', '/schedules/#{@dates[1].match_on.to_date.strftime("%Y-%m-%d")}', '/schedules/#{@dates[2].match_on.to_date.strftime("%Y-%m-%d")}'];
