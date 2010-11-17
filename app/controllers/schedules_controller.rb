@@ -24,13 +24,9 @@ class SchedulesController < ApplicationController
                                :limit => 1
                                )
     @prev_date = prev_date.nil? ? nil : prev_date.match_on
-
     @next_date = nil
-    if @dates.length==4
-      @prev_date = @dates.delete_at(0).match_on
+    if @dates.length==3
       @next_date = @dates.delete_at(2).match_on
-    elsif @dates.length==3
-      @prev_date = @dates.delete_at(0).match_on
     end
 
     if @dates.empty?
