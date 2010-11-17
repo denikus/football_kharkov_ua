@@ -23,8 +23,6 @@ class SchedulesController < ApplicationController
                                :order => "match_on DESC",
                                :limit => 1
                                )
-    @dates.reverse!
-    
     @prev_date = prev_date.nil? ? nil : prev_date.match_on
 
     @next_date = nil
