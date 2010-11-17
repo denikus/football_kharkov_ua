@@ -12,10 +12,29 @@ class SchedulesController < ApplicationController
                                :select => "match_on",
                                :conditions => ["match_on >= ? AND season_id = ? ", Time.now.to_date, @season.id],
                                :group => "match_on",
-                               :order => "match_on DESC",
+                               :order => "match_on ASC",
                                :per_page => 3,
                                :page => 1
                                )
+    prev_date = Schedule.find(:first,
+                               :select => "match_on",
+                               :conditions => ["match_on < ? AND season_id = ? ", Time.now.to_date, @season.id],
+                               :group => "match_on",
+                               :order => "match_on DESC",
+                               :limit => 1
+                               )
+    @dates.reverse!
+    
+    @prev_date = prev_date.nil? ? nil : prev_date.match_on
+
+    @next_date = nil
+    if @dates.length==4
+      @prev_date = @dates.delete_at(0).match_on
+      @next_date = @dates.delete_at(2).match_on
+    elsif @dates.length==3
+      @prev_date = @dates.delete_at(0).match_on
+    end
+
     if @dates.empty?
       @dates = Schedule.paginate(
                                :select => "match_on",
@@ -25,13 +44,17 @@ class SchedulesController < ApplicationController
                                :per_page => 3,
                                :page => 1
                                )
+      @dates.reverse!
+      
+      if @dates.length==3
+        @prev_date = @dates.delete_at(0).match_on
+      end
     end
-    @dates.reverse!
+
+
     #get prev and nex dates
-    @next_date = nil
-    if @dates.length==3
-      @prev_date = @dates.delete_at(0).match_on
-    end
+
+
     #fetch schedules by days
     @schedules = []
     i = 0
