@@ -1205,7 +1205,7 @@ table.bombardier-position {
 .schedule-page-header {
   text-align:center;
   div.schedule-page-wrap {
-    width: 210px;
+    width: 250px;
     margin: 0 auto;
     margin-top: 10px;
     padding-bottom: 5px;
@@ -1213,12 +1213,13 @@ table.bombardier-position {
   a.prev, a.next {
     display: block;
     margin-right: 3px;
-    margin-top: 5px;
+    margin-top: 12px;
   }
-  h4 {
+  h2 {
     margin: 0 15px;
     padding:0;
     float: left;
+    border-bottom:none;
   }
 }
 

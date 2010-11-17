@@ -10,12 +10,22 @@ class SchedulesController < ApplicationController
     #get two latest dates from schedules
     @dates = Schedule.paginate(
                                :select => "match_on",
+                               :conditions => ["match_on >= ? AND season_id = ? ", Time.now.to_date, @season.id],
+                               :group => "match_on",
+                               :order => "match_on DESC",
+                               :per_page => 3,
+                               :page => 1
+                               )
+    if @dates.empty?
+      @dates = Schedule.paginate(
+                               :select => "match_on",
                                :conditions => ["season_id = ? ", @season.id],
                                :group => "match_on",
                                :order => "match_on DESC",
                                :per_page => 3,
                                :page => 1
                                )
+    end
     @dates.reverse!
     #get prev and nex dates
     @next_date = nil
@@ -30,6 +40,7 @@ class SchedulesController < ApplicationController
       @schedules[i][:match_day] = date_item[:match_on]
       @schedules[i][:day_matches] = Schedule.find(:all,
                                   :conditions => ["match_on = ? AND season_id = ?  ", date_item[:match_on], @season.id],
+                                  :include => [:quick_match_result, :hosts, :guests, :venue],
                                   :order => "match_at ASC"
                                  )
       i += 1
