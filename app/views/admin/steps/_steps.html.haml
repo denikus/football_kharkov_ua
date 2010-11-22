@@ -1,0 +1,5 @@
+%ul
+  - steps.each do |s|
+    %li= render :partial => 'step', :object => s
+  %li
+    %button{:class => 'edit_step_handler', :onclick => update_page{ |p| p.call 'admin.steps.create', :type => type }} Новый..

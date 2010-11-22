@@ -1,0 +1,3 @@
+- div_for step do
+  = link_to_function(step.name, :id => "step_#{step.id}"){ |p| p.call 'admin.steps.select', step.id }
+  %button{:class => 'edit_step_handler', :onclick => update_page{ |p| p.call 'admin.steps.edit', step.id, :title => step.name }} Редактировать

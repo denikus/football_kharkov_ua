@@ -1,0 +1,3 @@
+class StepTour < Step
+  
+end

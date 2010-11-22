@@ -1,0 +1,3 @@
+class StepLeague < Step
+  
+end

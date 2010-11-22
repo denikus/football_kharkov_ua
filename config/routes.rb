@@ -48,7 +48,9 @@ ActionController::Routing::Routes.draw do |map|
       t.resources :teams, :collection => {:team_2_season => :get}
       t.resources :schedules
       t.resources :quick_match_results, :collection => {:update_all => :put}
+      t.resources :steps
     end
+    admin.resources :steps
     admin.resources :schedules
     admin.resources :quick_match_results, :collection => {:update_all => :put}
     admin.resources :seasons, :has_many => [:teams] do |s|

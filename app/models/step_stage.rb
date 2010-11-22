@@ -1,0 +1,3 @@
+class StepStage < Step
+  
+end

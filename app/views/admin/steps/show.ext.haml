@@ -1,0 +1,10 @@
+- phase_name = case @parent
+  - when Tournament: 'Сезон'
+  - when StepSeason: 'Этап'
+  - when StepStage: 'Лигу'
+  - when StepLeague: 'Тур'
+  - when StepTour: 'Матч'
+- @elements = @steps.map do |s|
+  - {:text => s.full_name, :cls => 'folder', :id => "nav-tournament-#{s.id}", :step_id => s.id, :step_identifier => s.identifier, :step_name => s.name, :step_url => s.url, :type => s.type}
+- @elements.push(:text => 'Добавить ' + phase_name, :cls => 'add', :id => "nav-tournament-add-to-#{params[:id] || 'root'}", :leaf => true, :draggable => false, :step_type => @parent.phase_class_name || 'Match', :step_parent_id => params[:id] || 'root')
+= @elements.to_json

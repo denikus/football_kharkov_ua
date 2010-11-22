@@ -1,0 +1,53 @@
+#main-content-header.header #{@tournament.name}: Игровые этапы
+.content
+  %ul#tournament_bar.toolbar
+    %li.first Сезоны:
+  #steps_content
+    = render :partial => 'steps', :object => @tournament.step_seasons, :locals => {:type => 'StepSeason'}
+  
+  #steps_form_holder{:style => 'display: none;'}
+    #step_form{:title => "Игровой этап:"}
+      %form
+        %fieldset
+          %input{:type => "hidden", :name => "authenticity_token", :value => form_authenticity_token}
+          %input{:type => "hidden", :name => "step[tournament_id]", :value => @tournament.id}
+          %input{:type => "hidden", :name => "step[type]", :value => ""}
+          %input{:type => "hidden", :name => "step[parent_id]", :value => ""}
+          %label{:for => "identifier"} Номер
+          %input{:type => "text", :name => "step[identifier]", :id => "identifier", :class => "text ui-widget-content ui-corner-all"}
+          %label{:for => "name"} Имя
+          %input{:type => "text", :name => "step[name]", :id => "name", :class => "text ui-widget-content ui-corner-all"}
+          %label{:for => "url"} url
+          %input{:type => "text", :name => "step[url]", :id => "url", :class => "text ui-widget-content ui-corner-all"}
+  :javascript
+    $(function() {
+      $('.edit_step_handler').button();
+      $('#step_form').dialog({
+        autoOpen: false,
+        height: 250,
+        width: 250,
+        modal: true,
+        buttons: {
+          "Сохранить": function() {
+            var id = parseInt($(this).attr('step_id'));
+            var self = this;
+            $.ajax({
+              url: '/admin/steps/' + (id ? id : ''),
+              type: id ? 'PUT' : 'POST',
+              data: $('form', $(this)).serialize(),
+              dataType: 'script',
+              success: function() {
+                $(self).dialog("close");
+              }
+            });
+          },
+          "Отмена": function() {
+            $(this).dialog("close");
+          }
+        }
+      });
+      var steps = #{Step.tree(@tournament.id).to_json};
+      for(var id in steps) {
+        admin.steps[id] = steps[id];
+      }
+    });

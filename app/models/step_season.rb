@@ -1,0 +1,3 @@
+class StepSeason < Step
+  
+end
