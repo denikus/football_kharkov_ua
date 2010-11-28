@@ -1,21 +1,25 @@
 class Step < ActiveRecord::Base
   ORDER = ['StepSeason', 'StepStage', 'StepLeague', 'StepTour']
   
-  has_and_belongs_to_many :phases,
-    :class_name => 'Step',
-    :join_table => 'steps_phases',
-    :foreign_key => 'step_id',
-    :association_foreign_key => 'phase_id'
+  belongs_to :tournament
   
-  has_and_belongs_to_many :parent_phases,
-    :class_name => 'Step',
-    :join_table => 'steps_phases',
-    :foreign_key => 'phase_id',
-    :association_foreign_key => 'step_id'
+  has_and_belongs_to_many :teams
   
-  def phase_class_name
-    ORDER[ORDER.index(self[:type]) + 1]
-  end
+  #has_and_belongs_to_many :phases,
+  #  :class_name => 'Step',
+  #  :join_table => 'steps_phases',
+  #  :foreign_key => 'step_id',
+  #  :association_foreign_key => 'phase_id'
+  
+  #has_and_belongs_to_many :parent_phases,
+  #  :class_name => 'Step',
+  #  :join_table => 'steps_phases',
+  #  :foreign_key => 'phase_id',
+  #  :association_foreign_key => 'step_id'
+  
+  #def phase_class_name
+  #  ORDER[ORDER.index(self[:type]) + 1]
+  #end
   
   def full_name
     case self
@@ -43,5 +47,21 @@ class Step < ActiveRecord::Base
   
   def to_hash
     attributes.delete_if{ |k, v| %w{created_at updated_at parent_id}.include? k }.merge :kind => self[:type][/Step(\w+)$/, 1].downcase
+  end
+  
+  def self.has_steps *stps
+    Array(stps).each do |stp|
+      has_and_belongs_to_many stp,
+        :class_name => 'Step' + stp.to_s.singularize.camelize,
+        :join_table => 'steps_phases',
+        :foreign_key => 'step_id',
+        :association_foreign_key => 'phase_id'
+    end
+  end
+  
+  def self.belongs_to_step step
+    define_method step do
+      first(:joins => 'steps_phases ON steps_phases.step_id = steps.id', :conditions => ['steps.type = ? AND steps_phases.phase_id = ?', step.to_s.camelize + 'Step', id])
+    end
   end
 end

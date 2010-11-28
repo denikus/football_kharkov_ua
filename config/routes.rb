@@ -50,7 +50,7 @@ ActionController::Routing::Routes.draw do |map|
       t.resources :quick_match_results, :collection => {:update_all => :put}
       t.resources :steps
     end
-    admin.resources :steps
+    admin.resources :steps, :member => {:teams => :get, :update_teams => :post}
     admin.resources :schedules
     admin.resources :quick_match_results, :collection => {:update_all => :put}
     admin.resources :seasons, :has_many => [:teams] do |s|
