@@ -37,6 +37,10 @@ Ext.ux.menu.PersonnelMenu.handler = function(type) {
   return function() {
     app.removeAll();
     app.master.items.add(new Ext.ux.personnel.Panel(type));
+    if(type == 'teams') {
+      app.nav.items.add(new Ext.ux.nav.TeamFootballers());
+      app.nav.doLayout();
+    }
     app.master.doLayout();
   }
 }

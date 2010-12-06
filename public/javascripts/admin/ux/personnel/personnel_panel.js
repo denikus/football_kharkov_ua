@@ -21,7 +21,7 @@ Ext.extend(Ext.ux.personnel.Grid, Ext.grid.GridPanel, {
   bindTo: function(form) {
     this.getSelectionModel().on('rowselect', function(sm, index, record) {
       form.getForm().loadRecord(record);
-      form.setId(record.id);
+      form.setId(record.data.id);
     });
   }
 });
@@ -61,7 +61,7 @@ Ext.ux.personnel.Grid.columns = {
 Ext.ux.personnel.Grid.createStore.fields = {
   footballers: ['name', 'first_name', 'last_name', 'patronymic', 'url', {name: 'birth_date', type: 'date'}, {name: 'id', type: 'int'}],
   referees: ['name', 'first_name', 'last_name', 'patronymic', {name: 'birth_date', type: 'date'}, {name: 'id', type: 'int'}],
-  teams: ['name', 'url']
+  teams: ['name', 'url', {name: 'id', type: 'int'}]
 }
 
 Ext.ux.personnel.Panel = function Panel(type) {
@@ -129,6 +129,13 @@ Ext.extend(Ext.ux.personnel.Panel, Ext.FormPanel, {
     this.personnel_id = id;
     Ext.getCmp('personnel-form-delete-btn')[this.personnel_id ? 'enable' : 'disable']();
     Ext.getCmp('personnel-form-cancel-btn')[this.personnel_id ? 'enable' : 'disable']();
+    var nav = Ext.getCmp('nav-team-footballers');
+    if(nav) {
+      nav[this.personnel_id ? 'enable' : 'disable']();
+      nav.collapseAll();
+      nav.getSelectionModel().clearSelections()
+      app.details.removeAll();
+    }
     if(!this.personnel_id) {
       this.getForm().reset();
     }
