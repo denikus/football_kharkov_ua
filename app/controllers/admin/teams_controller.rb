@@ -58,44 +58,36 @@ class Admin::TeamsController < ApplicationController
       respond_to do |format|
         format.html
         format.json do
-          render :json => teams.to_jqgrid_json([:id, :name, :url], params[:page], params[:rows], teams.total_entries)
+          teams = Team.all
+          render :json => {
+            'personnel' => teams.map{ |t| {'name' => t.name, 'url' => t.url} },
+            'count' => teams.length
+          }
         end
       end
     end
-  end
-
-  def grid_edit
-    params[:format] = 'json'
-    destroy if params[:oper].to_sym == :del
-  end
-  
-  def new
-  end
-  
-  def edit
-    @team = Team.find(params[:id])
   end
   
   def update
     @team = Team.find(params[:id])
     
     respond_to do |format|
-      if @team.update_attributes(params[:team])
-        format.html { redirect_to(admin_teams_path) }
+      if @team.update_attributes(params[:teams])
+        format.json { render :json => {:success => true} }
       else
-        format.html { redirect_to(admin_teams_path) }
+        format.json{ render :json => {:success => false} }
       end
     end
   end
 
   def create
-    @team = Team.new(params[:team])
+    @team = Team.new(params[:teams])
     
     respond_to do |format|
       if @team.save
-        format.html { redirect_to(admin_teams_path) }
+        format.json { render :json => {:success => true} }
       else
-        format.html { render :action => "new" }
+        format.json { render :json => {:success => false} }
       end
     end
   end
@@ -105,7 +97,7 @@ class Admin::TeamsController < ApplicationController
     @team.destroy
     
     respond_to do |format|
-      format.html{ redirect_to admin_teams_path }
+      format.json { render :json => {:success => true} }
     end
   end
 

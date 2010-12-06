@@ -6,11 +6,13 @@ class Footballer < ActiveRecord::Base
        :conditions => ["footballers_teams.season_id = ? AND footballers_teams.team_id = ?", options[:season_id], options[:team_id]],
        :order => "footballers.last_name ASC"}
   }
-
+  
   def full_name
     [last_name, first_name, patronymic].join(" ")
   end
-
+  
+  alias_method :name, :full_name
+  
   def get_teams_seasons
     Tournament.find(:all,
                     :select => "tournaments.name AS tournament_name, seasons.name AS season_name, teams.name AS team_name, teams.url AS team_address",

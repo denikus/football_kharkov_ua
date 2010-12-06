@@ -4,29 +4,20 @@ class Admin::RefereesController < ApplicationController
   admin_section :personnel
   
   def index
-    referees = Referee.find(:all) do
-      paginate :page => params[:page], :per_page => params[:rows]
-    end
     respond_to do |format|
       format.html
       format.json do
-        render :json => referees.to_jqgrid_json([:id, :first_name, :last_name, :patronymic, :birth_date], params[:page], params[:rows], referees.total_entries)
+        referees = Referee.all
+        render :json => {
+          'personnel' => referees.map{ |f| Hash[*%w{id first_name last_name patronymic birth_date name}.tap{ |a| a.replace a.zip(a.map{ |m| f.send(m) }).flatten }] },
+          'count' => referees.length
+        }
       end
     end
   end
   
-  def grid_edit
-    params[:format] = 'json'
-    params[:referee] = [:first_name, :last_name, :patronymic, :birth_date].inject({}){ |p, k| p[k] = params.delete(k); p }
-    case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
-    end
-  end
-
   def create
-    @referee = Referee.new(params[:referee])
+    @referee = Referee.new(params[:referees])
     respond_to do |format|
       if @referee.save
         format.json { render :json => {:success => true} }
@@ -40,7 +31,7 @@ class Admin::RefereesController < ApplicationController
     @referee = Referee.find params[:id]
     
     respond_to do |format|
-      if @referee.update_attributes(params[:referee])
+      if @referee.update_attributes(params[:referees])
         format.html { redirect_to([:admin, @referee]) }
         format.json  { render :json => {:success => true} }
       else
