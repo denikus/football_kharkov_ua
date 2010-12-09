@@ -51,10 +51,4 @@ class Admin::StepsController < ApplicationController
     Step.find(params[:id]).team_ids = params[:team_ids].split(',').map(&:to_i)
     render ext_success
   end
-  
-  private
-  
-  def ext_success
-    {:json => {:success => true}}
-  end
 end

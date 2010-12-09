@@ -1,8 +1,6 @@
 class Admin::FootballersController < ApplicationController
   layout 'admin/main'
   
-  admin_section :personnel
-  
   def index
     if params[:team_id]
       team = Team.find(params[:team_id])
@@ -11,37 +9,21 @@ class Admin::FootballersController < ApplicationController
         page[:footballers].replace_html :partial => 'team_footballers', :locals => {:team => team}
       end
     else
-      order_by  = (params[:sidx].nil? || params[:sidx].empty?) ? "id" : params[:sidx]
-      order_dir = (params[:sord].nil? || params[:sord].empty?) ? "ASC" : params[:sord]
-      conditions = nil
-      if params[:_search] && !params[:last_name].nil? && !params[:last_name].empty? 
-        conditions = "last_name LIKE \"#{params[:last_name]}%\""
-      end
-
-      footballers = Footballer.find(:all, :conditions => conditions, :order => "#{order_by} #{order_dir}") do
-        paginate :page => params[:page], :per_page => params[:rows]
-      end
       respond_to do |format|
         format.html
         format.json do
-          render :json => footballers.to_jqgrid_json([:id, :first_name, :last_name, :patronymic, :birth_date], params[:page], params[:rows], footballers.total_entries)
+          footballers = Footballer.all
+          render :json => {
+            'personnel' => footballers.map{ |f| Hash[*%w{id first_name last_name patronymic birth_date url name}.tap{ |a| a.replace a.zip(a.map{ |m| f.send(m) }).flatten }] },
+            'count' => footballers.length
+          }
         end
       end
     end
   end
   
-  def grid_edit
-    params[:format] = 'json'
-    params[:footballer] = [:first_name, :last_name, :patronymic, :birth_date].inject({}){ |p, k| p[k] = params.delete(k); p }
-    case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
-    end
-  end
-
   def create
-    @footballer = Footballer.new(params[:footballer])
+    @footballer = Footballer.new(params[:footballers])
     respond_to do |format|
       if @footballer.save
         format.json { render :json => {:success => true} }
@@ -55,11 +37,9 @@ class Admin::FootballersController < ApplicationController
     @footballer = Footballer.find params[:id]
     
     respond_to do |format|
-      if @footballer.update_attributes(params[:footballer])
-        format.html { redirect_to([:admin, @footballer]) }
+      if @footballer.update_attributes(params[:footballers])
         format.json  { render :json => {:success => true} }
       else
-        format.html { redirect_to([:admin, @footballer]) }
         format.json { render  :json => @footballer.to_ext_json(:success => false) }
       end
     end
@@ -70,7 +50,6 @@ class Admin::FootballersController < ApplicationController
     @footballer.destroy
     
     respond_to do |format|
-      format.html{ redirect_to admin_footballers_path }
       format.json{ render :json => {:success => true} }
     end
   end

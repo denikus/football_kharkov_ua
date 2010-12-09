@@ -1,38 +1,33 @@
 class Team < ActiveRecord::Base
-  attr_accessor :season_id
-  
-  has_many :footballers_teams, :include => :footballer do
-    def footballers
-      load_target unless loaded?
-      target.collect(&:footballer)
-    end
-  end
-  has_many :footballers, :through => :footballers_teams
+  #has_many :footballers_teams, :include => :footballer
+  #has_many :footballers, :through => :footballers_teams
   #has_and_belongs_to_many :footballers
-  has_and_belongs_to_many :leagues
-  has_and_belongs_to_many :seasons
+  #has_and_belongs_to_many :leagues
+  #has_and_belongs_to_many :seasons
   has_many :competitors, :dependent => :destroy
+  
+  has_many :footballers_teams
+  
+  def footballer_ids
+    @footballers_proxy ||= FootballersProxy.new self
+  end
 
   def before_save
     self.url = self.name.gsub(/[^a-zA-Zа-яА-Я0-9\-]/, '-')
-  end  
-
-  def season_id= id
-    @season_id = id
-    set_footballer_ids if @footballer_ids
   end
   
-  def footballer_ids
-    footballers_teams.season(@season_id).footballers.collect(&:id)
-  end
-  
-  def footballer_ids= ids
-    @footballer_ids = ids.delete_if{ |id| id.is_a?(String) and id.empty? }
-    set_footballer_ids if @season_id
-  end
-  
-  def set_footballer_ids
-    connection.execute("DELETE FROM footballers_teams WHERE season_id = #{@season_id} AND team_id = #{id}")
-    @footballer_ids.each{ |id| footballers_teams.create(:footballer_id => id, :season_id => @season_id) }
+  class FootballersProxy < ActiveSupport::BasicObject
+    def initialize team
+      @team = team
+    end
+    
+    def [] step_id
+      Footballer.by_team_step(:team_id => @team.id, :step_id => step_id).map(&:id)
+    end
+    
+    def []= step_id, ids
+      FootballersTeam.delete_all(:step_id => step_id)
+      FootballersTeam.create ids.collect{ |id| {:step_id => step_id, :team_id => @team.id, :footballer_id => id} }
+    end
   end
 end

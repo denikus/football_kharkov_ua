@@ -22,4 +22,9 @@ class ApplicationController < ActionController::Base
   #    redirect_to :controller => :post, :action => :index
   #  end
   #end
+  protected
+  
+  def ext_success
+    {:json => {:success => true}}
+  end
 end

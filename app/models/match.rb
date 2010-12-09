@@ -1,5 +1,10 @@
 class Match < ActiveRecord::Base
-  #belongs_to :tour
+
+  #TODO THIS BLOCK!!!!  
+  belongs_to :step_tour, :foreign_key => 'tour_id'
+  belongs_to :tour
+
+
   belongs_to :referee
   belongs_to :schedule
   

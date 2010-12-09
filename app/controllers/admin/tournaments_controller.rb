@@ -4,33 +4,26 @@ class Admin::TournamentsController < ApplicationController
   include Secured
   
   layout 'admin/main'
-  admin_section :tournaments
   
   before_filter :authenticate_admin!
   before_filter permit :admin
   
   def index
-    tournaments = Tournament.find(:all) do
-      paginate :page => params[:page], :per_page => params[:rows]
-    end
     respond_to do |format|
       format.html
       format.json do
-        render :json => tournaments.to_jqgrid_json([:id, :name, :url], params[:page], params[:rows], tournaments.total_entries)
+        tournaments = Tournament.all(:include => :step_seasons)
+        data = tournaments.collect do |t|
+          { :text => t.name,
+            :cls => 'folder',
+            :children => t.step_seasons.collect{ |s| {:text => s.full_name, :leaf => true, :step_id => s.id} }
+          }
+        end
+        render :json => data
       end
     end
   end
   
-  def grid_edit
-    params[:format] = 'json'
-    params[:tournament] = [:name, :url].inject({}){ |p, k| p[k] = params.delete(k); p }
-    case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
-    end
-  end
-
   def create
     @tournament = Tournament.new(params[:tournament])
 
@@ -49,12 +42,6 @@ class Admin::TournamentsController < ApplicationController
       end
     end
   end
-  
-  #def seasons
-  #  seasons = Tournament.from_param(params[:id]).seasons
-  #  result = {:total_count => seasons.length, :rows => seasons.collect{ |s| {:id => item[:id], :name => item[:name], :url => item[:url]} }}
-  #  render :json => result.to_json
-  #end
   
   secure :create
 end
