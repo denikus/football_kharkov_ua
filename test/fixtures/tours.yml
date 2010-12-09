@@ -1,9 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
+first_tour:
+  id: 1
   stage_id: 1
-  name: MyString
-
-two:
-  stage_id: 1
-  name: MyString
+  name: first tour

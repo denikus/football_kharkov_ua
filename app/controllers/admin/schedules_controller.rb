@@ -29,15 +29,20 @@ class Admin::SchedulesController < ApplicationController
   end
   
   def create
-    season = Season.find params[:schedule][:season_id]
+#    season = Season.find params[:schedule][:season_id]
+    tour   = Tour.find(params[:schedule][:tour_id])
+    season = tour.stage.season
+    
     schedule = Schedule.new params[:schedule]
     schedule.save
+#    ap schedule
+#    debugger
     locals = {:venues => Venue.all.collect{ |v| [v.name, v.id] }, :teams => season.teams.find(:all, :order => "name ASC").collect{ |t| [t.name, t.id] }}
     render :update do |page|
       page.replace_html :schedule_date, :partial => 'schedule_date', :collection => season.schedule_dates
       page.insert_html :append, 'schedules', :partial => 'schedule', :object => schedule, :locals => locals
       page << "$('#new_schedule').wrap('<div id=\"new_schedule_holder\">')"
-      page.replace_html "new_schedule_holder", :partial => 'schedule', :object => Schedule.new(:season => season, :match_on => params[:schedule][:match_on]), :locals => locals
+      page.replace_html "new_schedule_holder", :partial => 'schedule', :object => Schedule.new(:tour => tour, :match_on => params[:schedule][:match_on]), :locals => locals
       page << "$('#new_schedule').unwrap()"
     end
   end

@@ -1,6 +1,7 @@
 class Match < ActiveRecord::Base
-  belongs_to :tour
+  #belongs_to :tour
   belongs_to :referee
+  belongs_to :schedule
   
   has_many :competitors, :include => :football_players do
     [:hosts, :guests].each do |side|
@@ -12,7 +13,7 @@ class Match < ActiveRecord::Base
   has_many :match_events
   has_many :match_links
   
-  validates_presence_of :referee
+#  validates_presence_of :referee
   
   def self.build_from_form params
     competitors = Competitor::SIDES.collect do |side|
@@ -25,7 +26,7 @@ class Match < ActiveRecord::Base
     params.delete :football_player_numbers
     (new params).tap{ |m| m.competitors = competitors }
   end
-  
+
   def update_stats stats, create_events
     match_events.destroy_all if create_events
     competitors.each do |cmp|

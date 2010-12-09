@@ -1,13 +1,1 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  statisticable_id: 1
-  statisticable_type: MyString
-  statistic_id: 1
-  statistic_value: 1
-
-two:
-  statisticable_id: 1
-  statisticable_type: MyString
-  statistic_id: 1
-  statistic_value: 1

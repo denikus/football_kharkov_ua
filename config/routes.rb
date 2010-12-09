@@ -73,6 +73,11 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :permissions
     admin.resources :venues
   end
+
+  map.namespace(:univer) do |univer|
+    univer.root :controller => 'main'
+    univer.resources :tournaments, :has_many => :seasons
+  end
   
 #  map.devise_for :users
   

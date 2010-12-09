@@ -11,8 +11,15 @@ class Season < ActiveRecord::Base
   def full_name
     [tournament.name, name] * ' '
   end
-  
+
   def schedule_dates
-    schedules.collect(&:match_on).collect(&:strftime).uniq.sort
+    dates = []
+    stages.each do |stage|
+      stage.tours do |tour|
+        dates << tour.schedules.collect(&:match_on).collect(&:strftime).uniq.sort
+      end
+    end
+    dates.flatten!
   end
+
 end

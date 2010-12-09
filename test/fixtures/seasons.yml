@@ -1,5 +1,8 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
+one:
+  name: first season
+  url: first season
+  tournament: one
 # one:
 #   column: value
 #

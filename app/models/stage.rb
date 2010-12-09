@@ -1,7 +1,8 @@
 class Stage < ActiveRecord::Base
   belongs_to :season
   has_many :leagues
-  
+  has_many :tours
+
   def name
     [season.full_name, 'Этап', number] * ' '
   end

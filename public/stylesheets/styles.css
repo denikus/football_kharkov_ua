@@ -1413,9 +1413,10 @@ div.schedule-content-wrap {
 div.schedule-content-wrap ul.schedule-list {
   list-style-type: none;
   width: 900px;
+  height: 600px;
   position: relative;
 }
-/* line 1238, ../../app/stylesheets/styles.scss */
+/* line 1239, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap ul.schedule-list li {
   display: block;
   height: 600px;
@@ -1423,7 +1424,7 @@ div.schedule-content-wrap ul.schedule-list li {
   float: left;
   border-right: 1px solid #d9d9d9;
 }
-/* line 1244, ../../app/stylesheets/styles.scss */
+/* line 1245, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap ul.schedule-list li div.schedule-header {
   font-size: 100%;
   color: #be420e;
@@ -1432,47 +1433,47 @@ div.schedule-content-wrap ul.schedule-list li div.schedule-header {
   height: 30px;
   border-bottom: 1px solid #d9d9d9;
 }
-/* line 1252, ../../app/stylesheets/styles.scss */
+/* line 1253, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap ul.schedule-list li div.schedule-content {
-  height: 600px;
+  height: 567px;
   overflow: auto;
 }
 
-/* line 1261, ../../app/stylesheets/styles.scss */
+/* line 1262, ../../app/stylesheets/styles.scss */
 div.schedule-content table {
   border-collapse: collapse;
   width: 100%;
 }
-/* line 1264, ../../app/stylesheets/styles.scss */
+/* line 1265, ../../app/stylesheets/styles.scss */
 div.schedule-content table tr.odd {
   background-color: #FAFAFA;
 }
-/* line 1267, ../../app/stylesheets/styles.scss */
+/* line 1268, ../../app/stylesheets/styles.scss */
 div.schedule-content table td {
   border: 1px solid #d9d9d9;
   padding: 5px;
   text-align: left;
 }
-/* line 1272, ../../app/stylesheets/styles.scss */
+/* line 1273, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.score-container {
   width: 45px;
   margin: 0 2px;
 }
-/* line 1273, ../../app/stylesheets/styles.scss */
+/* line 1274, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.hosts, div.schedule-content table td.guests {
   width: 145px;
 }
-/* line 1274, ../../app/stylesheets/styles.scss */
+/* line 1275, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.venue {
   width: 30px;
   text-align: center;
 }
-/* line 1278, ../../app/stylesheets/styles.scss */
+/* line 1279, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.time {
   width: 40px;
   text-align: center;
 }
-/* line 1282, ../../app/stylesheets/styles.scss */
+/* line 1283, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.league {
   width: 100px;
   text-align: center;

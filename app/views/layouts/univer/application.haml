@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %meta{:'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8"}/
+    %title Административная секция: Кубка ФК Универ
+    = stylesheet_link_tag '/source/ext-3.3.1/resources/css/ext-all.css'
+    = stylesheet_link_tag 'univer'
+    = javascript_include_tag '/source/ext-3.3.1/adapter/ext/ext-base.js'
+    = javascript_include_tag '/source/ext-3.3.1/ext-all.js'
+    = javascript_include_tag 'univer/ux/layout.js'
+    = javascript_include_tag 'univer/ux/nav/tournament.js'
+    -#= javascript_include_tag 'admin/ux/menu.js'
+    -#= javascript_include_tag 'admin/ux/tournament/step_form.js'
+    -#= javascript_include_tag 'admin/ux/tournament/match_form.js'
+    -#= javascript_include_tag 'admin/ux/tournament/step_teams_panel.js'
+    :css
+      .icon-expand-all {
+        background-image: url(/images/icons/expand-all.gif) !important;
+      }
+
+  %body
+    #app-toolbar
+  :javascript
+    Ext.onReady(function() {
+      Ext.QuickTips.init();
+
+      Ext.ns('Ext.ux.data', 'Ext.ux.data.match');
+      Ext.ux.data.tournament = #{Tournament.last.to_json};
+      Ext.ux.data.match.referees = #{Referee.all.collect{ |r| [r.id, r.full_name] }.to_json};
+      Ext.ux.data.match.types = [['mini', 'Мини'], ['big', 'Большой']];
+
+      app = new Ext.ux.layout.App();
+      
+      app.nav.items.add(new Ext.ux.nav.Tournament(Ext.ux.data.tournament));
+      app.nav.doLayout();
+    });

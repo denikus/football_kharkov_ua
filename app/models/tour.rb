@@ -1,7 +1,8 @@
 class Tour < ActiveRecord::Base
-  belongs_to :league
-  has_many :matches
-  
+  belongs_to :stage
+  #  has_many :matches
+  has_many :schedules
+
   def tour_table
     table = Table.new self
   end

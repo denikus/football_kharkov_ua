@@ -1,3 +1,4 @@
+require "ap"
 # Settings specified here will take precedence over those in config/environment.rb
 
 # The test environment is used exclusively to run your application's
@@ -20,4 +21,10 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+ActionMailer::Base.default_url_options[:host] = 'localhost'
+BITLY = {
+  :username => 'footballkharkov',
+  :api_key => 'R_284aa8534d40494118bf2dadca17695a'
+}.freeze
+
 require 'factory_girl' 
