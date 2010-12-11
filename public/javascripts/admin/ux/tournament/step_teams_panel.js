@@ -20,12 +20,13 @@ Ext.ns('Ext.ux.tournament');
       width: 150,
       sortable: true
     }];
+    var store = createStore(step_id, selected);
     var config = {
       id: 'step-' + step_id + '-teams-' + (selected ? 'selected' : 'remaining') + '-grid',
       title: selected ? 'Выбранные' : 'Оставшиеся',
       enableDragDrop: true,
       ddGroup: 'step-' + step_id + '-' + (selected ? 'Selected' : 'Remaining') + 'TeamsDDGroup',
-      store: createStore(step_id, selected),
+      store: store,
       columns: columns,
       autoExpandColumn: (selected ? 'selected' : 'remaining') + '-name-col',
       loadMask: true,
@@ -33,6 +34,9 @@ Ext.ns('Ext.ux.tournament');
       viewConfig: {forceFit: true},
       height: 300,
       columnWidth: .5
+    }
+    if(!selected) {
+      config.tbar = [' ', new Ext.ux.common.NameFilter(store)];
     }
     Panel.superclass.constructor.call(this, config);
     this.on('render', this.createDropTarget.createDelegate(this, [step_id, !selected]));
