@@ -6,6 +6,6 @@ class UpdateFootballersTeamsChangeSeasonId < ActiveRecord::Migration
 
   def self.down
     rename_column :footballers_teams, :step_id, :season_id
-    change_column :footballers_teams, :season_id, :integer, :references => ['sesons', 'id'], :name => 'fk_footballers_teams_seasons', :on_delete => :cascade
+    change_column :footballers_teams, :season_id, :integer, :references => ['seasons', 'id'], :name => 'fk_footballers_teams_seasons', :on_delete => :cascade
   end
 end

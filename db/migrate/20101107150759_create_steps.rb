@@ -10,8 +10,8 @@ class CreateSteps < ActiveRecord::Migration
     end
     
     create_table :steps_phases, :id => false do |t|
-      t.integer :step_id
-      t.integer :phase_id
+      t.integer :step_id, :references => nil
+      t.integer :phase_id, :references => nil
     end
   end
 
