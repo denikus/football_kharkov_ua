@@ -1,9 +1,10 @@
 class Schedule < ActiveRecord::Base
-  belongs_to :tour
+  #belongs_to :tour
   belongs_to :venue
   belongs_to :hosts, :class_name => 'Team', :foreign_key => 'host_team_id'
   belongs_to :guests, :class_name => 'Team', :foreign_key => 'guest_team_id'
-  belongs_to :league
+  #belongs_to :league
+  belongs_to :step_tour, :foreign_key => 'tour_id'
   has_one :quick_match_result
   has_one :match
 #  accepts_nested_attributes_for :quick_match_result, :allow_destroy => false

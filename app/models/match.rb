@@ -1,19 +1,24 @@
 class Match < ActiveRecord::Base
 
   #TODO THIS BLOCK!!!!  
-  belongs_to :step_tour, :foreign_key => 'tour_id'
-  belongs_to :tour
+  #belongs_to :step_tour, :foreign_key => 'tour_id'
+  #belongs_to :tour
 
 
-  belongs_to :referee
+  #belongs_to :referee
   belongs_to :schedule
   
+  belongs_to :step_league
+  
   has_many :competitors, :include => :football_players do
-    [:hosts, :guests].each do |side|
-      define_method(side){ load_target unless loaded?; target.find{ |s| s.side == side } }
+    def [] side
+      load_target unless loaded?
+      target.find{ |s| s.side == side.to_sym }
     end
   end
-  delegate :hosts, :guests, :to => :competitors
+  
+  def hosts; competitors[:hosts]; end
+  def guests; competitors[:guests]; end
   
   has_many :match_events
   has_many :match_links

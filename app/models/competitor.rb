@@ -1,29 +1,22 @@
 class Competitor < ActiveRecord::Base
   belongs_to :match
   belongs_to :team
-  has_many :football_players, :dependent => :destroy
-  has_many :stats, :as => :statable, :extend => [Stat::Ext, MatchEvent::Ext], :dependent => :destroy
-  
-  SIDES = [:hosts, :guests].freeze
-  
-  def update_stats params, create_events=false
-    player_stats = params.delete :players
-    [:first_period_fouls, :second_period_fouls, :score].each do |stat|
-      params[stat] = 0 if params[stat].empty?
-    end
-    if create_events
-      stats.with_events(:minute => match.period_duration).set('first_period_fouls', params[:first_period_fouls])
-      stats.with_events(:minute => match.period_duration * 2).set('second_period_fouls', params[:second_period_fouls])
-      stats.with_events(:minute => match.period_duration * 2).set('score', params[:score])
-    else
-      params.each{ |s, v| stats.set(s, v) }
-    end
-    if player_stats
-      football_players.each do |fp|
-        fp.update_stats player_stats[fp.footballer_id.to_s], create_events
+  has_many :football_players, :dependent => :destroy do
+    def update_stats stats
+      load_target unless loaded?
+      stats = stats.clone
+      target.each{ |player| delete player if stats[player.footballer_id.to_s]['number'].empty? }
+      stats.each do |id, s|
+        next if s['number'].empty?
+        player = target.find{ |p| p.footballer_id == id.to_i } || FootballPlayer.new(:footballer_id => id, :competitor_id => proxy_owner.id)
+        player.update s
       end
     end
   end
+  has_many :stats, :as => :statable, :extend => Stat::Ext, :dependent => :destroy
+  
+  SIDES = [:hosts, :guests].freeze
+  STATS = %w{score first_period_fouls second_period_fouls}.freeze
   
   def to_tpl
     team.name

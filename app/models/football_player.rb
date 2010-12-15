@@ -1,41 +1,14 @@
 class FootballPlayer < ActiveRecord::Base
+  STATS = %w{goal goal_10 goal_6 auto_goal yellow_card red_card}.freeze
+  
   belongs_to :competitor
   belongs_to :footballer
   
-  has_many :stats, :as => :statable, :extend => [Stat::Ext, MatchEvent::Ext], :dependent => :destroy
-  #has_many :stats, :as => :statable, :include => :statistic, :extend => [Statistic::Ext, MatchEvent::Ext]
-  #has_many :stats, :as => :statable, :include => :statistic, :extend => Statistic::Ext
+  has_many :stats, :as => :statable, :extend => Stat::Ext, :dependent => :destroy
   
-  #def update_stats params, create_events=false
-  #  #params.each{ |s, v| stats.send(s+'=', v.split(/,\s?/).delete_if{ |e| e == '-' }.collect(&:to_i)) }
-  #  obj = create_events ? stats.with_events(:team => competitor.team.name, :minute => :stat) : stats
-  #  params.each do |name, value|
-  #    puts name, value
-  #    next if value.empty?
-  #    st = value.split(/,\s*/).collect(&:to_i)
-  #    obj.__send__(:"#{name}=", *st) unless value.empty?
-  #  end
-  #end
-
-  def update_stats params, create_events=false
-    #obj = create_events ? stats.with_events(:team => competitor.team.name, :minute => :stat) : stats
-    #params.each do |name, value|
-    #  next if value.empty?
-    #  st = value.split(/,\s*/).collect(&:to_i)
-    #  obj.set(name, *st)
-    #end
-    params.each do |s, v|
-      params.delete(s) and next if v.empty?
-      params[s] = v.split(/,\s*/).collect(&:to_i)
-    end
-    if create_events
-      stats.with_events(:team => competitor.team.name, :minute => :stat).set('goal', *params[:goal]) if params.key? :goal
-      stats.with_events(:team => competitor.team.name, :minute => :stat).set('auto_goal', *params[:auto_goal]) if params.key? :auto_goal
-      stats.with_events(:minute => :stat).set('yellow_card', *params[:yellow_card]) if params.key? :yellow_card
-      stats.with_events(:minute => :stat).set('red_card', *params[:red_card]) if params.key? :red_card
-    else
-      params.each{ |s, v| stats.set(s, *v) }
-    end
+  def update stats
+    self.number = stats['number']
+    STATS.each{ |s| self.stats.set s, *stats[s].split(',').map(&:to_i) unless stats[s].empty? }
   end
   
   def match_id

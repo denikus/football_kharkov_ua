@@ -61,7 +61,7 @@ class Step < ActiveRecord::Base
   
   def self.belongs_to_step step
     define_method step do
-      Step.first(:joins => 'JOIN steps_phases ON steps_phases.step_id = steps.id', :conditions => ['steps.type = ? AND steps_phases.phase_id = ?', step.to_s.camelize + 'Step', id])
+      Step.first(:joins => 'JOIN steps_phases ON steps_phases.step_id = steps.id', :conditions => ['steps.type = ? AND steps_phases.phase_id = ?', 'Step' + step.to_s.camelize, id])
     end
   end
 end

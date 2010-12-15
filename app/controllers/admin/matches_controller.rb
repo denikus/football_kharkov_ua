@@ -71,4 +71,38 @@ class Admin::MatchesController < ApplicationController
       end
     end
   end
+  
+  def results
+    match = Match.find(params[:id], :include => {:competitors => [:stats, {:football_players => :stats}]})
+    #season_id = match.step_league.stage.season.id
+    season_id = match.schedule.step_tour.stage.season.id # <---  temporary
+    
+    data = {'footballer_names' => Footballer.find(params[:footballer_ids].split(',')).inject({}){ |r, f| r[f.id] = f.full_name; r }}
+    %w{hosts guests}.each do |side|
+      match.competitors[side].football_players.each do |player|
+        data["#{side}[#{player.footballer_id}][number]"] = player.number
+        FootballPlayer::STATS.each do |stat_name|
+          stats = Array(player.stats.get(stat_name))
+          data["#{side}[#{player.footballer_id}][#{stat_name}]"] = stats.join(', ') unless stats.empty?
+        end
+      end
+    end
+    
+    render :json => {
+      :success => true,
+      :data => data
+    }
+  end
+  
+  def update_results
+    match = Match.find params[:id]
+    
+    %w{hosts guests}.each do |side|
+      match.competitors[side].football_players.update_stats params[side]
+    end
+    
+    match.save
+    
+    render ext_success
+  end
 end

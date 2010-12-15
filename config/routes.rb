@@ -40,10 +40,8 @@ ActionController::Routing::Routes.draw do |map|
   map.devise_for :users, :admin
   map.namespace(:admin) do |admin|
     admin.root :controller => 'main'
-    admin.ext_root '.ext', :controller => :main, :format => :ext
     admin.resources :comments
     admin.resources :tournaments, :collection => {:grid_edit => :post} do |t|
-      t.resources :seasons, :collection => {:grid_edit => :post}
       t.resources :matches, :collection => {:grid_edit => :post}
       t.resources :teams, :collection => {:team_2_season => :get}
       t.resources :schedules
@@ -51,18 +49,10 @@ ActionController::Routing::Routes.draw do |map|
       t.resources :steps
     end
     admin.resources :steps, :member => {:teams => :get, :update_teams => :post}
-    admin.resources :schedules
+    admin.resources :schedules, :member => {:results => :get, :update_results => :post}
     admin.resources :quick_match_results, :collection => {:update_all => :put}
-    admin.resources :seasons, :has_many => [:teams] do |s|
-      s.resources :stages, :collection => {:grid_edit => :post}
-      s.resources :leagues, :collection => {:grid_edit => :post}
-      s.resources :tours, :collection => {:grid_edit => :post}
-    end
-    admin.resources :stages, :has_many => :leagues, :collection => {:grid_edit => :post}
-    admin.resources :leagues, :has_many => [:teams, :tours], :collection => {:grid_edit => :post}
     admin.resources :teams, :member => {:footballers => :get, :update_footballers => :post}
-    admin.resources :tours, :has_many => :matches, :collection => {:grid_edit => :post}
-    admin.resources :matches do |m|
+    admin.resources :matches, :member => {:results => :get, :update_results => :post} do |m|
       m.resources :competitors
       m.resource :stats
     end

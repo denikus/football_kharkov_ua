@@ -8,7 +8,8 @@ class Footballer < ActiveRecord::Base
   #}
   named_scope :by_team_step, lambda{ |options| {
     :joins => :footballers_teams,
-    :conditions => {:footballers_teams => {:step_id => options[:step_id], :team_id => options[:team_id]}}
+    :conditions => {:footballers_teams => {:step_id => options[:step_id], :team_id => options[:team_id]}},
+    :order => 'last_name ASC'
   } }
   
   def full_name

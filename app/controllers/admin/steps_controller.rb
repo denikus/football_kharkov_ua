@@ -1,5 +1,5 @@
 class Admin::StepsController < ApplicationController
-  layout 'admin/ext_3'
+  before_filter :authenticate_admin!
   
   def index
     request.xhr? ? show : return

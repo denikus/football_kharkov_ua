@@ -38,9 +38,15 @@ Ext.extend(Ext.ux.nav.Tournament, Ext.tree.TreePanel, {
     var n = node, caption = [];
     while(!n.isRoot){ caption.unshift(n.text); n = n.parentNode; }
     caption.unshift(app.nav.items.items[0].tournament.name);
-    if(node.attributes._item_type == 'Match') {
+    if(node.attributes._type == 'Schedule') {
       app.master.add(new Ext.ux.tournament.MatchForm({
-        caption: caption.join(' &gt; ')
+        id: node.attributes._id,
+        caption: caption.join(' &gt; '),
+        match_id: node.attributes._match_id,
+        hosts: node.attributes._hosts,
+        guests: node.attributes._guests,
+        hosts_footballer_ids: node.attributes._hosts_footballer_ids.split(',').map(function(e){ return parseInt(e) }),
+        guests_footballer_ids: node.attributes._guests_footballer_ids.split(',').map(function(e){ return parseInt(e) })
       }));
     } else {
       if(node.attributes._id || node.attributes._type) {
@@ -68,8 +74,9 @@ Ext.extend(Ext.ux.nav.Tournament, Ext.tree.TreePanel, {
     if(!this.expanding.expanded) {
       setTimeout(this.expandTour.createDelegate(this), 100);
     } else {
-      if(this.expanding.attributes.type != 'StepTour') {
-        this.expanding = this.expanding.childNodes[this.expanding.childNodes.length-2];
+      if(this.expanding.attributes._type != 'StepTour') {
+        var last_index = this.expanding.childNodes.length - 1;
+        this.expanding = this.expanding.childNodes[last_index].leaf ? this.expanding.childNodes[last_index-1] : this.expanding.childNodes[last_index];
         this.expanding.expand();
         setTimeout(this.expandTour.createDelegate(this), 100);
       } else {

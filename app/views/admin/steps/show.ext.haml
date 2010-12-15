@@ -1,15 +1,18 @@
 - nodes, name, type = case @node
   - when Tournament: [:steps, 'Сезон', 'StepSeason']
   - when StepSeason: [:steps, 'Этап', 'StepStage']
-  - when StepTour: [:matches, 'Матч', 'Match']
   - when StepStage
   - case params[:type]
     - when 'leagues': [:leagues, 'Лигу', 'StepLeague']
     - when 'tours': [:tours, 'Тур', 'StepTour']
     - else [[{:text => 'Лиги', :cls => 'folder', :id => "nav-tournament-#{@node.id}-leagues"}, {:text => 'Туры', :cls => 'folder', :id => "nav-tournament-#{@node.id}-tours"}], nil, nil]
-- unless type.nil?
+- if @node.is_a? StepTour
+  - season_id = @node.stage.season.id
+  - nodes = @node.schedules.all(:include => {:match => {:competitors => {:team => :footballers_teams}}}).map do |s|
+    - {:text => s.match_on, :cls => 'leaf', :id => "nav-tournament-schedule-#{s.id}", :leaf => true, '_type' => 'Schedule', '_id' => s.id, '_match_id' => s.match.id, '_hosts' => s.match.hosts.team.name, '_guests' => s.match.guests.team.name, '_hosts_footballer_ids' => s.match.hosts.team.footballer_ids[season_id]*',', '_guests_footballer_ids' => s.match.guests.team.footballer_ids[season_id]*','}
+- elsif type
   - nodes = @node.send(nodes).map do |s|
-    - {:text => s.full_name, :cls => params['type'] == 'leagues' ? 'league' : 'folder', :id => "nav-tournament-#{s.id}", :leaf => params['type'] == 'leagues', '_id' => s.id, '_identifier' => s.identifier, '_name' => s.name, '_url' => s.url, '_type' => s.type}
+    - {:text => s.full_name, :cls => params['type'] == 'leagues' ? 'leaf' : 'folder', :id => "nav-tournament-#{s.id}", :leaf => params['type'] == 'leagues', '_id' => s.id, '_identifier' => s.identifier, '_name' => s.name, '_url' => s.url, '_type' => s.type}
   - id = "nav-tournament-add-to-#{params[:id] || 'root'}"
   - id << "-#{params[:type]}" if params[:type]
   - nodes.push(:text => 'Добавить ' + name, :cls => 'add', :id => id, :leaf => true, :draggable => false, '_type' => type, '_owner_id' => params[:id] || 'root')

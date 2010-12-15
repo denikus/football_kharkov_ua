@@ -66,4 +66,35 @@ class Admin::SchedulesController < ApplicationController
       page["edit_schedule_#{params[:id]}"].remove
     end
   end
+  
+  def results
+    schedule = Schedule.find(params[:id], :include => {:match => {:competitors => [:stats, {:football_players => :stats}]}})
+    
+    render :json => {
+      :success => true,
+      :data => {
+        'hosts[score]' => schedule.match.hosts.stats.get('score') || 0,
+        'hosts[first_period_fouls]' => schedule.match.hosts.stats.get('first_period_fouls') || 0,
+        'hosts[second_period_fouls]' => schedule.match.hosts.stats.get('second_period_fouls') || 0,
+        'guests[score]' => schedule.match.guests.stats.get('score') || 0,
+        'guests[first_period_fouls]' => schedule.match.guests.stats.get('first_period_fouls') || 0,
+        'guests[second_period_fouls]' => schedule.match.guests.stats.get('second_period_fouls') || 0,
+      }
+    }
+  end
+  
+  def update_results
+    schedule = Schedule.find(params[:id], :include => {:match => {:competitors => [:stats, {:football_players => :stats}]}})
+    
+    %w{hosts guests}.each do |side|
+      Competitor::STATS.each do |stat|
+        schedule.match.competitors[side].stats.set(stat, params[side][stat])
+      end
+      schedule[side.singularize + '_scores'] = params[side]['score']
+    end
+    
+    schedule.save
+    
+    render ext_success
+  end
 end
