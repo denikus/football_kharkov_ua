@@ -73,11 +73,13 @@ class Admin::MatchesController < ApplicationController
   end
   
   def results
-    match = Match.find(params[:id], :include => {:competitors => [:stats, {:football_players => :stats}]})
+    match = Match.find(params[:id], :include => [:referees, {:competitors => [:stats, {:football_players => :stats}]}])
     #season_id = match.step_league.stage.season.id
     season_id = match.schedule.step_tour.stage.season.id # <---  temporary
-    
-    data = {'footballer_names' => Footballer.find(params[:footballer_ids].split(',')).inject({}){ |r, f| r[f.id] = f.full_name; r }}
+    data = {
+      'footballer_names' => Footballer.find(params[:footballer_ids].split(',')).inject({}){ |r, f| r[f.id] = f.full_name; r },
+      'referees' => Hash[*match.referees.map{ |r| [r.id, r.name_with_initials] }.flatten]
+    }
     %w{hosts guests}.each do |side|
       match.competitors[side].football_players.each do |player|
         data["#{side}[#{player.footballer_id}][number]"] = player.number
@@ -104,5 +106,15 @@ class Admin::MatchesController < ApplicationController
     match.save
     
     render ext_success
+  end
+  
+  def update_referees
+    match = Match.find params[:id]
+    match.referee_ids = params[:match][:referee_ids]
+    
+    render :json => {
+      :success => true,
+      :referees => Hash[*match.referees.map{ |r| [r.id, r.name_with_initials] }.flatten]
+    }
   end
 end

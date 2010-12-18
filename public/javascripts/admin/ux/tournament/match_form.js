@@ -51,13 +51,15 @@ Ext.ux.tournament.MatchForm.QuickForm = function Panel(options) {
     this.getForm().load({
       url: '/admin/schedules/' + Ext.util.Format.undef(options.id) + '/results',
       method: 'GET',
-      waitMsg: 'Обновление данных...'
+      waitMsg: 'Получение данных...'
     })
   })
 }
 Ext.extend(Ext.ux.tournament.MatchForm.QuickForm, Ext.FormPanel);
 
 Ext.ux.tournament.MatchForm.ExtendedForm = function Panel(options) {
+  this.match_id = Ext.util.Format.undef(options.match_id);
+  var self = this;
   var config = {
     frame: true,
     title: 'Полная информация',
@@ -65,24 +67,28 @@ Ext.ux.tournament.MatchForm.ExtendedForm = function Panel(options) {
     anchor: '100%',
     layout: 'form',
     defaults: { msgTarget: 'side' },
-    url: '/admin/matches/' + Ext.util.Format.undef(options.match_id) + '/update_results',
+    url: '/admin/matches/' + this.match_id + '/update_results',
     items: [
       { xtype: 'hidden', name: 'match[step_id]'},
       { xtype: 'hidden', name: '_method', value: 'POST' },
-      /*{
-        xtype: 'combo',
-        fieldLabel: 'Рефери',
-        name: 'match[referee_ids][]',
-        displayField: 'name',
-        valueField: 'id',
-        editable: false,
-        forceSelection: true,
-        triggerAction: 'all',
-        emptyText: 'Выберите Судью',
-        selectOnFocus: true,
-        mode: 'local',
-        store: new Ext.data.SimpleStore({fields: ['id', 'name'], data: Ext.ux.data.match.referees})
-      }, */{
+      {
+        xtype: 'fieldset',
+        layout: 'column',
+        collapsible: false,
+        collapsed: false,
+        items: [{
+          xtype: 'button',
+          columnWidth: .2,
+          id: 'match-extended-referees-btn',
+          text: 'Судьи...',
+          handler: this.manageReferees.createDelegate(this)
+        }, {
+          columnWidth: .8,
+          id: 'match-extended-referees-txt',
+          bodyStyle: 'padding: 4px 0 0 6px',
+          html: 'Судьи...'
+        }]
+      }, {
         xtype: 'fieldset',
         title: 'Данные футболистов',
         autoHeight: true,
@@ -99,13 +105,7 @@ Ext.ux.tournament.MatchForm.ExtendedForm = function Panel(options) {
           waitMsg: 'Подождите...'
         });
       }).createDelegate(this)
-    }/*, {
-      text: 'Добавить Судью',
-      handler: (function() { alert('adding') }).createDelegate(this)
-    }, {
-      text: 'Удалить Судью',
-      handler: (function() { alert('removing') }).createDelegate(this)
-    }*/]
+    }]
   }
   Panel.superclass.constructor.call(this, config);
   
@@ -113,10 +113,13 @@ Ext.ux.tournament.MatchForm.ExtendedForm = function Panel(options) {
     this.getForm().load({
       url: '/admin/matches/' + Ext.util.Format.undef(options.match_id) + '/results?footballer_ids='+options.hosts_footballer_ids+','+options.guests_footballer_ids,
       method: 'GET',
-      waitMsg: 'Обновление данных...',
+      waitMsg: 'Получение данных...',
       success: function(form, action) {
-        Ext.getCmp('extended-form-tabs-panel').activate(0);
         var data = action.result.data;
+        self.referees = action.result.data.referees;
+        Ext.getCmp('match-extended-referees-btn').setText(self.refereesButtonText());
+        Ext.getCmp('match-extended-referees-txt').body.dom.innerHTML = self.refereesText();
+        Ext.getCmp('extended-form-tabs-panel').activate(0);
         for(var id in data.footballer_names) {
           Ext.get('footballer-name-'+id).dom.childNodes[0].childNodes[0].innerHTML = data.footballer_names[id];
         }
@@ -125,7 +128,87 @@ Ext.ux.tournament.MatchForm.ExtendedForm = function Panel(options) {
     })
   })
 }
-Ext.extend(Ext.ux.tournament.MatchForm.ExtendedForm, Ext.FormPanel);
+Ext.extend(Ext.ux.tournament.MatchForm.ExtendedForm, Ext.FormPanel, {
+  refereesButtonText: function() {
+    var total = 0;
+    for(var id in this.referees) total++;
+    return "Судьи (" + total + ")...";
+  },
+  refereesText: function() {
+    var text = [];
+    for(var id in this.referees) text.push(this.referees[id]);
+    return Ext.util.Format.ellipsis(text.join(', '), 77, false);
+  },
+  manageReferees: function() {
+    var referees = [];
+    for(var id in this.referees) referees.push(combo(id));
+    referees.push(combo());
+    var self = this;
+    var referees_form = {
+      xtype: 'form',
+      id: 'match-extended-referees-form',
+      bodyStyle: 'padding: 5px; background: transparent',
+      border: false,
+      url: '/admin/matches/' + this.match_id + '/update_referees',
+      items: [referees],
+      buttons: [{
+        text: 'Добавить Судью',
+        handler: function() {
+          Ext.getCmp('match-extended-referees-form').items.add(combo());
+          Ext.getCmp('match-extended-referees-form').doLayout();
+        }
+      }, {
+        text: 'Удалить Судью',
+        handler: function() {
+          with(Ext.getCmp('match-extended-referees-form')) {
+            if(items.length > 1) remove(items.items[items.length-1]);
+          }
+        }
+      }, {
+        text: 'Сохранить',
+        handler: function() {
+          Ext.getCmp('match-extended-referees-form').getForm().submit({
+            success: function(form, action) {
+              self.referees = action.result.referees;
+              Ext.getCmp('match-extended-referees-btn').setText(self.refereesButtonText());
+              Ext.getCmp('match-extended-referees-txt').body.dom.innerHTML = self.refereesText();
+              Ext.getCmp('match-extended-referees-wnd').close();
+            },
+            waitMsg: 'Подождите...'
+          })
+        }
+      }]
+    };
+    var window = new Ext.Window({
+      id: 'match-extended-referees-wnd',
+      layout: 'form',
+      title: 'Судейство',
+      width: 400,
+      autoHeight: true,
+      y: 300,
+      items: [referees_form]
+    });
+    window.show();
+    
+    function combo(id) {
+      return new Ext.form.ComboBox({
+        fieldLabel: 'Рефери',
+        displayField: 'name',
+        name: 'match[referee_ids][]',
+        value: id,
+        hiddenName: 'match[referee_ids][]',
+        hiddenValue: id,
+        valueField: 'id',
+        editable: false,
+        forceSelection: true,
+        triggerAction: 'all',
+        emptyText: 'Выберите Судью',
+        mode: 'local',
+        store: new Ext.data.ArrayStore({fields: ['id', 'name'], data: Ext.ux.data.match.referees})
+      });
+    }
+  }
+});
 
 Ext.ux.tournament.MatchForm.ExtendedForm.PlayerTabsPanel = function Panel(options) {
   var config = {
