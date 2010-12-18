@@ -7,8 +7,8 @@ class Match < ActiveRecord::Base
 
 #  belongs_to :referee
   belongs_to :schedule
-  
   belongs_to :step_league
+  has_and_belongs_to_many :referees
   
   has_many :competitors, :include => :football_players do
     def [] side
