@@ -9,6 +9,6 @@ class CreateMatchesReferees < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :matches_referees
+#    drop_table :matches_referees
   end
 end
