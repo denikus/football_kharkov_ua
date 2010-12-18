@@ -5,7 +5,7 @@ class Match < ActiveRecord::Base
   #belongs_to :tour
 
 
-  #belongs_to :referee
+#  belongs_to :referee
   belongs_to :schedule
   
   belongs_to :step_league
@@ -22,6 +22,8 @@ class Match < ActiveRecord::Base
   
   has_many :match_events
   has_many :match_links
+
+  has_and_belongs_to_many :referees
   
 #  validates_presence_of :referee
   
