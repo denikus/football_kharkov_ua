@@ -25,8 +25,7 @@ class Schedule < ActiveRecord::Base
     new_match.save!
     new_match.competitors.create({:team_id => self.host_team_id, :side => "hosts"})
     new_match.competitors.create({:team_id => self.guest_team_id, :side => "guests"})
-#    self.save
-  end  
+  end
 
   def name
     new_record? ? "Новый матч в расписании" : ("#{match_on}, #{match_at}: #{hosts.name} - #{guests.name} (#{venue.name})")

@@ -1,13 +1,11 @@
 require 'csv'
 namespace :migrate do
-  desc "Import footballers from txt file and link to teams and seasons"
+  desc "Import matches - create schedules for them"
   task :matches_without_schedule => :environment do
-#    require 'csv'
     match_id = 0
     schedule_counter = 0
     schedule_params = []
     CSV.open("#{RAILS_ROOT}/lib/migration/data/matches.csv", 'r', ';') do |row|
-      #create new schedule record if not exists
       #row values:
       #0match_id 	1tour_id 	2referee_id 	3match_type 	4played_at 	5period_duration 	6comment 	7created_at 	8updated_at 	9side 	10team_id 	11value
 
@@ -23,7 +21,8 @@ namespace :migrate do
                            :guest_scores => (row[9]=='guests' ? row[11] : nil),
                            :tour_id => nil,
                            :match_on => match_on,
-                           :match_at => match_at            
+                           :match_at => match_at,
+                           :match_id => row[0]
                            }
 
       #if match not exists yet  
@@ -39,10 +38,37 @@ namespace :migrate do
       end
       match_id = row[0]
     end
+    
     schedule_params.each do |item|
-      schedule = Schedule.new(item)
-      schedule.save!
+      match_id = item.delete(:match_id)
+      if match_id!=0
+        match = Match.find(match_id)
+        match.create_schedule(item)
+        match.save
+      end  
     end
-
   end
+
+  desc "Import schedules and quick results from old scheme - and create new schedules and matches"
+  task :schedules => :environment do
+    CSV.open("#{RAILS_ROOT}/lib/migration/data/schedules.csv", 'r', ';') do |row|
+      #row values:
+      #0id	1venue_id	2match_on	3match_at	4host_team_id	5guest_team_id	6created_at	7updated_at	8hosts_score	9guests_score
+      schedule_params = {
+                         :id => row[0],
+                         :venue_id => row[1],
+                         :host_team_id => row[4],
+                         :guest_team_id => row[5],
+                         :host_scores => row[8],
+                         :guest_scores => row[9],
+                         :tour_id => nil,
+                         :match_on => row[2],
+                         :match_at => row[3],
+                         :created_at => row[6],
+                         :updated_at => row[7]
+                        }
+      Schedule.create(schedule_params)
+    end  
+  end
+
 end
