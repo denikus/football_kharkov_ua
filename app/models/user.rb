@@ -44,6 +44,4 @@ class User < ActiveRecord::Base
   end
 
   alias_method_chain :confirm!, :forum
-
-  
 end

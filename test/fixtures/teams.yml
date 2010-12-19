@@ -3,12 +3,10 @@ one:
   id: 1
   name: name_1
   url: url
-  seasons: first
 two:
   id: 2
   name: name_2
   url: url2
-  seasons: first
 # one:
 #   column: value
 #

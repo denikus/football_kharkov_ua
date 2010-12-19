@@ -21,8 +21,7 @@ class ScheduleTest < ActiveSupport::TestCase
     #check if guests and hosts created correctly
     assert_equal(schedule.match.hosts.team_id, 1)
     assert_equal(schedule.match.guests.team_id, 2)
-
-    
   end
-  #TODO: test for update schedule => update also competitors and matches if need
+
+
 end
