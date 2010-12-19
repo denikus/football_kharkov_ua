@@ -17,8 +17,7 @@ Ext.ux.layout.DetailsPanel = function Panel() {
     collapsible: true,
     collapsed: true,
     split: true,
-    height: 300,
-    layout: 'fit'
+    height: 300
   }
   Panel.superclass.constructor.call(this, config);
 }

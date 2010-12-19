@@ -53,8 +53,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :quick_match_results, :collection => {:update_all => :put}
     admin.resources :teams, :member => {:footballers => :get, :update_footballers => :post}
     admin.resources :matches, :member => {:results => :get, :update_results => :post, :update_referees => :post} do |m|
-      m.resources :competitors
-      m.resource :stats
+      m.resources :match_events
     end
     admin.resources :match_events
     admin.resources :match_event_types, :collection => {:grid_edit => :post}

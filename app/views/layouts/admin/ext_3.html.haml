@@ -4,6 +4,8 @@
     %meta{:'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8"}/
     %title Административная секция: Football.kharkov.ua
     = stylesheet_link_tag '/source/ext-3.3.0/resources/css/ext-all.css'
+    = stylesheet_link_tag 'admin/ext_3.css'
+    = stylesheet_link_tag 'admin/ux/grid.row_editor.css'
     = javascript_include_tag '/source/ext-3.3.0/adapter/ext/ext-base.js'
     = javascript_include_tag '/source/ext-3.3.0/ext-all.js'
     = javascript_include_tag 'admin/ux/layout.js'
@@ -11,8 +13,10 @@
     = javascript_include_tag 'admin/ux/common/name_filter.js'
     = javascript_include_tag 'admin/ux/nav/tournament.js'
     = javascript_include_tag 'admin/ux/nav/team_footballers.js'
+    = javascript_include_tag 'admin/ux/grid.row_editor.js'
     = javascript_include_tag 'admin/ux/tournament/step_form.js'
     = javascript_include_tag 'admin/ux/tournament/match_form.js'
+    = javascript_include_tag 'admin/ux/tournament/match_events_grid.js'
     = javascript_include_tag 'admin/ux/tournament/step_teams_panel.js'
     = javascript_include_tag 'admin/ux/personnel/personnel_panel.js'
     = javascript_include_tag 'admin/ux/personnel/team_footballers_panel.js'

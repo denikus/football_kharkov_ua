@@ -104,6 +104,7 @@ class Admin::MatchesController < ApplicationController
     end
     
     match.save
+    match.generate_events
     
     render ext_success
   end

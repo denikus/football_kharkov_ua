@@ -80,7 +80,6 @@ class StepTour < Step
     
     def process
       return if @processed
-      @tour.matches.inject(self){ |res, m| res << m }
       @values = @records.values.sort
       @processed = true
     end

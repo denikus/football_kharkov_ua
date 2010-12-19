@@ -30,13 +30,13 @@ Ext.ux.tournament.MatchForm.QuickForm = function Panel(options) {
         {title: 'Фолы ПТ'},
         {title: 'Фолы ВТ'},
       {title: options.hosts},
-        {xtype: 'textfield', name: 'hosts[score]', width: 50, style: 'margin-left:15px;'},
-        {xtype: 'textfield', name: 'hosts[first_period_fouls]', width: 50, style: 'margin-left:15px;'},
-        {xtype: 'textfield', name: 'hosts[second_period_fouls]', width: 50, style: 'margin-left:15px;'},
+        {xtype: 'numberfield', name: 'hosts[score]', width: 50, style: 'margin-left:15px; text-align: right;'},
+        {xtype: 'numberfield', name: 'hosts[first_period_fouls]', width: 50, style: 'margin-left:15px; text-align: right;'},
+        {xtype: 'numberfield', name: 'hosts[second_period_fouls]', width: 50, style: 'margin-left:15px; text-align: right;'},
       {title: options.guests},
-        {xtype: 'textfield', name: 'guests[score]', width: 50, style: 'margin-left:15px;'},
-        {xtype: 'textfield', name: 'guests[first_period_fouls]', width: 50, style: 'margin-left:15px;'},
-        {xtype: 'textfield', name: 'guests[second_period_fouls]', width: 50, style: 'margin-left:15px;'}
+        {xtype: 'numberfield', name: 'guests[score]', width: 50, style: 'margin-left:15px; text-align: right;'},
+        {xtype: 'numberfield', name: 'guests[first_period_fouls]', width: 50, style: 'margin-left:15px; text-align: right;'},
+        {xtype: 'numberfield', name: 'guests[second_period_fouls]', width: 50, style: 'margin-left:15px; text-align: right;'}
     ],
     buttons: [{
       text: 'Сохранить',
@@ -102,6 +102,9 @@ Ext.ux.tournament.MatchForm.ExtendedForm = function Panel(options) {
       text: 'Сохранить',
       handler: (function() {
         this.getForm().submit({
+          success: function() {
+            Ext.getCmp('match-events-grid').store.reload();
+          },
           waitMsg: 'Подождите...'
         });
       }).createDelegate(this)

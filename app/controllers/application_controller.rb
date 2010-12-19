@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
   #end
   protected
   
-  def ext_success
-    {:json => {:success => true}}
+  def ext_success data={}
+    {:json => {:success => true}.merge(data)}
+  end
+  
+  def ext_failure
+    {:json => {:success => false}}
   end
 end

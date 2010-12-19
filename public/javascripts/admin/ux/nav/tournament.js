@@ -48,6 +48,7 @@ Ext.extend(Ext.ux.nav.Tournament, Ext.tree.TreePanel, {
         hosts_footballer_ids: node.attributes._hosts_footballer_ids.split(',').map(function(e){ return parseInt(e) }),
         guests_footballer_ids: node.attributes._guests_footballer_ids.split(',').map(function(e){ return parseInt(e) })
       }));
+      app.details.add(new Ext.ux.tournament.MatchEventsGrid(node.attributes._match_id));
     } else {
       if(node.attributes._id || node.attributes._type) {
         app.master.add(new Ext.ux.tournament.StepForm({
@@ -64,6 +65,7 @@ Ext.extend(Ext.ux.nav.Tournament, Ext.tree.TreePanel, {
       }
       if(node.attributes._id && (node.attributes._type == 'StepSeason' || node.attributes._type == 'StepLeague')) {
         app.details.add(new Ext.ux.tournament.StepTeamsPanel(node.attributes._id));
+        app.details.expand();
       }
     }
     app.master.doLayout();

@@ -15,6 +15,18 @@ class FootballPlayer < ActiveRecord::Base
     competitor.match_id
   end
   
+  def generate_events
+    stats.all(
+      :joins => 'JOIN match_event_types ON stats.name = match_event_types.symbol'
+    ).each do |stat|
+      MatchEventType[stat.name].events.add \
+        :match_id => match_id,
+        :minute => stat.value,
+        :owner => self,
+        :team => competitor
+    end
+  end
+  
   def to_tpl
     "#{footballer.first_name} #{footballer.last_name}"
   end

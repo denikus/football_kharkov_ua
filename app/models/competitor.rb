@@ -18,6 +18,13 @@ class Competitor < ActiveRecord::Base
   SIDES = [:hosts, :guests].freeze
   STATS = %w{score first_period_fouls second_period_fouls}.freeze
   
+  def generate_events
+    # WARNING: HARDCODE
+    MatchEventType['first_period_fouls'].events.add(:match_id => match_id, :minute => 25, :owner => self, :stat => stats.get('first_period_fouls')) unless MatchEventType['first_period_fouls'].nil?
+    MatchEventType['second_period_fouls'].events.add(:match_id => match_id, :minute => 50, :owner => self, :stat => stats.get('second_period_fouls')) unless MatchEventType['second_period_fouls'].nil?
+    MatchEventType['score'].events.add(:match_id => match_id, :minute => 50, :owner => self, :stat => stats.get('score')) unless MatchEventType['score'].nil?
+  end
+  
   def to_tpl
     team.name
   end
