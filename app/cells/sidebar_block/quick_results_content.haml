@@ -7,21 +7,20 @@
     - loser_class = "fancy-score-loser"
     - hosts_class = ""
     - guests_class = ""
-    - unless item.quick_match_result.nil?
-      - if item.quick_match_result.hosts_score > item.quick_match_result.guests_score
-        - hosts_class = winner_class
-        - guests_class = loser_class
-      - elsif item.quick_match_result.hosts_score < item.quick_match_result.guests_score
-        - hosts_class = loser_class
-        - guests_class = winner_class
-      - else
-        - hosts_class = "fancy-score-equal"
-        - guests_class = "fancy-score-equal"
+    - if item.host_scores > item.guest_scores
+      - hosts_class = winner_class
+      - guests_class = loser_class
+    - elsif item.host_scores < item.guest_scores
+      - hosts_class = loser_class
+      - guests_class = winner_class
+    - else
+      - hosts_class = "fancy-score-equal"
+      - guests_class = "fancy-score-equal"
     -row_class = i%2 == 0 ? "" : "odd"
     %li{:class => row_class}
       .hosts= item.hosts.name
       .score-container
-        .fancy-score{:class => hosts_class }= !item.quick_match_result.nil? ? item.quick_match_result.hosts_score : "-"
-        .fancy-score.fancy-score-right{:class => guests_class }= !item.quick_match_result.nil? ? item.quick_match_result.guests_score : "-"
+        .fancy-score{:class => hosts_class }= !item.host_scores.nil? ? item.host_scores : "-"
+        .fancy-score.fancy-score-right{:class => guests_class }= !item.guest_scores.nil? ? item.guest_scores : "-"
       .guests= item.guests.name
       .clear

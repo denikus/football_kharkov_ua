@@ -7,6 +7,7 @@ class Team < ActiveRecord::Base
   has_many :competitors, :dependent => :destroy
   
   has_many :footballers_teams
+  has_and_belongs_to_many :steps
   
   def footballer_ids
     @footballers_proxy ||= FootballersProxy.new self

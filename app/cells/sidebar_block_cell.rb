@@ -25,18 +25,19 @@ class SidebarBlockCell < ::Cell::Base
     current_subdomain = @opts[:subdomain].nil? ? @opts[:locals][:current_subdomain] : @opts[:subdomain]
 
     #get current season for tournament    
+=begin
     @season = Season.find(:first,
                           :joins => :tournament,
                           :conditions => ["tournaments.url = ? ", current_subdomain],
                           :order => "seasons.id DESC"
                           )
+=end
 
     if !@opts[:locals].nil? && @opts[:locals][:direction]=='prev'
       @last_dates = Schedule.find(:all,
-                                  :joins => "INNER JOIN quick_match_results ON (quick_match_results.schedule_id = schedules.id) ",
-                                  :conditions => ["quick_match_results.hosts_score IS NOT NULL AND quick_match_results.guests_score IS NOT NULL AND season_id = ?  AND schedules.match_on <= ? ", @season.id, @opts[:locals][:direction_date]],
-                                  :group => "schedules.match_on",
-                                  :order => "schedules.match_on DESC",
+                                  :conditions => ["host_scores IS NOT NULL AND guest_scores IS NOT NULL AND schedules.match_on <= ? ", @opts[:locals][:direction_date]],
+                                  :group => "match_on",
+                                  :order => "match_on DESC",
                                   :limit => 2
                                  )
       prev_date    = @last_dates[1].nil? ? '' : @last_dates[1].match_on
@@ -44,10 +45,9 @@ class SidebarBlockCell < ::Cell::Base
       next_date    = @opts[:locals][:current_date]
     elsif !@opts[:locals].nil? && @opts[:locals][:direction]=='next'
       @last_dates = Schedule.find(:all,
-                                  :joins => "INNER JOIN quick_match_results ON (quick_match_results.schedule_id = schedules.id) ",
-                                  :conditions => ["quick_match_results.hosts_score IS NOT NULL AND quick_match_results.guests_score IS NOT NULL AND season_id = ?  AND schedules.match_on >= ? ", @season.id, @opts[:locals][:direction_date]],
-                                  :group => "schedules.match_on",
-                                  :order => "schedules.match_on ASC",
+                                  :conditions => ["host_scores IS NOT NULL AND guest_scores IS NOT NULL AND schedules.match_on >= ? ", @opts[:locals][:direction_date]],
+                                  :group => "match_on",
+                                  :order => "match_on ASC",
                                   :limit => 2
                                  )
       prev_date    = @opts[:locals][:current_date]
@@ -56,10 +56,9 @@ class SidebarBlockCell < ::Cell::Base
     else
       #get last two days with results
       @last_dates = Schedule.find(:all,
-                                  :joins => "INNER JOIN quick_match_results ON (quick_match_results.schedule_id = schedules.id) ",
-                                  :conditions => ["quick_match_results.hosts_score IS NOT NULL AND quick_match_results.guests_score IS NOT NULL AND season_id = ? ", @season.id],
-                                  :group => "schedules.match_on",
-                                  :order => "schedules.match_on DESC",
+                                  :conditions => "host_scores IS NOT NULL AND guest_scores IS NOT NULL",
+                                  :group => "match_on",
+                                  :order => "match_on DESC",
                                   :limit => 2
                                  )
       prev_date    = @last_dates[1].nil? ? '' : @last_dates[1].match_on
@@ -71,8 +70,8 @@ class SidebarBlockCell < ::Cell::Base
 
     unless @last_dates.empty?
       @schedules = Schedule.find(:all,
-                                 :include => [:quick_match_result, :hosts, :guests],
-                                 :conditions => ["schedules.match_on = ? AND season_id = ? ", @last_dates[0][:match_on], @season.id],
+                                 :include => [:hosts, :guests],
+                                 :conditions => ["schedules.match_on = ? ", @last_dates[0][:match_on]],
                                  :order => "schedules.match_at ASC"
                                  )
     else
