@@ -31,7 +31,6 @@ class User < ActiveRecord::Base
   def self.from_param(param)
     find_by_username!(param)
   end
-  
 
   def confirm_with_forum!
     ret = confirm_without_forum!

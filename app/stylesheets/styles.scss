@@ -471,6 +471,10 @@ input.fancy-submit:hover {
 	    background-image: url("/images/icons/calendar-select.png");
 	  }
 
+	  a#top-submenu-about {
+	    background-image: url("/images/icons/information-white.png");
+	  }
+
 	  a.tournament-main-title, a.tournament-main-title:hover, a.tournament-main-title:visited {
 	    float:left;
       display:block;
@@ -1286,3 +1290,57 @@ div.schedule-content {
     }
   }
 }
+
+/**
+* Filter block styles
+*/
+
+.b-slide-filter {
+    font-size: 13px;
+    height: 25px;
+    border-bottom: 1px solid #EDEDED;
+    margin-bottom: 21px;
+    padding-bottom: 22px;
+    .lbl {
+      cursor: text;
+      line-height: 22px;
+      margin-right: 20px;
+    }
+    * {
+    vertical-align: middle;
+    }
+
+    .l-slide-menu {
+        background-position: 0 -346px;
+        display: inline-block;
+        position: relative;
+    }
+    
+    b, .l-slide-menu, .slide {
+      height: 25px;
+    }
+    b {
+      position: absolute;
+      top: 0;
+      width: 15px;
+    }
+
+    .slide {
+      .l {
+        background-position: -138px -308px;
+        left: -15px;
+      }
+      .r {
+          background-position: -168px -308px;
+          right: -15px;
+      }
+      .c {
+          background-position: -152px -308px;
+          height: 31px;
+          left: 50%;
+          margin-left: -7px;
+          width: 14px;
+      }
+    }   
+}
+
