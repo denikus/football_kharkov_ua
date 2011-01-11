@@ -49,7 +49,7 @@ class StepTour < Step
         clone.process
         if last
           clone.values.each_with_index do |record, position|
-            record.position_change = last.values.index{ |v| v.team.id == tecord.team.id } - position
+            record.position_change = last.values.index{ |v| v.team.id == record.team.id } - position
           end
         end
         unshift clone

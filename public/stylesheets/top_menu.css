@@ -66,33 +66,57 @@ ul.topnav li ul.subnav li a {
   float: left;
 }
 /* line 58, ../../app/stylesheets/top_menu.scss */
+ul.topnav li #top-menu-tournaments ul.subnav {
+  width: 170px;
+}
+/* line 60, ../../app/stylesheets/top_menu.scss */
+ul.topnav li #top-menu-tournaments ul.subnav li {
+  width: 170px;
+}
+/* line 62, ../../app/stylesheets/top_menu.scss */
+ul.topnav li #top-menu-tournaments ul.subnav li a {
+  width: 145px;
+}
+/* line 67, ../../app/stylesheets/top_menu.scss */
+ul.topnav li #top-menu-venues ul.subnav {
+  width: 180px;
+}
+/* line 69, ../../app/stylesheets/top_menu.scss */
+ul.topnav li #top-menu-venues ul.subnav li {
+  width: 180px;
+}
+/* line 71, ../../app/stylesheets/top_menu.scss */
+ul.topnav li #top-menu-venues ul.subnav li a {
+  width: 155px;
+}
+/* line 77, ../../app/stylesheets/top_menu.scss */
 ul.topnav li ul.subnav li {
   font-family: Tahoma, Geneva, sans-serif;
   font-size: 14px;
 }
-/* line 60, ../../app/stylesheets/top_menu.scss */
+/* line 79, ../../app/stylesheets/top_menu.scss */
 ul.topnav li ul.subnav li a {
   float: left;
   width: 145px;
   background: #333333 url(/images/top-menu/dropdown_linkbg.gif) no-repeat 10px center;
   padding-left: 20px;
 }
-/* line 66, ../../app/stylesheets/top_menu.scss */
+/* line 85, ../../app/stylesheets/top_menu.scss */
 ul.topnav li ul.subnav li a:hover {
   /*--Hover effect for subnav links--*/
   background: #222222 url(/images/top-menu/dropdown_linkbg.gif) no-repeat 10px center;
 }
-/* line 71, ../../app/stylesheets/top_menu.scss */
+/* line 90, ../../app/stylesheets/top_menu.scss */
 ul.topnav li.first {
   border: none;
   padding: 0 10px 0 0;
   background: none;
 }
-/* line 75, ../../app/stylesheets/top_menu.scss */
+/* line 94, ../../app/stylesheets/top_menu.scss */
 ul.topnav li a:hover {
   background: url(/images/top-menu/topnav_hover.gif) no-repeat center top;
 }
-/* line 79, ../../app/stylesheets/top_menu.scss */
+/* line 98, ../../app/stylesheets/top_menu.scss */
 ul.topnav li span {
   /*--Drop down trigger styles--*/
   width: 17px;
@@ -101,31 +125,31 @@ ul.topnav li span {
   background: url(/images/top-menu/subnav_btn.gif) no-repeat center top;
 }
 
-/* line 89, ../../app/stylesheets/top_menu.scss */
+/* line 108, ../../app/stylesheets/top_menu.scss */
 ul.topnav li div {
   height: 35px;
 }
-/* line 92, ../../app/stylesheets/top_menu.scss */
+/* line 111, ../../app/stylesheets/top_menu.scss */
 ul.topnav li div#top-menu-home {
   background: url("/images/icons/home.png") no-repeat scroll 0 50% transparent;
   padding-left: 15px;
 }
-/* line 97, ../../app/stylesheets/top_menu.scss */
+/* line 116, ../../app/stylesheets/top_menu.scss */
 ul.topnav li div#top-menu-tournaments {
   background: url("/images/icons/trophy.png") no-repeat scroll 0 50% transparent;
   padding-left: 15px;
 }
-/* line 102, ../../app/stylesheets/top_menu.scss */
-ul.topnav li div#top-menu-forum {
-  background: url("/images/icons/balloon.png") no-repeat scroll 0 50% transparent;
+/* line 121, ../../app/stylesheets/top_menu.scss */
+ul.topnav li div#top-menu-venues {
+  background: url("/images/icons/marker.png") no-repeat scroll 0 50% transparent;
   padding-left: 15px;
 }
-/* line 107, ../../app/stylesheets/top_menu.scss */
+/* line 126, ../../app/stylesheets/top_menu.scss */
 ul.topnav li div#top-menu-shop {
   background: url("/images/icons/cart.png") no-repeat scroll 0 50% transparent;
   padding-left: 15px;
 }
-/* line 112, ../../app/stylesheets/top_menu.scss */
+/* line 131, ../../app/stylesheets/top_menu.scss */
 ul.topnav li div#top-menu-contacts {
   background: url("/images/icons/address-book-blue.png") no-repeat scroll 0 50% transparent;
   padding-left: 15px;

@@ -7,9 +7,15 @@
       %ul.subnav
         %li= link_to 'IT-Лига', tournament_url(:subdomain => "itleague")
         %li= link_to 'Кубок ФК Универ', tournament_url(:subdomain => "univercup")
-  %li
-    #top-menu-forum= link_to 'Форум', 'http://forum.football.kharkov.ua/', {:target => "_blank"}
+  %li.drop
+    #top-menu-venues
+      = link_to 'Спорткомплексы', "#", {:target => "_blank"}
+      %ul.subnav
+        %li= link_to 'ДФА Металлист', venue_url(:id => "Детская-футбольная-академия-Металлист", :subdomain => false)
+        %li= link_to 'СК Каразинский', venue_url(:id => "спорткомплекс-Каразинский", :subdomain => false)
+        %li= link_to 'СК Пионер', venue_url(:id => "спорткомплекс-Пионер", :subdomain => false)
+        %li= link_to 'СК Звезда', venue_url(:id => "спорткомплекс-Звезда", :subdomain => false)
   %li
     #top-menu-shop= link_to 'Магазин', 'http://shop.football.kharkov.ua/', {:target => "_blank"}
   %li
-    #top-menu-contacts= link_to 'Контакты', page_path(:id=>"contacts")
+    #top-menu-contacts= link_to 'Контакты', page_url(:id=>"contacts", :subdomain => false)

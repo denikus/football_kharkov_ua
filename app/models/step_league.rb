@@ -14,5 +14,6 @@ class StepLeague < Step
       end
       set << table
     end
+
   end
 end

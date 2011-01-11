@@ -1,2 +1,4 @@
+%h2.tournament-subtitle Турнирные таблицы
+%br/
 - @set.each do |table|
-  %div{:style => "float: left"}= render :partial => 'table', :locals => {:records => table.get}
+  %div{:style => "float: left"}= render :partial => 'table', :locals => {:records => table[:table].get, :league_name => table[:league_name]}

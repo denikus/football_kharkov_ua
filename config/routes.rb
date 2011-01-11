@@ -77,6 +77,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :itleague_draw
   map.resources :footballers, :only => ["index", "show"]
   map.resources :quick_match_results, :only => ["show"]
+  map.resources :venues, :only => ["show"]
 
   map.with_options :conditions => {:subdomain => /.+/} do |tournament|
     tournament.tournament 'feed', :controller => "tournaments", :action => "feed" #, :conditions => {:subdomain => /.+/}
@@ -86,6 +87,7 @@ ActionController::Routing::Routes.draw do |map|
     tournament.resources :tables, :only => ["index"]
     tournament.resources :bombardiers, :only => ["index"]
     tournament.resources :it_forecast, :only => ["index"]
+    tournament.resources :pages, :only => ["show"]
   end
 
 

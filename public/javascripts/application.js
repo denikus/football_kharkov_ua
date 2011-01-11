@@ -22,7 +22,7 @@ $(function() {
     //    $(this.id + " ul.subnav").show('slow', function(){
     //      $(this).height("auto");
     //    });
-    $(this).parent().find("ul.subnav").stop().slideDown('slow').show('slow', function(){
+    $(this).find("ul.subnav").stop().slideDown(300).show(300, function(){
       $(this).height("auto");
     });
 

@@ -54,6 +54,25 @@ ul.topnav {
         float: left;
       }
     }
+    
+    #top-menu-tournaments ul.subnav {
+      width: 170px;
+      li {
+        width: 170px;
+        a {
+          width: 145px;
+        }
+      }
+    }
+    #top-menu-venues ul.subnav {
+      width: 180px;
+      li {
+        width: 180px;
+        a {
+          width: 155px;
+        }
+      }
+    }
 
     ul.subnav li {font-family: Tahoma, Geneva, sans-serif; font-size:14px;}
 
@@ -99,8 +118,8 @@ ul.topnav{
       padding-left: 15px;
     }
 
-    div#top-menu-forum {
-      background: url('/images/icons/balloon.png') no-repeat scroll 0 50% transparent;
+    div#top-menu-venues {
+      background: url('/images/icons/marker.png') no-repeat scroll 0 50% transparent;
       padding-left: 15px;
     }
 
