@@ -2,6 +2,8 @@ class BombardiersController < ApplicationController
   layout "app_without_sidebar"
 
   def index
+    seasons =  Step.find_all_by_tournament_id(Tournament.find_by_url(current_subdomain), :conditions => ["type = 'StepSeason'"])
+
     @leagues = StepLeague.find(:all,
                                :select => "steps.* ",
                                :joins => "INNER JOIN `steps_phases` AS stages_2_leagues " +
@@ -10,11 +12,11 @@ class BombardiersController < ApplicationController
                                             "ON (stages_2_leagues.step_id = seasons_2_stages.phase_id)" +
                                           "INNER JOIN `steps` AS seasons " +
                                             "ON (seasons_2_stages.step_id = seasons.id AND seasons.type = 'StepSeason')", 
-                               :conditions => ["seasons.id = ? AND steps.type = 'StepLeague'", 2]
+                               :conditions => ["seasons.id = ? AND steps.type = 'StepLeague'", seasons.last]
                               )
 
     @bombardiers = Footballer.paginate(:all,
-                    :select => "`footballers`.*, `football_players`.id AS football_player_id, SUM(statistic.statable_total) AS statable_sum",
+                    :select => "`footballers`.*, `football_players`.id AS football_player_id, `competitors`.team_id AS team_id, SUM(statistic.statable_total) AS statable_sum",
                     :joins => "INNER JOIN `football_players` " +
                                 "ON (footballers.id = football_players.footballer_id) " +
                               "INNER JOIN `competitors` " +
@@ -32,14 +34,14 @@ class BombardiersController < ApplicationController
                                         	 "GROUP BY stats.statable_id) AS statistic " +
                                 "ON (statistic.statable_id=football_players.id) ",
                     :conditions => ["footballers.id >0 AND leagues.id IN (#{@leagues.collect!{|x| x.id}.join(',')})"],
-                    :group => "footballers.id ",
+                    :group => "competitors.team_id, footballers.id ",
                     :order => "statable_sum DESC, footballers.last_name ASC",
                     :per_page => 50,
                     :page => 1
                   )
     bombardiers_grouped = {}
     @bombardiers.each do |item|
-      if item[:statable_sum].to_i > 2
+      if item[:statable_sum].to_i > 0
         if bombardiers_grouped[item[:statable_sum]].nil?
           bombardiers_grouped[item[:statable_sum]] = []
         end
