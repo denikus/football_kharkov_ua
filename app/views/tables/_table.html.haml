@@ -1,41 +1,46 @@
-%table.tournament-position
-  %tr
-    %th{:colspan => 9}= league_name
-  %tr.header
-    %td.place
-      Место
-    %td.team
-      Команда
-    %td.games
-      Игры
-    %td
-      В
-    %td
-      Н
-    %td
-      П
-    %td.goals
-      Мячи
-    %td.diff
-      +/-
-    %td
-      Очки
-  - records.each_with_index do |record, index|
-    %tr.odd
-      %td.place
-        = index+1
-      %td.team
-        = record.team.name
-      %td.games
-        = record.games_count
-      - record.games.each do |g|
-        %td= g
-      %td.goals
-        xxx
-      %td.diff
-        xxx
-      %td.scores
-        = record.score
+
+
+
+
+
+-#%table.tournament-position
+-#  %tr
+-#    %th{:colspan => 9}= league_name
+-#  %tr.header
+-#    %td.place
+-#      Место
+-#    %td.team
+-#      Команда
+-#    %td.games
+-#      Игры
+-#    %td
+-#      В
+-#    %td
+-#      Н
+-#    %td
+-#      П
+-#    %td.goals
+-#      Мячи
+-#    %td.diff
+-#      +/-
+-#    %td
+-#      Очки
+-#  - records.each_with_index do |record, index|
+-#    %tr.odd
+-#      %td.place
+-#        = index+1
+-#      %td.team
+-#        = record.team.name
+-#      %td.games
+-#        = record.games_count
+-#      - record.games.each do |g|
+-#        %td= g
+-#      %td.goals
+-#        xxx
+-#      %td.diff
+-#        xxx
+-#      %td.scores
+-#        = record.score
 
 -#%table{:border => '1'}
 -#  %tr{:style => "font-weight: bold"}
