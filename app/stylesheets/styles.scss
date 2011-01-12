@@ -1227,23 +1227,29 @@ table.bombardier-position {
   }
 }
 
+.wrap-container {
+  text-align: center;
+}
+
 div.schedule-content-wrap {
   position:relative;
   overflow:hidden;
-  width: 900px;
-  height:600px;
+  margin: 0 auto;
+  /*text-align:center;*/
+  width: 500px;
+  /*height:600px;*/
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border:1px solid $block_border_color;
   ul.schedule-list {
     list-style-type: none;
-    width: 900px;
-    height: 600px;
+    width: 500px;
+    /*height: 600px;*/
 //    width:20000em;
     position:relative;
     li {
       display: block; 
-      height: 600px;
-      width: 449px;
+      /*height: 600px;*/
+      width: 499px;
       float:left;
       border-right:1px solid $block_border_color;
       div.schedule-header {
@@ -1255,7 +1261,7 @@ div.schedule-content-wrap {
         border-bottom: 1px solid $block_border_color;
       }
       div.schedule-content {
-        height: 567px;
+        /*height: 567px;*/
         overflow: auto;
       }
     }    

@@ -2,6 +2,54 @@ class SchedulesController < ApplicationController
   layout "app_without_sidebar"
   
   def index
+    tournament = Tournament.find(1)
+
+    @dates = Schedule.paginate(
+                               :select => "match_on",
+                               :joins => "INNER JOIN `steps`" +
+                                          "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
+                               :conditions => ["match_on >= ? AND steps.tournament_id = ? ", Time.now.to_date, tournament.id],
+                               :group => "match_on",
+                               :order => "match_on ASC",
+                               :per_page => 2,
+                               :page => 1
+                               )
+    
+    prev_date = Schedule.find(:first,
+                               :select => "match_on",
+                               :joins => "INNER JOIN `steps`" +
+                                          "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
+
+                               :conditions => ["match_on < ? AND steps.tournament_id = ? ", Time.now.to_date, tournament.id],
+                               :group => "match_on",
+                               :order => "match_on DESC",
+                               :limit => 1
+                               )
+    @prev_date = prev_date.nil? ? nil : prev_date.match_on
+    @next_date = nil
+    if @dates.length==2
+      @next_date = @dates.delete_at(2).match_on
+    end
+
+    if @dates.empty?
+      @dates = Schedule.paginate(
+                               :select => "match_on",
+                               :joins => "INNER JOIN `steps`" +
+                                  "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
+                               :conditions => ["steps.tournament_id = ? ", tournament.id],
+                               :group => "match_on",
+                               :order => "match_on DESC",
+                               :per_page => 2,
+                               :page => 1
+                               )
+      @dates.reverse!
+
+      if @dates.length==2
+        @prev_date = @dates.delete_at(0).match_on
+      end
+    
+=begin
+
     @season = Season.find(:first,
                         :joins => :tournament,
                         :conditions => ["tournaments.url = ? ", current_subdomain],
@@ -43,6 +91,7 @@ class SchedulesController < ApplicationController
       if @dates.length==3
         @prev_date = @dates.delete_at(0).match_on
       end
+=end
     end
 
 
@@ -56,10 +105,15 @@ class SchedulesController < ApplicationController
       @schedules[i] = {}
       @schedules[i][:match_day] = date_item[:match_on]
       @schedules[i][:day_matches] = Schedule.find(:all,
-                                  :conditions => ["match_on = ? AND season_id = ?  ", date_item[:match_on], @season.id],
-                                  :include => [:quick_match_result, :hosts, :guests, :venue],
-                                  :order => "match_at ASC"
-                                 )
+                                                  :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name", 
+                                                  :joins => "INNER JOIN `steps`" +
+                                                      "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " + 
+                                                      "INNER JOIN `steps` AS leagues " +
+                                                        "ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ",
+                                                  :conditions => ["match_on = ?  AND steps.tournament_id = ? ",date_item[:match_on],  tournament.id],
+                                                  :include => [:hosts, :guests, :venue],
+                                                  :order => "match_at ASC"
+                                                 )
       i += 1
     end
 
@@ -67,17 +121,17 @@ class SchedulesController < ApplicationController
 
   def show
     match_on = params[:id].to_date
-    @season = Season.find(:first,
-                          :joins => :tournament,
-                          :conditions => ["tournaments.url = ? ", current_subdomain],
-                          :order => "seasons.id DESC"
-                          )
+#    tournament = Tournament.find_by_url(current_subdomain)
+    tournament = Tournament.find_by_url('itleague')
+
     @schedule_day = {}
     @schedule_day[:match_day] = match_on
     @schedule_day[:day_matches] = Schedule.find(:all,
-                                  :conditions => ["match_on = ? AND season_id = ?  ", match_on, @season.id],
-                                  :order => "match_at ASC"
-                                 )
+                                                :joins => "INNER JOIN `steps`" +
+                                                    "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
+                                                :conditions => ["schedules.match_on = ? AND steps.tournament_id = ?  ", match_on, tournament.id],
+                                                :order => "match_at ASC"
+                                               )
 
 #    ap next_date = Schedule.find(:first, :conditions => ["match_on > ? AND season_id = ?  ", match_on, @season.id], :order => "match_on ASC")
 #    debugger
@@ -85,14 +139,19 @@ class SchedulesController < ApplicationController
     if 'prev'==params[:date_type]
       @arrow_date = Schedule.find(:first,
                     :select => "match_on",
-                    :conditions => ["match_on < ? AND season_id = ? ", match_on, @season.id],
+                    :joins => "INNER JOIN `steps`" +
+                        "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
+
+                    :conditions => ["schedules.match_on < ? AND steps.tournament_id = ?  ", match_on, tournament.id],
                     :group => "match_on",
                     :order => "match_on DESC"
                     )
     elsif 'next'==params[:date_type]
       @arrow_date = Schedule.find(:first,
                     :select => "match_on",
-                    :conditions => ["match_on > ? AND season_id = ? ", match_on, @season.id],
+                    :joins => "INNER JOIN `steps`" +
+                        "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
+                    :conditions => ["schedules.match_on > ? AND steps.tournament_id = ?  ", match_on, tournament.id],
                     :group => "match_on",
                     :order => "match_on ASC"
                     )

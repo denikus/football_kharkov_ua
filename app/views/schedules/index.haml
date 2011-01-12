@@ -6,10 +6,11 @@
     %h2 Расписание
     = link_to image_tag("/images/buttons/next.png"), "#", {:class => "next", :style => "float:left;"}
     .clear
-.schedule-content-wrap
-  %ul.schedule-list
-    -@schedules.each do |schedule_day|
-      = render :partial => "/schedules/day", :layout => false, :locals => {:schedule_day => schedule_day}
+.wrap-container
+  .schedule-content-wrap
+    %ul.schedule-list
+      -@schedules.each do |schedule_day|
+        = render :partial => "/schedules/day", :layout => false, :locals => {:schedule_day => schedule_day}
 
 :javascript
   $(function() {
