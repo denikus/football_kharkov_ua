@@ -5,7 +5,7 @@ Ext.ux.personnel.Grid = function Grid(type) {
   var config = {
     store: store,
     columns: Grid.columns[type],
-    autoExpandColumn: 'personner-footballers-last_name-col',
+    autoExpandColumn: 'name-col',
     width: 600,
     height: 300,
     loadMask: true,

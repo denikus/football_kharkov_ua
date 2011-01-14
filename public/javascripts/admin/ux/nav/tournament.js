@@ -26,6 +26,19 @@ Ext.ux.nav.Tournament = function Panel(tournament) {
       tooltip: 'Открыть последний Тур',
       handler: function(){ this.expandTour() },
       scope: this
+    }],
+    bbar: [{
+      xtype: 'datepicker',
+      listeners: {
+        select: function() {
+          app.master.removeAll();
+          app.master.items.add(new Ext.ux.tournament.SchedulesPanel({
+            startHour: 8,
+            endHour: 22
+          }));
+          app.master.doLayout();
+        }
+      }
     }]
   }
   Panel.superclass.constructor.call(this, config);
