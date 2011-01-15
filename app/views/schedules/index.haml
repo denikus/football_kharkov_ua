@@ -8,11 +8,10 @@
     .clear
 .wrap-container
   .schedule-content-wrap
-    %ul.schedule-list
-      -@schedules.each do |schedule_day|
-        = render :partial => "/schedules/day", :layout => false, :locals => {:schedule_day => schedule_day}
+    = render :partial => "/schedules/day", :layout => false, :locals => {:schedules => @schedules}
 
 :javascript
   $(function() {
-    Schedule.init("#{@prev_date}", "#{@next_date}");
+    //min_date, max_date, current_date
+    Schedule.init("#{@min_date}", "#{@max_date}", "#{@schedules[0].match_on}");
   });
