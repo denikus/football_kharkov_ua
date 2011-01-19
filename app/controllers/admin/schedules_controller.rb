@@ -97,6 +97,13 @@ class Admin::SchedulesController < ApplicationController
   end
   
   def week
-    render ext_success
+    schedules = Schedule.all(
+      :conditions => ['match_on >= ? AND match_on <= ? AND steps.tournament_id = 1', params[:start], params[:end]],
+      :joins => :step_league,
+      :include => [:hosts, :guests])
+    day_schedules = (Date.parse(params[:start])..Date.parse(params[:end])).map do |date|
+      schedules.select{ |s| s.match_on == date }.map{ |s| {:id => s.id, :hosts => s.hosts.name, :guests => s.guests.name, :time => s.match_at} }
+    end
+    render ext_success :data => day_schedules
   end
 end
