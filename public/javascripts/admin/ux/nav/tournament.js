@@ -30,13 +30,27 @@ Ext.ux.nav.Tournament = function Panel(tournament) {
     bbar: [{
       xtype: 'datepicker',
       listeners: {
-        select: function() {
-          app.master.removeAll();
-          app.master.items.add(new Ext.ux.tournament.SchedulesPanel({
-            startHour: 8,
-            endHour: 22
-          }));
-          app.master.doLayout();
+        select: function(dp, date) {
+          var panel = Ext.getCmp('tournament-schedules-panel');
+          if(panel && panel.includes(date)) {
+            panel.date = date;
+            return;
+          }
+          app.master.removeAll(true);
+          var loadMask = new Ext.LoadMask(Ext.getBody(), {msg: 'Загрузка данных...'});
+          loadMask.show();
+          Ext.Ajax.request({
+            url: '/admin/schedules/week?start=' + date.add(Date.DAY, -date.getDay()).format('Y-m-d')+'&end='+date.add(Date.DAY, 6-date.getDay()).format('Y-m-d'),
+            success: function(response) {
+              app.master.items.add(new Ext.ux.tournament.SchedulesPanel({
+                date: date,
+                startHour: 8,
+                endHour: 22
+              }));
+              app.master.doLayout();
+              loadMask.hide();
+            }
+          })
         }
       }
     }]

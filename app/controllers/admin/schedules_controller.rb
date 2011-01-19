@@ -1,7 +1,5 @@
 class Admin::SchedulesController < ApplicationController
   layout 'admin/main'
-
-  admin_section :tournaments
   
   def index
     respond_to do |format|
@@ -95,6 +93,10 @@ class Admin::SchedulesController < ApplicationController
     
     schedule.save
     
+    render ext_success
+  end
+  
+  def week
     render ext_success
   end
 end
