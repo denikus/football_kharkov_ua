@@ -3,12 +3,15 @@ if (undefined == Schedule) {
 }
 
 Schedule = {
-  prev_date: '',
-  next_date: '',
-  init: function(init_prev_date, init_next_date) {
-    Schedule.prev_date = init_prev_date; 
-    Schedule.next_date = init_next_date; 
-    Schedule.checkDatesEmptyness();
+  min_date: '',
+  max_date: '',
+  current_date: '',
+  init: function(min_date, max_date, current_date) {
+    Schedule.min_date = min_date;
+    Schedule.max_date = max_date;
+    Schedule.current_date = current_date;
+
+    Schedule.checkArrows();
 
     //handle prev button click    
     $("a.prev").click(function() {
@@ -25,11 +28,14 @@ Schedule = {
 
     $.ajax({
       url: '/schedules/show',
-      data: {id: ('prev'==date_type ? Schedule.prev_date : Schedule.next_date ), date_type: date_type},
+      data: {id: Schedule.current_date, date_type: date_type},
       type: 'post',
       dataType: 'json',
       success: function(response_data) {
-        var prev_date = Schedule.prev_date;
+        Schedule.current_date = response_data['current_date'];
+        $(".schedule-content-wrap").html(response_data.data);
+        Schedule.checkArrows();
+/*        var prev_date = Schedule.prev_date;
         var next_date = Schedule.next_date;
 
         var first_schedule_block = $("ul.schedule-list li:first");
@@ -48,30 +54,23 @@ Schedule = {
         }
 
         //check if we need to hide one of the arrow dates
-        Schedule.checkDatesEmptyness();
+        Schedule.checkArrows();*/
       }
     });
   },
   shiftArrowDates: function(date_type, date_value) {
-    if ('prev'==date_type) {
+    
+/*    if ('prev'==date_type) {
       Schedule.prev_date = date_value;
       Schedule.next_date = $("ul.schedule-list li:last").attr('id');
     } else {
       Schedule.next_date = date_value;
       Schedule.prev_date = $("ul.schedule-list li:first").attr('id');
-    }
+    }*/
   },
-  checkDatesEmptyness: function() {
-    if (Schedule.prev_date=='') {
-      $("a.prev").hide();
-    } else {
-      $("a.prev").show();
-    }
-    if (Schedule.next_date=='') {
-      $("a.next").hide();
-    } else {
-      $("a.next").show();
-    }
+  checkArrows: function() {
+    (Schedule.current_date == Schedule.min_date) ? $("a.prev").hide() : $("a.prev").show();
+    (Schedule.current_date == Schedule.max_date) ? $("a.next").hide() : $("a.next").show();
   }
 }
 

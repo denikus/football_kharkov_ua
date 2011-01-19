@@ -1236,35 +1236,20 @@ div.schedule-content-wrap {
   overflow:hidden;
   margin: 0 auto;
   /*text-align:center;*/
-  width: 500px;
+  width: 700px;
   /*height:600px;*/
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border:1px solid $block_border_color;
-  ul.schedule-list {
-    list-style-type: none;
-    width: 500px;
-    /*height: 600px;*/
-//    width:20000em;
-    position:relative;
-    li {
-      display: block; 
-      /*height: 600px;*/
-      width: 499px;
-      float:left;
-      border-right:1px solid $block_border_color;
-      div.schedule-header {
-        font-size: 100%;
-        color:$block_header_color;
-        text-align:center;
-        padding: 3px;
-        height: 30px;
-        border-bottom: 1px solid $block_border_color;
-      }
-      div.schedule-content {
-        /*height: 567px;*/
-        overflow: auto;
-      }
-    }    
+  div.schedule-header {
+    font-size: 100%;
+    color:$block_header_color;
+    text-align:center;
+    padding: 3px;
+    height: 30px;
+    border-bottom: 1px solid $block_border_color;
+  }
+  div.schedule-content {
+    overflow: auto;
   }
 }
 
@@ -1291,7 +1276,6 @@ div.schedule-content {
       text-align: center;
     }
     td.league {
-      width: 100px;
       text-align: center;
     }
   }
