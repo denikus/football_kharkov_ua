@@ -69,7 +69,7 @@ class Schedule < ActiveRecord::Base
                 "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
                 "INNER JOIN `steps` AS leagues " +
                   "ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ",
-            :conditions => ["match_on = ?  AND steps.tournament_id = ? ", day,  tournament.id],
+            :conditions => ["match_on = ?  AND steps.tournament_id = ?", day,  tournament.id],
             :include => [:hosts, :guests, :venue],
             :order => "match_at ASC"
            )

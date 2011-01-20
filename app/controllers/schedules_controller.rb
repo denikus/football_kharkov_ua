@@ -24,8 +24,8 @@ class SchedulesController < ApplicationController
     current_date = params[:id].to_date
     date_type    = params[:date_type]
     
-#    tournament = Tournament.find_by_url(current_subdomain)
-    tournament = Tournament.find_by_url('itleague')
+    tournament = Tournament.find_by_url(current_subdomain)
+#    tournament = Tournament.find_by_url('itleague')
 
     if ('prev' == date_type)
       condition_str = "match_on < ?  AND steps.tournament_id = ? "
@@ -43,7 +43,7 @@ class SchedulesController < ApplicationController
                                   :limit => 1
                                  )
 
-    @schedules = Schedule.get_records_by_day(@schedule_date[:match_on], tournament)
+    @schedules = Schedule.get_records_by_day(@match_date[:match_on], tournament)
 
     @schedules = Schedule.find(:all,
                                 :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name",

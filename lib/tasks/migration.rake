@@ -51,24 +51,74 @@ namespace :migrate do
 
   desc "Import schedules and quick results from old scheme - and create new schedules and matches"
   task :schedules => :environment do
-    CSV.open("#{RAILS_ROOT}/lib/migration/data/schedules.csv", 'r', ';') do |row|
+    CSV.open("#{RAILS_ROOT}/lib/migration/data/schedules_old.csv", 'r', ';') do |row|
       #row values:
       #0id	1venue_id	2match_on	3match_at	4host_team_id	5guest_team_id	6created_at	7updated_at	8hosts_score	9guests_score
       schedule_params = {
                          :id => row[0],
-                         :venue_id => row[1],
-                         :host_team_id => row[4],
-                         :guest_team_id => row[5],
-                         :host_scores => row[8],
-                         :guest_scores => row[9],
+                         :venue_id => row[2],
+                         :host_team_id => row[5],
+                         :guest_team_id => row[6],
+                         :host_scores => nil,
+                         :guest_scores => nil,
                          :tour_id => nil,
-                         :match_on => row[2],
-                         :match_at => row[3],
-                         :created_at => row[6],
-                         :updated_at => row[7]
+                         :match_on => row[3],
+                         :match_at => row[4],
+                         :created_at => row[7],
+                         :updated_at => row[8]
                         }
+
       Schedule.create(schedule_params)
     end  
+  end
+
+  desc "Import quick results to new scheme"
+  task :univer_quick_results => :environment do
+    #row[2], row[3]
+    CSV.open("#{RAILS_ROOT}/lib/migration/data/quick_results.csv", 'r', ';') do |row_string|
+      row = row_string[0].split(',')
+      schedule = Schedule.find(:first,
+                               :conditions => ["host_team_id = ? AND guest_team_id = ?  AND league_id IS NULL AND match_on>='2010-12-18'", row[0], row[1]]
+      )
+
+      #
+
+      unless schedule.nil?
+#        puts "#{schedule.hosts.name} #{schedule.host_scores} - #{schedule.guest_scores} #{schedule.guests.name}"
+        if schedule.league_id.nil?
+            host_league = Team.find(:first,
+                                   :select => "teams.name AS team_name, steps.name AS league_name, steps.id AS league_id",
+                                   :joins =>  "INNER JOIN steps_teams " +
+                                               "ON (teams.id = steps_teams.team_id) " +
+                                             "INNER JOIN steps " +
+                                               "ON (steps_teams.step_id = steps.id AND steps.type = 'StepLeague')",
+                                   :conditions => ["teams.id = ? AND steps.id >14 AND steps.id<27 ", schedule.hosts.id]
+                                   )
+            guest_league = Team.find(:first,
+                                   :select => "teams.name AS team_name, steps.name AS league_name, steps.id AS league_id",
+                                   :joins =>  "INNER JOIN steps_teams " +
+                                               "ON (teams.id = steps_teams.team_id) " +
+                                             "INNER JOIN steps " +
+                                               "ON (steps_teams.step_id = steps.id AND steps.type = 'StepLeague')",
+                                   :conditions => ["teams.id = ? AND steps.id >14 AND steps.id<27", schedule.guests.id]
+                                   )
+
+          schedule.league_id = host_league[:league_id]
+          schedule.host_scores = row[2]
+          schedule.guest_scores = row[3]
+          schedule.save!
+
+#          if host_league.nil?
+#            puts "nil host_team_id: #{schedule.hosts.id} - schedule_id => #{schedule.id}"
+#            puts "nil guest_team_id: #{schedule.guests.id} - schedule_id => #{schedule.id}"
+#          else
+#            puts "#{host_league[:league_name]} - #{host_league[:league_id]} - #{host_league[:team_name]}"
+#            puts "#{guest_league[:league_name]} - #{guest_league[:league_id]} - #{guest_league[:team_name]}"
+#            puts "----------------------"
+#          end
+        end
+      end
+    end
   end
 
 end
