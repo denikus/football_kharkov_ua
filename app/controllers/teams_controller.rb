@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
                                       "ON (steps_teams.step_id = steps.id AND type = 'StepSeason')",
                           :conditions => ["tournament_id = ? ", tournament.id],
                           :order => "teams.name ASC"
-                          )
+                        )
 #      @teams = StepSeason.find(:last,
 #                               :conditions => ["tournament_id = ?", tournament.id],
 #                               :order => "name ASC"
