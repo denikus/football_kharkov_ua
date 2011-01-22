@@ -1,7 +1,10 @@
 %h2.tournament-subtitle Список команд
 - unless @teams.empty?
-  - @teams.each_slice( (@teams.length.to_f/4).round ) do |block|
-    %ul.team-list
-      - block.each do |item|
-        %li= link_to item.name, team_path(item.url), :target => "_blank"
-  .clear
+  %ul.team-list
+    - @teams.each do |item|
+      %li= link_to item.name, team_path(item.url), :target => "_blank"
+  -#- @teams.each_slice( (@teams.length.to_f/4).round ) do |block|
+  -#  %ul.team-list
+  -#    - block.each do |item|
+  -#      %li= link_to item.name, team_path(item.url), :target => "_blank"
+  -#.clear
