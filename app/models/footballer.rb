@@ -19,13 +19,24 @@ class Footballer < ActiveRecord::Base
   alias_method :name, :full_name
   
   def get_teams_seasons
-    Tournament.find(:all,
-                    :select => "tournaments.name AS tournament_name, seasons.name AS season_name, teams.name AS team_name, teams.url AS team_address",
-                    :joins => "INNER JOIN seasons ON (seasons.tournament_id = tournaments.id) " +
-                              "INNER JOIN footballers_teams ON (footballers_teams.season_id = seasons.id) " +
-                              "INNER JOIN teams ON (footballers_teams.team_id = teams.id) ",
-                    :conditions => [" footballers_teams.footballer_id = ? ", self.id] 
-            )
+    Footballer.find(:all,
+        :select => "tournaments.name AS tournament_name, steps.name AS season_name, teams.name AS team_name, teams.url AS team_address",
+        :joins => "INNER JOIN footballers_teams ON (footballers.id = footballers_teams.footballer_id) " +
+                  "INNER JOIN teams ON (footballers_teams.team_id = teams.id) " +
+                  "INNER JOIN steps_teams ON (teams.id = steps_teams.team_id) " +
+                  "INNER JOIN steps ON (steps_teams.step_id = steps.id AND steps.type = 'StepSeason') " +
+                  "INNER JOIN tournaments ON (steps.tournament_id = tournaments.id)",
+        :conditions => ["footballers_teams.footballer_id = ? ", self.id]
+       )
+
+
+#    Tournament.find(:all,
+#                    :select => "tournaments.name AS tournament_name, seasons.name AS season_name, teams.name AS team_name, teams.url AS team_address",
+#                    :joins => "INNER JOIN seasons ON (seasons.tournament_id = tournaments.id) " +
+#                              "INNER JOIN footballers_teams ON (footballers_teams.season_id = seasons.id) " +
+#                              "INNER JOIN teams ON (footballers_teams.team_id = teams.id) ",
+#                    :conditions => [" footballers_teams.footballer_id = ? ", self.id]
+#            )
   end
 
   def before_save
