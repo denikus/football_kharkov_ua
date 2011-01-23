@@ -9,7 +9,6 @@ class TablesController < ApplicationController
       @set << {:table => table.table_set[0], :league_name => table.name}
     end
 
-    render :partial => "tables/#{current_subdomain}_table"
 #    puts "------------set"
 #    ap @set
 #    debugger
