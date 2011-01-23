@@ -2,8 +2,8 @@
 - unless @teams.empty?
   %ul.team-list
     - @teams.each do |item|
-      -#%li= link_to item.name, team_path(item.url), :target => "_blank"
-      %li= item.name
+      %li= link_to item.name, team_path(item.url), :target => "_blank"
+      -#%li= item.name
   -#- @teams.each_slice( (@teams.length.to_f/4).round ) do |block|
   -#  %ul.team-list
   -#    - block.each do |item|
