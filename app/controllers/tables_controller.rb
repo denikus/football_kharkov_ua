@@ -8,6 +8,8 @@ class TablesController < ApplicationController
     StepLeague.for_table.find(:all, :conditions => {:id => [10,11,12,13,14]}).each do |table|
       @set << {:table => table.table_set[0], :league_name => table.name}
     end
+
+    render :partial => "tables/#{current_subdomain}_table"
 #    puts "------------set"
 #    ap @set
 #    debugger
