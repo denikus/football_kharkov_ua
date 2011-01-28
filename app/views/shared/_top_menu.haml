@@ -12,6 +12,7 @@
     #top-menu-venues
       = link_to 'Спорткомплексы', "#", {:target => "_blank"}
       %ul.subnav
+        %li= link_to 'СК Вирта', venue_url(:id => "спорткомплекс-вирта", :subdomain => false)
         %li= link_to 'ДФА Металлист', venue_url(:id => "Детская-футбольная-академия-Металлист", :subdomain => false)
         %li= link_to 'СК Каразинский', venue_url(:id => "спорткомплекс-Каразинский", :subdomain => false)
         %li= link_to 'СК Пионер', venue_url(:id => "спорткомплекс-Пионер", :subdomain => false)
