@@ -66,7 +66,7 @@ football.namespace('temp.schedule', {
       
       //define guest_team_autocomplete handler
       $("#guest_team").autocomplete({
-        minLength: 3,
+        minLength: 1,
         source: function(request, response) {
           if (football.temp.schedule.team.host_team_id == '') {
             alert('Please, select host team first');
