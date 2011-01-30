@@ -61,6 +61,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :footballers
     admin.resources :permissions
     admin.resources :venues
+    admin.temp 'temp/:action/:id', :controller => "temp"
   end
 
   map.namespace(:univer) do |univer|

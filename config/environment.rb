@@ -27,6 +27,9 @@ Rails::Initializer.run do |config|
   config.gem 'exception_notification'
   config.gem 'fancy-buttons'
   config.gem 'ckeditor', '3.4.2'
+#  config.gem 'coffee-script'
+#  config.gem 'coffee-script-source'
+#  config.gem 'barista'
   config.gem 'sanitize'
   if RAILS_ENV=="development"
     config.gem "newrelic_rpm"

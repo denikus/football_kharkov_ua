@@ -1,0 +1,17 @@
+!!!
+%html{'xmlns' => "http://www.w3.org/1999/xhtml", 'xml:lang' => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", :"http-equiv"=>"Content-Type"}/
+    %meta{:name => "description", :content=>"Душевный харьковский футбол и все что с ним связано"}/
+    %link{:rel=>"alternate", :type => "application/rss+xml", :title => "RSS", :href => "http://football.kharkov.ua/feed"}/
+    %link{:rel=>"icon", :type => "image/x-icon", :href => "/favicon.ico"}/
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+    = javascript_include_tag "jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js"
+    = javascript_include_tag "extensions"
+    = javascript_include_tag "admin/temp"
+    = stylesheet_link_tag "/javascripts/jquery-plugins/jquery-ui-1.8.4.custom/css/redmond/jquery-ui-1.8.4.custom.css"
+    = yield :head_declarations
+    :javascript
+      authenticity_token = "#{form_authenticity_token}";
+  %body
+    = yield

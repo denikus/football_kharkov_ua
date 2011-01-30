@@ -1,0 +1,20 @@
+- form_for @schedule, :url => {:action => "create"} do |f|
+  =f.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
+  
+  =f.hidden_field(:host_team_id)
+  =f.hidden_field(:guest_team_id)
+
+  =text_field_tag(:host_team)
+  =text_field_tag(:guest_team)
+
+  =f.select(:venue_id, @venues.collect{|obj| [obj.name, obj.id]})
+
+  =f.text_field(:match_on, :value => "2011-01-")
+  =f.text_field(:match_at)
+
+  = f.submit("Сохранить")
+
+:javascript
+  $(function(){
+    football.temp.schedule.team.init({teams_path: "#{url_for(:controller => "admin/temp", :action => "teams")}"});
+  });  
