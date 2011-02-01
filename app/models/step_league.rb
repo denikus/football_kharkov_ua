@@ -11,9 +11,8 @@ class StepLeague < Step
       table = StepTour::Table.new
       matches.sort_by{ |m| m.schedule.match_on }.group_by{ |m| m.schedule.step_tour }.each do |tour, matches|
         matches.each{ |m| table << m }
+        set << table
       end
-      set << table
     end
-
   end
 end

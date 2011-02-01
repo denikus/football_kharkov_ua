@@ -6,15 +6,17 @@ class StepTour < Step
   class Table
     class Record < Struct.new(:team, :results, :games_count, :games, :goals, :score, :fouls, :position_change)
       def initialize(*args)
-        defaults = [nil, {}, 0, [0, 0, 0], [0, 0], 0, 0, 0]
+        defaults = [nil, Hash.new{ |h, k| h[k] = '' }, 0, [0, 0, 0], [0, 0], 0, 0, 0]
         super(*(args + defaults[args.length..-1]))
       end
       
       def update match
         comps = match.competitors
         comps.reverse! if self.team.id != comps.first.team_id
-        goals = comps.collect{ |c| c.stats.get('score') || 0 }
-        self[:results][comps.last.team_id] = goals
+        #goals = comps.collect{ |c| c.stats.get('score') || 0 } # stat values
+        goals = [match.schedule.host_scores, match.schedule.guest_scores].tap{ |g| g.reverse! if match.schedule.host_team_id != self.team.id } # schedule valuse
+        self[:results][comps.last.team_id] << '|' if self[:results].key? comps.last.team_id
+        self[:results][comps.last.team_id] << goals.join(':')
         self[:games_count] += 1
         self[:games] = self[:games].zip(lambda{ |a, i| a[i] += 1; a }[[0, 0, 0], (1-goals.inject(&:<=>)).abs]).collect{ |e| e.inject(&:+) }
         self[:goals] = self[:goals].zip(goals).collect{ |e| e.inject(&:+) }
@@ -35,7 +37,11 @@ class StepTour < Step
       end
       
       def clone
-        Record.new(team, results.clone, games_count, games.clone, goals.clone, score, fouls, position_change)
+        Record.new(team, clone_results, games_count, games.clone, goals.clone, score, fouls, position_change)
+      end
+      
+      def clone_results
+        results.each.inject({}){ |clone, (k, v)| clone[k] = v.clone; clone }
       end
     end
     
@@ -47,9 +53,9 @@ class StepTour < Step
       def << table
         clone = table.clone
         clone.process
-        if last
+        if first
           clone.values.each_with_index do |record, position|
-            record.position_change = last.values.index{ |v| v.team.id == record.team.id } - position
+            record.position_change = first.values.index{ |v| v.team.id == record.team.id } - position
           end
         end
         unshift clone

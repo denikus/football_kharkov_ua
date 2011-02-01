@@ -12,7 +12,7 @@
     %tr
       %td= record.team.name
       - records.collect{ |r| r.team.id }.each do |id|
-        %td= record.results[id].nil? ? '-' : record.results[id].collect(&:to_s).join(':')
+        %td= record.results[id].nil? ? '-' : record.results[id]
       %td= record.games_count
       - record.games.each do |g|
         %td= g

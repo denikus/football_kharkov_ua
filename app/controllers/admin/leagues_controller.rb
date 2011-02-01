@@ -61,7 +61,7 @@ class Admin::LeaguesController < ApplicationController
   end
   
   def table_set
-    @set = League.for_table.find(params[:id]).table_set
+    @set = StepLeague.for_table.find(params[:id]).table_set
     render :layout => false
   end
 
