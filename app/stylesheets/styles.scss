@@ -1035,6 +1035,7 @@ table.schedule {
   td {
     text-align: left;
   }
+
   td.venue {
     width: 150px;
     text-align: center;
@@ -1227,6 +1228,11 @@ table.bombardier-position {
   }
 }
 
+input.fancy_score_edit {
+  width: 15px;
+  border:1px solid #000;
+}
+
 .wrap-container {
   text-align: center;
 }
@@ -1236,7 +1242,7 @@ div.schedule-content-wrap {
   overflow:hidden;
   margin: 0 auto;
   /*text-align:center;*/
-  width: 700px;
+  /*width: 700px;*/
   /*height:600px;*/
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border:1px solid $block_border_color;
@@ -1265,11 +1271,26 @@ div.schedule-content {
       padding: 5px;
       text-align: left;
     }
+    td.tournament {
+    width: 100px;
+    text-align: center;
+    }
+    td.tour {
+      width: 100px;
+      text-align: center;
+    }
     td.score-container{width: 45px;margin:0 2px;}
     td.hosts, td.guests{width: 145px;}
     td.venue {
-      width: 30px;
+      width: 150px;
       text-align: center;
+      img, a {
+        float:left;
+      }
+      a {
+        display:block;
+        margin-left: 5px;
+      }
     }
     td.time {
       width: 40px;
@@ -1333,4 +1354,3 @@ div.schedule-content {
       }
     }   
 }
-

@@ -38,7 +38,8 @@ class Schedule < ActiveRecord::Base
                  :select => "MIN(match_on) AS match_on",
                  :joins => "INNER JOIN `steps`" +
                             "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
-                 :conditions => ["steps.tournament_id = ? ", tournament.id]
+                 :conditions => !tournament.nil? ? ["tournament_id = ?", tournament.id] : "1"
+#                 :conditions => ["steps.tournament_id = ? ", tournament.id]
                  )
     end
 
@@ -47,29 +48,41 @@ class Schedule < ActiveRecord::Base
                  :select => "MAX(match_on) AS match_on",
                  :joins => "INNER JOIN `steps`" +
                             "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
-                 :conditions => ["steps.tournament_id = ? ", tournament.id]
+                 :conditions => !tournament.nil? ? ["tournament_id = ?", tournament.id] : "1"
+#                 :conditions => ["steps.tournament_id = ? ", tournament.id]
                  )
     end
 
     def get_tomorrow_record(tournament)
+      unless tournament.nil?
+        conditions = ["match_on >= ? AND steps.tournament_id = ? ", Time.now.to_date, tournament.id]
+      else
+        conditions = ["match_on >= ? ", Time.now.to_date]
+      end  
+
       schedule_date = find(:first,
                            :select => "match_on",
                            :joins => "INNER JOIN `steps` " +
                                        "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
-                           :conditions => ["match_on >= ? AND steps.tournament_id = ? ", Time.now.to_date, tournament.id],
+                           :conditions => conditions,
                            :order => "match_on",
                            :limit => 1
                            )
     end
 
     def get_records_by_day(day, tournament)
+      unless tournament.nil?
+        conditions = ["match_on = ?  AND steps.tournament_id = ?", day,  tournament.id]
+      else
+        conditions = ["match_on = ? ", day]
+      end
       find(:all,
             :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name",
             :joins => "INNER JOIN `steps`" +
                 "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
-                "INNER JOIN `steps` AS leagues " +
+                "LEFT JOIN `steps` AS leagues " +
                   "ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ",
-            :conditions => ["match_on = ?  AND steps.tournament_id = ?", day,  tournament.id],
+            :conditions => conditions,
             :include => [:hosts, :guests, :venue],
             :order => "match_at ASC"
            )

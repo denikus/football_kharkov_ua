@@ -35,42 +35,63 @@ Schedule = {
         Schedule.current_date = response_data['current_date'];
         $(".schedule-content-wrap").html(response_data.data);
         Schedule.checkArrows();
-/*        var prev_date = Schedule.prev_date;
-        var next_date = Schedule.next_date;
-
-        var first_schedule_block = $("ul.schedule-list li:first");
-        var last_schedule_block = $("ul.schedule-list li:last");
-
-        //shift arrow dates
-        Schedule.shiftArrowDates(date_type, response_data.arrow_date);
-
-        //load content to schedule block
-        if ('prev'==date_type) {
-          $("ul.schedule-list li:last").html(first_schedule_block.html()).attr('id', first_schedule_block.attr('id'));
-          first_schedule_block.html(response_data.data).attr('id', prev_date);
-        } else {
-          $("ul.schedule-list li:first").html(last_schedule_block.html()).attr('id', last_schedule_block.attr('id'));
-          last_schedule_block.html(response_data.data).attr('id', next_date);
-        }
-
-        //check if we need to hide one of the arrow dates
-        Schedule.checkArrows();*/
       }
     });
-  },
-  shiftArrowDates: function(date_type, date_value) {
-    
-/*    if ('prev'==date_type) {
-      Schedule.prev_date = date_value;
-      Schedule.next_date = $("ul.schedule-list li:last").attr('id');
-    } else {
-      Schedule.next_date = date_value;
-      Schedule.prev_date = $("ul.schedule-list li:first").attr('id');
-    }*/
   },
   checkArrows: function() {
     (Schedule.current_date == Schedule.min_date) ? $("a.prev").hide() : $("a.prev").show();
     (Schedule.current_date == Schedule.max_date) ? $("a.next").hide() : $("a.next").show();
+  },
+  quick_results: {
+    current_score: '-',
+    init: function() {
+      $("div.fancy-score").live('click', Schedule.quick_results.container_click_handler);
+      $("div.fancy-score input").live('keydown', Schedule.quick_results.input_field_keydown_handler);
+      $("div.fancy-score input").live('blur', Schedule.quick_results.input_field_blur_handler);
+    },
+    container_click_handler: function(event) {
+      Schedule.quick_results.current_score = $(this).text();
+      var schedule_id = $(this).attr("id").match(/\d+$/);
+      var team_type = $(this).attr("id").match(/^[a-zA-Z]+/);
+      var input_field_id = team_type + "_score_" + schedule_id;
+      $(this).html('<input name="' + team_type + '_score" class="fancy_score_edit" type="text" value="' + ( Schedule.quick_results.current_score!='-' ? Schedule.quick_results.current_score : "" ) + '" id="' + input_field_id + '" />');
+      $("input#" + input_field_id + "").focus();
+    },
+    input_field_keydown_handler: function(event) {
+      var input_field = $(this);
+      var sched_id  = input_field.attr("id").match(/\d+$/);
+      var score     = input_field.val();
+      var team_type = input_field.attr("id").match(/^[a-zA-Z]+/);
+      //check if enter button pressed
+      if (event.keyCode == '13') {
+        Schedule.quick_results.save_score(sched_id, score, team_type[0]);
+      //check if escape button pressed
+      } else if (event.keyCode == '27') {
+        Schedule.quick_results.cancel_score(team_type + "_score_view_" + sched_id);
+      }
+    },
+    input_field_blur_handler: function() {
+      var input_field = $(this);
+      var sched_id  = input_field.attr("id").match(/\d+$/);
+      var score     = input_field.val();
+      var team_type = input_field.attr("id").match(/^[a-zA-Z]+/);
+      Schedule.quick_results.save_score(sched_id, score, team_type[0]);
+    },
+    save_score: function(schedule_id, score, team_type) {
+      $.ajax({
+        url: '/schedules/' + schedule_id,
+        data: {score: score, team_type: team_type},
+        type: 'PUT',
+        dataType: 'json',
+        success: function(response_data) {
+          $("#" + team_type + "_score_view_" + schedule_id +"").text(score);
+        }
+      });
+    },
+    cancel_score: function(container_id) {
+      $("#" + container_id +"").text(Schedule.quick_results.current_score);
+    }
+
   }
 }
 

@@ -27,31 +27,44 @@ class SchedulesController < ApplicationController
     tournament = Tournament.find_by_url(current_subdomain)
 #    tournament = Tournament.find_by_url('itleague')
 
+
+
     if ('prev' == date_type)
-      condition_str = "match_on < ?  AND steps.tournament_id = ? "
+      condition_str = "match_on < ?  AND #{(tournament.nil? ? "1" : "steps.tournament_id = ?")} "
       order_str = "match_on DESC"
     elsif ('next' == date_type)
-      condition_str = "match_on > ?  AND steps.tournament_id = ? "
+      condition_str = "match_on > ?  AND #{(tournament.nil? ? "1" : "steps.tournament_id = ?")} "
       order_str = "match_on ASC"
+    end
+
+   unless tournament.nil?
+      conditions = [condition_str, current_date,  tournament.id]
+    else
+      conditions = [condition_str, current_date]
     end
     
     @match_date = Schedule.find(:first,
                                   :joins => "INNER JOIN `steps`" +
                                               "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') ",
-                                  :conditions => [condition_str, current_date,  tournament.id],
+                                  :conditions => conditions,
                                   :order => order_str,
                                   :limit => 1
                                  )
-
-    @schedules = Schedule.get_records_by_day(@match_date[:match_on], tournament)
+    @schedules_by_day = Schedule.get_records_by_day(@match_date[:match_on], tournament)
+    
+    unless tournament.nil?
+      conditions = ["match_on = ?  AND steps.tournament_id = ? ", @match_date.match_on,  tournament.id]
+    else
+      conditions = ["match_on = ?", @match_date.match_on]
+    end
 
     @schedules = Schedule.find(:all,
                                 :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name",
                                 :joins => "INNER JOIN `steps`" +
                                     "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
-                                    "INNER JOIN `steps` AS leagues " +
+                                    "LEFT JOIN `steps` AS leagues " +
                                       "ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ",
-                                :conditions => ["match_on = ?  AND steps.tournament_id = ? ", @match_date.match_on,  tournament.id],
+                                :conditions => conditions,
                                 :include => [:hosts, :guests, :venue],
                                 :order => "match_at ASC"
                                )
@@ -60,5 +73,20 @@ class SchedulesController < ApplicationController
       format.json {render :json => {:data => render_to_string(:partial => "schedules/day", :layout => false, :object => @schedules), :current_date => @match_date[:match_on].to_s}}
     end
 
+  end
+
+  def update
+    schedule = Schedule.find(params[:id])
+    score = params[:score].empty? ? nil : params[:score]
+    if (params[:team_type]=='host')
+      schedule.update_attribute('host_scores', score)
+    elsif (params[:team_type]=='guest')
+      schedule.update_attribute('guest_scores', score)
+    end
+    schedule.save!
+
+    respond_to  do |format|
+      format.json {render :json => {:success => true}}
+    end  
   end
 end

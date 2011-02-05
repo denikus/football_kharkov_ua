@@ -9,27 +9,35 @@
         - loser_class = "fancy-score-loser"
         - hosts_class = ""
         - guests_class = ""
-        - if schedule_item.host_scores > schedule_item.guest_scores
+        - if schedule_item.host_scores.to_i > schedule_item.guest_scores.to_i
           - hosts_class = winner_class
           - guests_class = loser_class
-        - elsif schedule_item.host_scores < schedule_item.guest_scores
+        - elsif schedule_item.host_scores.to_i < schedule_item.guest_scores.to_i
           - hosts_class = loser_class
           - guests_class = winner_class
         - else
           - hosts_class = "fancy-score-equal"
           - guests_class = "fancy-score-equal"
       %tr{:class => row_class}
+        -if current_subdomain.nil?
+          %td.tournament
+            = link_to schedule_item.step_tour.tournament.short_name, tournament_url(:subdomain => schedule_item.step_tour.tournament.url)
+          %td.tour
+            = schedule_item.step_tour.name
         %td.venue
           - unless schedule_item.venue.nil?
-            = (!schedule_item.venue.icon.nil? ? image_tag("/images/icons/#{schedule_item.venue.icon}", :alt => "#{schedule_item.venue.name}", :title => "#{schedule_item.venue.name}") : schedule_item.venue.name)
+            = (!schedule_item.venue.icon.nil? && !schedule_item.venue.icon.empty? ? image_tag("/images/icons/#{schedule_item.venue.icon}", :alt => "#{schedule_item.venue.name}", :title => "#{schedule_item.venue.name}") : "")
+          =link_to schedule_item.venue.short_name, venue_url(schedule_item.venue.url)   
         %td.league
           - unless schedule_item[:league_name].nil?
             = schedule_item[:league_short_name].nil? ? schedule_item[:league_name] : schedule_item[:league_short_name]
+          - else
+            = "-"  
         %td.time= schedule_item.match_at
         %td.hosts= "#{schedule_item.hosts.name} "
         %td.score-container
-          .fancy-score{:class => hosts_class }= !schedule_item.host_scores.nil? ? schedule_item.host_scores : "-"
-          .fancy-score.fancy-score-right{:class => guests_class}= !schedule_item.guest_scores.nil? ? schedule_item.guest_scores : "-"
+          .fancy-score{:class => hosts_class, :id => "host_score_view_#{schedule_item.id}" }= !schedule_item.host_scores.nil? ? schedule_item.host_scores : "-"
+          .fancy-score.fancy-score-right{:class => guests_class, :id => "guest_score_view_#{schedule_item.id}"}= !schedule_item.guest_scores.nil? ? schedule_item.guest_scores : "-"
           .clear
         %td.guests= "#{schedule_item.guests.name}"
         -#%td= schedule_item.league_id
