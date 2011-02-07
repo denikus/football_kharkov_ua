@@ -24,15 +24,6 @@ class SidebarBlockCell < ::Cell::Base
   def quick_results
     current_subdomain = @opts[:subdomain].nil? ? @opts[:locals][:current_subdomain] : @opts[:subdomain]
 
-    #get current season for tournament    
-=begin
-    @season = Season.find(:first,
-                          :joins => :tournament,
-                          :conditions => ["tournaments.url = ? ", current_subdomain],
-                          :order => "seasons.id DESC"
-                          )
-=end
-
     if !@opts[:locals].nil? && @opts[:locals][:direction]=='prev'
       @last_dates = Schedule.find(:all,
                                   :conditions => ["host_scores IS NOT NULL AND guest_scores IS NOT NULL AND schedules.match_on <= ? ", @opts[:locals][:direction_date]],
