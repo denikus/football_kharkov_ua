@@ -6,10 +6,13 @@ Schedule = {
   min_date: '',
   max_date: '',
   current_date: '',
-  init: function(min_date, max_date, current_date) {
+  url: '/schedules/show',
+  format: '',
+  init: function(min_date, max_date, current_date, format) {
     Schedule.min_date = min_date;
     Schedule.max_date = max_date;
     Schedule.current_date = current_date;
+    Schedule.format = format;
 
     Schedule.checkArrows();
 
@@ -27,14 +30,11 @@ Schedule = {
   loadDay: function(date_type) {
 
     $.ajax({
-      url: '/schedules/show',
-      data: {id: Schedule.current_date, date_type: date_type},
+      url: Schedule.url,
+      data: {id: Schedule.current_date, date_type: date_type, format: Schedule.format },
       type: 'post',
-      dataType: 'json',
+      dataType: 'script',
       success: function(response_data) {
-        Schedule.current_date = response_data['current_date'];
-        $(".schedule-content-wrap").html(response_data.data);
-        Schedule.checkArrows();
       }
     });
   },

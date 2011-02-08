@@ -73,7 +73,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :users
   map.resources :pages
-  map.resources :schedules
+  map.resources :schedules#, :collection => {:show_quick_results => :get}
   map.resource :profile, :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :destroy_photo => :delete, :make_crop => :post}
   map.resource :itleague_draw
   map.resources :footballers, :only => ["index", "show"]

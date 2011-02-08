@@ -24,6 +24,25 @@ class SidebarBlockCell < ::Cell::Base
   def quick_results
     current_subdomain = @opts[:subdomain].nil? ? @opts[:locals][:current_subdomain] : @opts[:subdomain]
 
+    if current_subdomain
+      tournament = Tournament.from_param(current_subdomain)
+    end
+
+    #get max && min date
+    max  = Schedule.get_max_date(tournament, true)
+    min = Schedule.get_min_date(tournament, true)
+    @max_date = max[:match_on]
+    @min_date = min[:match_on]
+
+#    @schedule_date = Schedule.get_tomorrow_record(tournament)
+
+#    @schedule_date ||= max
+
+    @schedules = Schedule.get_records_by_day(@max_date, tournament)
+
+    render :locals => {:min_date => @min_date , :max_date => @max_date}, :layout => false
+
+=begin
     if !@opts[:locals].nil? && @opts[:locals][:direction]=='prev'
       @last_dates = Schedule.find(:all,
                                   :conditions => ["host_scores IS NOT NULL AND guest_scores IS NOT NULL AND schedules.match_on <= ? ", @opts[:locals][:direction_date]],
@@ -74,6 +93,7 @@ class SidebarBlockCell < ::Cell::Base
     else
       render :view => 'quick_results_content.haml', :locals => {:schedules => @schedules, :prev_date => prev_date , :current_date => current_date, :next_date =>  next_date }, :layout => false
     end
+=end
   end
 
   def advertisement

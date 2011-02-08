@@ -33,22 +33,49 @@ class Schedule < ActiveRecord::Base
   end
 
   class << self
-    def get_min_date(tournament)
-      min = find(:first,
+    def get_min_date(tournament, with_results = false)
+
+      condition_str = "1"
+      condition_vals = []
+
+      unless tournament.nil?
+        condition_str += " AND tournament_id = ? "
+        condition_vals << tournament.id
+      end
+
+      if with_results
+        condition_str += " AND (host_scores IS NOT NULL AND guest_scores IS NOT NULL) "
+      end
+
+      find(:first,
                  :select => "MIN(match_on) AS match_on",
                  :joins => "INNER JOIN `steps`" +
                             "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
-                 :conditions => !tournament.nil? ? ["tournament_id = ?", tournament.id] : "1"
+                 :conditions => [condition_str] + condition_vals
+#                 :conditions => !tournament.nil? ? ["tournament_id = ?", tournament.id] : "1"
 #                 :conditions => ["steps.tournament_id = ? ", tournament.id]
                  )
+      
     end
 
-    def get_max_date(tournament)
-      max = find(:first,
+    def get_max_date(tournament, with_results = false)
+      condition_str = "1"
+      condition_vals = []
+
+      unless tournament.nil?
+        condition_str += " AND tournament_id = ? "
+        condition_vals << tournament.id
+      end
+
+      if with_results
+        condition_str += " AND (host_scores IS NOT NULL AND guest_scores IS NOT NULL) "
+      end
+      
+      find(:first,
                  :select => "MAX(match_on) AS match_on",
                  :joins => "INNER JOIN `steps`" +
                             "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
-                 :conditions => !tournament.nil? ? ["tournament_id = ?", tournament.id] : "1"
+                 :conditions => [condition_str] + condition_vals
 #                 :conditions => ["steps.tournament_id = ? ", tournament.id]
                  )
     end

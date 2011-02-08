@@ -25,9 +25,6 @@ class SchedulesController < ApplicationController
     date_type    = params[:date_type]
     
     tournament = Tournament.find_by_url(current_subdomain)
-#    tournament = Tournament.find_by_url('itleague')
-
-
 
     if ('prev' == date_type)
       condition_str = "match_on < ?  AND #{(tournament.nil? ? "1" : "steps.tournament_id = ?")} "
@@ -67,11 +64,22 @@ class SchedulesController < ApplicationController
                                 :conditions => conditions,
                                 :include => [:hosts, :guests, :venue],
                                 :order => "match_at ASC"
+
                                )
-    respond_to  do |format|
-      format.html {render :layout => false}
-      format.json {render :json => {:data => render_to_string(:partial => "schedules/day", :layout => false, :object => @schedules), :current_date => @match_date[:match_on].to_s}}
+    @current_date = @match_date[:match_on].to_s
+    unless params[:format] == 'quick_results'
+      @template_data = render_to_string(:partial => "day", :locals => {:schedules => @schedules})
+
+      render :layout => false, :locals => {:current_date => @match_date[:match_on].to_s}
+    else
+      @template_data = render_to_string(:partial => "quick_results_day", :locals => {:schedules => @schedules})
+
+      render :partial => "show_quick_results.js.haml", :locals => {:current_date => @match_date[:match_on].to_s}
     end
+#    respond_to  do |format|
+#      format.html {render :layout => false}
+#      format.json {render :json => {:data => render_to_string(:partial => "schedules/day", :layout => false, :object => @schedules), :current_date => @match_date[:match_on].to_s}}
+#    end
 
   end
 
