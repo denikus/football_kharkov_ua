@@ -40,7 +40,7 @@ football.namespace('temp.schedule', {
 
       //define host_team_autocomplete handler
       $("#host_team").autocomplete({
-        minLength: 3,
+        minLength: 2,
         source: function(request, response) {
           if(request.term in football.temp.schedule.autocomplete_cache) {
             response(football.temp.schedule.autocomplete_cache[request.term]);
