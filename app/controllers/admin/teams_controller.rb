@@ -58,7 +58,11 @@ class Admin::TeamsController < ApplicationController
       respond_to do |format|
         format.html
         format.json do
-          teams = Team.all
+          if params[:query].nil? || params[:query].empty?
+            teams = Team.paginate(:page => 1, :per_page => 10)
+          else
+            teams = Team.find(:all, :conditions => ["name LIKE(?)", "#{params[:query]}%"])
+          end  
           render :json => {
             'personnel' => teams.map{ |t| {'name' => t.name, 'url' => t.url, 'id' => t.id} },
             'count' => teams.length
@@ -110,9 +114,20 @@ class Admin::TeamsController < ApplicationController
   
   def footballers
     footballer_ids = Team.find(params[:id]).footballer_ids[params[:step_id]]
-    footballers = Footballer.all.map{ |f| Hash[*%w{id first_name last_name patronymic birth_date url name}.tap{ |a| a.replace a.zip(a.map{ |m| f.send(m) }).flatten }] }
-    selected = footballers.select{ |f| footballer_ids.include? f['id'] }
-    remaining = footballers - selected
+    all_footballers = Footballer.all.map{ |f| Hash[*%w{id first_name last_name patronymic birth_date url name}.tap{ |a| a.replace a.zip(a.map{ |m| f.send(m) }).flatten }] }
+    if params[:query].nil? || params[:query].empty?
+      footballers_with_query = Footballer.paginate(:page => 1, :per_page => 50).map{ |f| Hash[*%w{id first_name last_name patronymic birth_date url name}.tap{ |a| a.replace a.zip(a.map{ |m| f.send(m) }).flatten }] }
+    else
+      footballers_with_query = Footballer.find(:all, :conditions => ["last_name LIKE(?)", "#{params[:query]}%"]).map{ |f| Hash[*%w{id first_name last_name patronymic birth_date url name}.tap{ |a| a.replace a.zip(a.map{ |m| f.send(m) }).flatten }] }
+    end
+
+#    all_footballers
+
+#    footballers = Footballer.all.map{ |f| Hash[*%w{id first_name last_name patronymic birth_date url name}.tap{ |a| a.replace a.zip(a.map{ |m| f.send(m) }).flatten }] }
+    selected = all_footballers.select{ |f| footballer_ids.include? f['id'] }
+#    selected = footballers.select{ |f| footballer_ids.include? f['id'] }
+    remaining = footballers_with_query - selected
+#    remaining = footballers - selected
     render :json => {
       'selected' => selected,
       'remaining' => remaining,

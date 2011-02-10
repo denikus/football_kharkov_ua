@@ -13,7 +13,8 @@ Ext.ux.personnel.Grid = function Grid(type) {
     viewConfig: {
       forceFit: true
     },
-    tbar: [' ', new Ext.ux.common.NameFilter(store)]
+//    tbar: [' ', new Ext.ux.common.NameFilter(store)]
+    tbar: [' ', new Ext.ux.form.SearchField({store: store})]
   }
   Grid.superclass.constructor.call(this, config);
 }
@@ -31,7 +32,9 @@ Ext.ux.personnel.Grid.createStore = function Store(type) {
     root: 'personnel',
     totalProperty: 'count',
     fields: Store.fields[type],
-    autoLoad: true
+    autoLoad: false,
+    restful: true
+
   });
   store.setDefaultSort(type == 'teams' ? 'name' : 'last_name', 'asc');
   return store;
@@ -133,7 +136,7 @@ Ext.extend(Ext.ux.personnel.Panel, Ext.FormPanel, {
     if(nav) {
       nav[this.personnel_id ? 'enable' : 'disable']();
       nav.collapseAll();
-      nav.getSelectionModel().clearSelections()
+      nav.getSelectionModel().clearSelections();
       app.details.removeAll();
     }
     if(!this.personnel_id) {

@@ -8,6 +8,7 @@ Ext.ux.personnel.TeamFootballersGrid = function Panel(options) {
       totalProperty: selected ? 'selected_count' : 'remaining_count',
       fields: ['name', 'first_name', 'last_name', 'patronymic', 'url', {name: 'birth_date', type: 'date'}, {name: 'id', type: 'int'}],
       autoLoad: true,
+      restful:true,
       requestMethod: 'GET'
     });
     var columns = [
@@ -33,7 +34,8 @@ Ext.ux.personnel.TeamFootballersGrid = function Panel(options) {
       columnWidth: .5
     }
     if(!selected) {
-      config.tbar = [' ', new Ext.ux.common.NameFilter(store)];
+//      config.tbar = [' ', new Ext.ux.common.NameFilter(store)];
+      config.tbar = [' ', new Ext.ux.form.SearchField({store:store})];
     }
   }
   Panel.superclass.constructor.call(this, config);
