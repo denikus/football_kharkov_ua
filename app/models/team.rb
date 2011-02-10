@@ -31,7 +31,7 @@ class Team < ActiveRecord::Base
         logger.info "--------------------EMPTY IDS------------------------"
         return false
       else
-        FootballersTeam.delete_all(:step_id => step_id)
+        FootballersTeam.delete_all(:step_id => step_id, :team_id => @team.id)
         FootballersTeam.create ids.collect{ |id| {:step_id => step_id, :team_id => @team.id, :footballer_id => id} }
       end
     end
