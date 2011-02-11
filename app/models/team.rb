@@ -27,13 +27,8 @@ class Team < ActiveRecord::Base
     end
     
     def []= step_id, ids
-      if ids.nil? || ids.empty?
-        logger.info "--------------------EMPTY IDS------------------------"
-        return false
-      else
-        FootballersTeam.delete_all(:step_id => step_id, :team_id => @team.id)
-        FootballersTeam.create ids.collect{ |id| {:step_id => step_id, :team_id => @team.id, :footballer_id => id} }
-      end
+      FootballersTeam.delete_all(:step_id => step_id, :team_id => @team.id)
+      FootballersTeam.create ids.collect{ |id| {:step_id => step_id, :team_id => @team.id, :footballer_id => id} }
     end
   end
 end
