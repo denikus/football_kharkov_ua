@@ -486,6 +486,9 @@ input.fancy-submit:hover {
 	    padding:0px;
 	    text-decoration: none;
 	  }
+	 a.tournament-main-title:hover {
+	   color: #336999;
+	 }
 	}
 }
 #col-left, #col-right {
@@ -1353,4 +1356,77 @@ div.schedule-content {
           width: 14px;
       }
     }   
+}
+
+/*Match page*/
+h3 a.season-matches-link, h3 a.season-matches-link:hover {
+  color: #A5BE0E;
+  font-size: 90%;
+}
+h3 a.season-matches-link:hover {
+ color: #336999; 
+}
+
+table.match {
+  background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  width: 100%;
+  tr.odd {
+    background-color:#FAFAFA;
+  }
+
+  td.broadcasting {
+    padding:0;
+    table {
+      border: none;
+      width: 100%;
+      td {
+        border: none;
+      }
+    }
+  }
+  
+  th.host, th.guest {
+    width: 250px;
+  }
+  td,th  {
+    border: 1px solid $block_border_color;
+    padding: 5px;
+  }
+  td {
+    text-align: left;
+    vertical-align: top;
+    p.subheader {
+      color: #BE420E;
+      font-weight: bold;
+    }
+    
+  }
+  td.statistic {
+    p span {
+      color: #BE420E;
+      font-weight: bold;
+    }
+  }
+  td.minute {
+    width: 40px;
+  }
+
+  th {
+    color:$block_header_color;
+    font-size:100%;
+    font-weight:bold;
+    margin:0.6em 0 0.6em 0.4em;
+    padding: 5px;
+  }
+
+  ul.players_list {
+    list-style-type: none;
+    li {
+      padding-bottom: 3px;
+    }
+  }
+
 }
