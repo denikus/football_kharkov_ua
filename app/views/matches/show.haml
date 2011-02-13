@@ -18,10 +18,23 @@
     %td
       - unless @match.hosts.football_players.nil?
         %ul.players_list
-          - @match.hosts.football_players.each do |player|
+          - @match.hosts.football_players.sort_by_number.each do |player|
             %li
               = "№#{player.number}"
               = " #{player.footballer.last_name} #{player.footballer.first_name}"
+              - unless player.stats.empty?
+                = "("
+                - player.stats.each do |stat|
+                  = "#{stat.value}'"
+                  - if stat.name == 'goal'
+                    = image_tag "/images/icons/sport_soccer.png"
+                  - elsif stat.name == 'red_card'
+                    = image_tag "/images/icons/red_card.png"
+                  - elsif stat.name == 'yellow_card'
+                    = image_tag "/images/icons/yellow_card.png"
+                  = ";"  
+                = ")"    
+
 
     %td.broadcasting
       %table
@@ -41,11 +54,22 @@
     %td
       - unless @match.guests.football_players.nil?
         %ul.players_list
-          - @match.guests.football_players.each do |player|
+          - @match.guests.football_players.sort_by_number.each do |player|
             %li
               = "№#{player.number}"
               = " #{player.footballer.last_name} #{player.footballer.first_name}"
-
+              - unless player.stats.empty?
+                = "("
+                - player.stats.each do |stat|
+                  = "#{stat.value}'"
+                  - if stat.name == 'goal'
+                    = image_tag "/images/icons/sport_soccer.png"
+                  - elsif stat.name == 'red_card'
+                    = image_tag "/images/icons/red_card.png"
+                  - elsif stat.name == 'yellow_card'
+                    = image_tag "/images/icons/yellow_card.png"
+                  = ";"
+                = ")"
   %tr
     %td.statistic
       %p.subheader Статистика

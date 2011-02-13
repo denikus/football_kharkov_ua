@@ -5,6 +5,8 @@ class FootballPlayer < ActiveRecord::Base
   belongs_to :footballer
   
   has_many :stats, :as => :statable, :extend => Stat::Ext, :dependent => :destroy
+
+  named_scope :sort_by_number, :order => "number ASC"
   
   def update stats
     self.number = stats['number']
