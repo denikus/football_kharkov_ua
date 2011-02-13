@@ -100,6 +100,8 @@ class Admin::MatchesController < ApplicationController
     match = Match.find params[:id]
     
     %w{hosts guests}.each do |side|
+      puts "side: #{side}"
+      ap params[side]
       match.competitors[side].football_players.update_stats params[side]
     end
     
