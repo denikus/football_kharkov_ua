@@ -23,7 +23,7 @@ class Match < ActiveRecord::Base
       cmp.football_players.each &:generate_events
     end
   end
-  
+
   def date
     schedule.match_on.strftime('%Y-%m-%d')
   end

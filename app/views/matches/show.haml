@@ -1,0 +1,95 @@
+%h3
+  = "Сезон: #{@match.schedule.step_tour.stage.season.name} "
+  -#= "(#{link_to("Все матчи сезона", season_path(:subdomain => @match.schedule.step_tour.tournament.url, :id => @match.schedule.step_tour.stage.season.url), :class => "season-matches-link")})"
+%h4= @match.schedule.step_tour.name
+- unless @match.schedule.step_league.nil?
+  %h5= @match.schedule.step_league.name
+
+%strong
+  = link_to(@match.schedule.venue.name, venue_path(@match.schedule.venue.url))
+  = " #{Russian::strftime(@match.schedule.match_on.to_date, "%A, %d %B %Y")} #{@match.schedule.match_at}"
+
+%table.match
+  %tr
+    %th.host= @match.schedule.hosts.name
+    %th= "#{@match.schedule.host_scores} - #{@match.schedule.guest_scores}"
+    %th.guest= @match.schedule.guests.name
+  %tr
+    %td
+      - unless @match.hosts.football_players.nil?
+        %ul.players_list
+          - @match.hosts.football_players.sort_by_number.each do |player|
+            %li
+              = "№#{player.number}"
+              = " #{player.footballer.last_name} #{player.footballer.first_name}"
+              - unless player.stats.empty?
+                = "("
+                - player.stats.each do |stat|
+                  = "#{stat.value}'"
+                  - if stat.name == 'goal'
+                    = image_tag "/images/icons/sport_soccer.png"
+                  - elsif stat.name == 'red_card'
+                    = image_tag "/images/icons/red_card.png"
+                  - elsif stat.name == 'yellow_card'
+                    = image_tag "/images/icons/yellow_card.png"
+                = ")"    
+
+
+    %td.broadcasting
+      %table
+        - @match.match_events.each_with_index do |event, i|
+          -row_class = i%2 == 0 ? "" : "odd"
+          %tr{:class => row_class}
+            %td.minute
+              = "#{event.minute}'"
+              - if event.match_event_type.symbol == 'goal'
+                = image_tag "/images/icons/sport_soccer.png"
+              - elsif event.match_event_type.symbol == 'red_card'
+                = image_tag "/images/icons/red_card.png"
+              - elsif event.match_event_type.symbol == 'yellow_card'
+                = image_tag "/images/icons/yellow_card.png"
+
+            %td= "#{event.message}"
+    %td
+      - unless @match.guests.football_players.nil?
+        %ul.players_list
+          - @match.guests.football_players.sort_by_number.each do |player|
+            %li
+              = "№#{player.number}"
+              = " #{player.footballer.last_name} #{player.footballer.first_name}"
+              - unless player.stats.empty?
+                = "("
+                - player.stats.each do |stat|
+                  = "#{stat.value}'"
+                  - if stat.name == 'goal'
+                    = image_tag "/images/icons/sport_soccer.png"
+                  - elsif stat.name == 'red_card'
+                    = image_tag "/images/icons/red_card.png"
+                  - elsif stat.name == 'yellow_card'
+                    = image_tag "/images/icons/yellow_card.png"
+                = ")"
+  %tr
+    %td.statistic
+      %p.subheader Статистика
+      %p
+        = "Фолы в 1-м тайме:&nbsp;&nbsp;"
+        %span= @match.hosts.stats.find_by_name('first_period_fouls').value
+      %p
+        = "Фолы во 2-м тайме: "
+        %span= @match.hosts.stats.find_by_name('second_period_fouls').value
+    %td
+      %p.subheader Арбитры
+      %p
+        - @match.referees.each_with_index do |referee, i|
+          = "#{referee.last_name} #{referee.first_name}"
+          - unless i == (@match.referees.length - 1) 
+            = ", "
+
+    %td.statistic
+      %p.subheader Статистика
+      %p
+        = "Фолы в 1-м тайме:&nbsp;&nbsp;"
+        %span= @match.guests.stats.find_by_name('first_period_fouls').value
+      %p
+        = "Фолы во 2-м тайме: "
+        %span= @match.guests.stats.find_by_name('second_period_fouls').value

@@ -5,10 +5,16 @@ class Competitor < ActiveRecord::Base
     def update_stats stats
       load_target unless loaded?
       stats = stats.clone
-      target.each{ |player| delete player if stats[player.footballer_id.to_s]['number'].empty? }
+      target.each do |player|
+        if stats[player.footballer_id.to_s]['number'].empty?
+          delete player
+        else
+
+        end
+      end
       stats.each do |id, s|
         next if s['number'].empty?
-        player = target.find{ |p| p.footballer_id == id.to_i } || FootballPlayer.new(:footballer_id => id, :competitor_id => proxy_owner.id)
+        player = target.find{ |p| p.footballer_id == id.to_i } || FootballPlayer.create(:footballer_id => id, :competitor_id => proxy_owner.id, :number => s['number'])
         player.update s
       end
     end
