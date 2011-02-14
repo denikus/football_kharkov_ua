@@ -3,7 +3,8 @@ Ext.ux.layout.MasterPanel = function Panel() {
   var config = {
     title: 'Master',
     region: 'center',
-    id: 'master-panel'
+    id: 'master-panel',
+    autoScroll: true
   }
   Panel.superclass.constructor.call(this, config);
 }
@@ -81,5 +82,9 @@ Ext.ux.layout.App = function App() {
     this.master.removeAll(destroy);
     this.details.removeAll(destroy);
   }
+  
+  this.mask = new Ext.LoadMask(Ext.getBody(), {
+    msg: "Загрузка данных..."
+  });
 }
 Ext.extend(Ext.ux.layout.App, Ext.Viewport);

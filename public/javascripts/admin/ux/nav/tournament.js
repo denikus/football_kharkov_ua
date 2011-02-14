@@ -40,12 +40,14 @@ Ext.ux.nav.Tournament = function Panel(tournament) {
           var loadMask = new Ext.LoadMask(Ext.getBody(), {msg: 'Загрузка данных...'});
           loadMask.show();
           Ext.Ajax.request({
-            url: '/admin/schedules/week?start=' + date.add(Date.DAY, -date.getDay()).format('Y-m-d')+'&end='+date.add(Date.DAY, 6-date.getDay()).format('Y-m-d'),
+            url: '/admin/schedules/week?tournament_id='+tournament.id+'&start=' + date.add(Date.DAY, -date.getDay()).format('Y-m-d')+'&end='+date.add(Date.DAY, 6-date.getDay()).format('Y-m-d'),
             success: function(response) {
-              app.master.items.add(new Ext.ux.tournament.SchedulesPanel({
+              app.master.items.add(new Ext.ux.tournament.schedules.Panel({
+                tournament: tournament,
                 date: date,
                 startHour: 8,
-                endHour: 22
+                endHour: 22,
+                schedules: JSON.parse(response.responseText).data
               }));
               app.master.doLayout();
               loadMask.hide();

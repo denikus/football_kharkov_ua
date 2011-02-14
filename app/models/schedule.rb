@@ -31,6 +31,10 @@ class Schedule < ActiveRecord::Base
   def name
     new_record? ? "Новый матч в расписании" : ("#{match_on}, #{match_at}: #{hosts.name} - #{guests.name} (#{venue.name})")
   end
+  
+  def short_info
+    {:id => id, :hosts => hosts.name, :guests => guests.name, :time => match_at}
+  end
 
   class << self
     def get_min_date(tournament, with_results = false)

@@ -98,12 +98,47 @@ class Admin::SchedulesController < ApplicationController
   
   def week
     schedules = Schedule.all(
-      :conditions => ['match_on >= ? AND match_on <= ? AND steps.tournament_id = 1', params[:start], params[:end]],
+      :conditions => ['match_on >= ? AND match_on <= ? AND steps.tournament_id = ?', params[:start], params[:end], params[:tournament_id]],
       :joins => :step_league,
       :include => [:hosts, :guests])
     day_schedules = (Date.parse(params[:start])..Date.parse(params[:end])).map do |date|
-      schedules.select{ |s| s.match_on == date }.map{ |s| {:id => s.id, :hosts => s.hosts.name, :guests => s.guests.name, :time => s.match_at} }
+      schedules.select{ |s| s.match_on == date }.map(&:short_info)
     end
     render ext_success :data => day_schedules
+  end
+  
+  def data
+    if params[:what] == 'tour_tree'
+      if params[:node] == 'root'
+        seasons = StepSeason.find_all_by_tournament_id params[:tournament_id]
+        tree = seasons.map{ |s| {:text => s.full_name, :id => [s.class, s.id]*'-', :leaf => false, :_id => s.id} }
+      else
+        klass, id = params[:node].split('-')
+        method = klass == 'StepStage' ? 'tours' : 'steps'
+        tree = klass.constantize.find(id).send(method).map{ |s| {:text => s.full_name, :id => [s.class, s.id]*'-', :leaf => StepTour === s, :_id => s.id} }
+      end
+      render :json => tree
+    elsif params[:what] == 'form'
+      last_tour = StepTour.find(39)
+      #last_tour = StepTour.find_by_tournament_id(params[:tournament_id], :order => 'id DESC')
+      last_stage = last_tour.try(:stage)
+      last_season = last_stage.try(:season)
+      seasons = StepSeason.find_all_by_tournament_id params[:tournament_id], :include => [{:stages => {:leagues => :teams}}, :teams]
+      teams_data = seasons.map(&:teams).flatten.uniq.collect do |team|
+        steps = seasons.select{ |s| s.team_ids.include? team.id }.inject({}) do |res, season|
+          res[season.id] = season.stages.map(&:leagues).flatten.find{ |l| l.team_ids.include? team.id }.try(:id)
+          res
+        end
+        { :id => team.id,
+          :name => team.name,
+          :steps => steps }
+      end
+      venues = Venue.all.map{ |v| {:id => v.id, :name => v.name} }
+      data = {
+        :last => {:season_id => last_season.try(:id), :stage_id => last_stage.try(:id), :tour_id => last_tour.try(:id), :tour_name => last_tour.try(:full_name)},
+        :teams => teams_data,
+        :venues => venues }
+      render ext_success :data => data
+    end
   end
 end
