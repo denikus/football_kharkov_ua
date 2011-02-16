@@ -12,7 +12,5 @@ class PagesController < ApplicationController
     unless current_subdomain.nil?
       render :layout => "app_without_sidebar"
     end
-
-
   end
 end
