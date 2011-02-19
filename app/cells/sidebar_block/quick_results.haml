@@ -3,15 +3,17 @@
   .sidebar-block-header
     %h4= @opts[:title]
     .header-bottom
-      %table
-        %tr
-          %td.control=link_to image_tag("/images/buttons/prev.png"), "#", {:class => "prev"}
-          %td#quick-result-current-date= Russian::strftime(@schedules[0].match_on.to_date, "%a, %d %B '%y")
-          %td.control= link_to image_tag("/images/buttons/next.png"), "#", {:class => "next"}
+      - unless @schedules.empty?
+        %table
+          %tr
+            %td.control=link_to image_tag("/images/buttons/prev.png"), "#", {:class => "prev"}
+            %td#quick-result-current-date= Russian::strftime(@schedules[0].match_on.to_date, "%a, %d %B '%y")
+            %td.control= link_to image_tag("/images/buttons/next.png"), "#", {:class => "next"}
   .bd#quick-match-results-content
     =render :view => 'quick_results_content.haml', :locals => {:schedules => @schedules}
-:javascript
-  $(function() {
-    //min_date, max_date, current_date
-    Schedule.init("#{min_date}", "#{max_date}", "#{@schedules[0].match_on}", "quick_results");
-  });
+- unless @schedules.empty?
+  :javascript
+    $(function() {
+      //min_date, max_date, current_date
+      Schedule.init("#{min_date}", "#{max_date}", "#{@schedules[0].match_on}", "quick_results");
+    });
