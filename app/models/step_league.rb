@@ -15,4 +15,11 @@ class StepLeague < Step
       end
     end
   end
+  
+  def last_table
+    returning StepTour::Table.new do |table|
+      matches.sort_by{ |m| m.schedule.match_on }.each{ |match| table << match }
+      table.process
+    end
+  end
 end
