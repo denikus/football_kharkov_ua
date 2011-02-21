@@ -3,7 +3,7 @@
   - stage.tours.find(:all, :order => "identifier DESC").each do |tour|
     %h3= tour.name
     - stage.leagues.find(:all, :order => "identifier ASC").each do |league|
-      -unless Schedule.count(:conditions => ["league_id = ? AND tour_id = ? ", league.id, tour.id]) == 0
+      -unless Schedule.count(:conditions => ["league_id = ? AND tour_id = ? AND host_scores IS NOT NULL AND guest_scores IS NOT NULL", league.id, tour.id]) == 0
         %table.match-result-table
           %caption= league.name
           %tr
