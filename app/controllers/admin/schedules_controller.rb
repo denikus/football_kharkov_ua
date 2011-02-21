@@ -119,8 +119,8 @@ class Admin::SchedulesController < ApplicationController
       end
       render :json => tree
     elsif params[:what] == 'form'
-      last_tour = StepTour.find(39)
-      #last_tour = StepTour.find_by_tournament_id(params[:tournament_id], :order => 'id DESC')
+      #last_tour = StepTour.find(39)
+      last_tour = StepTour.find_by_tournament_id(params[:tournament_id], :order => 'id DESC')
       last_stage = last_tour.try(:stage)
       last_season = last_stage.try(:season)
       seasons = StepSeason.find_all_by_tournament_id params[:tournament_id], :include => [{:stages => {:leagues => :teams}}, :teams]
