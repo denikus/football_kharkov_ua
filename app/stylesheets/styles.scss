@@ -414,16 +414,20 @@ input.fancy-submit:hover {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	h1.tournament-header {
-	  padding: 0 0 5px 0;
-	  margin-bottom: 10px;
-	  color: #336999;
-	  width: 950px;
-	  line-height: 1;
-	  font-size: 22px;
+	div.top-submenu-container{
 	  border-bottom:1px solid #EEEEEE;
-	  display:block;
-	  height: 25px;
+	  height: 70px;
+	  margin-bottom: 5px;
+	  h1 {
+      padding: 0 0 5px 0;
+      margin-bottom: 0;
+      color: #336999;
+      width: 950px;
+      line-height: 1;
+      font-size: 22px;
+      display:block;
+      height: 25px;
+    }
     span {
       float:left;
       display:block;
@@ -473,6 +477,10 @@ input.fancy-submit:hover {
 	  
 	  a#top-submenu-schedules {
 	    background-image: url("/images/icons/calendar-select.png");
+	  }
+
+	  a#top-submenu-matches {
+	    background-image: url("/images/icons/protocol.png");
 	  }
 
 	  a#top-submenu-about {
@@ -1096,7 +1104,7 @@ table.match-result-table {
   }
 
   td.date-time {
-    width: 170px;
+    width: 180px;
   }
 
   td.venue {
