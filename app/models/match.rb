@@ -39,4 +39,8 @@ class Match < ActiveRecord::Base
   def score
     "#{schedule.host_scores || 0}:#{schedule.guest_scores || 0}"
   end
+
+  def has_protocol?
+    return true
+  end
 end

@@ -1,3 +1,48 @@
+%table.tournament-position
+  %tr
+    %th{:colspan => 9}= 'test'
+  %tr.header
+    %td.place
+      Место
+    %td.team
+      Команда
+    %td.games
+      Игры
+    %td
+      В
+    %td
+      Н
+    %td
+      П
+    %td.goals
+      Мячи
+    %td.diff
+      +/-
+    %td
+      Очки
+  - table.records.each do |record|
+    %tr.odd
+      %td.place
+        - if record[1][:position_change] > 0
+          .position-change.up= "+#{record[1][:position_change]}"
+        - elsif record[1][:position_change] < 0
+          .position-change.down= record[1][:position_change]
+        -#= index+1
+      %td.team
+        = record[1][:team].name
+      - table.records.collect{ |r| r.team.id }.each do |id|
+        %td= record.results[id].nil? ? '-' : record.results[id]
+      %td.games
+        = record[1][:games_count]
+      - record.games.each do |g|
+        %td= g
+      %td.goals
+        = "#{record.goals}-#{record[1][:goals][1]}"
+      %td.diff
+        = record[1][:goals][0] - record[1][:goals][1]
+      %td.scores
+        = record[1][:score]
+
 
 
 

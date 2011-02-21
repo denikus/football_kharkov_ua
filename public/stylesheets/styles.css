@@ -144,11 +144,16 @@ div#near-scroll-panel a.button-container {
 * General Styles
 */
 /* line 141, ../../app/stylesheets/styles.scss */
+table tr.odd {
+  background-color: #FAFAFA;
+}
+
+/* line 145, ../../app/stylesheets/styles.scss */
 a:focus, a:hover {
   color: #BE420E;
 }
 
-/* line 145, ../../app/stylesheets/styles.scss */
+/* line 149, ../../app/stylesheets/styles.scss */
 a {
   color: #336999;
   outline-color: -moz-use-text-color;
@@ -157,43 +162,43 @@ a {
   text-decoration: underline;
 }
 
-/* line 153, ../../app/stylesheets/styles.scss */
+/* line 157, ../../app/stylesheets/styles.scss */
 h1, h2, h3, h4, h5 {
   color: #BE420E;
 }
 
-/* line 157, ../../app/stylesheets/styles.scss */
+/* line 161, ../../app/stylesheets/styles.scss */
 h2 a, h3 a, h4 a {
   text-decoration: none;
   color: #BE420E;
 }
 
-/* line 161, ../../app/stylesheets/styles.scss */
+/* line 165, ../../app/stylesheets/styles.scss */
 h2 a:hover, h3 a:hover, h4 a:hover {
   color: #336999;
 }
 
-/* line 166, ../../app/stylesheets/styles.scss */
+/* line 170, ../../app/stylesheets/styles.scss */
 h2 {
   border-bottom: 1px solid #EEEEEE;
   font-size: 164%;
   font-weight: bold;
   margin-bottom: 0.75em;
 }
-/* line 171, ../../app/stylesheets/styles.scss */
+/* line 175, ../../app/stylesheets/styles.scss */
 h2 span.right-arrow, h2 a.tournament {
   color: #d9d9d9;
 }
-/* line 174, ../../app/stylesheets/styles.scss */
+/* line 178, ../../app/stylesheets/styles.scss */
 h2 a.tournament, h2 a.tournament:hover {
   color: #A5BE0E;
 }
-/* line 177, ../../app/stylesheets/styles.scss */
+/* line 181, ../../app/stylesheets/styles.scss */
 h2 a.tournament:hover {
   color: #336999;
 }
 
-/* line 182, ../../app/stylesheets/styles.scss */
+/* line 186, ../../app/stylesheets/styles.scss */
 h4 {
   font-size: 118%;
   font-weight: bold;
@@ -203,30 +208,30 @@ h4 {
   margin-bottom: 1.25em;
 }
 
-/* line 190, ../../app/stylesheets/styles.scss */
+/* line 194, ../../app/stylesheets/styles.scss */
 h5 {
   font-size: 110%;
   font-weight: bold;
   margin-bottom: 1em;
 }
 
-/* line 196, ../../app/stylesheets/styles.scss */
+/* line 200, ../../app/stylesheets/styles.scss */
 input.text, input.title, textarea, select {
   border: 1px solid #EEEEEE;
   margin: 0.5em 0pt;
 }
 
-/* line 201, ../../app/stylesheets/styles.scss */
+/* line 205, ../../app/stylesheets/styles.scss */
 textarea {
   padding: 5px;
 }
 
-/* line 205, ../../app/stylesheets/styles.scss */
+/* line 209, ../../app/stylesheets/styles.scss */
 input.text:focus, input.title:focus, textarea:focus {
   background-color: #FFFFE7;
 }
 
-/* line 209, ../../app/stylesheets/styles.scss */
+/* line 213, ../../app/stylesheets/styles.scss */
 #col-left h1 {
   border-bottom: 1px solid #EEEEEE;
   font-size: 180%;
@@ -234,7 +239,7 @@ input.text:focus, input.title:focus, textarea:focus {
   margin-bottom: 10px;
 }
 
-/* line 216, ../../app/stylesheets/styles.scss */
+/* line 220, ../../app/stylesheets/styles.scss */
 #col-left hr {
   color: #EEEEEE;
   background-color: #EEEEEE;
@@ -245,12 +250,12 @@ input.text:focus, input.title:focus, textarea:focus {
 /**
 *Forms
 */
-/* line 227, ../../app/stylesheets/styles.scss */
+/* line 231, ../../app/stylesheets/styles.scss */
 label {
   font-weight: bold;
 }
 
-/* line 231, ../../app/stylesheets/styles.scss */
+/* line 235, ../../app/stylesheets/styles.scss */
 fieldset {
   background-color: #FAFAFA;
   border: 1px solid #EEEEEE;
@@ -258,30 +263,30 @@ fieldset {
   padding: 1.4em;
 }
 
-/* line 238, ../../app/stylesheets/styles.scss */
+/* line 242, ../../app/stylesheets/styles.scss */
 input.text, input.title, textarea, select {
   border: 1px solid #EEEEEE;
   margin: 0.5em 0pt;
 }
 
-/* line 243, ../../app/stylesheets/styles.scss */
+/* line 247, ../../app/stylesheets/styles.scss */
 select {
   padding: 3px;
   background-color: #FFF;
 }
 
-/* line 248, ../../app/stylesheets/styles.scss */
+/* line 252, ../../app/stylesheets/styles.scss */
 input.text, input.title {
   padding: 5px;
   width: 300px;
 }
 
-/* line 253, ../../app/stylesheets/styles.scss */
+/* line 257, ../../app/stylesheets/styles.scss */
 input.long-input {
   width: 570px;
 }
 
-/* line 257, ../../app/stylesheets/styles.scss */
+/* line 261, ../../app/stylesheets/styles.scss */
 input.fancy-submit {
   background-color: #555555;
   border: 1px solid #888888;
@@ -291,14 +296,14 @@ input.fancy-submit {
   padding: 1px;
 }
 
-/* line 266, ../../app/stylesheets/styles.scss */
+/* line 270, ../../app/stylesheets/styles.scss */
 input.fancy-submit:hover {
   background-color: #555555;
   color: #FFFFFF;
   cursor: pointer;
 }
 
-/* line 272, ../../app/stylesheets/styles.scss */
+/* line 276, ../../app/stylesheets/styles.scss */
 #col-left label {
   margin-top: 10px;
   display: block;
@@ -308,7 +313,7 @@ input.fancy-submit:hover {
 /**
 *Login && User box
 */
-/* line 281, ../../app/stylesheets/styles.scss */
+/* line 285, ../../app/stylesheets/styles.scss */
 #login-box {
   margin: 0;
   margin-top: 10px;
@@ -318,13 +323,13 @@ input.fancy-submit:hover {
   width: 470px;
 }
 
-/* line 290, ../../app/stylesheets/styles.scss */
+/* line 294, ../../app/stylesheets/styles.scss */
 #login-box form {
   padding: 0;
   margin: 0;
 }
 
-/* line 295, ../../app/stylesheets/styles.scss */
+/* line 299, ../../app/stylesheets/styles.scss */
 #login-box fieldset {
   border: 0;
   margin: 0;
@@ -332,7 +337,7 @@ input.fancy-submit:hover {
   background-color: transparent;
 }
 
-/* line 302, ../../app/stylesheets/styles.scss */
+/* line 306, ../../app/stylesheets/styles.scss */
 #login-box ol {
   list-style-image: none;
   list-style-position: outside;
@@ -341,36 +346,36 @@ input.fancy-submit:hover {
   padding: 0pt 0pt 10px;
 }
 
-/* line 310, ../../app/stylesheets/styles.scss */
+/* line 314, ../../app/stylesheets/styles.scss */
 #login-box ol li, #forgot_user ol li {
   float: left;
   /*margin-right:20px;*/
 }
 
-/* line 315, ../../app/stylesheets/styles.scss */
+/* line 319, ../../app/stylesheets/styles.scss */
 #login-box ol li {
   padding: 0pt 0pt 10px;
   vertical-align: middle;
 }
 
-/* line 320, ../../app/stylesheets/styles.scss */
+/* line 324, ../../app/stylesheets/styles.scss */
 #login-box li {
   width: 180px;
   text-align: left;
 }
 
-/* line 325, ../../app/stylesheets/styles.scss */
+/* line 329, ../../app/stylesheets/styles.scss */
 #login-box p {
   margin: 0;
   padding: 0;
 }
 
-/* line 330, ../../app/stylesheets/styles.scss */
+/* line 334, ../../app/stylesheets/styles.scss */
 #login-box label {
   display: inline;
 }
 
-/* line 333, ../../app/stylesheets/styles.scss */
+/* line 337, ../../app/stylesheets/styles.scss */
 #login-box input.fancy-field {
   background-color: #555555;
   border: 1px solid #888888;
@@ -378,7 +383,7 @@ input.fancy-submit:hover {
   font-size: 100%;
 }
 
-/* line 340, ../../app/stylesheets/styles.scss */
+/* line 344, ../../app/stylesheets/styles.scss */
 #login-box input.fancy-submit {
   border: 1px solid #888888;
   color: #DDDDDD;
@@ -390,43 +395,43 @@ input.fancy-submit:hover {
   font-size: 12px;
 }
 
-/* line 350, ../../app/stylesheets/styles.scss */
+/* line 354, ../../app/stylesheets/styles.scss */
 #login-box input.fancy-submit:hover {
   background-color: #555555;
   color: #FFF;
   cursor: pointer;
 }
 
-/* line 356, ../../app/stylesheets/styles.scss */
+/* line 360, ../../app/stylesheets/styles.scss */
 #login-box li.submit {
   width: 50px;
 }
 
-/* line 360, ../../app/stylesheets/styles.scss */
+/* line 364, ../../app/stylesheets/styles.scss */
 #user-box, #login-box {
   /*color: #EEEEEE;*/
   color: #AAAAAA;
 }
 
-/* line 365, ../../app/stylesheets/styles.scss */
+/* line 369, ../../app/stylesheets/styles.scss */
 #user-box {
   float: right;
   margin-top: 10px;
   width: 300px;
 }
 
-/* line 370, ../../app/stylesheets/styles.scss */
+/* line 374, ../../app/stylesheets/styles.scss */
 #user-box dd {
   margin-top: 3px;
 }
 
-/* line 373, ../../app/stylesheets/styles.scss */
+/* line 377, ../../app/stylesheets/styles.scss */
 #user-box dt, #user-box dd {
   margin: 0pt;
   padding: 0pt;
 }
 
-/* line 380, ../../app/stylesheets/styles.scss */
+/* line 384, ../../app/stylesheets/styles.scss */
 #user-box a, #login-box a {
   width: 100%;
   display: inline;
@@ -434,20 +439,20 @@ input.fancy-submit:hover {
   color: #A5BE0E;
 }
 
-/* line 387, ../../app/stylesheets/styles.scss */
+/* line 391, ../../app/stylesheets/styles.scss */
 #user-box a.selected, #login-box a.selected {
   font-weight: bold !important;
   color: #A5BE0E;
 }
 
-/* line 394, ../../app/stylesheets/styles.scss */
+/* line 398, ../../app/stylesheets/styles.scss */
 #user-box a:hover,
 #user-box a:focus,
 #user-box a.selected {
   color: #FFF;
 }
 
-/* line 400, ../../app/stylesheets/styles.scss */
+/* line 404, ../../app/stylesheets/styles.scss */
 #login-box a:hover,
 #login-box a:focus,
 #login-box a.selected {
@@ -457,7 +462,7 @@ input.fancy-submit:hover {
 /**
 *EOF Login && User box
 */
-/* line 407, ../../app/stylesheets/styles.scss */
+/* line 411, ../../app/stylesheets/styles.scss */
 #container {
   width: 970px;
   height: auto;
@@ -465,7 +470,7 @@ input.fancy-submit:hover {
   margin-right: auto;
   position: relative;
 }
-/* line 413, ../../app/stylesheets/styles.scss */
+/* line 417, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header {
   padding: 0 0 5px 0;
   margin-bottom: 10px;
@@ -477,25 +482,25 @@ input.fancy-submit:hover {
   display: block;
   height: 25px;
 }
-/* line 423, ../../app/stylesheets/styles.scss */
+/* line 427, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header span {
   float: left;
   display: block;
 }
-/* line 427, ../../app/stylesheets/styles.scss */
+/* line 431, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a.feed-link, #container h1.tournament-header a.feed-link:hover, #container h1.tournament-header a.feed-link:visited {
   display: block;
   margin-right: 20px;
   margin-lefT: 0;
 }
-/* line 435, ../../app/stylesheets/styles.scss */
+/* line 439, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header span.team_name {
   color: #BE420E;
   float: none;
   display: inline;
   margin-right: 0px;
 }
-/* line 441, ../../app/stylesheets/styles.scss */
+/* line 445, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a, #container h1.tournament-header a:hover, #container h1.tournament-header a:visited {
   float: left;
   display: block;
@@ -508,36 +513,36 @@ input.fancy-submit:hover {
   background-attachment: scroll;
   background-position: center left;
 }
-/* line 453, ../../app/stylesheets/styles.scss */
+/* line 457, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a:hover {
   color: #336999;
   text-decoration: none;
 }
-/* line 457, ../../app/stylesheets/styles.scss */
+/* line 461, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a#top-submenu-teams {
   background-image: url("/images/icons/group.png");
 }
-/* line 460, ../../app/stylesheets/styles.scss */
+/* line 464, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a#top-submenu-tables {
   background-image: url("/images/icons/table.png");
 }
-/* line 463, ../../app/stylesheets/styles.scss */
+/* line 467, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a#top-submenu-bombardiers {
   background-image: url("/images/icons/sport_soccer.png");
 }
-/* line 466, ../../app/stylesheets/styles.scss */
+/* line 470, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a#top-submenu-it-forecast {
   background-image: url("/images/icons/money-coin.png");
 }
-/* line 470, ../../app/stylesheets/styles.scss */
+/* line 474, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a#top-submenu-schedules {
   background-image: url("/images/icons/calendar-select.png");
 }
-/* line 474, ../../app/stylesheets/styles.scss */
+/* line 478, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a#top-submenu-about {
   background-image: url("/images/icons/information-white.png");
 }
-/* line 478, ../../app/stylesheets/styles.scss */
+/* line 482, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a.tournament-main-title, #container h1.tournament-header a.tournament-main-title:hover, #container h1.tournament-header a.tournament-main-title:visited {
   float: left;
   display: block;
@@ -549,38 +554,38 @@ input.fancy-submit:hover {
   padding: 0px;
   text-decoration: none;
 }
-/* line 489, ../../app/stylesheets/styles.scss */
+/* line 493, ../../app/stylesheets/styles.scss */
 #container h1.tournament-header a.tournament-main-title:hover {
   color: #336999;
 }
 
-/* line 494, ../../app/stylesheets/styles.scss */
+/* line 498, ../../app/stylesheets/styles.scss */
 #col-left, #col-right {
   float: left;
   margin-bottom: 25px;
 }
 
 /* left column */
-/* line 500, ../../app/stylesheets/styles.scss */
+/* line 504, ../../app/stylesheets/styles.scss */
 #col-left {
   width: 650px;
   margin-right: 10px;
   padding-right: 20px;
 }
 
-/* line 506, ../../app/stylesheets/styles.scss */
+/* line 510, ../../app/stylesheets/styles.scss */
 #col-right {
   width: 270px;
 }
 
 /* New block design */
-/* line 512, ../../app/stylesheets/styles.scss */
+/* line 516, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
   margin: 0 0 1em 0;
 }
-/* line 517, ../../app/stylesheets/styles.scss */
+/* line 521, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block a {
   text-decoration: none;
   color: #006ca2;
@@ -588,46 +593,46 @@ input.fancy-submit:hover {
   font-size: 14px;
   font-weight: bold;
 }
-/* line 527, ../../app/stylesheets/styles.scss */
+/* line 531, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block a:hover {
   color: #be420e;
 }
-/* line 531, ../../app/stylesheets/styles.scss */
+/* line 535, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul {
   margin: 0;
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
 }
-/* line 536, ../../app/stylesheets/styles.scss */
+/* line 540, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li {
   line-height: 1.2em;
   padding: 5px;
   border: 0;
   border-top: 1px solid #d9d9d9;
 }
-/* line 542, ../../app/stylesheets/styles.scss */
+/* line 546, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.post-title {
   line-height: 1.2em;
   margin-bottom: 3px;
 }
-/* line 547, ../../app/stylesheets/styles.scss */
+/* line 551, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.post-date {
   color: #666666;
   line-height: 1em;
   padding: 0;
   margin-bottom: 2px;
 }
-/* line 555, ../../app/stylesheets/styles.scss */
+/* line 559, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul li p.author {
   line-height: 1.2em;
 }
 
-/* line 563, ../../app/stylesheets/styles.scss */
+/* line 567, ../../app/stylesheets/styles.scss */
 .sidebar-block-header {
   background-color: transparent;
 }
-/* line 566, ../../app/stylesheets/styles.scss */
+/* line 570, ../../app/stylesheets/styles.scss */
 .sidebar-block-header h4 {
   font-size: 100%;
   color: #be420e;
@@ -637,17 +642,17 @@ input.fancy-submit:hover {
   padding: 0;
 }
 
-/* line 578, ../../app/stylesheets/styles.scss */
+/* line 582, ../../app/stylesheets/styles.scss */
 div.header-bottom table {
   width: 100%;
   color: #be420e;
 }
-/* line 581, ../../app/stylesheets/styles.scss */
+/* line 585, ../../app/stylesheets/styles.scss */
 div.header-bottom table td {
   font-size: 12px;
   text-align: center;
 }
-/* line 585, ../../app/stylesheets/styles.scss */
+/* line 589, ../../app/stylesheets/styles.scss */
 div.header-bottom table td.control {
   width: 20px;
 }
@@ -659,13 +664,13 @@ div.header-bottom table td.control {
 /**
 *Comment block
 */
-/* line 601, ../../app/stylesheets/styles.scss */
+/* line 605, ../../app/stylesheets/styles.scss */
 #comment_body {
   height: 100px;
   width: 350px;
 }
 
-/* line 606, ../../app/stylesheets/styles.scss */
+/* line 610, ../../app/stylesheets/styles.scss */
 ul.comment {
   clear: both;
   width: auto;
@@ -675,7 +680,7 @@ ul.comment {
   margin: 0;
 }
 
-/* line 615, ../../app/stylesheets/styles.scss */
+/* line 619, ../../app/stylesheets/styles.scss */
 ul.comment li {
   float: left;
   width: 100%;
@@ -683,7 +688,7 @@ ul.comment li {
   padding: 0;
 }
 
-/* line 622, ../../app/stylesheets/styles.scss */
+/* line 626, ../../app/stylesheets/styles.scss */
 ul.comment div.comment-content {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
@@ -691,12 +696,12 @@ ul.comment div.comment-content {
   padding: 3px;
 }
 
-/* line 632, ../../app/stylesheets/styles.scss */
+/* line 636, ../../app/stylesheets/styles.scss */
 ul.comment p {
   padding: 3px;
 }
 
-/* line 636, ../../app/stylesheets/styles.scss */
+/* line 640, ../../app/stylesheets/styles.scss */
 ul.comment p.comment-author {
   margin-bottom: 5px;
   border-bottom: 1px solid #EEE;
@@ -707,7 +712,7 @@ ul.comment p.comment-author {
 *EOF Comment block
 */
 /*blog link panel*/
-/* line 652, ../../app/stylesheets/styles.scss */
+/* line 656, ../../app/stylesheets/styles.scss */
 .blog_link_panel {
   white-space: nowrap;
   /*height: 50px;*/
@@ -723,7 +728,7 @@ ul.comment p.comment-author {
 /*.blog_link_panel_wrap {
     clear:both;
 }*/
-/* line 667, ../../app/stylesheets/styles.scss */
+/* line 671, ../../app/stylesheets/styles.scss */
 .blog_link_panel div {
   float: left;
   border-right: 1px solid #EEEEEE;
@@ -734,7 +739,7 @@ ul.comment p.comment-author {
   padding: 1px 20px;
 }
 
-/* line 678, ../../app/stylesheets/styles.scss */
+/* line 682, ../../app/stylesheets/styles.scss */
 .blog_link_panel a, .blog_link_panel span {
   display: block;
   float: left;
@@ -742,14 +747,14 @@ ul.comment p.comment-author {
   text-decoration: none;
 }
 
-/* line 685, ../../app/stylesheets/styles.scss */
+/* line 689, ../../app/stylesheets/styles.scss */
 .blog_link_panel div.first {
   margin-bottom: -2px;
   padding-bottom: 1px;
   white-space: nowrap;
 }
 
-/* line 691, ../../app/stylesheets/styles.scss */
+/* line 695, ../../app/stylesheets/styles.scss */
 .blog_link_panel div.last {
   margin-bottom: -2px;
   border-right: 0;
@@ -758,42 +763,42 @@ ul.comment p.comment-author {
 }
 
 /* EOF blog panel links */
-/* line 699, ../../app/stylesheets/styles.scss */
+/* line 703, ../../app/stylesheets/styles.scss */
 div.date_link_cell span {
   background: transparent url(/images/icons/calendar.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 703, ../../app/stylesheets/styles.scss */
+/* line 707, ../../app/stylesheets/styles.scss */
 div.edit_link_cell a {
   background: transparent url(/images/icons/pencil.png) no-repeat scroll left center;
   padding-left: 22px;
 }
 
-/* line 707, ../../app/stylesheets/styles.scss */
+/* line 711, ../../app/stylesheets/styles.scss */
 div.delete_link_cell a {
   background: transparent url(/images/icons/delete.png) no-repeat scroll left center;
   padding-left: 18px;
 }
 
-/* line 711, ../../app/stylesheets/styles.scss */
+/* line 715, ../../app/stylesheets/styles.scss */
 div.author_link_cell a {
   background: transparent url(/images/icons/man.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 715, ../../app/stylesheets/styles.scss */
+/* line 719, ../../app/stylesheets/styles.scss */
 div.comment_link_cell a {
   background: transparent url(/images/icons/comment.png) no-repeat scroll left center;
   padding-left: 20px;
 }
 
-/* line 719, ../../app/stylesheets/styles.scss */
+/* line 723, ../../app/stylesheets/styles.scss */
 div.social_link_cell a {
   padding: 2px 5px 1px 5px;
 }
 
-/* line 723, ../../app/stylesheets/styles.scss */
+/* line 727, ../../app/stylesheets/styles.scss */
 div.updating_link_cell span {
   background: transparent url(/images/icons/refresh.gif) no-repeat scroll left center;
   padding-left: 20px;
@@ -802,7 +807,7 @@ div.updating_link_cell span {
 /**
 *links with icons
 */
-/* line 732, ../../app/stylesheets/styles.scss */
+/* line 736, ../../app/stylesheets/styles.scss */
 .link-with-icon-container div {
   float: left;
   margin-right: -1px;
@@ -811,7 +816,7 @@ div.updating_link_cell span {
   padding: 1px 20px;
 }
 
-/* line 740, ../../app/stylesheets/styles.scss */
+/* line 744, ../../app/stylesheets/styles.scss */
 a.add-image-link {
   background: transparent url(/images/icons/picture.png) no-repeat scroll left center;
   padding-left: 20px;
@@ -824,14 +829,14 @@ a.add-image-link {
 /**
 * Right Sidebar
 */
-/* line 753, ../../app/stylesheets/styles.scss */
+/* line 757, ../../app/stylesheets/styles.scss */
 #col-right ul {
   margin-left: 5px;
   margin-right: 0;
   list-style: none;
 }
 
-/* line 760, ../../app/stylesheets/styles.scss */
+/* line 764, ../../app/stylesheets/styles.scss */
 #col-right ul li {
   padding: 10px 0 10px 0;
   border-bottom: 1px dotted #EEE;
@@ -840,60 +845,60 @@ a.add-image-link {
 /**
 * Pagination
 */
-/* line 769, ../../app/stylesheets/styles.scss */
+/* line 773, ../../app/stylesheets/styles.scss */
 .football_pagination {
   text-align: center;
   padding: .3em;
 }
 
-/* line 774, ../../app/stylesheets/styles.scss */
+/* line 778, ../../app/stylesheets/styles.scss */
 .football_pagination a, .football_pagination span {
   color: #336999;
   padding: .2em .5em;
 }
 
-/* line 778, ../../app/stylesheets/styles.scss */
+/* line 782, ../../app/stylesheets/styles.scss */
 .football_pagination span.disabled {
   color: #AAA;
 }
 
-/* line 781, ../../app/stylesheets/styles.scss */
+/* line 785, ../../app/stylesheets/styles.scss */
 .football_pagination span.current {
   font-weight: bold;
   color: #BE420E;
 }
 
-/* line 785, ../../app/stylesheets/styles.scss */
+/* line 789, ../../app/stylesheets/styles.scss */
 .football_pagination a {
   border: 1px solid #DDDDDD;
   color: #0063DC;
   text-decoration: none;
 }
 
-/* line 790, ../../app/stylesheets/styles.scss */
+/* line 794, ../../app/stylesheets/styles.scss */
 .football_pagination a:hover, .football_pagination a:focus {
   border-color: #888888;
   background: #555555;
   color: white;
 }
 
-/* line 795, ../../app/stylesheets/styles.scss */
+/* line 799, ../../app/stylesheets/styles.scss */
 .football_pagination .page_info {
   color: #aaa;
   padding-top: .8em;
 }
 
-/* line 799, ../../app/stylesheets/styles.scss */
+/* line 803, ../../app/stylesheets/styles.scss */
 .football_pagination .prev_page, .football_pagination .next_page {
   border-width: 2px;
 }
 
-/* line 802, ../../app/stylesheets/styles.scss */
+/* line 806, ../../app/stylesheets/styles.scss */
 .football_pagination .prev_page {
   margin-right: 1em;
 }
 
-/* line 805, ../../app/stylesheets/styles.scss */
+/* line 809, ../../app/stylesheets/styles.scss */
 .football_pagination .next_page {
   margin-left: 1em;
 }
@@ -901,21 +906,21 @@ a.add-image-link {
 /**
 *Notification blocks
 */
-/* line 813, ../../app/stylesheets/styles.scss */
+/* line 817, ../../app/stylesheets/styles.scss */
 .error, .notice, .success {
   border: 2px solid #DDDDDD;
   margin-bottom: 1em;
   padding: 0.8em;
 }
 
-/* line 819, ../../app/stylesheets/styles.scss */
+/* line 823, ../../app/stylesheets/styles.scss */
 .error {
   background: #FBE3E4 none repeat scroll 0% 0%;
   border-color: #FBC2C4;
   color: #8A1F11;
 }
 
-/* line 825, ../../app/stylesheets/styles.scss */
+/* line 829, ../../app/stylesheets/styles.scss */
 .success {
   background: #E6EFC2 none repeat scroll 0% 0%;
   border-color: #C6D880;
@@ -925,7 +930,7 @@ a.add-image-link {
 /**
 * Articles
 */
-/* line 836, ../../app/stylesheets/styles.scss */
+/* line 840, ../../app/stylesheets/styles.scss */
 .article-title-image {
   border: 1px solid #EEE;
   margin: 0pt 7px 7px 0pt;
@@ -939,21 +944,21 @@ a.add-image-link {
 /**
 * Gallery
 */
-/* line 851, ../../app/stylesheets/styles.scss */
+/* line 855, ../../app/stylesheets/styles.scss */
 #uploaded-files {
   list-style-image: none;
   list-style-position: outside;
   list-style-type: none;
 }
 
-/* line 857, ../../app/stylesheets/styles.scss */
+/* line 861, ../../app/stylesheets/styles.scss */
 #uploaded-files img {
   width: 150px;
   float: left;
   margin-right: 10px;
 }
 
-/* line 863, ../../app/stylesheets/styles.scss */
+/* line 867, ../../app/stylesheets/styles.scss */
 #uploaded-files li {
   clear: both;
   display: block;
@@ -963,12 +968,12 @@ a.add-image-link {
 /**
 * Tournament and result tables
 */
-/* line 872, ../../app/stylesheets/styles.scss */
+/* line 876, ../../app/stylesheets/styles.scss */
 table.game-result {
   border-collapse: collapse;
 }
 
-/* line 876, ../../app/stylesheets/styles.scss */
+/* line 880, ../../app/stylesheets/styles.scss */
 table.game-result td {
   font-style: italic;
   padding: 5px;
@@ -976,30 +981,30 @@ table.game-result td {
   text-align: center;
 }
 
-/* line 882, ../../app/stylesheets/styles.scss */
+/* line 886, ../../app/stylesheets/styles.scss */
 table.game-result td.result {
   font-style: normal;
   font-weight: bold;
 }
 
-/* line 887, ../../app/stylesheets/styles.scss */
+/* line 891, ../../app/stylesheets/styles.scss */
 table.tournament {
   border-collapse: collapse;
 }
 
-/* line 891, ../../app/stylesheets/styles.scss */
+/* line 895, ../../app/stylesheets/styles.scss */
 table.tournament tr.even {
   background-color: #FAFAFA;
 }
 
-/* line 895, ../../app/stylesheets/styles.scss */
+/* line 899, ../../app/stylesheets/styles.scss */
 table.tournament td, table.tournament th {
   border: 1px solid #EEEEEE;
   padding: 8px;
   text-align: center;
 }
 
-/* line 900, ../../app/stylesheets/styles.scss */
+/* line 904, ../../app/stylesheets/styles.scss */
 table.tournament td.team {
   text-align: left;
 }
@@ -1010,7 +1015,7 @@ table.tournament td.team {
 /**
 *Public profile
 **/
-/* line 912, ../../app/stylesheets/styles.scss */
+/* line 916, ../../app/stylesheets/styles.scss */
 #profile-photo-block {
   border: 1px solid #EEEEEE;
   float: left;
@@ -1019,7 +1024,7 @@ table.tournament td.team {
   height: 300px;*/
 }
 
-/* line 919, ../../app/stylesheets/styles.scss */
+/* line 923, ../../app/stylesheets/styles.scss */
 #profile-data-block {
   border: 1px solid #EEEEEE;
   float: left;
@@ -1030,12 +1035,12 @@ table.tournament td.team {
   padding: 10px;
 }
 
-/* line 929, ../../app/stylesheets/styles.scss */
+/* line 933, ../../app/stylesheets/styles.scss */
 #profile-data-block dt, #profile-data-block dd {
   margin-bottom: 10px;
 }
 
-/* line 933, ../../app/stylesheets/styles.scss */
+/* line 937, ../../app/stylesheets/styles.scss */
 #profile-data-block dt {
   clear: both;
   float: left;
@@ -1045,7 +1050,7 @@ table.tournament td.team {
   width: 70px;
 }
 
-/* line 942, ../../app/stylesheets/styles.scss */
+/* line 946, ../../app/stylesheets/styles.scss */
 #profile-data-block dd {
   float: left;
 }
@@ -1053,29 +1058,29 @@ table.tournament td.team {
 /**
 *EOF Public profile
 **/
-/* line 949, ../../app/stylesheets/styles.scss */
+/* line 953, ../../app/stylesheets/styles.scss */
 div.image-loading-container {
   display: none;
   text-align: center;
 }
 
 /*Shop block*/
-/* line 958, ../../app/stylesheets/styles.scss */
+/* line 962, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block img.prev, #col-right .sidebar-block img.next {
   float: right;
   margin-right: 3px;
 }
-/* line 962, ../../app/stylesheets/styles.scss */
+/* line 966, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block img.prev:hover, #col-right .sidebar-block img.next:hover {
   cursor: pointer;
 }
-/* line 965, ../../app/stylesheets/styles.scss */
+/* line 969, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content {
   border-top: 1px solid #d9d9d9;
   padding: 0.6em 0.6em 0 0.6em;
   text-align: center;
 }
-/* line 970, ../../app/stylesheets/styles.scss */
+/* line 974, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap {
   margin: 0 auto;
   position: relative;
@@ -1083,107 +1088,103 @@ div.image-loading-container {
   width: 251px;
   height: 200px;
 }
-/* line 976, ../../app/stylesheets/styles.scss */
+/* line 980, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul.sidebar-shop-content-list {
   width: 20000em;
   position: absolute;
 }
-/* line 979, ../../app/stylesheets/styles.scss */
+/* line 983, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul.sidebar-shop-content-list li {
   border: none;
   height: 200px;
   width: 251px;
   float: left;
 }
-/* line 984, ../../app/stylesheets/styles.scss */
+/* line 988, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block .sidebar-shop-content .sidebar-shop-content-wrap ul.sidebar-shop-content-list li a {
   font-weight: normal;
 }
 
 /*EOF Shop block*/
 /*Quick Match Results block*/
-/* line 998, ../../app/stylesheets/styles.scss */
+/* line 1002, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li {
   padding: 3px 0;
 }
-/* line 1000, ../../app/stylesheets/styles.scss */
+/* line 1004, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.score-container {
   float: left;
   width: 45px;
   margin: 0 2px;
 }
-/* line 1001, ../../app/stylesheets/styles.scss */
+/* line 1005, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.hosts, #col-right .sidebar-block ul.quick_match_results li div.guests {
   float: left;
   width: 109px;
   padding-top: 1px;
   font-size: 12px;
 }
-/* line 1007, ../../app/stylesheets/styles.scss */
+/* line 1011, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.hosts {
   text-align: right;
 }
-/* line 1008, ../../app/stylesheets/styles.scss */
+/* line 1012, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li div.guests {
   text-align: left;
 }
-/* line 1010, ../../app/stylesheets/styles.scss */
+/* line 1014, ../../app/stylesheets/styles.scss */
 #col-right .sidebar-block ul.quick_match_results li.odd {
   background-color: #FAFAFA;
 }
 
 /*EOF Quick Match Results block*/
-/* line 1014, ../../app/stylesheets/styles.scss */
+/* line 1018, ../../app/stylesheets/styles.scss */
 ul.team-list, ul.player-list {
   list-style-type: none;
 }
-/* line 1016, ../../app/stylesheets/styles.scss */
+/* line 1020, ../../app/stylesheets/styles.scss */
 ul.team-list li, ul.player-list li {
   padding: 5px 0;
 }
 
-/* line 1021, ../../app/stylesheets/styles.scss */
+/* line 1025, ../../app/stylesheets/styles.scss */
 ul.team-list {
   float: left;
   width: 230px;
 }
 
-/* line 1026, ../../app/stylesheets/styles.scss */
+/* line 1030, ../../app/stylesheets/styles.scss */
 table.schedule {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom: 15px;
   width: 100%;
 }
-/* line 1031, ../../app/stylesheets/styles.scss */
-table.schedule tr.odd {
-  background-color: #FAFAFA;
-}
-/* line 1034, ../../app/stylesheets/styles.scss */
+/* line 1035, ../../app/stylesheets/styles.scss */
 table.schedule td, table.schedule th {
   border: 1px solid #d9d9d9;
   padding: 5px;
 }
-/* line 1038, ../../app/stylesheets/styles.scss */
+/* line 1039, ../../app/stylesheets/styles.scss */
 table.schedule td {
   text-align: left;
 }
-/* line 1042, ../../app/stylesheets/styles.scss */
+/* line 1043, ../../app/stylesheets/styles.scss */
 table.schedule td.venue {
   width: 150px;
   text-align: center;
 }
-/* line 1046, ../../app/stylesheets/styles.scss */
+/* line 1047, ../../app/stylesheets/styles.scss */
 table.schedule td.time {
   width: 50px;
   text-align: center;
 }
-/* line 1050, ../../app/stylesheets/styles.scss */
+/* line 1051, ../../app/stylesheets/styles.scss */
 table.schedule td.league {
   width: 100px;
   text-align: center;
 }
-/* line 1054, ../../app/stylesheets/styles.scss */
+/* line 1055, ../../app/stylesheets/styles.scss */
 table.schedule th {
   color: #be420e;
   font-size: 100%;
@@ -1196,7 +1197,7 @@ table.schedule th {
 /**
 *Match result table
 **/
-/* line 1068, ../../app/stylesheets/styles.scss */
+/* line 1069, ../../app/stylesheets/styles.scss */
 table.match-result-table, table.tournament-position {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   width: 100%;
@@ -1204,61 +1205,81 @@ table.match-result-table, table.tournament-position {
   margin-bottom: 20px;
 }
 
-/* line 1075, ../../app/stylesheets/styles.scss */
+/* line 1077, ../../app/stylesheets/styles.scss */
 table.match-result-table caption {
   padding: 0 0 5px 0;
   width: 100%;
-  font-size: 11px;
-  text-align: right;
-}
-
-/* line 1083, ../../app/stylesheets/styles.scss */
-table.match-result-table th {
-  text-align: center;
-  color: #336999;
-  border: 1px solid #EEEEEE;
-  font-size: 118%;
-}
-
-/* line 1092, ../../app/stylesheets/styles.scss */
-table.match-result-table td.team-name, table.match-result-table td.match-score {
-  width: 25%;
-  text-align: center;
-  border: 1px solid #EEEEEE;
+  font-size: 12px;
   color: #BE420E;
-  font-weight: bold;
-  padding: 3px;
-}
-
-/* line 1101, ../../app/stylesheets/styles.scss */
-table.match-result-table td.content {
-  vertical-align: top;
-  border: 1px solid #EEEEEE;
-}
-
-/* line 1106, ../../app/stylesheets/styles.scss */
-table.match-result-table td.match-score {
-  width: 50%;
-}
-
-/* line 1110, ../../app/stylesheets/styles.scss */
-table.match-result-table ul.team-players-list {
-  list-style-type: none;
   text-align: left;
 }
-/* line 1114, ../../app/stylesheets/styles.scss */
-table.match-result-table ul.team-players-list li {
-  padding: 3px 5px;
+/* line 1084, ../../app/stylesheets/styles.scss */
+table.match-result-table th {
+  color: #336999;
+  font-size: 118%;
+}
+/* line 1089, ../../app/stylesheets/styles.scss */
+table.match-result-table th, table.match-result-table td {
+  text-align: left;
+  padding: 2px;
+}
+/* line 1094, ../../app/stylesheets/styles.scss */
+table.match-result-table th, table.match-result-table tr {
+  border: 1px solid #EEEEEE;
+}
+/* line 1098, ../../app/stylesheets/styles.scss */
+table.match-result-table td.date-time {
+  width: 170px;
+}
+/* line 1102, ../../app/stylesheets/styles.scss */
+table.match-result-table td.venue {
+  width: 120px;
+}
+/* line 1106, ../../app/stylesheets/styles.scss */
+table.match-result-table th.scores, table.match-result-table td.scores {
+  width: 50px;
+  text-align: center;
+}
+/* line 1110, ../../app/stylesheets/styles.scss */
+table.match-result-table td.hosts, table.match-result-table th.hosts {
+  text-align: right;
+  width: 300px;
 }
 /* line 1115, ../../app/stylesheets/styles.scss */
-table.match-result-table ul.team-players-list li.odd {
-  background-color: #FAFAFA;
+table.match-result-table td.guests, table.match-result-table th.guests {
+  width: 300px;
+}
+/* line 1119, ../../app/stylesheets/styles.scss */
+table.match-result-table td.protocol {
+  width: 90px;
 }
 
+/*table.match-result-table td.team-name, table.match-result-table td.match-score {*/
+/*width: 25%;*/
+/*text-align:center;*/
+/*border: 1px solid #EEEEEE;*/
+/*color: #BE420E;*/
+/*font-weight:bold;*/
+/*padding: 3px;*/
+/*}*/
+/*table.match-result-table td.content {*/
+/*vertical-align: top;*/
+/*border:1px solid #EEEEEE;*/
+/*}*/
+/*table.match-result-table  td.match-score {*/
+/*width: 50%;*/
+/*}*/
+/*table.match-result-table ul.team-players-list {*/
+/*list-style-type: none;*/
+/*text-align: left;*/
+/*//  margin-left:3px;*/
+/*li {padding:3px 5px;}*/
+/*li.odd {background-color:#FAFAFA;}*/
+/*}*/
 /**
 *Tournament tables
 */
-/* line 1121, ../../app/stylesheets/styles.scss */
+/* line 1163, ../../app/stylesheets/styles.scss */
 table.tournament-position, table.bombardier-position {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
@@ -1266,24 +1287,24 @@ table.tournament-position, table.bombardier-position {
   width: 450px;
   float: left;
 }
-/* line 1127, ../../app/stylesheets/styles.scss */
+/* line 1169, ../../app/stylesheets/styles.scss */
 table.tournament-position th, table.bombardier-position th {
   text-align: center;
   color: #336999;
   border: 1px solid #EEEEEE;
   font-size: 118%;
 }
-/* line 1134, ../../app/stylesheets/styles.scss */
+/* line 1176, ../../app/stylesheets/styles.scss */
 table.tournament-position td, table.bombardier-position td {
   padding: 3px;
   border: 1px solid #EEEEEE;
 }
-/* line 1138, ../../app/stylesheets/styles.scss */
+/* line 1180, ../../app/stylesheets/styles.scss */
 table.tournament-position td.place, table.bombardier-position td.place {
   width: 30px;
   text-align: right;
 }
-/* line 1141, ../../app/stylesheets/styles.scss */
+/* line 1183, ../../app/stylesheets/styles.scss */
 table.tournament-position td.place div.position-change, table.bombardier-position td.place div.position-change {
   float: left;
   font-weight: bold;
@@ -1293,86 +1314,82 @@ table.tournament-position td.place div.position-change, table.bombardier-positio
   padding-right: 10px;
   width: 20px;
 }
-/* line 1150, ../../app/stylesheets/styles.scss */
+/* line 1192, ../../app/stylesheets/styles.scss */
 table.tournament-position td.place div.up, table.bombardier-position td.place div.up {
   color: #60B571;
   background-image: url("/images/icons/raise-arrow.png");
 }
-/* line 1151, ../../app/stylesheets/styles.scss */
+/* line 1193, ../../app/stylesheets/styles.scss */
 table.tournament-position td.place div.down, table.bombardier-position td.place div.down {
   color: #BE420E;
   background-image: url("/images/icons/down-arrow.png");
 }
-/* line 1154, ../../app/stylesheets/styles.scss */
+/* line 1196, ../../app/stylesheets/styles.scss */
 table.tournament-position td.team, table.bombardier-position td.team {
   width: 170px;
 }
-/* line 1155, ../../app/stylesheets/styles.scss */
+/* line 1197, ../../app/stylesheets/styles.scss */
 table.tournament-position td.games, table.bombardier-position td.games {
   width: 40px;
   text-align: center;
 }
-/* line 1156, ../../app/stylesheets/styles.scss */
+/* line 1198, ../../app/stylesheets/styles.scss */
 table.tournament-position td.goals, table.bombardier-position td.goals {
   width: 50px;
   text-align: center;
 }
-/* line 1157, ../../app/stylesheets/styles.scss */
+/* line 1199, ../../app/stylesheets/styles.scss */
 table.tournament-position td.scores, table.bombardier-position td.scores {
   width: 40px;
   text-align: center;
 }
-/* line 1158, ../../app/stylesheets/styles.scss */
+/* line 1200, ../../app/stylesheets/styles.scss */
 table.tournament-position td.diff, table.bombardier-position td.diff {
   width: 40px;
   text-align: center;
 }
-/* line 1160, ../../app/stylesheets/styles.scss */
+/* line 1202, ../../app/stylesheets/styles.scss */
 table.tournament-position tr.header td, table.bombardier-position tr.header td {
   color: #be420e;
   font-weight: bold;
 }
-/* line 1165, ../../app/stylesheets/styles.scss */
-table.tournament-position tr.odd, table.bombardier-position tr.odd {
-  background-color: #FAFAFA;
-}
 
-/* line 1170, ../../app/stylesheets/styles.scss */
+/* line 1209, ../../app/stylesheets/styles.scss */
 table.tournament-position.even {
   margin-left: 10px;
 }
 
-/* line 1176, ../../app/stylesheets/styles.scss */
+/* line 1215, ../../app/stylesheets/styles.scss */
 #container ol {
   list-style-position: inside;
 }
-/* line 1178, ../../app/stylesheets/styles.scss */
+/* line 1217, ../../app/stylesheets/styles.scss */
 #container ol li {
   margin-bottom: 5px;
   font-style: italic;
 }
-/* line 1184, ../../app/stylesheets/styles.scss */
+/* line 1223, ../../app/stylesheets/styles.scss */
 #container div#it-forecast-container p {
   margin-bottom: 10px;
 }
 
-/* line 1190, ../../app/stylesheets/styles.scss */
+/* line 1229, ../../app/stylesheets/styles.scss */
 h2.tournament-subtitle {
   border-bottom: 0;
   line-height: 1em;
   margin-bottom: 5px;
 }
 
-/* line 1196, ../../app/stylesheets/styles.scss */
+/* line 1235, ../../app/stylesheets/styles.scss */
 table.bombardier-position {
   width: 600px;
 }
-/* line 1198, ../../app/stylesheets/styles.scss */
+/* line 1237, ../../app/stylesheets/styles.scss */
 table.bombardier-position td.place {
   width: 30px;
   text-align: center;
 }
-/* line 1202, ../../app/stylesheets/styles.scss */
+/* line 1241, ../../app/stylesheets/styles.scss */
 table.bombardier-position td.goals {
   width: 20px;
   text-align: center;
@@ -1383,24 +1400,24 @@ table.bombardier-position td.goals {
 *Schedules
 *
 */
-/* line 1213, ../../app/stylesheets/styles.scss */
+/* line 1252, ../../app/stylesheets/styles.scss */
 .schedule-page-header {
   text-align: center;
 }
-/* line 1215, ../../app/stylesheets/styles.scss */
+/* line 1254, ../../app/stylesheets/styles.scss */
 .schedule-page-header div.schedule-page-wrap {
   width: 250px;
   margin: 0 auto;
   margin-top: 10px;
   padding-bottom: 5px;
 }
-/* line 1221, ../../app/stylesheets/styles.scss */
+/* line 1260, ../../app/stylesheets/styles.scss */
 .schedule-page-header a.prev, .schedule-page-header a.next {
   display: block;
   margin-right: 3px;
   margin-top: 12px;
 }
-/* line 1226, ../../app/stylesheets/styles.scss */
+/* line 1265, ../../app/stylesheets/styles.scss */
 .schedule-page-header h2 {
   margin: 0 15px;
   padding: 0;
@@ -1408,18 +1425,18 @@ table.bombardier-position td.goals {
   border-bottom: none;
 }
 
-/* line 1234, ../../app/stylesheets/styles.scss */
+/* line 1273, ../../app/stylesheets/styles.scss */
 input.fancy_score_edit {
   width: 15px;
   border: 1px solid #000;
 }
 
-/* line 1239, ../../app/stylesheets/styles.scss */
+/* line 1278, ../../app/stylesheets/styles.scss */
 .wrap-container {
   text-align: center;
 }
 
-/* line 1243, ../../app/stylesheets/styles.scss */
+/* line 1282, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap {
   position: relative;
   overflow: hidden;
@@ -1430,7 +1447,7 @@ div.schedule-content-wrap {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border: 1px solid #d9d9d9;
 }
-/* line 1252, ../../app/stylesheets/styles.scss */
+/* line 1291, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap div.schedule-header {
   font-size: 100%;
   color: #be420e;
@@ -1439,65 +1456,61 @@ div.schedule-content-wrap div.schedule-header {
   height: 30px;
   border-bottom: 1px solid #d9d9d9;
 }
-/* line 1260, ../../app/stylesheets/styles.scss */
+/* line 1299, ../../app/stylesheets/styles.scss */
 div.schedule-content-wrap div.schedule-content {
   overflow: auto;
 }
 
-/* line 1266, ../../app/stylesheets/styles.scss */
+/* line 1305, ../../app/stylesheets/styles.scss */
 div.schedule-content table {
   border-collapse: collapse;
   width: 100%;
 }
-/* line 1269, ../../app/stylesheets/styles.scss */
-div.schedule-content table tr.odd {
-  background-color: #FAFAFA;
-}
-/* line 1272, ../../app/stylesheets/styles.scss */
+/* line 1308, ../../app/stylesheets/styles.scss */
 div.schedule-content table td {
   border: 1px solid #d9d9d9;
   padding: 5px;
   text-align: left;
 }
-/* line 1277, ../../app/stylesheets/styles.scss */
+/* line 1313, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.tournament {
   width: 100px;
   text-align: center;
 }
-/* line 1281, ../../app/stylesheets/styles.scss */
+/* line 1317, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.tour {
   width: 100px;
   text-align: center;
 }
-/* line 1285, ../../app/stylesheets/styles.scss */
+/* line 1321, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.score-container {
   width: 45px;
   margin: 0 2px;
 }
-/* line 1286, ../../app/stylesheets/styles.scss */
+/* line 1322, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.hosts, div.schedule-content table td.guests {
   width: 145px;
 }
-/* line 1287, ../../app/stylesheets/styles.scss */
+/* line 1323, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.venue {
   width: 150px;
   text-align: center;
 }
-/* line 1290, ../../app/stylesheets/styles.scss */
+/* line 1326, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.venue img, div.schedule-content table td.venue a {
   float: left;
 }
-/* line 1293, ../../app/stylesheets/styles.scss */
+/* line 1329, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.venue a {
   display: block;
   margin-left: 5px;
 }
-/* line 1298, ../../app/stylesheets/styles.scss */
+/* line 1334, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.time {
   width: 40px;
   text-align: center;
 }
-/* line 1302, ../../app/stylesheets/styles.scss */
+/* line 1338, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.league {
   text-align: center;
 }
@@ -1505,7 +1518,7 @@ div.schedule-content table td.league {
 /**
 * Filter block styles
 */
-/* line 1312, ../../app/stylesheets/styles.scss */
+/* line 1348, ../../app/stylesheets/styles.scss */
 .b-slide-filter {
   font-size: 13px;
   height: 25px;
@@ -1513,43 +1526,43 @@ div.schedule-content table td.league {
   margin-bottom: 21px;
   padding-bottom: 22px;
 }
-/* line 1318, ../../app/stylesheets/styles.scss */
+/* line 1354, ../../app/stylesheets/styles.scss */
 .b-slide-filter .lbl {
   cursor: text;
   line-height: 22px;
   margin-right: 20px;
 }
-/* line 1323, ../../app/stylesheets/styles.scss */
+/* line 1359, ../../app/stylesheets/styles.scss */
 .b-slide-filter * {
   vertical-align: middle;
 }
-/* line 1327, ../../app/stylesheets/styles.scss */
+/* line 1363, ../../app/stylesheets/styles.scss */
 .b-slide-filter .l-slide-menu {
   background-position: 0 -346px;
   display: inline-block;
   position: relative;
 }
-/* line 1333, ../../app/stylesheets/styles.scss */
+/* line 1369, ../../app/stylesheets/styles.scss */
 .b-slide-filter b, .b-slide-filter .l-slide-menu, .b-slide-filter .slide {
   height: 25px;
 }
-/* line 1336, ../../app/stylesheets/styles.scss */
+/* line 1372, ../../app/stylesheets/styles.scss */
 .b-slide-filter b {
   position: absolute;
   top: 0;
   width: 15px;
 }
-/* line 1343, ../../app/stylesheets/styles.scss */
+/* line 1379, ../../app/stylesheets/styles.scss */
 .b-slide-filter .slide .l {
   background-position: -138px -308px;
   left: -15px;
 }
-/* line 1347, ../../app/stylesheets/styles.scss */
+/* line 1383, ../../app/stylesheets/styles.scss */
 .b-slide-filter .slide .r {
   background-position: -168px -308px;
   right: -15px;
 }
-/* line 1351, ../../app/stylesheets/styles.scss */
+/* line 1387, ../../app/stylesheets/styles.scss */
 .b-slide-filter .slide .c {
   background-position: -152px -308px;
   height: 31px;
@@ -1559,18 +1572,18 @@ div.schedule-content table td.league {
 }
 
 /*Match page*/
-/* line 1362, ../../app/stylesheets/styles.scss */
+/* line 1398, ../../app/stylesheets/styles.scss */
 h3 a.season-matches-link, h3 a.season-matches-link:hover {
   color: #A5BE0E;
   font-size: 90%;
 }
 
-/* line 1366, ../../app/stylesheets/styles.scss */
+/* line 1402, ../../app/stylesheets/styles.scss */
 h3 a.season-matches-link:hover {
   color: #336999;
 }
 
-/* line 1370, ../../app/stylesheets/styles.scss */
+/* line 1406, ../../app/stylesheets/styles.scss */
 table.match {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
@@ -1578,52 +1591,48 @@ table.match {
   margin-top: 10px;
   width: 100%;
 }
-/* line 1376, ../../app/stylesheets/styles.scss */
-table.match tr.odd {
-  background-color: #FAFAFA;
-}
-/* line 1380, ../../app/stylesheets/styles.scss */
+/* line 1413, ../../app/stylesheets/styles.scss */
 table.match td.broadcasting {
   padding: 0;
 }
-/* line 1382, ../../app/stylesheets/styles.scss */
+/* line 1415, ../../app/stylesheets/styles.scss */
 table.match td.broadcasting table {
   border: none;
   width: 100%;
 }
-/* line 1385, ../../app/stylesheets/styles.scss */
+/* line 1418, ../../app/stylesheets/styles.scss */
 table.match td.broadcasting table td {
   border: none;
 }
-/* line 1391, ../../app/stylesheets/styles.scss */
+/* line 1424, ../../app/stylesheets/styles.scss */
 table.match th.host, table.match th.guest {
   width: 250px;
 }
-/* line 1394, ../../app/stylesheets/styles.scss */
+/* line 1427, ../../app/stylesheets/styles.scss */
 table.match td, table.match th {
   border: 1px solid #d9d9d9;
   padding: 5px;
 }
-/* line 1398, ../../app/stylesheets/styles.scss */
+/* line 1431, ../../app/stylesheets/styles.scss */
 table.match td {
   text-align: left;
   vertical-align: top;
 }
-/* line 1401, ../../app/stylesheets/styles.scss */
+/* line 1434, ../../app/stylesheets/styles.scss */
 table.match td p.subheader {
   color: #BE420E;
   font-weight: bold;
 }
-/* line 1408, ../../app/stylesheets/styles.scss */
+/* line 1441, ../../app/stylesheets/styles.scss */
 table.match td.statistic p span {
   color: #BE420E;
   font-weight: bold;
 }
-/* line 1413, ../../app/stylesheets/styles.scss */
+/* line 1446, ../../app/stylesheets/styles.scss */
 table.match td.minute {
   width: 40px;
 }
-/* line 1417, ../../app/stylesheets/styles.scss */
+/* line 1450, ../../app/stylesheets/styles.scss */
 table.match th {
   color: #be420e;
   font-size: 100%;
@@ -1631,11 +1640,11 @@ table.match th {
   margin: 0.6em 0 0.6em 0.4em;
   padding: 5px;
 }
-/* line 1425, ../../app/stylesheets/styles.scss */
+/* line 1458, ../../app/stylesheets/styles.scss */
 table.match ul.players_list {
   list-style-type: none;
 }
-/* line 1427, ../../app/stylesheets/styles.scss */
+/* line 1460, ../../app/stylesheets/styles.scss */
 table.match ul.players_list li {
   padding-bottom: 3px;
 }

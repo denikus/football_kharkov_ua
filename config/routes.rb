@@ -90,7 +90,7 @@ ActionController::Routing::Routes.draw do |map|
     tournament.resources :it_forecast, :only => ["index"]
     tournament.resources :pages, :only => ["show"]
     tournament.resources :seasons do |season|
-      season.resources :matches, :only => ["show"]
+      season.resources :matches, :only => ["show", "index"]
     end
 
   end

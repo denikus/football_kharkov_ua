@@ -138,6 +138,10 @@ div#near-scroll-panel {
 /**
 * General Styles
 */
+table tr.odd {
+  background-color:#FAFAFA;
+}
+
 a:focus, a:hover {
     color:#BE420E;
 }
@@ -1028,9 +1032,6 @@ table.schedule {
   border-collapse: collapse;
   margin-bottom: 15px;
   width: 100%;
-  tr.odd {
-    background-color:#FAFAFA;
-  }
   td,th  {
     border: 1px solid $block_border_color;
     padding: 5px;
@@ -1072,48 +1073,89 @@ table.match-result-table, table.tournament-position {
   margin-bottom:20px;
 }
 
-table.match-result-table caption {
-	padding: 0 0 5px 0;
-	width: 100%;
-  font-size: 11px;
-	text-align: right;
+table.match-result-table {
+  caption {
+    padding: 0 0 5px 0;
+    width: 100%;
+      font-size: 12px;
+      color: #BE420E;
+    text-align: left;
+  }
+  th {
+    color: #336999;
+    font-size: 118%;
+  }
+
+  th, td {
+    text-align: left;
+    padding:2px;
+  }
+  
+  th, tr {
+    border: 1px solid #EEEEEE;
+  }
+
+  td.date-time {
+    width: 170px;
+  }
+
+  td.venue {
+    width: 120px;
+  }
+
+  th.scores, td.scores {
+    width:50px;
+    text-align:center;
+  }
+  td.hosts, th.hosts {
+    text-align:right;
+    width: 300px;
+  }
+
+  td.guests, th.guests {
+    width: 300px;
+  }
+
+  td.protocol {
+    width: 90px;
+  }
 }
 
 
-table.match-result-table th {
-  text-align: center;
-  //background-color: #F5FAFA;
-//  color: #BE420E;
-  color: #336999;
-  border: 1px solid #EEEEEE;
-  font-size: 118%;
-}
 
-table.match-result-table td.team-name, table.match-result-table td.match-score {
-  width: 25%;
-  text-align:center;
-  border: 1px solid #EEEEEE;
-  color: #BE420E;
-  font-weight:bold;
-  padding: 3px;
-}
 
-table.match-result-table td.content {
-  vertical-align: top;
-  border:1px solid #EEEEEE;
-}
 
-table.match-result-table  td.match-score {
-  width: 50%;
-}
 
-table.match-result-table ul.team-players-list {
-  list-style-type: none;
-  text-align: left;
-  //  margin-left:3px;
-  li {padding:3px 5px;}
-  li.odd {background-color:#FAFAFA;}
-}
+
+
+
+
+
+/*table.match-result-table td.team-name, table.match-result-table td.match-score {*/
+  /*width: 25%;*/
+  /*text-align:center;*/
+  /*border: 1px solid #EEEEEE;*/
+  /*color: #BE420E;*/
+  /*font-weight:bold;*/
+  /*padding: 3px;*/
+/*}*/
+
+/*table.match-result-table td.content {*/
+  /*vertical-align: top;*/
+  /*border:1px solid #EEEEEE;*/
+/*}*/
+
+/*table.match-result-table  td.match-score {*/
+  /*width: 50%;*/
+/*}*/
+
+/*table.match-result-table ul.team-players-list {*/
+  /*list-style-type: none;*/
+  /*text-align: left;*/
+  /*//  margin-left:3px;*/
+  /*li {padding:3px 5px;}*/
+  /*li.odd {background-color:#FAFAFA;}*/
+/*}*/
 
 /**
 *Tournament tables
@@ -1161,9 +1203,6 @@ table.tournament-position, table.bombardier-position {
       color: $block_header_color;
       font-weight: bold;
     }
-  }
-  tr.odd {
-    background-color:#FAFAFA;
   }
 }
 
@@ -1266,9 +1305,6 @@ div.schedule-content {
   table {
     border-collapse: collapse;
     width: 100%;
-    tr.odd {
-      background-color:#FAFAFA;
-    }
     td{
       border: 1px solid $block_border_color;
       padding: 5px;
@@ -1373,9 +1409,6 @@ table.match {
   margin-bottom: 15px;
   margin-top: 10px;
   width: 100%;
-  tr.odd {
-    background-color:#FAFAFA;
-  }
 
   td.broadcasting {
     padding:0;

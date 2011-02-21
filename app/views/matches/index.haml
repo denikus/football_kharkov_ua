@@ -1,0 +1,43 @@
+%h2= @season.name
+- @season.stages.find(:all, :order => "identifier DESC").each do |stage|
+  - stage.tours.find(:all, :order => "identifier DESC").each do |tour|
+    %h3= tour.name
+    - stage.leagues.find(:all, :order => "identifier ASC").each do |league|
+      -unless Schedule.count(:conditions => ["league_id = ? AND tour_id = ? ", league.id, tour.id]) == 0
+        %table.match-result-table
+          %caption= league.name
+          %tr
+            %th Дата/Время
+            %th Место
+            %th.hosts Хозяева
+            %th.scores Счет
+            %th.guests Гости
+            %th Протокол
+          - Schedule.find(:all, :conditions => ["league_id = ? AND tour_id = ? ", league.id, tour.id], :order => "match_on, match_at ASC").each_with_index do |schedule, index|
+            -row_class = index%2 == 0 ? "" : "odd"
+            - winner_class = "fancy-score-winner"
+            - loser_class = "fancy-score-loser"
+            - hosts_class = ""
+            - guests_class = ""
+            - if schedule.host_scores.to_i > schedule.guest_scores.to_i
+              - hosts_class = winner_class
+              - guests_class = loser_class
+            - elsif schedule.host_scores.to_i < schedule.guest_scores.to_i
+              - hosts_class = loser_class
+              - guests_class = winner_class
+            - else
+              - hosts_class = "fancy-score-equal"
+              - guests_class = "fancy-score-equal"
+            %tr{:class => row_class}
+              %td.date-time= "#{Russian::strftime(schedule.match_on.to_date, "%d %B %Y")} #{schedule.match_at}"
+              %td.venue= link_to(schedule.venue.short_name, venue_path(:id => schedule.venue.url, :subdomain => false), {:target => "_blank"})
+              %td.hosts= link_to(schedule.hosts.name, teams_path(:id => schedule.hosts.url))
+              %td.scores
+                .fancy-score{:class => hosts_class }= schedule.host_scores
+                .fancy-score.fancy-score-right{:class => guests_class }= schedule.guest_scores
+              %td.guests= link_to(schedule.guests.name, teams_path(:id => schedule.guests.url))
+              %td.protocol
+                - if schedule.match.has_protocol?
+                  = link_to(image_tag("/images/icons/protocol.png"), season_match_path(:season_id => @season.url, :id => schedule.match.id))
+                - else
+                  = "-"
