@@ -41,6 +41,6 @@ class Match < ActiveRecord::Base
   end
 
   def has_protocol?
-    return true
+    self.match_events.count > 0
   end
 end
