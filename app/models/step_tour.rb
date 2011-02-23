@@ -18,7 +18,7 @@ class StepTour < Step
         self[:results][comps.last.team_id] << '|' if self[:results].key? comps.last.team_id
         self[:results][comps.last.team_id] << goals.join(':')
         self[:games_count] += 1
-#        self[:games] = self[:games].zip(lambda{ |a, i| a[i] += 1; a }[[0, 0, 0], (1-goals.inject(&:<=>)).abs]).collect{ |e| e.inject(&:+) }
+        self[:games] = self[:games].zip(lambda{ |a, i| a[i] += 1; a }[[0, 0, 0], (1-goals.inject(&:<=>)).abs]).collect{ |e| e.inject(&:+) }
         self[:goals] = self[:goals].zip(goals).collect{ |e| e.inject(&:+) }
         self[:score] = self[:games].zip([3, 1, 0]).collect{ |e| e.inject(&:*) }.inject(&:+)
         self[:fouls] = self[:fouls] + (comps.first.stats.get('first_period_fouls') || 0) + (comps.first.stats.get('second_period_fouls') || 0)

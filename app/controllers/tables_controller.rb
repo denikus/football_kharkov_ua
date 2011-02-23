@@ -4,7 +4,7 @@ class TablesController < ApplicationController
   def index
     params[:id] = 10
 #    @set = StepLeague.for_table.find(10).table_set
-    @set = []
+#    @set = []
 #    StepLeague.for_table.find(:all, :conditions => {:id => [10,11,12,13,14]}).map(&:last_table).each do |table|
 #    StepLeague.for_table.find(:all, :conditions => {:id => [10]}).each do |table|
 #      @set << {:table => table.table_set[0], :league_name => table.name}
@@ -24,5 +24,16 @@ class TablesController < ApplicationController
 #    ap @set.count
 #    puts "------set"
 #    render :layout => false
+#    [10,11,12,13,14]
+#    ap @set = StepLeague.for_table.find(params[:id]).table_set
+#    puts '---------------------------'
+#    @sets = {:league => StepLeague.find}
+    @leagues = StepLeague.for_table.find([10,11,12,13,14])
+#    @set = StepLeague.for_table.find(10).table_set
+#    @sets = []
+#    @leagues.each do |league|
+#      @sets << {:table_set => league.table_set, :league => league}
+#    end
+
   end
 end
