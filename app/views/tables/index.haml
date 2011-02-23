@@ -1,3 +1,3 @@
--#= render :partial => "tables/#{current_subdomain}_table"
-- @leagues.each do |league|
-  = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league}
+= render :partial => "tables/#{current_subdomain}_table"
+-#- @leagues.each do |league|
+-#  = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league}
