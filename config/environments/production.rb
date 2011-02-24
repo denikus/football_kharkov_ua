@@ -40,4 +40,4 @@ BITLY = {
 }.freeze
 
 
-MEGA_USER = [1, 107]
+MEGA_USER = [1, 107, 74]

@@ -14,7 +14,7 @@ class Admin::TempController < ApplicationController
                                     :joins => "INNER JOIN steps ON (steps.id = schedules.tour_id AND steps.type = 'StepTour')",
                                     :conditions => ["tournament_id = ? ", 2],
                                     :order => "match_on DESC, venue_id ASC, match_at ASC",
-                                    :limit => 50
+                                    :limit => 80
                                    )
   end
 
