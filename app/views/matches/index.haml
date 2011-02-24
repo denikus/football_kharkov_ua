@@ -36,8 +36,8 @@
                 %td.venue= link_to(schedule.venue.short_name, venue_path(:id => schedule.venue.url, :subdomain => false), {:target => "_blank"})
                 %td.hosts= link_to(schedule.hosts.name, teams_path(:id => schedule.hosts.url))
                 %td.scores
-                  .fancy-score{:class => hosts_class }= (schedule.host_scores.nil? ? "-" : schedule.host_scores)
-                  .fancy-score.fancy-score-right{:class => guests_class }= (schedule.guest_scores.nil? ? "-" : schedule.guest_scores)
+                  .fancy-score{:class => hosts_class, :id => "host_score_view_#{schedule.id}" }= (schedule.host_scores.nil? ? "-" : schedule.host_scores)
+                  .fancy-score.fancy-score-right{:class => guests_class, :id => "guest_score_view_#{schedule.id}" }= (schedule.guest_scores.nil? ? "-" : schedule.guest_scores)
                 %td.guests= link_to(schedule.guests.name, teams_path(:id => schedule.guests.url))
                 %td.protocol
                   - if !schedule.match.nil? && schedule.match.has_protocol?
