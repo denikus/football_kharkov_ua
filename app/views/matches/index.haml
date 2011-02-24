@@ -15,7 +15,7 @@
               %th.guests Гости
               %th Протокол
             - Schedule.find(:all, :conditions => ["league_id = ? AND tour_id = ? ", league.id, tour.id], :order => "match_on, match_at ASC").each_with_index do |schedule, index|
-              - if schedule.match
+              - unless schedule.match.nil?
                 -row_class = index%2 == 0 ? "" : "odd"
                 - winner_class = "fancy-score-winner"
                 - loser_class = "fancy-score-loser"
