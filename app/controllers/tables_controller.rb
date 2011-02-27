@@ -32,10 +32,10 @@ class TablesController < ApplicationController
 
     @stages = tournament.step_seasons.find(:last, :order => "identifier ASC").stages.find(:all, :order => "identifier DESC")
 
-    leagues = []
-    @stages.each{ |stage| stage.leagues.collect{|x| leagues << x.id }}
+#    leagues = []
+#    @stages.each{ |stage| stage.leagues.collect{|x| leagues << x.id }}
 
-    @leagues = StepLeague.for_table.find(leagues)
+    @leagues = StepLeague.for_table.find([83])
 #    @leagues = StepLeague.for_table.find([10,11,12,13,14])
 #    @set = StepLeague.for_table.find(10).table_set
 #    @sets = []
