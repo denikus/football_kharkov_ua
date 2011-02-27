@@ -36,6 +36,7 @@ class TablesController < ApplicationController
 #    @stages.each{ |stage| stage.leagues.collect{|x| leagues << x.id }}
 
     @leagues = StepLeague.for_table.find([83])
+#    debugger
 #    @leagues = StepLeague.for_table.find([10,11,12,13,14])
 #    @set = StepLeague.for_table.find(10).table_set
 #    @sets = []
