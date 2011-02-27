@@ -1,37 +1,26 @@
-require "ap"
-# Settings specified here will take precedence over those in config/environment.rb
+Football::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
 
-# In the development environment your application's code is reloaded on
-# every request.  This slows down response time but is perfect for development
-# since you don't have to restart the webserver when you make code changes.
-config.cache_classes = false
+  # In the development environment your application's code is reloaded on
+  # every request.  This slows down response time but is perfect for development
+  # since you don't have to restart the webserver when you make code changes.
+  config.cache_classes = false
 
-# Log error messages when you accidentally call methods on nil.
-config.whiny_nils = true
+  # Log error messages when you accidentally call methods on nil.
+  config.whiny_nils = true
 
-# Show full error reports and disable caching
-config.action_controller.consider_all_requests_local = true
-config.action_mailer.default_url_options             = { :host => 'localhost:3000' }
-config.action_view.debug_rjs                         = true
-config.action_controller.perform_caching             = false
-config.action_controller.session[:domain]            = 'fb.denix.sv'
-#config.action_controller.session                     = { :domain => '.localhost' }
-#config.action_view.cache_template_extensions         = false
+  # Show full error reports and disable caching
+  config.consider_all_requests_local       = true
+  config.action_view.debug_rjs             = true
+  config.action_controller.perform_caching = false
 
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
 
-# Don't care if the mailer can't send
-config.action_mailer.raise_delivery_errors = false
+  # Print deprecation notices to the Rails logger
+  config.active_support.deprecation = :log
 
-FORUM = {
-  :location => 'http://forum.football.kharkov.ua/',
-  :create_user => 'create_user.php',
-  :confirm_user => 'confirm_user.php',
-  :secret => 'b261638d90968ece3bc564296fa28c486c8e4963c6a380247a4875508c6b9f5f686df12f9f9464e6520ced86a0602ccc1ed6cdff0cfd4d8bd1b480187313c859'
-}.freeze
+  # Only use best-standards-support built into browsers
+  config.action_dispatch.best_standards_support = :builtin
+end
 
-BITLY = {
-  :username => 'footballkharkov',
-  :api_key => 'R_284aa8534d40494118bf2dadca17695a'
-}.freeze
-
-MEGA_USER = [1]

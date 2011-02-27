@@ -1,9 +1,7 @@
-#logs
-log/*
-*.log
-
-#temp files and cache
-tmp/*
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
 *.tmp
 
 #database scheme
@@ -20,3 +18,4 @@ doc/*
 
 #user files
 public/user
+
