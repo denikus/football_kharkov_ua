@@ -1,5 +1,5 @@
--#- unless current_subdomain=='kolenval'
-= render :partial => "tables/#{current_subdomain}_table"
--#- else
--#  - @leagues.each do |league|
--#    = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league}
+- if current_subdomain!='univercup'
+  = render :partial => "tables/#{current_subdomain}_table"
+- else
+  - @leagues.each do |league|
+    = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league}

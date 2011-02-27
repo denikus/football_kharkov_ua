@@ -39,9 +39,9 @@ class TablesController < ApplicationController
 #    @leagues = StepLeague.for_table.find([10,11,12,13,14])
 #    @set = StepLeague.for_table.find(10).table_set
 #    @sets = []
-    @leagues.each do |league|
-      @sets << {:table_set => league.table_set, :league => league}
-    end
+#    @leagues.each do |league|
+#      @sets << {:table_set => league.table_set, :league => league}
+#    end
 
   end
 end
