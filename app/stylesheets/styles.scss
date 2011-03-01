@@ -1118,7 +1118,7 @@ table.match-result-table ul.team-players-list {
 /**
 *Tournament tables
 */
-table.tournament-position, table.bombardier-position {
+table.tournament-position, table.bombardier-position, table.team_rate-position {
   background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
   margin-bottom:20px;
@@ -1202,6 +1202,34 @@ table.bombardier-position {
   td.goals {
     width: 20px;
     text-align:center;
+  }
+  tr.header {
+  text-align:center
+  }
+}
+
+h2.team_rate-subtitle {
+  border-bottom: 0;
+  line-height: 1em;
+  margin-bottom: 5px;
+}
+
+table.team_rate-position {
+  width: 600px;
+  td.place {
+    width: 30px;
+    text-align:center;
+  }
+  td.rate {
+    width: 45px;
+    text-align:center;
+  }
+  td.stat {
+  width: 20px;
+  text-align:center
+  }
+  tr.header {
+  text-align:center;
   }
 }
 

@@ -1,0 +1,3 @@
+class TeamsRates
+
+end

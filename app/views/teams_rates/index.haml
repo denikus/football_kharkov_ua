@@ -1,0 +1,34 @@
+%h2.team_rate-subtitle Индекс Лутицкого-Громыхаева
+%br
+%table.team_rate-position
+  %tr.header
+    %td{:rowspan => 2}
+      Место
+    %td{:rowspan => 2}
+      Команда
+    - @seasons.each do |season|
+      %td{:colspan => 4}= season.name
+    %td{:rowspan => 2}
+      Общий Индекс
+  %tr.header
+    - @seasons.each do
+      %td
+        W
+      %td
+        D
+      %td
+        L
+      %td
+        Индекс
+    - @teams.each_with_index do |item, index|
+      -row_class = index%2 == 0 ? "" : "odd"
+      %tr{:class => row_class}
+        %td.place= index + 1
+        %td.team= link_to item.name, team_path(item.url)
+        - @seasons.each do |season|
+          - stat = item[:stats][season.name]
+          %td.stat= (stat.season_rate.nil?) ? "-" : stat.wins
+          %td.stat= (stat.season_rate.nil?) ? "-" : stat.draws
+          %td.stat= (stat.season_rate.nil?) ? "-" : stat.loses
+          %td.rate= (stat.season_rate.nil?) ? "-" : sprintf('%0.03f', stat.season_rate)
+        %td.rate= sprintf('%0.03f', item[:rate])

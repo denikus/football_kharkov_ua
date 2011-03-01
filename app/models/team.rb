@@ -16,7 +16,21 @@ class Team < ActiveRecord::Base
   def before_save
     self.url = self.name.gsub(/[^a-zA-Zа-яА-Я0-9\-]/, '-')
   end
-  
+
+  def get_schedule_for_season(season_id)
+
+    leagues = StepLeague.get_leagues_in_season(season_id)
+
+    team_stats = (leagues.length > 0
+        ) ? Schedule.find(
+            :all,
+            :conditions => [
+                "(host_team_id = #{self.id} OR guest_team_id = #{self.id}) AND league_id IN (#{leagues.collect!{|x| x.id}.join(',')})"]
+        ) : nil
+
+    team_stats
+  end
+
   class FootballersProxy < ActiveSupport::BasicObject
     def initialize team
       @team = team
