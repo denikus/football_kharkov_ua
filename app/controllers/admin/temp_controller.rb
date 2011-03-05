@@ -1,6 +1,6 @@
 class Admin::TempController < ApplicationController
   before_filter :authenticate_admin!
-  before_filter permit :admin
+#  before_filter permit :admin
   layout "admin/temp"
   
   def index
