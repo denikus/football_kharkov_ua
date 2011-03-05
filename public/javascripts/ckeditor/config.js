@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config )
 {
   config.PreserveSessionOnFileBrowser = true;
   // Define changes to default configuration here. For example:
-  config.language = 'ru';
+  config.language = 'en';
   // config.uiColor = '#AADC6E';
 
   //config.ContextMenu = ['Generic','Anchor','Flash','Select','Textarea','Checkbox','Radio','TextField','HiddenField','ImageButton','Button','BulletedList','NumberedList','Table','Form'] ; 
@@ -22,16 +22,14 @@ CKEDITOR.editorConfig = function( config )
   //config.startupFocus = true;
   
   // works only with en, ru, uk languages
-//  config.extraPlugins = "embed,attachment";
-  config.extraPlugins = 'MediaEmbed';
-  config.format_tags = 'h3;h4;h5';
+  config.extraPlugins = "embed,attachment";
   
   config.toolbar = 'Easy';
   
   config.toolbar_Easy =
     [
         ['Source','-','Preview','Templates'],
-        ['Cut','Copy','Paste','PasteText','PasteFromWord', 'Source'],
+        ['Cut','Copy','Paste','PasteText','PasteFromWord',],
         ['Maximize','-','About'],
         ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
         ['Styles','Format'],
@@ -40,16 +38,6 @@ CKEDITOR.editorConfig = function( config )
         ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
         ['Link','Unlink','Anchor'],
         ['Image','Embed','Flash','Attachment','Table','HorizontalRule','Smiley','SpecialChar','PageBreak']
-    ];
-  config.toolbar = 'Football_Article';
-
-  config.toolbar_Football_Article =
-    [
-        ['PageBreak', '-', 'Bold','Italic','Underline','Strike','-','Format'],
-        ['NumberedList','BulletedList','Blockquote'],
-        ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-        ['Link','Unlink','Anchor'],
-        ['Image', 'MediaEmbed', 'Table', 'PasteFromWord', 'Source']
     ];
 };
 

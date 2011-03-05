@@ -5,7 +5,7 @@ development:
   database: football_kh
   encoding: utf8
   username: root
-  password: root
+  password: Qwerty12
   host: localhost
 
 # Warning: The database defined as 'test' will be erased and
@@ -16,7 +16,7 @@ test:
   database: football_kh
   encoding: utf8
   username: root
-  password: root
+  password: Qwerty12
   host: localhost
 
 production:

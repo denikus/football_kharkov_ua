@@ -33,7 +33,13 @@ class StepTour < Step
         return wins.inject(&:<=>) unless wins.inject(&:==)
         diff = [other, self].collect{ |e| e.goals.inject(&:-) }
         return diff.inject(&:<=>) unless diff.inject(&:==)
+
+        #goal hits
+        diff_goal_hits = [other, self].collect{ |e| e.goals[0] }
+        return diff_goal_hits.inject(&:<=>) unless diff_goal_hits.inject(&:==)
+
         [self, other].collect(&:fouls).inject(&:<=>)
+        
       end
       
       def clone

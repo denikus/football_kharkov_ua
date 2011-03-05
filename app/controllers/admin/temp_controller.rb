@@ -8,6 +8,22 @@ class Admin::TempController < ApplicationController
                           )
     @venues = Venue.all
     @schedule = Schedule.new({:match_on => "2011-01-"})
+
+    @last_schedules = Schedule.find(
+                                    :all,
+                                    :joins => "INNER JOIN steps ON (steps.id = schedules.tour_id AND steps.type = 'StepTour')",
+                                    :conditions => ["tournament_id = ? ", 2],
+                                    :order => "match_on DESC, venue_id ASC, match_at ASC",
+                                    :limit => 80
+                                   )
+  end
+
+  def delete_schedule
+    unless params[:id].nil?
+      Match.delete_all(["schedule_id = ? ", params[:id]])
+      Schedule.delete(params[:id])
+    end
+    redirect_to :action => "index"
   end
 
   def teams

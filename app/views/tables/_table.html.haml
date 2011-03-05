@@ -1,3 +1,70 @@
+-#%table{:border => '1'}
+-#  %tr{:style => "font-weight: bold"}
+-#    %td Название
+-#    -#%td{:colspan => records.length} Счёт
+-#    %td И
+-#    %td В
+-#    %td Н
+-#    %td П
+-#    %td О
+-#    %td P
+-#  - records.each do |record|
+-#    %tr
+-#      %td= record.team.name
+-#      -#- records.collect{ |r| r.team.id }.each do |id|
+-#      -#  %td= record.results[id].nil? ? '-' : record.results[id]
+-#      %td= record.games_count
+-#      - record.games.each do |g|
+-#        %td= g
+-#      %td= record.score
+-#      %td= record.position_change
+
+%table.tournament-position{:style => "margin-right: 10px;"}
+  %tr
+    %th{:colspan => 9}= league.name
+  %tr.header
+    %td.place
+      Место
+    %td.team
+      Команда
+    %td.games
+      Игры
+    %td
+      В
+    %td
+      Н
+    %td
+      П
+    %td.goals
+      Мячи
+    %td.diff
+      +/-
+    %td
+      Очки
+  - records.each_with_index do |record, index|
+    %tr.odd
+      %td.place
+        - if record.position_change > 0
+          .position-change.up= "+#{record.position_change}"
+        - elsif record.position_change < 0
+          .position-change.down= record.position_change
+        = index+1
+      %td.team
+        = record.team.name
+      -#- table.records.collect{ |r| r.team.id }.each do |id|
+      -#  %td= record.results[id].nil? ? '-' : record.results[id]
+      %td.games
+        = record.games_count
+      - record.games.each do |g|
+        %td= g
+      %td.goals
+        = "#{record.goals[0]}-#{record.goals[1]}"
+      %td.diff
+        - diff = record.goals[0] - record.goals[1]
+        ="#{diff > 0 ? "+" : ""}#{diff}"
+      %td.scores
+        = record.score
+
 
 
 

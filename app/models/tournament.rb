@@ -1,6 +1,6 @@
 class Tournament < ActiveRecord::Base
   has_many :step_seasons
-  has_many :seasons
+#  has_many :seasons
   has_many :posts
   has_many :pages
   
@@ -16,7 +16,7 @@ class Tournament < ActiveRecord::Base
   def to_param
     url
   end
-  
+
   class << self
     def from_param(param)
       find_by_url!(param)

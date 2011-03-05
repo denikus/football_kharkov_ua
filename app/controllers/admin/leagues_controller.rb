@@ -62,6 +62,12 @@ class Admin::LeaguesController < ApplicationController
   
   def table_set
     @set = StepLeague.for_table.find(params[:id]).table_set
+
+#    @set.each do |table|
+#      ap table
+#      debugger
+#    end
+
     render :layout => false
   end
 
