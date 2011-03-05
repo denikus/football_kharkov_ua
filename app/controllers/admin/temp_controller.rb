@@ -1,4 +1,5 @@
 class Admin::TempController < ApplicationController
+  
   layout "admin/temp"
   
   def index

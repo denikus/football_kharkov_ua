@@ -1,4 +1,5 @@
 class SidebarBlockCell < ::Cell::Base
+  helper UrlHelper
   def helpers
 
   end
@@ -34,66 +35,11 @@ class SidebarBlockCell < ::Cell::Base
     @max_date = max[:match_on]
     @min_date = min[:match_on]
 
-#    @schedule_date = Schedule.get_tomorrow_record(tournament)
-
-#    @schedule_date ||= max
-
     @schedules = Schedule.get_records_by_day(@max_date, tournament)
 
     render :locals => {:min_date => @min_date , :max_date => @max_date}, :layout => false
 
-=begin
-    if !@opts[:locals].nil? && @opts[:locals][:direction]=='prev'
-      @last_dates = Schedule.find(:all,
-                                  :conditions => ["host_scores IS NOT NULL AND guest_scores IS NOT NULL AND schedules.match_on <= ? ", @opts[:locals][:direction_date]],
-                                  :group => "match_on",
-                                  :order => "match_on DESC",
-                                  :limit => 2
-                                 )
-      prev_date    = @last_dates[1].nil? ? '' : @last_dates[1].match_on
-      current_date = @opts[:locals][:direction_date]
-      next_date    = @opts[:locals][:current_date]
-    elsif !@opts[:locals].nil? && @opts[:locals][:direction]=='next'
-      @last_dates = Schedule.find(:all,
-                                  :conditions => ["host_scores IS NOT NULL AND guest_scores IS NOT NULL AND schedules.match_on >= ? ", @opts[:locals][:direction_date]],
-                                  :group => "match_on",
-                                  :order => "match_on ASC",
-                                  :limit => 2
-                                 )
-      prev_date    = @opts[:locals][:current_date]
-      current_date = @last_dates[0].match_on
-      next_date    = @last_dates[1].nil? ? '' : @last_dates[1].match_on
-    else
-      #get last two days with results
-      @last_dates = Schedule.find(:all,
-                                  :conditions => "host_scores IS NOT NULL AND guest_scores IS NOT NULL",
-                                  :group => "match_on",
-                                  :order => "match_on DESC",
-                                  :limit => 2
-                                 )
-      prev_date    = @last_dates[1].nil? ? '' : @last_dates[1].match_on
-      current_date = @last_dates[0].match_on
-      next_date    = ''
-    end
 
-
-
-    unless @last_dates.empty?
-      @schedules = Schedule.find(:all,
-                                 :include => [:hosts, :guests],
-                                 :conditions => ["schedules.match_on = ? ", @last_dates[0][:match_on]],
-                                 :order => "schedules.match_at ASC"
-                                 )
-    else
-      @schedules = []
-    end
-
-    if @opts[:locals].nil?
-      render :locals => {:prev_date => prev_date , :current_date => current_date, :next_date =>  next_date }, :layout => false
-    else
-      render :view => 'quick_results_content.haml', :locals => {:schedules => @schedules, :prev_date => prev_date , :current_date => current_date, :next_date =>  next_date }, :layout => false
-    end
-=end
   end
 
   def advertisement

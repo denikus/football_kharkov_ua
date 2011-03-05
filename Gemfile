@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,7 +10,8 @@ gem 'russian'
 gem 'warden'
 gem 'devise'
 gem 'mime-types', :require => 'mime/types'
-gem 'nested_layouts'
+#gem 'nested_layouts', :git => "huacnlee"
+#gem 'nested_layouts', :git => "git://github.com/huacnlee/nested_layouts.git", :branch => "rails3"
 gem 'bitly'
 gem 'paperclip'
 gem 'compass'
@@ -18,13 +19,23 @@ gem 'cells'
 gem 'mysql2'
 gem 'mongrel'
 #gem 'subdomain-fu'
+#gem "subdomain-fu", :git => "git://github.com/nhowell/subdomain-fu.git"
+#gem 'subdomain-fu', '1.0.0.beta2'
+#gem 'subdomain-fu', :git => "git://github.com/nhowell/subdomain-fu.git"
+#gem 'subdomain-fu', :git => "git://github.com/arctickiwi/subdomain-fu"
+gem 'will_paginate', '~> 3.0.beta'
 gem 'exception_notification'
 gem 'fancy-buttons'
 gem 'ckeditor', :git => 'git://github.com/galetahub/rails-ckeditor.git', :branch => 'rails3'
 gem 'sanitize'
-gem 'newrelic_rpm'
+gem 'mini_magick'
+gem 'hpricot'
 #gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
-
+group :development do
+  gem 'awesome_print'
+  gem 'newrelic_rpm'
+  gem 'ruby-debug'
+end
 
 
 # Use unicorn as the web server

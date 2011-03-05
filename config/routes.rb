@@ -1,3 +1,4 @@
+require "lib/subdomain.rb"
 Football::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -98,11 +99,16 @@ Football::Application.routes.draw do
   resources :quick_match_results, :only => ["show"]
   resources :venues, :only => ["show"]
 
-  with_options :constraints => {:subdomain => /.+/} do
+
+
+  
+#  with_options :constraints => {:subdomain => /.+/} do
+  constraints(Subdomain) do
 #  scope '/tournaments' do
     match '/feed' =>  "tournaments#feed"
-    match '/' => "tournaments#index"
-    match '/post' => 'post#show', :constraints =>  {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
+    match '/' => "tournaments#index", :as => "tournament", :constraints => {:subdomain => /.+/}
+    match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
+#    match '/post' => 'post#show', :constraints =>  {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/, :subdomain => /.+/}
     resources :teams, :only => ["index", "show"]
     resources :tables, :only => ["index"]
     resources :bombardiers, :only => ["index"]

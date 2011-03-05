@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
 
   named_scope :tournament, lambda{ |tournament_subdomain|
     unless (tournament_subdomain.nil? || tournament_subdomain.empty?)
-      {:joins => "INNER JOIN posts ON (comments.post_id=posts.id)  INNER JOIN tournaments ON (posts.tournament_id = tournaments.id) ", :conditions => ["tournaments.url = ?", tournament_subdomain]}
+      {:joins => "INNER JOIN posts AS posts2 ON (comments.post_id=posts2.id)  INNER JOIN tournaments ON (posts2.tournament_id = tournaments.id) ", :conditions => ["tournaments.url = ?", tournament_subdomain]}
     end
   }
 

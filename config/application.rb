@@ -38,5 +38,9 @@ module Football
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.tld_sizes = {:development => 1,
+                       :test => 0,
+                       :production => 2} # set all at once (also the defaults)
   end
 end
