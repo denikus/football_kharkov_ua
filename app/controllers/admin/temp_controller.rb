@@ -58,7 +58,7 @@ class Admin::TempController < ApplicationController
       }
     end
 
-    render :layout => false, :json => data.to_json
+    render :layout => false, :json => data.to_json.html_safe
   end
 
   def create

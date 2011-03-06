@@ -62,23 +62,60 @@ Football::Application.routes.draw do
   namespace(:admin) do
     root :to => 'main#index'
     resources :comments
-    resources :tournaments, :collection => {:grid_edit => :post} do
-      resources :matches, :collection => {:grid_edit => :post}
-      resources :teams, :collection => {:team_2_season => :get}
+    resources :tournaments do
+      resources :matches do
+        post :grid_edit
+      end
+      resources :teams do
+        get :team_2_season
+      end
       resources :schedules
-      resources :quick_match_results, :collection => {:update_all => :put}
+      resources :quick_match_results do
+        put :update_all
+      end
       resources :steps
+      post :grid_edit
     end
-    resources :steps, :member => {:teams => :get, :update_teams => :post}
-    resources :schedules, :member => {:results => :get, :update_results => :post}, :collection => {:week => :get, :data => :get}
-    resources :quick_match_results, :collection => {:update_all => :put}
-    resources :teams, :member => {:footballers => :get, :update_footballers => :post}
-    resources :matches, :member => {:results => :get, :update_results => :post, :update_referees => :post} do
+    resources :steps do
+      member do
+        get :teams
+        post :update_teams
+      end
+    end
+
+    resources :schedules do
+      member do
+        get :results
+        post :update_results
+      end
+      get :week
+      get :data
+    end
+
+    resources :quick_match_results do
+      put :update_all
+    end
+    
+    resources :teams do
+      member do
+        get :footballers
+        post :update_footballers
+      end
+    end
+    resources :matches do
       resources :match_events
+      member do
+        get :results
+        post :update_results, :update_referees
+      end
     end
     resources :match_events
-    resources :match_event_types, :collection => {:grid_edit => :post}
-    resources :referees, :collection => {:grid_edit => :post}
+    resources :match_event_types do
+      post :grid_edit
+    end
+    resources :referees do
+      post :grid_edit
+    end
     resources :footballers
     resources :permissions
     resources :venues
@@ -93,7 +130,14 @@ Football::Application.routes.draw do
   resources :users
   resources :pages
   resources :schedules#, :collection => {:show_quick_results => :get}
-  resource :profile, :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :destroy_photo => :delete, :make_crop => :post}
+  resource :profile do
+    collection do
+      get :edit_photo, :crop
+      post :upload_photo, :make_crop
+      delete :destroy_photo
+    end
+  end
+  #  , :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :destroy_photo => :delete, :make_crop => :post}
   resource :itleague_draw
   resources :footballers, :only => ["index", "show"]
   resources :quick_match_results, :only => ["show"]
@@ -106,7 +150,8 @@ Football::Application.routes.draw do
   constraints(Subdomain) do
 #  scope '/tournaments' do
     match '/feed' =>  "tournaments#feed"
-    match '/' => "tournaments#index", :as => "tournament", :constraints => {:subdomain => /.+/}
+    match '/' => "tournaments#index", :as => "tournament"
+    #    , :constraints => {:subdomain => /.+/}
     match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
 #    match '/post' => 'post#show', :constraints =>  {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/, :subdomain => /.+/}
     resources :teams, :only => ["index", "show"]

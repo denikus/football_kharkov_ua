@@ -5,9 +5,9 @@
     #top-menu-tournaments
       = link_to 'Турниры', '#'
       %ul.subnav
-        %li= link_to 'IT-Лига', url_for(:host => with_subdomain("itleague"))
-        %li= link_to 'Кубок ФК Универ', url_for(:host => with_subdomain("univercup"))
-        %li= link_to 'Футбольный Коленвал', url_for(:host => with_subdomain("kolenval"))
+        %li= link_to 'IT-Лига', tournament_url(:host => with_subdomain("itleague"))
+        %li= link_to 'Кубок ФК Универ', tournament_url(:host => with_subdomain("univercup"))
+        %li= link_to 'Футбольный Коленвал', tournament_url(:host => with_subdomain("kolenval"))
   %li.drop
     #top-menu-venues
       = link_to 'Спорткомплексы', "#", {:target => "_blank"}

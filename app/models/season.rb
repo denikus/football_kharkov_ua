@@ -6,7 +6,7 @@ class Season < ActiveRecord::Base
   has_many :footballers, :through => :footballers_teams
   has_many :schedules
 
-  named_scope :by_tournament, lambda{|tournament_id|  {:conditions => ["seasons.tournament_id = ?", tournament_id]}}
+  scope :by_tournament, lambda{|tournament_id|  {:conditions => ["seasons.tournament_id = ?", tournament_id]}}
 
   def full_name
     [tournament.name, name] * ' '

@@ -4,7 +4,7 @@ class StepLeague < Step
   has_many :schedules, :foreign_key => 'league_id'
   has_many :matches, :through => :schedules
   
-  named_scope :for_table, :include => {:matches => [{:schedule => :step_tour}, {:competitors => [:team, :stats, {:football_players => :stats}]}]}
+  scope :for_table, :include => {:matches => [{:schedule => :step_tour}, {:competitors => [:team, :stats, {:football_players => :stats}]}]}
   
   def table_set
     @set ||= StepTour::Table::Set.new do |set|

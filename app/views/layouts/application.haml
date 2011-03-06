@@ -1,4 +1,4 @@
--inside_layout 'app' do
+- content_for :content do
   /left column
   #col-left
     - if flash[:error]
@@ -7,7 +7,7 @@
       #main-notice-block.notice= flash[:warning]
     -if flash[:notice]
       #main-success-block.notice= flash[:notice]
-    -#= yield
+    = yield
   /eof left column
 
   /right column
@@ -20,3 +20,5 @@
     -#  = render_cell :sidebar_block, :advertisement, :title => "Спонсоры", :subdomain => current_subdomain
     = render_cell :sidebar_block, :shop, :title => "Амуниция"
     = render_cell :sidebar_block, :comments, :title => "Комментарии", :subdomain => current_subdomain
+
+= render :template => 'layouts/app'
