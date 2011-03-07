@@ -4,7 +4,7 @@ class League < ActiveRecord::Base
   has_many :schedules
   has_and_belongs_to_many :teams
   
-  named_scope :for_table, :include => {:tours => {:matches => {:competitors => [:team, :stats, {:football_players => :stats}]}}}
+  scope :for_table, :include => {:tours => {:matches => {:competitors => [:team, :stats, {:football_players => :stats}]}}}
   
   def stage_number
     stage.number

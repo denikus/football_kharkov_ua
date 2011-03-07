@@ -27,7 +27,7 @@
         / Header
         #header
           #header-block
-            = link_to image_tag("logo.gif", :height=>"85", :alt=>"Харьков футбольный"), root_url(:subdomain => false), {:title=> "Харьков Футбольный", :id => "logo-link"}
+            = link_to image_tag("logo.gif", :height=>"85", :alt=>"Харьков футбольный"), root_url(:host => with_subdomain(nil)), {:title=> "Харьков Футбольный", :id => "logo-link"}
             - if user_signed_in?
               =render :partial => 'shared/user_block'
             - else
@@ -43,7 +43,7 @@
         #near-scroll-panel
           = link_to(image_tag("http://twitter-badges.s3.amazonaws.com/t_logo-b.png", :alt => "Follow Footballkharkov on Twitter", :title => "Follow Footballkharkov on Twitter"), "http://www.twitter.com/footballkharkov" , {:class => "button-container", :rel => "nofollow", :target => "_blank"})
           = link_to(image_tag("/images/rss_icon.png", :alt => "RSS Лента новостей", :title => "RSS Лента новостей"), "/feed" , {:class => "button-container", :target => "_blank"})
-        = yield
+        = yield(:content)
       / EOF Container
     #clearfooter
 

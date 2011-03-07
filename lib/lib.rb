@@ -40,7 +40,7 @@ end
       end
       element_count = options.delete(:count) || self.length
 
-      { :results => element_count, element_class.to_s.tableize.tr('/','_') => self }.to_json(options)
+      { :results => element_count, element_class.to_s.tableize.tr('/','_') => self }.to_json(options).html_safe
     end
 
   end
@@ -71,7 +71,7 @@ end
             result[field_key] ||= 'Field ' + Array(errors[error.first]).join(' and ')
             result
           end
-          { :success => false, :errors => error_hash }.to_json(options)
+          { :success => false, :errors => error_hash }.to_json(options).html_safe
         end
       end
 end

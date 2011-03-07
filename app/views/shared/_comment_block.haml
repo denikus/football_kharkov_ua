@@ -5,7 +5,9 @@
 %div
   %ul.comment#comment-tree
     -if !post.comments.find_by_parent_id(nil).nil?
-      - comments = post.comments.find_by_parent_id(nil).all_children
+      -#- comments = post.comments.find_by_parent_id(nil).all_children
+      - comments = post.comments.find_by_parent_id(nil).descendants
+      -#- comments = post.comments.root.siblings
       - if !comments.empty?
         - comments.each do |item|
           %li{:id => "comment-#{item.id}"}
@@ -21,7 +23,7 @@
                   = show_comment(post, item)
                   - if user_signed_in?
                     %p.comment-reply{:style => "float: right;"}
-                      = "<a href=\"#\" onclick=\"addCommentForm(#{item.id}, #{item.level}, #{post.id});return false;\">ответить</a>"
+                      = "<a href=\"#\" onclick=\"addCommentForm(#{item.id}, #{item.level}, #{post.id});return false;\">ответить</a>".html_safe
                     .clear
               .clear        
 - unless user_signed_in?

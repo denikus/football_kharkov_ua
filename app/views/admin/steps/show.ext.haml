@@ -16,4 +16,4 @@
   - id = "nav-tournament-add-to-#{params[:id] || 'root'}"
   - id << "-#{params[:type]}" if params[:type]
   - nodes.push(:text => 'Добавить ' + name, :cls => 'add', :id => id, :leaf => true, :draggable => false, '_type' => type, '_owner_id' => params[:id] || 'root')
-= nodes.to_json
+= nodes.to_json.html_safe

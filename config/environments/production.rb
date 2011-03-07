@@ -1,43 +1,49 @@
-# Settings specified here will take precedence over those in config/environment.rb
+Football::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
 
-# The production environment is meant for finished, "live" apps.
-# Code is not reloaded between requests
-config.cache_classes = true
+  # The production environment is meant for finished, "live" apps.
+  # Code is not reloaded between requests
+  config.cache_classes = true
 
-# Use a different logger for distributed setups
-# config.logger = SyslogLogger.new
+  # Full error reports are disabled and caching is turned on
+  config.consider_all_requests_local       = false
+  config.action_controller.perform_caching = true
 
-# Full error reports are disabled and caching is turned on
-config.action_controller.consider_all_requests_local = false
-config.action_controller.perform_caching             = true
-config.action_mailer.default_url_options             = { :host => 'football.kharkov.ua' }
-config.action_controller.session[:domain]            = 'football.kharkov.ua'
-#default_url_options[:host]                           = 'football.kharkov.ua'
-#config.action_view.cache_template_loading            = true
+  # Specifies the header that your server uses for sending files
+  config.action_dispatch.x_sendfile_header = "X-Sendfile"
 
-# Enable serving of images, stylesheets, and javascripts from an asset server
-# config.action_controller.asset_host                  = "http://assets.example.com"
+  # For nginx:
+  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
-# Disable delivery errors, bad email addresses will be ignored
-# config.action_mailer.raise_delivery_errors = false
+  # If you have no front-end server that supports something like X-Sendfile,
+  # just comment this out and Rails will serve the files
 
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-  :enable_starttls_auto => false
-}
-#ActionMailer::Base.default_url_options[:host] = "football.kharkov.ua"
+  # See everything in the log (default is :info)
+  # config.log_level = :debug
 
-FORUM = {
-  :location => 'http://forum.football.kharkov.ua/',
-  :create_user => 'create_user.php',
-  :confirm_user => 'confirm_user.php',
-  :secret => 'b261638d90968ece3bc564296fa28c486c8e4963c6a380247a4875508c6b9f5f686df12f9f9464e6520ced86a0602ccc1ed6cdff0cfd4d8bd1b480187313c859'
-}.freeze
+  # Use a different logger for distributed setups
+  # config.logger = SyslogLogger.new
 
-BITLY = {
-  :username => 'footballkharkov',
-  :api_key => 'R_284aa8534d40494118bf2dadca17695a'
-}.freeze
+  # Use a different cache store in production
+  # config.cache_store = :mem_cache_store
 
+  # Disable Rails's static asset server
+  # In production, Apache or nginx will already do this
+  config.serve_static_assets = false
 
-MEGA_USER = [1, 107, 74]
+  # Enable serving of images, stylesheets, and javascripts from an asset server
+  # config.action_controller.asset_host = "http://assets.example.com"
+
+  # Disable delivery errors, bad email addresses will be ignored
+  # config.action_mailer.raise_delivery_errors = false
+
+  # Enable threaded mode
+  # config.threadsafe!
+
+  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+  # the I18n.default_locale when a translation can not be found)
+  config.i18n.fallbacks = true
+
+  # Send deprecation notices to registered listeners
+  config.active_support.deprecation = :notify
+end

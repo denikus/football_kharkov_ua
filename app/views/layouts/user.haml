@@ -1,11 +1,11 @@
 - content_for :head_declarations do
   = stylesheet_link_tag "user", :media => "all"
--inside_layout 'app' do
+- content_for :content do
   %h1= @title ||= 'Футбольный сайт'
   = render :partial => "profiles/tab_navigation"
   /content
   #left-sidebar
-    = render_cell :user, :sidebar, :signed_in => user_signed_in?, :current_user => current_user 
+    = render_cell :user, :sidebar
   #col-left
     - if flash[:error]
       #main-error-block.error= flash[:error]
@@ -15,3 +15,4 @@
       #main-success-block.notice= flash[:notice]
     = yield
   /eof left column
+= render :template => 'layouts/app'

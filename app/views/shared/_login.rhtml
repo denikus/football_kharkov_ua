@@ -3,7 +3,7 @@
   <%# form_for :user, :url => new_user_session_path do |f| -%>
   <%# form_for :user, resource, :url => session_path(:user) do |f| -%>
 
-  <% form_for :user, User.new, :url => session_path(:user) do |f| -%>
+  <%= form_for :user, User.new, :url => session_path(:user) do |f| -%>
   <fieldset>
       <ol>
         <li>

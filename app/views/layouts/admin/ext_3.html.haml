@@ -35,8 +35,8 @@
       Ext.QuickTips.init();
       
       Ext.ns('Ext.ux.data', 'Ext.ux.data.match');
-      Ext.ux.data.tournaments = #{Tournament.all.to_json};
-      Ext.ux.data.match.referees = #{Referee.all.collect{ |r| [r.id, r.full_name] }.to_json};
+      Ext.ux.data.tournaments = #{Tournament.all.to_json.html_safe};
+      Ext.ux.data.match.referees = #{Referee.all.collect{ |r| [r.id, r.full_name] }.to_json.html_safe};
       Ext.ux.data.match.types = [['mini', 'Мини'], ['big', 'Большой']];
       
       new Ext.ux.Menu({

@@ -1,4 +1,3 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
   def article_announce(body)
@@ -13,6 +12,7 @@ module ApplicationHelper
 
   def full_article(body)
     new_body = body.sub(/\[\[break\]\]/, '<a href="#" id="announce-breaker"></a>')
+#    decode_entities(new_body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
     decode_entities(new_body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
   end
 
@@ -21,12 +21,12 @@ module ApplicationHelper
       return simple_format(comment.body)
 #      .gsub!(/\n/, '<br />')
     end
-    
+
     can_see = [post.author_id, comment.author_id]
-    if user_signed_in? && can_see.include?(current_user[:id]) 
+    if user_signed_in? && can_see.include?(current_user[:id])
       return comment.body
     else
-      return "<i>Комментарий скрыт</i>"
+      return "<i>Комментарий скрыт</i>".html_safe
     end
   end
 
@@ -44,7 +44,8 @@ module ApplicationHelper
                :day => post_item.url_day,
                :url => !post_item.url.nil? ? post_item.url : '',
                :anchor => with_anchor ? "announce-breaker" : "",
-               :subdomain => (post_item.tournament.nil? ? false : post_item.tournament.url)
+               :host => with_subdomain(post_item.tournament.nil? ? false : post_item.tournament.url)
+#               :host => (post_item.tournament.nil? ? false : post_item.tournament.url)
               })
   end
 =begin
@@ -74,7 +75,7 @@ module ApplicationHelper
       link_to(image_tag("http://twitter-badges.s3.amazonaws.com/t_small-b.png", {:alt => "Retweet"}), "http://twitter.com/home?status=#{url}", {:rel => "nofollow", :target => "_blank", :title => "Retweet"})
     else
       ''
-    end  
+    end
   end
 
   def to_facebook_button(title, link)
@@ -88,16 +89,16 @@ module ApplicationHelper
   end
 
   def my_data?(user_id)
-    user_signed_in? && current_user.id == user_id 
+    user_signed_in? && current_user.id == user_id
   end
-  
+
   def admin_top_menu
     tabs = [[:main, 'Главная', admin_root_path],
       [:content, 'Контент', admin_comments_path],
       [:personnel, 'Личный Состав', admin_teams_path],
       [:tournaments, 'Чемпионаты', admin_tournaments_path],
       [:permissions, 'Администрация', admin_permissions_path]]
-    
+
     current_tab = controller.instance_variable_get('@admin_section') || controller.class.instance_variable_get('@admin_section')
     content_tag :ul, :id => 'top-navigation' do
       tabs.collect do |(tab, name, path)|
@@ -109,18 +110,18 @@ module ApplicationHelper
       end
     end
   end
-  
+
   def admin_sidebar
     case controller.instance_variable_get('@admin_section') || controller.class.instance_variable_get('@admin_section')
     when :personnel: render(:partial => 'admin/shared/personnel_sidebar')
     when :tournaments: render(:partial => 'admin/shared/tournaments_sidebar')
     end
   end
-  
+
   def admin_title title
     render :partial => 'admin/shared/title', :object => title
   end
-  
+
   def selection *args, &block
     #source = options[:on] or raise ArgumentError
     #collection = source.send(method)
@@ -156,7 +157,7 @@ module ApplicationHelper
       hosts_class = loser_class
       guests_class = winner_class
     end
-    return "<span class=\"#{hosts_class}\">#{match_item.hosts}</span> <span class=\"score\"></span> : <span class=\"score\"></span> <span class=\"#{guests_class}\">#{match_item.guests}</span>"
+    return "<span class=\"#{hosts_class}\">#{match_item.hosts}</span> <span class=\"score\"></span> : <span class=\"score\"></span> <span class=\"#{guests_class}\">#{match_item.guests}</span>".html_safe
   end
 
   def post_belongs_2_subdomain?
@@ -175,4 +176,8 @@ module ApplicationHelper
     end
   end
 
+  def current_subdomain
+    request.subdomain.empty? ? nil : request.subdomain
+  end
+  
 end
