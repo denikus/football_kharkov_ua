@@ -8,7 +8,7 @@ class Admin::TempController < ApplicationController
                           )
     @venues = Venue.all
     @schedule = Schedule.new({:match_on => "2011-01-"})
-
+    
     @last_schedules = Schedule.find(
                                     :all,
                                     :joins => "INNER JOIN steps ON (steps.id = schedules.tour_id AND steps.type = 'StepTour')",
@@ -76,6 +76,24 @@ class Admin::TempController < ApplicationController
       params[:schedule].merge!({:league_id => league.id})
       Schedule.create(params[:schedule])
     end  
+
+    redirect_to :controller => "temp", :action => "index"
+  end
+
+  def import_from_csv
+
+    params[:upload]['datafile'].read.to_s.each_line do |params_line|
+
+      schedule_params = params_line.split(",")
+
+      Schedule.create(
+          :tour_id       => params[:schedule][:tour_id],
+          :host_team_id  => Team.find_by_name(schedule_params[0]).id,
+          :guest_team_id => Team.find_by_name(schedule_params[1]).id,
+          :venue_id      => Venue.find_by_name(schedule_params[2]).id,
+          :match_on      => schedule_params[3],
+          :match_at      => schedule_params[4])
+    end
 
     redirect_to :controller => "temp", :action => "index"
   end

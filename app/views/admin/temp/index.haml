@@ -14,6 +14,11 @@
 
   = f.submit("Сохранить")
 
+- form_for @schedule, :url => {:action => "import_from_csv"}, :html => {:multipart => true} do |ff|
+  =ff.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
+  =file_field(:upload, :datafile)
+  =ff.submit("Import")
+
 %ul{:style => "font-size: 14px;"}
   - @last_schedules.each do |schedule|
     %li{:style => "padding-bottom: 2px; border-bottom: 1px dashed grey;"}
