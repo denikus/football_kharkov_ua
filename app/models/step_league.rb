@@ -4,8 +4,6 @@ class StepLeague < Step
   has_many :schedules, :foreign_key => 'league_id'
   has_many :matches, :through => :schedules
   
-  named_scope :for_table, :include => {:matches => [{:schedule => :step_tour}, {:competitors => [:team, :stats, {:football_players => :stats}]}]}
-
   def StepLeague.get_leagues_in_season (season_id)
     leagues = self.find(:all,
               :select => "steps.* ",
@@ -19,6 +17,8 @@ class StepLeague < Step
 
     leagues
   end
+
+  scope :for_table, :include => {:matches => [{:schedule => :step_tour}, {:competitors => [:team, :stats, {:football_players => :stats}]}]}
 
   def table_set
     @set ||= StepTour::Table::Set.new do |set|

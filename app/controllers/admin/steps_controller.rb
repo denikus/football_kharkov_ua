@@ -8,7 +8,7 @@ class Admin::StepsController < ApplicationController
   def show
     root, params[:id], params[:type] = $1, $2, $3 if params[:node] =~ /^nav-tournament-(?:(root)|(?:(\d+)-?(\w+)?))$/
     @node = root ? Tournament.from(params[:tournament_id]) : Step.find(params[:id])
-    render :action => 'show', :layout => false
+    render :action => 'show.ext.haml', :layout => false
   end
   
   def create

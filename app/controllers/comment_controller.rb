@@ -24,8 +24,8 @@ protect_from_forgery :except => [:create]
 
         if !@comment.siblings.empty?
           latest_sibling = @comment.siblings[@comment.siblings.length-1]
-          if !latest_sibling.all_children.empty?
-            after_id = latest_sibling.all_children[latest_sibling.all_children.length-1].id
+          if !latest_sibling.children.empty?
+            after_id = latest_sibling.children[latest_sibling.children.length-1].id
           else   
             after_id = @comment.siblings[@comment.siblings.length-1].id
           end

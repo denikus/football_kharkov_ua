@@ -4,7 +4,7 @@ Ext.ux.menu.TournamentsMenu = function Menu(tournaments) {
   var config = {
     id: 'menu-tournaments',
     items: tournaments.map(function(t) {
-      return {text: t.name, handler: Menu.handler, attrs: t}
+      return {text: t.tournament.name, handler: Menu.handler, attrs: t.tournament}
     })
   }
   Menu.superclass.constructor.call(this, config);
@@ -14,7 +14,7 @@ Ext.ux.menu.TournamentsMenu.handler = function(item) {
   app.removeAll();
   app.nav.items.add(new Ext.ux.nav.Tournament(item.attrs));
   app.nav.doLayout();
-}
+};
 
 Ext.ux.menu.PersonnelMenu = function Menu() {
   var config = {
@@ -59,4 +59,4 @@ Ext.ux.Menu = function Bar(options) {
   }
   Bar.superclass.constructor.call(this, config);
 }
-Ext.extend(Ext.ux.Menu, Ext.Toolbar)
+Ext.extend(Ext.ux.Menu, Ext.Toolbar);

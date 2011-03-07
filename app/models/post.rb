@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :author_id, :title
 
-  named_scope :tournament, lambda{ |tournament_subdomain|
+  scope :tournament, lambda{ |tournament_subdomain|
     unless (tournament_subdomain.nil? || tournament_subdomain.empty?)
       {:joins => "INNER JOIN tournaments ON (posts.tournament_id = tournaments.id) ", :conditions => ["tournaments.url = ?", tournament_subdomain]}
     end  

@@ -52,9 +52,10 @@ class Admin::TeamsController < ApplicationController
         end
       end
     else
-      teams = Team.find(:all) do
-        paginate :page => params[:page], :per_page => params[:rows], :order => "last_name ASC"
-      end
+#      teams = Team.find(:all) do
+#        paginate :page => params[:page], :per_page => params[:rows], :order => "last_name ASC"
+#      end
+      teams = Team.paginate(:page => params[:page], :per_page => params[:rows], :order => "name ASC")
       respond_to do |format|
         format.html
         format.json do

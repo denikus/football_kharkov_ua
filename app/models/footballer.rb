@@ -6,7 +6,7 @@ class Footballer < ActiveRecord::Base
   #     :conditions => ["footballers_teams.season_id = ? AND footballers_teams.team_id = ?", options[:season_id], options[:team_id]],
   #     :order => "footballers.last_name ASC"}
   #}
-  named_scope :by_team_step, lambda{ |options| {
+  scope :by_team_step, lambda{ |options| {
     :joins => :footballers_teams,
     :conditions => {:footballers_teams => {:step_id => options[:step_id], :team_id => options[:team_id]}},
     :order => 'last_name ASC'

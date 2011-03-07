@@ -1,4 +1,4 @@
--inside_layout 'app' do
+- content_for :content
   /left column
   #col-left{:style => "width: 920px;"}
     - if flash[:error]
@@ -9,3 +9,5 @@
       #main-success-block.notice= flash[:notice]
     = yield
   /eof left column
+
+= render :template => 'layouts/app'
