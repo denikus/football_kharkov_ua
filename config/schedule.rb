@@ -1,5 +1,7 @@
-every 1.day, :at => '5:00 am' do
-  rake "-s sitemap:refresh"
+if environment == 'production'
+  every 1.day, :at => '5:00 am' do
+    rake "-s sitemap:refresh"
+  end
 end
 
 # Use this file to easily define all of your cron jobs.
