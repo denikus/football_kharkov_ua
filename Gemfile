@@ -10,30 +10,22 @@ gem 'russian'
 gem 'warden'
 gem 'devise'
 gem 'mime-types', :require => 'mime/types'
-#gem 'nested_layouts', :git => "huacnlee"
-#gem 'nested_layouts', :git => "git://github.com/huacnlee/nested_layouts.git", :branch => "rails3"
 gem 'bitly'
 gem 'paperclip'
 gem 'compass'
 gem 'cells'
 gem 'mysql2'
 gem 'mongrel'
-#gem 'subdomain-fu'
-#gem "subdomain-fu", :git => "git://github.com/nhowell/subdomain-fu.git"
-#gem 'subdomain-fu', '1.0.0.beta2'
-#gem 'subdomain-fu', :git => "git://github.com/nhowell/subdomain-fu.git"
-#gem 'subdomain-fu', :git => "git://github.com/arctickiwi/subdomain-fu"
 gem 'will_paginate', '~> 3.0.beta'
 gem 'exception_notification'
-#gem 'awesome_nested_set', :git => 'git://github.com/FreakyDazio/awesome_nested_set.git'
 gem 'fancy-buttons'
 gem 'ckeditor', :git => 'git://github.com/galetahub/rails-ckeditor.git', :branch => 'rails3'
 gem 'sanitize'
 gem 'mini_magick'
 gem 'hpricot'
 gem 'ruby_parser'
-#gem 'nbrew-better_nested_set'
-#gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
+gem 'sitemap_generator'
+gem 'whenever', :branch => 'rails3'
 gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 group :development do
   gem 'awesome_print'
