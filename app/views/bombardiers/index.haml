@@ -17,6 +17,6 @@
         %td
           -item[1].each do |footballer|
             -team = Team.find(footballer.team_id)
-            = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{link_to(team.name, team_path(team.url))})"
+            = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{link_to(team.name, team_path(team.url))})".html_safe
             %br/
-        %td.goals= "#{item[0]}"
+        %td.goals= "#{item[0]}".to_i
