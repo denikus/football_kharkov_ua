@@ -138,7 +138,8 @@ Football::Application.routes.draw do
     end
   end
   #  , :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :destroy_photo => :delete, :make_crop => :post}
-  resource :itleague_draw
+#  resource :itleague_draw
+  match '/itleague_draw' => "itleague_draw#index"
   resources :footballers, :only => ["index", "show"]
   resources :quick_match_results, :only => ["show"]
   resources :venues, :only => ["show"]
@@ -163,9 +164,9 @@ Football::Application.routes.draw do
     end
 
   end
-
-
+  
   root :to => "blog#index"
+
 
   match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
 
