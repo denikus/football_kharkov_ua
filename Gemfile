@@ -25,7 +25,7 @@ gem 'mini_magick'
 gem 'hpricot'
 gem 'ruby_parser'
 gem 'sitemap_generator'
-gem 'whenever', :branch => 'rails3'
+#gem 'whenever', :branch => 'rails3'
 gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 group :development do
   gem 'awesome_print'
