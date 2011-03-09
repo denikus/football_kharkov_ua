@@ -4,11 +4,11 @@ class UserCell < Cell::Rails
 #  helper_method :current_user #all your needed helper
   
   def sidebar
-    if request.parameters[:controller] == "users"
-      @profile = User.from_param(params[:id]).profile
-    else
-      @profile = User.find(current_user.id).profile
-    end
+#    if request.parameters[:controller] == "users"
+#      @profile = User.from_param(params[:id]).profile
+#    else
+#      @profile = User.find(current_user.id).profile
+#    end
     render
   end
 end

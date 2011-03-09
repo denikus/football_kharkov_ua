@@ -47,7 +47,7 @@ module ApplicationHelper
                :host => with_subdomain(post_item.tournament.nil? ? false : post_item.tournament.url)
 #               :host => (post_item.tournament.nil? ? false : post_item.tournament.url)
               })
-  end
+      end
 =begin
 
   def social_button(type, title, link)

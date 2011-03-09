@@ -5,10 +5,12 @@ class Permission < ActiveRecord::Base
   
   def self.get_hash
     all.inject({}) do |res, p|
-      res[p.admin_id.to_s] ||= {}
-      res[p.admin_id.to_s][p.controller] ||= {}
-      res[p.admin_id.to_s][p.controller][p.action] = true
-      res
+      unless p.nil?
+        res[p.admin_id.to_s] ||= {}
+        res[p.admin_id.to_s][p.controller] ||= {}
+        res[p.admin_id.to_s][p.controller][p.action] = true
+        res
+      end
     end
   end
 end

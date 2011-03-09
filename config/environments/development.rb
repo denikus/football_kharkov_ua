@@ -24,6 +24,7 @@ Football::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   TLD_SIZE = 3
-  
+  DOMAIN_HOST = "football.kharkov.ua"
+
 end
 

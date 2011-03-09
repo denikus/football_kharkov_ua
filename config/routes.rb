@@ -151,9 +151,8 @@ Football::Application.routes.draw do
 #  scope '/tournaments' do
     match '/feed' =>  "tournaments#feed"
     match '/' => "tournaments#index", :as => "tournament"
-    #    , :constraints => {:subdomain => /.+/}
-    match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
-#    match '/post' => 'post#show', :constraints =>  {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/, :subdomain => /.+/}
+#    match ':year/:month/:day/:url' => "posts#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
+    match '/post' => 'post#show', :constraints =>  {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/, :subdomain => /.+/}
     resources :teams, :only => ["index", "show"]
     resources :tables, :only => ["index"]
     resources :bombardiers, :only => ["index"]
@@ -168,7 +167,7 @@ Football::Application.routes.draw do
 
   root :to => "blog#index"
 
-  match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
+  match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
 
 
   # Install the default routes as the lowest priority.
