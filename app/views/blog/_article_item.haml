@@ -1,7 +1,7 @@
 %h2
-  = link_to(post.tournament.short_name, tournament_url(:host => with_subdomain(post.tournament.url)), :class => "tournament") if !post.tournament.nil? & current_subdomain.nil?
+  -#= link_to(post.tournament.short_name, tournament_url(:host => with_subdomain(post.tournament.url)), :class => "tournament") if !post.tournament.nil? && current_subdomain.nil?
   -#= link_to(post.tournament.short_name, tournament_url(:subdomain => post.tournament.url), :class => "tournament") if !post.tournament.nil? & current_subdomain.nil?
-  - if !post.tournament.nil? & current_subdomain.nil?
+  - if !post.tournament.nil? && current_subdomain.nil?
     %span.right-arrow= ">".html_safe
   = link_to post.title, post_item_path(post)
 %div
