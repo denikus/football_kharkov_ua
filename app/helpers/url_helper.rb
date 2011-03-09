@@ -1,7 +1,8 @@
 module UrlHelper
   def with_subdomain(subdomain)
-    subdomain = (subdomain || "")
-    subdomain += "." unless subdomain.empty?
+    subdomain = current_subdomain
+#    subdomain = (subdomain || "")
+    subdomain += "." unless subdomain.nil?
     [subdomain, request.domain, request.port_string].join
   end
 
