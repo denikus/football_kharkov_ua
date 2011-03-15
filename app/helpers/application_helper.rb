@@ -24,6 +24,15 @@ module ApplicationHelper
     end
   end
 
+  def subscribed?(post_id)
+    unless current_user[:id].nil?
+      return !Subscriber.find(:first, :conditions => {:post_id => post_id, :user_id => current_user[:id]}).nil?
+    else
+      return false
+    end
+  end
+  
+
   def full_article(body)
     new_body = body.sub(/\[\[break\]\]/, '<a href="#" id="announce-breaker"></a>')
 #    decode_entities(new_body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
