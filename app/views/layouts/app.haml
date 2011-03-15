@@ -21,6 +21,7 @@
     :javascript
       authenticity_token = "#{form_authenticity_token}";
   %body
+    = current_user.to_yaml
     #minHeight
     #outer
       #inner
@@ -28,10 +29,10 @@
         #header
           #header-block
             = link_to image_tag("/images/logo.gif", :height=>"85", :alt=>"Харьков футбольный"), root_url(:host => with_subdomain(nil)), {:title=> "Харьков Футбольный", :id => "logo-link"}
-            -#- if user_signed_in?
-            -#  =render :partial => 'shared/user_block'
-            -#- else
-            = render :partial => 'shared/login'
+            - if user_signed_in?
+              =render :partial => 'shared/user_block'
+            - else
+              = render :partial => 'shared/login'
             = render :partial => 'shared/top_menu'
         / EOF Header
       / Container
