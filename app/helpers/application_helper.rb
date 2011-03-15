@@ -10,6 +10,20 @@ module ApplicationHelper
     end
   end
 
+  def show_comment(post, comment)
+    unless post.hide_comments
+      return simple_format(comment.body)
+#      .gsub!(/\n/, '<br />')
+    end
+
+    can_see = [post.author_id, comment.author_id]
+    if user_signed_in? && can_see.include?(current_user[:id])
+      return comment.body
+    else
+      return "<i>Комментарий скрыт</i>".html_safe
+    end
+  end
+
   def full_article(body)
     new_body = body.sub(/\[\[break\]\]/, '<a href="#" id="announce-breaker"></a>')
 #    decode_entities(new_body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
