@@ -35,6 +35,6 @@ CKEDITOR.editorConfig = function( config )
         ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
         ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
         ['Link','Unlink','Anchor'],
-        ['Image','Embed','Attachment','Table','HorizontalRule']
+        ['Image','Embed','Attachment','Table','HorizontalRule', 'Source']
     ];
 };
