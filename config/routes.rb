@@ -102,6 +102,8 @@ FootballKharkov::Application.routes.draw do
 
   root :to => "blog#index"
 
+  match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
+
   match ':controller(/:action(/:id(.:format)))'
 
   # The priority is based upon order of creation:
