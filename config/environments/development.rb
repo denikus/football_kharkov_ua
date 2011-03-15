@@ -26,6 +26,12 @@ FootballKharkov::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   
   TLD_SIZE = 2
-  
+
+  BITLY = {
+    :username => 'footballkharkov',
+    :api_key => 'R_284aa8534d40494118bf2dadca17695a'
+  }.freeze
+
+  MEGA_USER = [1]
 end
 
