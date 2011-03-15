@@ -1,9 +1,5 @@
 class Subdomain
   def self.matches?(request)
-#    subdomain = request.subdomain.split(".")[0]
-#    subdomain.present? && subdomain != 'www'
-    request.subdomain.present? && request.subdomain != 'www'
+    request.subdomain(TLD_SIZE).present? && request.subdomain(TLD_SIZE) != "www"
   end
-
-  
 end

@@ -1,8 +1,0 @@
-- nodes, name, type = [:steps, 'Сезон', 'StepSeason']
-- unless type.nil?
-  - nodes = @node.send(nodes).map do |s|
-    - {:text => s.full_name, :cls => params['type'] == 'leagues' ? 'league' : 'folder', :id => "nav-tournament-#{s.id}", :leaf => params['type'] == 'leagues', '_id' => s.id, '_identifier' => s.identifier, '_name' => s.name, '_url' => s.url, '_type' => s.type}
-  - id = "nav-tournament-add-to-#{params[:id] || 'root'}"
-  - id << "-#{params[:type]}" if params[:type]
-  - nodes.push(:text => 'Добавить ' + name, :iconCls => 'add', :id => id, :leaf => true, :draggable => false, '_type' => type, '_owner_id' => params[:id] || 'root')
-= nodes.to_json

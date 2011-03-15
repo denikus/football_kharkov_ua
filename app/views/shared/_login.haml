@@ -1,0 +1,21 @@
+#login-box
+  = form_for User.new, :url => session_path(:user) do |f|
+    %fieldset
+      %ol
+        %li
+          %label{:for=>"user_email"}
+            Email:
+            = f.text_field :email, :tabindex=>"1", :id=>"user_email", :size => 10, :class=>"fancy-field"
+        %li
+          %label{:for=>"password"}
+            Пароль:
+            = f.password_field :password, :tabindex=>"2", :id=>"password", :size => 10, :class=>"fancy-field"
+        %li.submit
+          = submit_tag "Войти", :tabindex=>"3", :class => "fancy-button login light"
+
+        .clear
+        %p
+          = f.check_box :remember_me, {:checked => true}
+          = "#{f.label "Запомнить меня", {}, {:for => "user_remember_me"}} |".html_safe
+          = "#{link_to "Регистрация", new_user_path} |".html_safe
+          = "#{link_to "Забыли пароль?", new_password_path('user')}".html_safe

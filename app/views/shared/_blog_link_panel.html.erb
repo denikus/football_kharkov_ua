@@ -9,8 +9,6 @@
     <div class="date_link_cell first"><span><%= Russian::strftime(post.created_at, "%d %B %Y") %></span></div>
     <div class="author_link_cell"><%= link_to User.find(post.author_id).username, '#' %></div>
     <div class="comment_link_cell">
-      <% post_cr = post.created_at.strftime('%Y') %>
-      <% post_url = post.url %>
       <%= link_to( post.comments.count(:conditions => ['parent_id IS NOT NULL']).to_s, post_path({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : '', :anchor => "comments"})) %>
     </div>
     <% if post[:status].to_s=='updating' %>

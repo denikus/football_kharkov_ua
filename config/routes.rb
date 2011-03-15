@@ -1,5 +1,109 @@
 require "lib/subdomain.rb"
-Football::Application.routes.draw do
+FootballKharkov::Application.routes.draw do
+  devise_for :users, :admins
+
+  namespace(:admin) do
+    root :to => 'main#index'
+    resources :comments
+    resources :tournaments do
+      resources :matches do
+        post :grid_edit
+      end
+      resources :teams do
+        get :team_2_season
+      end
+      resources :schedules
+      resources :quick_match_results do
+        put :update_all
+      end
+      resources :steps
+      post :grid_edit
+    end
+    resources :steps do
+      member do
+        get :teams
+        post :update_teams
+      end
+    end
+
+    resources :schedules do
+      member do
+        get :results
+        post :update_results
+      end
+      get :week
+      get :data
+    end
+
+    resources :quick_match_results do
+      put :update_all
+    end
+
+    resources :teams do
+      member do
+        get :footballers
+        post :update_footballers
+      end
+    end
+    resources :matches do
+      resources :match_events
+      member do
+        get :results
+        post :update_results, :update_referees
+      end
+    end
+    resources :match_events
+    resources :match_event_types do
+      post :grid_edit
+    end
+    resources :referees do
+      post :grid_edit
+    end
+    resources :footballers
+    resources :permissions
+    resources :venues
+    match 'temp/:action/:id' => "temp#index"
+  end
+
+  resources :users
+  resources :pages
+  resources :schedules
+  resource :profile do
+    collection do
+      get :edit_photo, :crop
+      post :upload_photo, :make_crop
+      delete :destroy_photo
+    end
+  end
+
+  match '/itleague_draw' => "itleague_draw#index"
+  resources :footballers, :only => ["index", "show"]
+  resources :quick_match_results, :only => ["show"]
+  resources :venues, :only => ["show"]
+
+
+#  with_options :constraints => {:subdomain => /.+/} do
+  constraints(Subdomain) do
+#  scope '/tournaments' do
+    match '/feed' =>  "tournaments#feed"
+    match '/' => "tournaments#index", :as => "tournament"
+    match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
+#    match '/post' => 'post#show', :constraints =>  {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/, :subdomain => /.+/}
+  end
+
+  resources :teams, :only => ["index", "show"]
+  resources :tables, :only => ["index"]
+  resources :bombardiers, :only => ["index"]
+  resources :it_forecast, :only => ["index"]
+  resources :pages, :only => ["show"]
+  resources :seasons do
+    resources :matches, :only => ["show", "index"]
+  end
+
+  root :to => "blog#index"
+
+  match ':controller(/:action(/:id(.:format)))'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -56,123 +160,4 @@ Football::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
-
-
-  devise_for :users, :admin
-  namespace(:admin) do
-    root :to => 'main#index'
-    resources :comments
-    resources :tournaments do
-      resources :matches do
-        post :grid_edit
-      end
-      resources :teams do
-        get :team_2_season
-      end
-      resources :schedules
-      resources :quick_match_results do
-        put :update_all
-      end
-      resources :steps
-      post :grid_edit
-    end
-    resources :steps do
-      member do
-        get :teams
-        post :update_teams
-      end
-    end
-
-    resources :schedules do
-      member do
-        get :results
-        post :update_results
-      end
-      get :week
-      get :data
-    end
-
-    resources :quick_match_results do
-      put :update_all
-    end
-    
-    resources :teams do
-      member do
-        get :footballers
-        post :update_footballers
-      end
-    end
-    resources :matches do
-      resources :match_events
-      member do
-        get :results
-        post :update_results, :update_referees
-      end
-    end
-    resources :match_events
-    resources :match_event_types do
-      post :grid_edit
-    end
-    resources :referees do
-      post :grid_edit
-    end
-    resources :footballers
-    resources :permissions
-    resources :venues
-    match 'temp/:action/:id' => "temp"
-  end
-
-#  namespace(:univer) do
-#    root :controller => 'main#index'
-#    resources :tournaments, :has_many => :seasons
-#  end
-
-  resources :users
-  resources :pages
-  resources :schedules#, :collection => {:show_quick_results => :get}
-  resource :profile do
-    collection do
-      get :edit_photo, :crop
-      post :upload_photo, :make_crop
-      delete :destroy_photo
-    end
-  end
-  #  , :collection => {:edit_photo => :get, :upload_photo => :post, :crop => :get, :destroy_photo => :delete, :make_crop => :post}
-#  resource :itleague_draw
-  match '/itleague_draw' => "itleague_draw#index"
-  resources :footballers, :only => ["index", "show"]
-  resources :quick_match_results, :only => ["show"]
-  resources :venues, :only => ["show"]
-
-
-
-  
-#  with_options :constraints => {:subdomain => /.+/} do
-  constraints(Subdomain) do
-#  scope '/tournaments' do
-    match '/feed' =>  "tournaments#feed"
-    match '/' => "tournaments#index", :as => "tournament"
-#    match ':year/:month/:day/:url' => "posts#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
-    match '/post' => 'post#show', :constraints =>  {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/, :subdomain => /.+/}
-    resources :teams, :only => ["index", "show"]
-    resources :tables, :only => ["index"]
-    resources :bombardiers, :only => ["index"]
-    resources :it_forecast, :only => ["index"]
-    resources :pages, :only => ["show"]
-    resources :seasons do
-      resources :matches, :only => ["show", "index"]
-    end
-
-  end
-  
-  root :to => "blog#index"
-
-
-  match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
-
-
-  # Install the default routes as the lowest priority.
-  match ':controller(/:action(/:id(.:format)))'
-#  map.connect ':controller/:action/:id.:format'
-  
 end

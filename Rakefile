@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Football::Application.load_tasks
+FootballKharkov::Application.load_tasks

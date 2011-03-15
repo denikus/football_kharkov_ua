@@ -1,5 +1,6 @@
 class SidebarBlockCell < ::Cell::Base
   helper UrlHelper
+  helper ApplicationHelper
   def helpers
 
   end

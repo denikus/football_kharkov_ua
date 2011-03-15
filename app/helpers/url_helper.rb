@@ -1,23 +1,18 @@
 module UrlHelper
   def with_subdomain(subdomain)
-#    subdomain = current_subdomain
     subdomain = (subdomain || "")
     subdomain += "." unless subdomain.empty?
-    [subdomain, DOMAIN_HOST, request.port_string].join
-#    "asdasd"
+    [subdomain, request.domain(TLD_SIZE), request.port_string].join
+  end
+
+  def url_for(options = nil)
+    if options.kind_of?(Hash) && options.has_key?(:subdomain)
+      options[:host] = with_subdomain(options.delete(:subdomain))
+    end
+    super
   end
 
   def current_subdomain
-    puts "host: #{request.host}"
-    puts "domain: #{request.domain}"
-    puts "subdomains: #{request.subdomains}"
-    subdomain = request.subdomains(TLD_SIZE-1).join(".")
-    puts "subdomain: #{subdomain}"
-#    debugger
-
-
-    (subdomain!=false && !subdomain.blank?) ? subdomain : nil
-#    request.subdomain.empty? ? nil : request.subdomain
+    (request.subdomain(TLD_SIZE).present? && request.subdomain(TLD_SIZE) != "www") ? request.subdomain(TLD_SIZE) : nil
   end
-
 end

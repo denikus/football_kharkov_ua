@@ -1,7 +1,7 @@
 class Admin::QuickMatchResultsController < ApplicationController
   layout 'admin/main'
 
-  admin_section :tournaments
+#  admin_section :tournaments
 
   def index
     respond_to do |format|

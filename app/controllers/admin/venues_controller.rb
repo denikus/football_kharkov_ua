@@ -1,7 +1,7 @@
 class Admin::VenuesController < ApplicationController
   layout 'admin/main'
 
-  admin_section :tournaments
+#  admin_section :tournaments
   
   def index
     venues = Venue.find(:all) do

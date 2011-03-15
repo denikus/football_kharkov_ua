@@ -1,7 +1,7 @@
 class Admin::RefereesController < ApplicationController
   layout 'admin/main'
   
-  admin_section :personnel
+#  admin_section :personnel
   
   def index
     respond_to do |format|

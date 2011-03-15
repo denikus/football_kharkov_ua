@@ -1,7 +1,7 @@
 class Admin::MatchEventTypesController < ApplicationController
   layout 'admin/main'
   
-  admin_section :tournaments
+#  admin_section :tournaments
   
   def index
     types = MatchEventType.find(:all) do

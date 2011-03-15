@@ -1,4 +1,4 @@
-Football::Application.configure do
+FootballKharkov::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -13,7 +13,7 @@ Football::Application.configure do
   config.consider_all_requests_local       = true
   config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
-  config.action_mailer.default_url_options             = { :host => 'lvh.me:3000' }
+
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
@@ -23,8 +23,9 @@ Football::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  TLD_SIZE = 3
-  DOMAIN_HOST = "football.kharkov.ua"
-
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  TLD_SIZE = 2
+  
 end
 

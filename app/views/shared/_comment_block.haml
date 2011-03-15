@@ -27,9 +27,11 @@
                     .clear
               .clear        
 - unless user_signed_in?
-  = link_to 'Зарегистрируйтесь', {:controller => :users, :action => :new}
+  = link_to 'Зарегистрируйтесь', new_user_path
+  -# {:controller => :users, :action => :new}
   или
-  = link_to 'Войдите', {:controller => :users, :action => :sign_in}
+  = link_to 'Войдите', session_path(:user)
+  -# {:controller => :users, :action => :sign_in}
   чтобы комментировать!
 - else
   = javascript_include_tag 'jquery-plugins/jquery_form/jquery.form'

@@ -5,35 +5,34 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-source 'http://gemcutter.org'
-gem 'russian'
-gem 'warden'
+gem 'mysql2'
+gem 'will_paginate', '~> 3.0.beta'
+gem 'mongrel'
+gem 'haml'
 gem 'devise'
+gem 'mini_magick'
+gem 'hpricot'
+gem 'russian'
+gem 'cells'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
 gem 'paperclip'
 gem 'compass'
-gem 'cells'
-gem 'mysql2'
-gem 'mongrel'
-gem 'will_paginate', '~> 3.0.beta'
-gem 'exception_notification'
 gem 'fancy-buttons'
 gem 'ckeditor', :git => 'git://github.com/galetahub/rails-ckeditor.git', :branch => 'rails3'
 gem 'sanitize'
-gem 'mini_magick'
-gem 'hpricot'
 gem 'ruby_parser'
 gem 'sitemap_generator'
-#gem 'whenever', :branch => 'rails3'
 gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
-group :development do
-  gem 'awesome_print'
-  gem 'newrelic_rpm'
-  gem 'ruby-debug'
+gem 'awesome_print'
+gem 'ruby-debug'
+group :production do
+#  gem 'exception_notification'
 end
 
-
+group :development do
+  gem 'newrelic_rpm'
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -42,7 +41,7 @@ end
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
-# gem 'ruby-debug19'
+# gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'

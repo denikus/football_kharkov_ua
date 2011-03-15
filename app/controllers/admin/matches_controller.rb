@@ -1,6 +1,6 @@
 class Admin::MatchesController < ApplicationController
   layout 'admin/main'
-  admin_section :tournaments
+#  admin_section :tournaments
   
   def index
     if params[:tournament_id]

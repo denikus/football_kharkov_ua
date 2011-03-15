@@ -1,6 +1,6 @@
 class Admin::SeasonsController < ApplicationController
   layout 'admin/main'
-  admin_section :tournaments
+#  admin_section :tournaments
   
   def index
     @tournament = Tournament.from params[:tournament_id]

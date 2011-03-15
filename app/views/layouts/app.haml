@@ -13,8 +13,8 @@
     = javascript_include_tag "jquery-plugins/jquery.tools.min"
     = javascript_include_tag "application"
     = javascript_include_tag "application/tournament/quick_match_results"
-    - unless current_subdomain.nil?
-      = javascript_include_tag "application/schedule/schedule"
+    -#- unless current_subdomain.nil?
+    -#  = javascript_include_tag "application/schedule/schedule"
     /[if lt IE 7]
     = stylesheet_link_tag 'ie6.css', :media => 'screen, projection'
     = yield :head_declarations
@@ -27,11 +27,11 @@
         / Header
         #header
           #header-block
-            = link_to image_tag("logo.gif", :height=>"85", :alt=>"Харьков футбольный"), root_url(:host => with_subdomain(nil)), {:title=> "Харьков Футбольный", :id => "logo-link"}
-            - if user_signed_in?
-              =render :partial => 'shared/user_block'
-            - else
-              =render :partial => 'shared/login'
+            = link_to image_tag("/images/logo.gif", :height=>"85", :alt=>"Харьков футбольный"), root_url(:host => with_subdomain(nil)), {:title=> "Харьков Футбольный", :id => "logo-link"}
+            -#- if user_signed_in?
+            -#  =render :partial => 'shared/user_block'
+            -#- else
+            = render :partial => 'shared/login'
             = render :partial => 'shared/top_menu'
         / EOF Header
       / Container

@@ -1,6 +1,6 @@
 class Admin::TeamsController < ApplicationController
   layout 'admin/main'
-  admin_section :personnel
+#  admin_section :personnel
   
   def index
     if params[:tournament_id]

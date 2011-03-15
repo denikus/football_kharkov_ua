@@ -5,6 +5,7 @@ class TournamentsController < ApplicationController
   end
 
   def feed
+#    current_subdomain
     tournament = Tournament.find_by_url(current_subdomain)
     @posts = Post.tournament(current_subdomain).paginate :page => params[:page], :per_page => 10, :order => 'created_at DESC'
     @feed = {:title => tournament.name}
