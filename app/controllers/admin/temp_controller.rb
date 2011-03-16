@@ -1,5 +1,5 @@
 class Admin::TempController < ApplicationController
-  before_filter :authenticate_admin!
+  before_filter :authenticate_admin!, :only => ["index"]
   
   layout "admin/temp"
   
