@@ -62,7 +62,7 @@ FootballKharkov::Application.routes.draw do
     resources :footballers
     resources :permissions
     resources :venues
-    match 'temp/:action/:id' => "temp#index"
+    match 'temp(/:action(/:id))' => "temp"
   end
 
   resources :users
