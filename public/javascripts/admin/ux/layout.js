@@ -1,3 +1,10 @@
+Ext.Ajax.on('beforerequest', function(o) {
+  var csrf = Ext.select("meta[name='csrf-token']").first();
+  if (csrf) {
+          o.defaultHeaders = Ext.apply(o.defaultHeaders || {}, {'X-CSRF-Token': csrf.getAttribute('content')});
+  }
+});
+
 Ext.ns('Ext.ux.layout');
 Ext.ux.layout.MasterPanel = function Panel() {
   var config = {

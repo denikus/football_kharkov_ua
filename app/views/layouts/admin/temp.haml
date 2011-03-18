@@ -10,8 +10,10 @@
     = javascript_include_tag "extensions"
     = javascript_include_tag "admin/temp"
     = stylesheet_link_tag "/javascripts/jquery-plugins/jquery-ui-1.8.4.custom/css/redmond/jquery-ui-1.8.4.custom.css"
+    = csrf_meta_tag
     = yield :head_declarations
-    :javascript
-      authenticity_token = "#{form_authenticity_token}";
+    -#authenticity_token = "#{form_authenticity_token}";
+    -#:javascript
+
   %body
     = yield
