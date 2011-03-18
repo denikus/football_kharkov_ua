@@ -2,7 +2,7 @@
 
 #FootballKharkov::Application.config.session_store :cookie_store, :key => '_football_kharkov_session', :domain => :all
 #FootballKharkov::Application.config.session_store :cookie_store, :key => '_football_kharkov_session', :domain => '.football.kharkov.ua'
-FootballKharkov::Application.config.session_store :cookie_store, :key => '_football_kharkov_session', :domain => '.football.lvh.me'
+FootballKharkov::Application.config.session_store :cookie_store, :key => '_football_kharkov_session', :domain => :all
 #Rails.application.
 
 # Use the database for sessions instead of the cookie-based default,
