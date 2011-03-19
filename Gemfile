@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'will_paginate', '~> 3.0.beta'
 gem 'mongrel'
 gem 'haml'
+gem 'sass'
 gem 'devise'
 gem 'mini_magick'
 gem 'hpricot'
@@ -23,12 +24,14 @@ gem 'fancy-buttons'
 gem 'ckeditor', :git => 'git://github.com/galetahub/rails-ckeditor.git', :branch => 'rails3'
 gem 'sanitize'
 gem 'ruby_parser'
-gem 'sitemap_generator'
 gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 gem 'awesome_print'
 gem 'ruby-debug'
+
 group :production do
 #  gem 'exception_notification'
+  gem 'sitemap_generator'
+  gem 'whenever', :require => false
 end
 
 group :development do

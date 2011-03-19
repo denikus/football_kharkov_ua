@@ -1,0 +1,106 @@
+$grey_border: #DDD;
+
+#container {
+  border: 1px solid $grey_border;
+}
+
+h4 {
+    margin:0;
+    padding: 2px;
+}
+
+ol {
+  list-style-type: none;
+  text-align:left;
+  li {
+    font-size:16px;
+    border:1px solid $grey_border;
+    margin:3px;
+    padding:3px;
+  }
+}
+
+
+#rating-list-container {
+  border:1px solid $grey_border;
+  width:150px;
+  margin-bottom: 10px;
+  float: left;
+  text-align:center;
+  ol {
+    list-style-position: inside;
+    list-style-type: decimal;
+    li {
+      font-size:14px;
+      margin:2px;
+      padding:2px;
+    }
+  }
+}
+#rating-list {
+  margin:0;
+  padding:0;
+}
+
+#draw-container {
+  float: left;
+  margin-left: 10px;
+}
+
+.group, .basket {
+  width: 160px;
+  float: left;
+  padding-bottom:10px;
+}
+.basket {
+  width: 170px;
+  ol {
+    li.drawed {
+      background:none;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+    }
+  }
+}
+
+.group {
+  ol {
+    height: 210px;
+    li {
+      color: green;
+      font-weight: bold;
+    }
+  }
+}
+
+.portlet {
+  margin: 0 1em 1em 0;
+}
+.portlet-header {
+  margin: 0.3em;
+  padding-bottom: 4px;
+  padding-left: 0.2em;
+}
+.portlet-header .ui-icon {
+  float: right;
+}
+.portlet-content {
+  padding: 0.4em;
+}
+.ui-sortable-placeholder {
+  border: 1px dotted black;
+  visibility: visible !important;
+  height: 50px !important;
+}
+.ui-sortable-placeholder * {
+  visibility: hidden; 
+}
+.basket .ui-selected {
+  background: #F39814;
+  color: white;
+  font-weight: bold;
+}
+#change-button {
+  font-size: 14px;
+}

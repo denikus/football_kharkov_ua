@@ -42,7 +42,8 @@
     %td
       Очки
   - records.each_with_index do |record, index|
-    %tr.odd
+    -row_class = index%2 == 0 ? "" : "odd"
+    %tr{:class => row_class}
       %td.place
         - if record.position_change > 0
           .position-change.up= "+#{record.position_change}"

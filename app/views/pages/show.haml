@@ -1,2 +1,477 @@
-%h1= @page_title
-= @page.body.html_safe
+-#%h1= @page_title
+-#= @page.body.html_safe
+%h2 Состав групп
+
+%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
+  %tr
+    %th{:colspan => 3} Группа A
+  %tr.odd
+    %td
+      1
+    %td
+      ZFort Group
+  %tr
+    %td
+      2
+    %td
+      GlobalLogic
+  %tr.odd
+    %td
+      3
+    %td
+      Gameloft-II
+  %tr
+    %td
+      4
+    %td
+      CS
+
+%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
+  %tr
+    %th{:colspan => 3} Группа B
+  %tr.odd
+    %td
+      1
+    %td
+      GraceHoppers
+  %tr
+    %td
+      2
+    %td
+      UTeam
+  %tr.odd
+    %td
+      3
+    %td
+      EPAM Systems
+  %tr
+    %td
+      4
+    %td
+      CS-2
+
+%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
+  %tr
+    %th{:colspan => 3} Группа C
+  %tr.odd
+    %td
+      1
+    %td
+      NIX Solutions
+  %tr
+    %td
+      2
+    %td
+      Ciklum
+  %tr.odd
+    %td
+      3
+    %td
+      AKVELON
+  %tr
+    %td
+      4
+    %td
+      Ronis
+
+%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
+  %tr
+    %th{:colspan => 3} Группа D
+  %tr.odd
+    %td
+      1
+    %td
+      Gameloft
+  %tr
+    %td
+      2
+    %td
+      Stella Systems
+  %tr.odd
+    %td
+      3
+    %td
+      Eclipse
+  %tr
+    %td
+      4
+    %td
+      Random United
+
+.clear
+
+%h2 Групповой этап
+
+%table.fixtures{:style => "margin-right:20px;"}
+  %caption 1-й Тур
+  %tr
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr.odd
+    %td.hosts ZFort Group (A1)
+    %td.spacer -
+    %td.guests CS (A4)
+  %tr
+    %td.hosts GlobalLogic (A2)
+    %td.spacer -
+    %td.guests Gameloft-II (A3)
+  %tr.odd
+    %td.hosts GraceHoppers (B1)
+    %td.spacer -
+    %td.guests CS-2 (B4)
+  %tr
+    %td.hosts UTeam (B2)
+    %td.spacer -
+    %td.guests EPAM Systems (B3)
+  %tr.odd
+    %td.hosts NIX Solutions (C1)
+    %td.spacer -
+    %td.guests Ronis (C4)
+  %tr
+    %td.hosts Ciklum (C2)
+    %td.spacer -
+    %td.guests AKVELON (C3)
+  %tr.odd
+    %td.hosts Gameloft (D1)
+    %td.spacer -
+    %td.guests Random United (D4)
+  %tr
+    %td.hosts Stella Systems (D2)
+    %td.spacer -
+    %td.guests Eclipse (D3)
+
+%table.fixtures
+  %caption 2-й Тур
+  %tr
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr.odd
+    %td.hosts Eclipse (D3)
+    %td.spacer -
+    %td.guests Gameloft (D1)
+  %tr
+    %td.hosts Random United (D4)
+    %td.spacer -
+    %td.guests Stella Systems (D2)
+  %tr.odd
+    %td.hosts Gameloft-II (A3)
+    %td.spacer -
+    %td.guests ZFort Group (A1)
+  %tr
+    %td.hosts CS (A4)
+    %td.spacer -
+    %td.guests GlobalLogic (A2)
+  %tr.odd
+    %td.hosts EPAM Systems (B3)
+    %td.spacer -
+    %td.guests GraceHoppers (B1)
+  %tr
+    %td.hosts CS-2 (B4)
+    %td.spacer -
+    %td.guests UTeam (B2)
+  %tr.odd
+    %td.hosts AKVELON (C3)
+    %td.spacer -
+    %td.guests NIX Solutions (C1)
+  %tr
+    %td.hosts Ronis (C4)
+    %td.spacer -
+    %td.guests Ciklum (C2)
+.clear
+%table.fixtures{:style => "margin-right:20px;"}
+  %caption 3-й Тур
+  %tr
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr.odd
+    %td.hosts Ciklum (C2)
+    %td.spacer -
+    %td.guests NIX Solutions (C1)
+  %tr
+    %td.hosts Ronis (C4)
+    %td.spacer -
+    %td.guests AKVELON (C3)
+  %tr.odd
+    %td.hosts Stella Systems (D2)
+    %td.spacer -
+    %td.guests Gameloft (D1)
+  %tr
+    %td.hosts Random United (D4)
+    %td.spacer -
+    %td.guests Eclipse (D3)
+  %tr.odd
+    %td.hosts GlobalLogic (A2)
+    %td.spacer -
+    %td.guests ZFort Group (A1)
+  %tr
+    %td.hosts CS (A4)
+    %td.spacer -
+    %td.guests Gameloft-II (A3)
+  %tr.odd
+    %td.hosts UTeam (B2)
+    %td.spacer -
+    %td.guests GraceHoppers (B1)
+  %tr
+    %td.hosts CS-2 (B4)
+    %td.spacer -
+    %td.guests EPAM Systems (B3)
+%table.fixtures
+  %caption 4-й Тур
+  %tr
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr.odd
+    %td.hosts GraceHoppers (B1)
+    %td.spacer -
+    %td.guests UTeam (B2)
+  %tr
+    %td.hosts EPAM Systems (B3)
+    %td.spacer -
+    %td.guests CS-2 (B4)
+  %tr.odd
+    %td.hosts NIX Solutions (C1)
+    %td.spacer -
+    %td.guests Ciklum (C2)
+  %tr
+    %td.hosts AKVELON (C3)
+    %td.spacer -
+    %td.guests Ronis (C4)
+  %tr.odd
+    %td.hosts Gameloft (D1)
+    %td.spacer -
+    %td.guests Stella Systems (D2)
+  %tr
+    %td.hosts Eclipse (D3)
+    %td.spacer -
+    %td.guests Random United (D4)
+  %tr.odd
+    %td.hosts ZFort Group (A1)
+    %td.spacer -
+    %td.guests GlobalLogic (A2)
+  %tr
+    %td.hosts Gameloft-II (A3)
+    %td.spacer -
+    %td.guests CS (A4)
+.clear
+%table.fixtures{:style => "margin-right:20px;"}
+  %caption 5-й Тур
+  %tr
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr.odd
+    %td.hosts ZFort Group (A1)
+    %td.spacer -
+    %td.guests Gameloft-II (A3)
+  %tr
+    %td.hosts GlobalLogic (A2)
+    %td.spacer -
+    %td.guests CS (A4)
+  %tr.odd
+    %td.hosts GraceHoppers (B1)
+    %td.spacer -
+    %td.guests EPAM Systems (B3)
+  %tr
+    %td.hosts UTeam (B2)
+    %td.spacer -
+    %td.guests CS-2 (B4)
+  %tr.odd
+    %td.hosts NIX Solutions (C1)
+    %td.spacer -
+    %td.guests AKVELON (C3)
+  %tr
+    %td.hosts Ciklum (C2)
+    %td.spacer -
+    %td.guests Ronis (C4)
+  %tr.odd
+    %td.hosts Gameloft (D1)
+    %td.spacer -
+    %td.guests Eclipse (D3)
+  %tr
+    %td.hosts Stella Systems (D2)
+    %td.spacer -
+    %td.guests Random United (D4)
+%table.fixtures
+  %caption 6-й Тур
+  %tr
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr.odd
+    %td.hosts Random United (D4)
+    %td.spacer -
+    %td.guests Gameloft (D1)
+  %tr
+    %td.hosts Eclipse (D3)
+    %td.spacer -
+    %td.guests Stella Systems (D2)
+  %tr.odd
+    %td.hosts CS (A4)
+    %td.spacer -
+    %td.guests ZFort Group (A1)
+  %tr
+    %td.hosts Gameloft-II (A3)
+    %td.spacer -
+    %td.guests GlobalLogic (A2)
+  %tr.odd
+    %td.hosts CS-2 (B4)
+    %td.spacer -
+    %td.guests GraceHoppers (B1)
+  %tr
+    %td.hosts EPAM Systems (B3)
+    %td.spacer -
+    %td.guests UTeam (B2)
+  %tr.odd
+    %td.hosts Ronis (C4)
+    %td.spacer -
+    %td.guests NIX Solutions (C1)
+  %tr
+    %td.hosts AKVELON (C3)
+    %td.spacer -
+    %td.guests Ciklum (C2)
+.clear
+%h2 Плейофф
+
+(Римскими цифрами обозначены места команд в соответствующих группах)
+.clear
+%table.fixtures{:style => "margin-right:20px;"}
+  %caption 1/4 Финала Beta Cup
+  %tr
+    %th Код
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr
+    %td BCQ1
+    %td.hosts A-III
+    %td.spacer -
+    %td.guests C-IV
+  %tr
+    %td BCQ2
+    %td.hosts B-III
+    %td.spacer -
+    %td.guests D-IV
+  %tr
+    %td BCQ3
+    %td.hosts C-III
+    %td.spacer -
+    %td.guests A-IV
+  %tr
+    %td BCQ4
+    %td.hosts D-III
+    %td.spacer -
+    %td.guests A-IV
+
+%table.fixtures
+  %caption 1/4 Финала IT-League
+  %tr
+    %th Код
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr
+    %td ITQ1
+    %td.hosts A-I
+    %td.spacer -
+    %td.guests C-II
+  %tr
+    %td ITQ2
+    %td.hosts B-I
+    %td.spacer -
+    %td.guests D-II
+  %tr
+    %td ITQ3
+    %td.hosts C-I
+    %td.spacer -
+    %td.guests A-II
+  %tr
+    %td ITQ4
+    %td.hosts D-I
+    %td.spacer -
+    %td.guests B-II
+.clear
+  
+%table.fixtures{:style => "margin-right:20px;width: 400px;"}
+  %caption 1/2 Финала Beta Cup
+  %tr
+    %th{:style => "width: 200px;"} Код
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr
+    %td за 16-13 места
+    %td.hosts BCQ4L
+    %td.spacer -
+    %td.guests BCQ3L
+  %tr
+    %td за 16-13 места
+    %td.hosts BCQ2L
+    %td.spacer -
+    %td.guests BCQ1L
+  %tr
+    %td за 12-9 места
+    %td.hosts BCQ4W
+    %td.spacer -
+    %td.guests BCQ3W
+  %tr
+    %td за 12-9 места
+    %td.hosts BCQ1W
+    %td.spacer -
+    %td.guests BCQ2W
+
+%table.fixtures{:style => "margin-right:20px;width: 400px;"}
+  %caption 1/2 Финала IT-League
+  %tr
+    %th{:style => "width: 200px;"} Код
+    %th.hosts Хозяева
+    %th.spacer &nbsp;
+    %th.guests Гости
+  %tr
+    %td за 8-5 места
+    %td.hosts ITL4L
+    %td.spacer -
+    %td.guests ITL3L
+  %tr
+    %td за 8-5 места
+    %td.hosts ITL2L
+    %td.spacer -
+    %td.guests ITL1L
+  %tr
+    %td за 4-1 места
+    %td.hosts ITL4W
+    %td.spacer -
+    %td.guests ITL3W
+  %tr
+    %td за 4-1 места
+    %td.hosts ITL1W
+    %td.spacer -
+    %td.guests ITL2W
+.clear
+%h2 Финалы
+
+%table.fixtures{:style => "margin-right:20px;"}
+  %caption Первый день финалов
+  %tr
+    %td За 15 место
+  %tr
+    %td За 13 место
+  %tr
+    %td За 11 место
+  %tr
+    %td за 7 место
+  %tr
+    %td за 5 место
+
+%table.fixtures
+  %caption Последний день финалов
+  %tr
+    %td Финал Beta Cup
+  %tr
+    %td За 3-е место
+  %tr
+    %td Финал IT-Лиги
+.clear
