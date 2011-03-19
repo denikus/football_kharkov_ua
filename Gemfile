@@ -9,7 +9,6 @@ gem 'mysql2'
 gem 'will_paginate', '~> 3.0.beta'
 gem 'mongrel'
 gem 'haml'
-gem 'sass', '3.1.0.alpha.216'
 gem 'devise'
 gem 'mini_magick'
 gem 'hpricot'
@@ -19,8 +18,6 @@ gem 'cells'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
 gem 'paperclip'
-gem 'compass'
-gem 'fancy-buttons'
 gem 'ckeditor', :git => 'git://github.com/galetahub/rails-ckeditor.git', :branch => 'rails3'
 gem 'sanitize'
 gem 'ruby_parser'
@@ -33,9 +30,11 @@ group :production do
   gem 'whenever', :require => false
 end
 
-
 group :development do
   gem 'newrelic_rpm'
+  gem 'sass', '3.1.0.alpha.216'
+  gem 'compass'
+  gem 'fancy-buttons'
 end
 # Use unicorn as the web server
 # gem 'unicorn'
