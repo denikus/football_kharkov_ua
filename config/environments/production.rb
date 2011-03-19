@@ -48,6 +48,21 @@ FootballKharkov::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'football.kharkov.ua',
+    :user_name            => 'info@football.kharkov.ua',
+    :password             => 'uH2DRcxCfzr8aR6Xq0YXSoMbb',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+
+
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[fhu_error]",
+    :sender_address => %{"notifier" <info@football.kharkov.ua>},
+    :exception_recipients => %w{denis.soloshenko@gmail.com}
 
   TLD_SIZE = 2
 

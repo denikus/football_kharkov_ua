@@ -27,11 +27,12 @@ gem 'ruby_parser'
 gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 gem 'awesome_print'
 gem 'ruby-debug'
-gem 'whenever', :require => false
 group :production do
-#  gem 'exception_notification'
+  gem 'exception_notification_rails3', :require => 'exception_notifier'
   gem 'sitemap_generator'
+  gem 'whenever', :require => false
 end
+
 
 group :development do
   gem 'newrelic_rpm'
