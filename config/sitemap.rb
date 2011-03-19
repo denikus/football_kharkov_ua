@@ -27,7 +27,7 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
   #     sitemap.add article_path(article), :lastmod => article.updated_at
   #   end
   Post.find_each do |post_item|
-    sitemap.add post_url({:year => post_item.url_year,
+    sitemap.add post_path({:year => post_item.url_year,
                :month => post_item.url_month,
                :day => post_item.url_day,
                :url => !post_item.url.nil? ? post_item.url : '',
