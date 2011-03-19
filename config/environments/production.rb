@@ -52,9 +52,9 @@ FootballKharkov::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'football.kharkov.ua',
-    :user_name            => 'info@football.kharkov.ua',
-    :password             => 'uH2DRcxCfzr8aR6Xq0YXSoMbb',
+#    :domain               => 'football.kharkov.ua',
+    :user_name            => 'football.kharkov.ua@gmail.com',
+    :password             => 'rHvfttjeP6J2QjvFMdIm',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 
