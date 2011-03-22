@@ -7,7 +7,7 @@ $(document).ajaxSend(function(e, xhr, options) {
 });
 $(function() {
   //error block effects
-  $("#main-error-block,#main-notice-block,#main-success-block").fadeOut("fast").fadeIn("fast").fadeOut("fast").fadeIn("fast").fadeOut(5000);
+//  $("#main-error-block,#main-notice-block,#main-success-block").fadeOut("fast").fadeIn("fast").fadeOut("fast").fadeIn("fast").fadeOut(5000);
 
 
 /*  $(".sidebar-shop-content-wrap").jCarouselLite({
