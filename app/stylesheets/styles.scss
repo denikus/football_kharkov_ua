@@ -1134,8 +1134,15 @@ table.match-result-table, table.fixtures {
 
 
 table.fixtures {
-  width: 300px;
+  width: 450px;
   float:left;
+  td.date {
+    width: 300px;
+  }
+  td.group {
+    width: 80px;
+    text-align: center;
+  }
   td.hosts {
     padding-right: 10px;
   }
