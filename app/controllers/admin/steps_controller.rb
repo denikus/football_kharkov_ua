@@ -8,6 +8,7 @@ class Admin::StepsController < ApplicationController
   def show
     root, params[:id], params[:type] = $1, $2, $3 if params[:node] =~ /^nav-tournament-(?:(root)|(?:(\d+)-?(\w+)?))$/
     @node = root ? Tournament.from(params[:tournament_id]) : Step.find(params[:id])
+
     render :action => 'show.ext.haml', :layout => false
   end
   
@@ -25,7 +26,18 @@ class Admin::StepsController < ApplicationController
   
   def update
     [:type, :parent_id].each{ |p| params[:step].delete p }
-    Step.find(params[:id]).update_attributes params[:step]
+
+    step = Step.find(params[:id])
+
+    if step.is_a? StepStage then
+      step.is_playoff =  params[:step][:playoff]  == 'on'
+    end
+
+    if params[:step][:playoff] then
+      params[:step].delete :playoff
+    end
+
+    step.update_attributes params[:step]
     render ext_success
   end
   

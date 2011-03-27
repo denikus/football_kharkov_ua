@@ -85,6 +85,7 @@ Ext.extend(Ext.ux.nav.Tournament, Ext.tree.TreePanel, {
           type: node.attributes._type,
           id: node.attributes._id,
           identifier: node.attributes._identifier,
+          playoff: node.attributes._playoff,
           name: node.attributes._name,
           url: node.attributes._url,
           parent_id: node.attributes._owner_id,
