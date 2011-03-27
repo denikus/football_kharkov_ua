@@ -31,6 +31,12 @@ Ext.ux.tournament.StepForm = function Panel(options) {
         anchor: '95%',
         value: options.url,
         allowBlank: true
+      }, { xtype: 'checkbox',
+          fieldLabel: 'Плей-офф',
+          name: 'step[playoff]',
+          checked: options.playoff,
+          value: options.playoff,
+          hidden: options.type != 'StepStage'
       }
     ],
     buttons: [{
