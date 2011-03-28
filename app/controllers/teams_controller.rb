@@ -4,14 +4,23 @@ class TeamsController < ApplicationController
   def index
     unless current_subdomain.nil?
       tournament = Tournament.find_by_url(current_subdomain)
-      @teams = Team.find(:all,
-                          :joins => "INNER JOIN `steps_teams` " +
-                                      "ON (teams.id = steps_teams.team_id) " +
-                                    "INNER JOIN `steps` " +
-                                      "ON (steps_teams.step_id = steps.id AND type = 'StepSeason')",
-                          :conditions => ["tournament_id = ? ", tournament.id],
-                          :order => "teams.name ASC"
-                        )
+      last_season = StepSeason.where(:tournament_id => tournament.id).order("identifier ASC").last
+
+      @teams_by_groups = []
+      last_season.stages.first.leagues.order("identifier ASC").each do |league|
+        @teams_by_groups << {:league_name  => league.name, :teams => league.teams}
+      end
+
+
+#      @teams = Team.find(:all,
+#                          :joins => "INNER JOIN `steps_teams` " +
+#                                      "ON (teams.id = steps_teams.team_id) " +
+#                                    "INNER JOIN `steps` " +
+#                                      "ON (steps_teams.step_id = steps.id AND type = 'StepSeason')",
+#                          :conditions => ["tournament_id = ? ", tournament.id],
+#                          :order => "teams.name ASC"
+#                        )
+      
 #      @teams = StepSeason.find(:last,
 #                               :conditions => ["tournament_id = ?", tournament.id],
 #                               :order => "name ASC"
