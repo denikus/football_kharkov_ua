@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
     t.boolean  "super_admin",                        :default => false, :null => false
-    t.string   "email",                              :default => "",    :null => false
-    t.string   "encrypted_password",  :limit => 128, :default => "",    :null => false
-    t.string   "password_salt",                      :default => "",    :null => false
-    t.string   "remember_token"
+    t.string   "email",               :limit => 100,                    :null => false
+    t.string   "encrypted_password",  :limit => 40,                     :null => false
+    t.string   "password_salt",       :limit => 20,                     :null => false
+    t.string   "remember_token",      :limit => 20
     t.datetime "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
     t.datetime "updated_at"
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "fk_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
   add_index "ckeditor_assets", ["user_id"], :name => "fk_user"
 
   create_table "comments", :force => true do |t|
@@ -65,8 +65,9 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["post_id"], :name => "post_id"
+  add_index "comments", ["author_id"], :name => "fk_user_comment"
   add_index "comments", ["author_id"], :name => "index_comments_on_author_id"
+  add_index "comments", ["post_id"], :name => "post_id"
 
   create_table "competitors", :force => true do |t|
     t.integer "match_id",                                                  :null => false
@@ -119,8 +120,8 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
   end
 
   add_index "footballers_teams", ["footballer_id"], :name => "index_footballers_teams_on_footballer_id"
-  add_index "footballers_teams", ["team_id"], :name => "index_footballers_teams_on_team_id"
   add_index "footballers_teams", ["step_id"], :name => "index_footballers_teams_on_season_id"
+  add_index "footballers_teams", ["team_id"], :name => "index_footballers_teams_on_team_id"
 
   create_table "leagues", :force => true do |t|
     t.integer  "stage_id",   :null => false
@@ -152,8 +153,8 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
     t.string  "message"
   end
 
-  add_index "match_events", ["match_id"], :name => "index_match_events_on_match_id"
   add_index "match_events", ["match_event_type_id"], :name => "index_match_events_on_match_event_type_id"
+  add_index "match_events", ["match_id"], :name => "index_match_events_on_match_id"
 
   create_table "match_links", :force => true do |t|
     t.integer "match_id"
@@ -227,23 +228,11 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
     t.integer  "url_day",       :limit => 2
   end
 
-  add_index "posts", ["tournament_id"], :name => "fk_tournaments_2_posts"
-  add_index "posts", ["resource_id", "resource_type"], :name => "index_posts_on_resource_id_and_resource_type"
+  add_index "posts", ["author_id"], :name => "fk_user_post"
   add_index "posts", ["author_id"], :name => "index_posts_on_author_id"
+  add_index "posts", ["resource_id", "resource_type"], :name => "index_posts_on_resource_id_and_resource_type"
+  add_index "posts", ["tournament_id"], :name => "fk_tournaments_2_posts"
   add_index "posts", ["url_year", "url_month", "url_day", "url"], :name => "index_posts_on_url_year_and_url_month_and_url_day_and_url"
-
-  create_table "profile_avatars", :force => true do |t|
-    t.integer  "profile_id"
-    t.string   "content_type", :null => false
-    t.string   "filename",     :null => false
-    t.integer  "size",         :null => false
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "profile_avatars", ["profile_id"], :name => "fk_profiles_profile_avatars"
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
@@ -270,16 +259,6 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
   end
 
   add_index "profiles", ["user_id"], :name => "user_id"
-
-  create_table "quick_match_results", :force => true do |t|
-    t.integer  "hosts_score"
-    t.integer  "guests_score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "schedule_id"
-  end
-
-  add_index "quick_match_results", ["schedule_id"], :name => "fk_quick_match_result_2_season"
 
   create_table "referees", :force => true do |t|
     t.integer  "user_id"
@@ -313,10 +292,10 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
   end
 
   add_index "schedules", ["guest_team_id"], :name => "index_schedules_on_guest_team_id"
-  add_index "schedules", ["venue_id"], :name => "index_schedules_on_venue_id"
   add_index "schedules", ["host_team_id"], :name => "index_schedules_on_host_team_id"
   add_index "schedules", ["league_id"], :name => "fk_schedules_step_leagues"
   add_index "schedules", ["tour_id"], :name => "fk_schedules_step_tours"
+  add_index "schedules", ["venue_id"], :name => "index_schedules_on_venue_id"
 
   create_table "seasons", :force => true do |t|
     t.integer  "tournament_id", :null => false

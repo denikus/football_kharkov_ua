@@ -27,7 +27,7 @@
         %td.venue
           - unless schedule_item.venue.nil?
             = (!schedule_item.venue.icon.nil? && !schedule_item.venue.icon.empty? ? image_tag("/images/icons/#{schedule_item.venue.icon}", :alt => "#{schedule_item.venue.name}", :title => "#{schedule_item.venue.name}") : "")
-          =link_to schedule_item.venue.short_name, venue_url(schedule_item.venue.url)   
+            =link_to schedule_item.venue.short_name, venue_url(schedule_item.venue.url)
         %td.league
           - unless schedule_item[:league_name].nil?
             = schedule_item[:league_short_name].nil? ? schedule_item[:league_name] : schedule_item[:league_short_name]

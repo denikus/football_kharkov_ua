@@ -1,6 +1,7 @@
 - form_for @schedule, :url => {:action => "create"} do |f|
+  =select_tag(:tournament_id, options_from_collection_for_select(@tournaments, "id", "name"), {:selected => cookies[:schedule_tournament_id]})
   =f.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
-  
+
   =f.hidden_field(:host_team_id)
   =f.hidden_field(:guest_team_id)
 
