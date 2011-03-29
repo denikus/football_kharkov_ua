@@ -7,13 +7,12 @@ class Admin::TempController < ApplicationController
     cookies[:schedule_tournament_id] ||= 2
 
 
-    ap @tournaments = Tournament.all
+   @tournaments = Tournament.all
             
-    ap @tours = StepTour.find(:all,
+   @tours = StepTour.find(:all,
                            :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],
                            :order => "identifier ASC"
                           )
-#    debugger
     @venues = Venue.all
     @schedule = Schedule.new({:match_on => "2011-01-"})
     
