@@ -1,11 +1,22 @@
 %h2.tournament-subtitle Список команд
-- unless @teams.empty?
-  %ul.team-list
-    - @teams.each do |item|
-      %li= link_to item.name, team_path(item.url), :target => "_blank"
-      -#%li= item.name
-  -#- @teams.each_slice( (@teams.length.to_f/4).round ) do |block|
-  -#  %ul.team-list
-  -#    - block.each do |item|
-  -#      %li= link_to item.name, team_path(item.url), :target => "_blank"
-  -#.clear
+- unless @teams_by_groups.empty?
+  - @teams_by_groups.each do |group|
+    %table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
+      %tr
+        %th{:colspan => 3}= group[:league_name]
+      - group[:teams].each_with_index do |team, index|
+        %tr.odd
+          %td
+            = index+1
+          %td
+            = link_to team.name, team_path(team.url)
+
+-#%ul.team-list
+-#  - @teams.each do |item|
+-#    %li= link_to item.name, team_path(item.url), :target => "_blank"
+-#%li= item.name
+-#- @teams.each_slice( (@teams.length.to_f/4).round ) do |block|
+-#  %ul.team-list
+-#    - block.each do |item|
+-#      %li= link_to item.name, team_path(item.url), :target => "_blank"
+-#.clear

@@ -12,7 +12,8 @@
     - {:text => s.match.hosts.team.name + " - " + s.match.guests.team.name, :cls => 'leaf', :id => "nav-tournament-schedule-#{s.id}", :leaf => true, '_type' => 'Schedule', '_id' => s.id, '_match_id' => s.match.id, '_hosts' => s.match.hosts.team.name, '_guests' => s.match.guests.team.name, '_hosts_footballer_ids' => s.match.hosts.team.footballer_ids[season_id]*',', '_guests_footballer_ids' => s.match.guests.team.footballer_ids[season_id]*','}
 - elsif type
   - nodes = @node.send(nodes).map do |s|
-    - {:text => s.full_name, :cls => params['type'] == 'leagues' ? 'leaf' : 'folder', :id => "nav-tournament-#{s.id}", :leaf => params['type'] == 'leagues', '_id' => s.id, '_identifier' => s.identifier, '_name' => s.name, '_url' => s.url, '_type' => s.type, '_playoff' => (type == 'StepStage') ? s.is_playoff : false }
+    - {:text => s.full_name, :cls => params['type'] == 'leagues' ? 'leaf' : 'folder', :id => "nav-tournament-#{s.id}", :leaf => params['type'] == 'leagues', '_id' => s.id, '_identifier' => s.identifier, '_name' => s.name, '_url' => s.url, '_type' => s.type }
+    -#, '_playoff' => (type == 'StepStage') ? s.is_playoff : false
   - id = "nav-tournament-add-to-#{params[:id] || 'root'}"
   - id << "-#{params[:type]}" if params[:type]
   - nodes.push(:text => 'Добавить ' + name, :cls => 'add', :id => id, :leaf => true, :draggable => false, '_type' => type, '_owner_id' => params[:id] || 'root')

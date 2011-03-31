@@ -24,6 +24,7 @@ gem 'ruby_parser'
 gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 gem 'awesome_print'
 gem 'ruby-debug'
+gem 'jquery-rails', '>= 0.2.6'
 group :production do
   gem 'exception_notification_rails3', :require => 'exception_notifier'
   gem 'sitemap_generator'

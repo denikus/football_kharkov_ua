@@ -4,8 +4,13 @@ class Admin::TempController < ApplicationController
   layout "admin/temp"
   
   def index
-    @tours = StepTour.find(:all,
-                           :conditions => ["tournament_id = ? ", 2],
+    cookies[:schedule_tournament_id] ||= 2
+
+
+   @tournaments = Tournament.all
+            
+   @tours = StepTour.find(:all,
+                           :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],
                            :order => "identifier ASC"
                           )
     @venues = Venue.all
@@ -26,6 +31,10 @@ class Admin::TempController < ApplicationController
       Schedule.delete(params[:id])
     end
     redirect_to :action => "index"
+  end
+
+  def get_tours
+    
   end
 
   def teams
