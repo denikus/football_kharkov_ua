@@ -16,6 +16,7 @@
       = render_cell :sidebar_block, :quick_results, :title => "Блиц-результаты", :subdomain => !current_subdomain.nil? ? current_subdomain : post_subdomain
     - if current_subdomain.nil?
       = render_cell :sidebar_block, :news, :title => "Новенькое", :subdomain => current_subdomain
+    = render_cell :sidebar_block, :advertisement, :title => "Амуниция"
     = render_cell :sidebar_block, :shop, :title => "Амуниция"
     = render_cell :sidebar_block, :comments, :title => "Комментарии", :subdomain => current_subdomain
 
