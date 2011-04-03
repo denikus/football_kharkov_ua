@@ -30,8 +30,7 @@ class TablesController < ApplicationController
 #    @sets = {:league => StepLeague.find}
     tournament = Tournament.find_by_url(current_subdomain)
 
-    ap @stages = tournament.step_seasons.find(:last, :order => "identifier ASC").stages.find(:all, :order => "identifier DESC")
-    debugger
+    @stages = tournament.step_seasons.find(:last, :order => "identifier ASC").stages.find(:all, :order => "identifier DESC")
 
 #    leagues = []
 #    @stages.each{ |stage| stage.leagues.collect{|x| leagues << x.id }}
