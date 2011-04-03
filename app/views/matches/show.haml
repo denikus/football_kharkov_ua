@@ -72,7 +72,7 @@
     %td.statistic
       %p.subheader Статистика
       %p
-        = "Фолы в 1-м тайме:&nbsp;&nbsp;"
+        = "Фолы в 1-м тайме:&nbsp;&nbsp;".html_safe
         %span= @match.hosts.stats.find_by_name('first_period_fouls').value
       %p
         = "Фолы во 2-м тайме: "
@@ -88,7 +88,7 @@
     %td.statistic
       %p.subheader Статистика
       %p
-        = "Фолы в 1-м тайме:&nbsp;&nbsp;"
+        = "Фолы в 1-м тайме:&nbsp;&nbsp;".html_safe
         %span= @match.guests.stats.find_by_name('first_period_fouls').value
       %p
         = "Фолы во 2-м тайме: "
