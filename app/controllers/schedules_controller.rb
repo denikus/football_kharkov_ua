@@ -84,14 +84,16 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    schedule = Schedule.find(params[:id])
-    score = params[:score].empty? ? nil : params[:score]
-    if (params[:team_type]=='host')
-      schedule.update_attribute('host_scores', score)
-    elsif (params[:team_type]=='guest')
-      schedule.update_attribute('guest_scores', score)
+    if !current_user.nil? && MEGA_USER.include?(current_user.id)
+      schedule = Schedule.find(params[:id])
+      score = params[:score].empty? ? nil : params[:score]
+      if (params[:team_type]=='host')
+        schedule.update_attribute('host_scores', score)
+      elsif (params[:team_type]=='guest')
+        schedule.update_attribute('guest_scores', score)
+      end
+      schedule.save!
     end
-    schedule.save!
 
     respond_to  do |format|
       format.json {render :json => {:success => true}}
