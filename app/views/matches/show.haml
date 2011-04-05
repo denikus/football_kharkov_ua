@@ -42,8 +42,12 @@
           %tr{:class => row_class}
             %td.minute
               = "#{event.minute}'"
-              - if event.match_event_type.symbol == 'goal'
+              - if ['goal', 'goal_10', 'goal_6'].include?(event.match_event_type.symbol)
                 = image_tag "/images/icons/sport_soccer.png"
+              - elsif event.match_event_type.symbol == 'auto_goal'
+                = image_tag "/images/icons/auto_goal.png"
+              - elsif ['missed_goal_6', 'missed_goal_10'].include?(event.match_event_type.symbol)
+                = image_tag "/images/icons/missed_goal.png"
               - elsif event.match_event_type.symbol == 'red_card'
                 = image_tag "/images/icons/red_card.png"
               - elsif event.match_event_type.symbol == 'yellow_card'
