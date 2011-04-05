@@ -2,7 +2,7 @@ var my_upload;
 $(function () {  
 	my_upload = $('#upload-link').upload({
         action: '/article/upload_image',
-        params: {authenticity_token: authenticity_token},
+//        params: {authenticity_token: authenticity_token},
 		onSubmit: function() {
 			$('#image-loading-container').show();
             $('#upload-link-container').fadeOut("normal");

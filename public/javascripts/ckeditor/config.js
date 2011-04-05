@@ -26,15 +26,18 @@ CKEDITOR.editorConfig = function( config )
 
   config.toolbar = 'Easy';
 
+  config.format_tags = 'h3'
+
   config.toolbar_Easy =
     [
         ['PageBreak','-'],
         ['Cut','Copy','Paste','PasteText','PasteFromWord'],
         ['Undo','Redo','-'],
-        ['Bold','Italic','Underline','Strike'],
+        ['Format', 'Bold','Italic','Underline','Strike'],
         ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
         ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
         ['Link','Unlink','Anchor'],
         ['Image','Embed','Attachment','Table','HorizontalRule', 'Source']
     ];
+
 };

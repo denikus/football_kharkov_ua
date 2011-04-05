@@ -6,15 +6,30 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 body
 {
 	/* Font */
-	font-family: Arial, Verdana, sans-serif;
-	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica;
 
+	/*font-size: 12px;*/
+  font-size: 81.25%;
 	/* Text color */
 	color: #222;
 
 	/* Remove the background color to make it transparent */
 	background-color: #fff;
 }
+
+h1, h2, h3, h4, h5 {
+  color: #BE420E;
+}
+
+h3, h4 {
+  font-size: 118%;
+  font-weight: bold;
+  margin-top: 0.6em;
+  padding-top: 0.4em;
+  line-height: 1.25em;
+  margin-bottom: 1.25em;
+}
+
 
 /* preserved spaces for rtl list item bullets. (#6249)*/
 ol,ul,dl
@@ -42,4 +57,9 @@ img:-moz-broken
 img, input, textarea
 {
 	cursor: default;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 0.5em;
 }
