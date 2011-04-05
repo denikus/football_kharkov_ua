@@ -6,16 +6,16 @@
 <%= error_messages_for :post %>
 
 <% form_for @article, :url => {:action=>'create', :id=>'new'} do |f| %>
-  <fieldset>
-    <%= hidden_field :article_image, :file, :value => (!@article_image.nil? ? @article_image.file : '')  %>
+<!--  <fieldset>
+    <% hidden_field :article_image, :file, :value => (!@article_image.nil? ? @article_image.file : '')  %>
     <div id="preview-container" style="text-align:center;"></div>
     <div id="image-loading-container" style="display:none;text-align:center;">
-      <%= image_tag '/images/ajax-loader.gif' %>
+      <% image_tag '/images/ajax-loader.gif' %>
     </div>
     <div class="link-with-icon-container" id="upload-link-container">
       <a href="#" id="upload-link" class="add-image-link">Добавить иллюстрацию</a>
     </div>
-  </fieldset>
+  </fieldset>-->
 
   <fieldset>
     <label for="post_title">Заголовок:</label>
