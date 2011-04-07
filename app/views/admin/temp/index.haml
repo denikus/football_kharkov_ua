@@ -1,5 +1,6 @@
 - form_for @schedule, :url => {:action => "create"} do |f|
-  -#=select_tag(:tournament_id, options_from_collection_for_select(@tournaments, "id", "name"), {:selected => cookies[:schedule_tournament_id]})
+  =select_tag(:tournament_id, options_from_collection_for_select(@tournaments, "id", "name", cookies[:schedule_tournament_id]))
+  -#, {:selected => cookies[:schedule_tournament_id]}
   =f.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
 
   =f.hidden_field(:host_team_id)
@@ -10,7 +11,7 @@
 
   =f.select(:venue_id, @venues.collect{|obj| [obj.name, obj.id]})
 
-  =f.text_field(:match_on, :value => "2011-02-")
+  =f.text_field(:match_on, :value => "2011-04-")
   =f.text_field(:match_at)
 
   = f.submit("Сохранить")
@@ -23,7 +24,8 @@
 %ul{:style => "font-size: 14px;"}
   - @last_schedules.each do |schedule|
     %li{:style => "padding-bottom: 2px; border-bottom: 1px dashed grey;"}
-      = "#{schedule.venue.short_name} - "
+      - unless  schedule.venue.short_name.nil?
+        = "#{schedule.venue.short_name} - "
       = "#{Russian::strftime(schedule.match_on.to_date, "%A, %d %B %Y")}; #{schedule.match_at}"
       = "#{schedule.hosts.name} - #{schedule.guests.name}"
       = link_to("удалить", url_for(:controller => "temp", :action => "delete_schedule", :id => schedule.id))

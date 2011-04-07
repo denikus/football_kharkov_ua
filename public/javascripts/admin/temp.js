@@ -93,6 +93,26 @@ football.namespace('temp.schedule', {
           }
         }
       });
+
+      $("#tournament_id").bind('change', function(e) {
+
+        $.ajax({
+            url:'/admin/temp/get_tours',
+            type: 'GET',
+            dataType: 'json',
+            data: {tournament_id: $(this).val()},
+            success: function(data) {
+              var select_content = '';
+              for(var i = 0; i < data.length; i++) {
+
+                select_content += '<option value="' + data[i].value + '"' + (i==(data.length-1) ? " selected=\"selected\"" : "") + '>' + data[i].text + '</option>';
+              }
+              $("#schedule_tour_id").html(select_content);
+            }
+          });
+
+
+      });
     },
     select_host_team: function(team_id){
       $("#schedule_host_team_id").val(team_id);
