@@ -24,7 +24,7 @@
 %ul{:style => "font-size: 14px;"}
   - @last_schedules.each do |schedule|
     %li{:style => "padding-bottom: 2px; border-bottom: 1px dashed grey;"}
-      - unless  schedule.venue.short_name.nil?
+      - unless  schedule.venue.nil?
         = "#{schedule.venue.short_name} - "
       = "#{Russian::strftime(schedule.match_on.to_date, "%A, %d %B %Y")}; #{schedule.match_at}"
       = "#{schedule.hosts.name} - #{schedule.guests.name}"
