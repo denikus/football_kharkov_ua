@@ -37,6 +37,10 @@ group :development do
   gem 'compass'
   gem 'fancy-buttons'
 end
+
+group :test do
+  gem 'factory_girl_rails'
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 

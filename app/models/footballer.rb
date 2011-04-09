@@ -11,6 +11,8 @@ class Footballer < ActiveRecord::Base
     :conditions => {:footballers_teams => {:step_id => options[:step_id], :team_id => options[:team_id]}},
     :order => 'last_name ASC'
   } }
+
+  before_save :prepare_data
   
   def full_name
     [last_name, first_name, patronymic].join(" ")
@@ -40,7 +42,7 @@ class Footballer < ActiveRecord::Base
 #            )
   end
 
-  def before_save
+  def prepare_data
     self.last_name.strip!
     self.first_name.strip!
     unless self.patronymic.nil?

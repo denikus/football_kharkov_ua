@@ -8,6 +8,8 @@ class Schedule < ActiveRecord::Base
   belongs_to :step_league, :foreign_key => 'league_id'
   #has_one :quick_match_result
   has_one :match
+
+  after_create :create_match
 #  accepts_nested_attributes_for :quick_match_result, :allow_destroy => false
   
 
@@ -21,7 +23,7 @@ class Schedule < ActiveRecord::Base
   #                                     )
   #end
 
-  def after_create
+  def create_match
     new_match = create_match({})
     new_match.save!
     new_match.competitors.create({:team_id => self.host_team_id, :side => "hosts"})

@@ -8,12 +8,14 @@ class Team < ActiveRecord::Base
   
   has_many :footballers_teams
   has_and_belongs_to_many :steps
-  
+
+  before_save :prepare_url
+
   def footballer_ids
     @footballers_proxy ||= FootballersProxy.new self
   end
 
-  def before_save
+  def prepare_url
     self.url = self.name.gsub(/[^a-zA-Zа-яА-Я0-9\-]/, '-')
   end
 

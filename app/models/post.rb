@@ -17,23 +17,28 @@ class Post < ActiveRecord::Base
     end  
   }
 
+  before_create :prepare_dates_and_url
+  after_create :generate_short_link
+  before_save :validate_resource
+
+
   STATUSES = [[:published, "Публиковать/Завершена"], [:updating, "Публиковать/Обновляется"]]
 
-  def before_create
+  def prepare_dates_and_url
     self.url = self.title.dirify
     self.url_year  = Time.now.strftime("%Y")
     self.url_month = Time.now.strftime("%m")
     self.url_day  = Time.now.strftime("%d")
   end
 
-  def after_create
+  def generate_short_link
     Bitly.use_api_version_3
     bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
     self.short_url = bitly.shorten("http://football.kharkov.ua/#{self.created_at.strftime('%Y')}/#{self.created_at.strftime('%m')}/#{self.created_at.strftime('%d')}/#{self.url}").short_url
     self.save!
   end
 
-  def before_save
+  def validate_resource
     if !self.resource.valid?
       return false
     end

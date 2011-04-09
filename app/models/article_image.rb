@@ -11,6 +11,7 @@ require 'mini_magick'
 #    @file_path = param[:source_path]
   end
 
+=begin
   def before_update
     old_file = ArticleImage.find(self.id)
     if old_file.file != self.file
@@ -32,6 +33,7 @@ require 'mini_magick'
     resize( self.source_path + File.basename(self.file), picture_path, 200, 200)
 #    self.file = self.file
   end
+=end
 
   private
 

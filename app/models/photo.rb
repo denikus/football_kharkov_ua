@@ -4,7 +4,10 @@ class Photo < ActiveRecord::Base
   attr_accessor :user_id
 
   belongs_to :photo_gallery
-  
+
+  before_create :before_saving
+
+
   @@gallery_path       = ''
   @@gallery_thumb_path = ''
 #  def initialize
@@ -17,7 +20,7 @@ class Photo < ActiveRecord::Base
 #    self.prepare_directory(@@gallery_path)
 #  end
   
-  def before_create
+  def before_saving
    self.save_to_gallery(self.file, self.filename, self.photo_gallery_id, self.user_id)
 #      self.save
 #    end

@@ -1,7 +1,7 @@
 class Match < ActiveRecord::Base
   belongs_to :schedule
 
-  named_scope :with_scores,
+  scope :with_scores,
 #              :select => "matches.*",
 #              :joins  => "INNER JOIN schedules ON (schedule.id = matches.schedule_id )",
               :conditions => "schedules.host_scores IS NOT NULL AND schedules.guest_scores IS NOT NULL "
@@ -20,6 +20,7 @@ class Match < ActiveRecord::Base
   has_many :match_links
 
   has_and_belongs_to_many :referees
+
 
 
   

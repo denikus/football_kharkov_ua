@@ -5,7 +5,10 @@ class Article < ActiveRecord::Base
   
   validates_presence_of :body
 
-  def before_save
+  before_save :sanitize_body
+  
+
+  def sanitize_body
     self.body = Sanitize.clean(self.body, Sanitize::Config::FOOTBALL_ARTICLE)
   end
 end

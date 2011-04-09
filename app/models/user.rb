@@ -13,16 +13,18 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :case_sensitive => false
   validates_length_of :username, :within => 3..64
   validates_uniqueness_of :email, :case_sensitive => false
-  
-  def before_create
+
+  before_create :create_profile
+
+  def create_profile
     self.profile = Profile.new
   end
 
-  def after_create
-    user_path = "#{RAILS_ROOT}/public/user"
-    FileUtils.mkdir(user_path) unless File.exist?(user_path)
-    FileUtils.mkdir(File.join(user_path, self.id.to_s)) unless File.exist?(File.join(user_path, self.id.to_s))
-  end
+#  def after_create
+#    user_path = "#{RAILS_ROOT}/public/user"
+#    FileUtils.mkdir(user_path) unless File.exist?(user_path)
+#    FileUtils.mkdir(File.join(user_path, self.id.to_s)) unless File.exist?(File.join(user_path, self.id.to_s))
+#  end
   
   def to_param
     username
