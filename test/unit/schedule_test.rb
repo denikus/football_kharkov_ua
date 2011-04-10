@@ -22,6 +22,4 @@ class ScheduleTest < ActiveSupport::TestCase
     assert_equal(schedule.match.hosts.team_id, 1)
     assert_equal(schedule.match.guests.team_id, 2)
   end
-
-
 end
