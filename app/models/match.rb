@@ -5,6 +5,10 @@ class Match < ActiveRecord::Base
 #              :select => "matches.*",
 #              :joins  => "INNER JOIN schedules ON (schedule.id = matches.schedule_id )",
               :conditions => "schedules.host_scores IS NOT NULL AND schedules.guest_scores IS NOT NULL "
+  scope :played_by_footballer,
+        lambda {|match_ids, team_id, footballer_id|
+                  joins(:competitors => :football_players).
+                  where("matches.id IN (?) AND competitors.team_id = ? AND football_players.footballer_id = ? ", match_ids, team_id, footballer_id)}
             
   has_many :competitors, :include => :football_players do
     def [] side
@@ -31,6 +35,8 @@ class Match < ActiveRecord::Base
       cmp.football_players.each &:generate_events
     end
   end
+
+  def
 
   def date
     schedule.match_on.strftime('%Y-%m-%d')

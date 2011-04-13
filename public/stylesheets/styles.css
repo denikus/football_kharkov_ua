@@ -1727,3 +1727,21 @@ table.match ul.players_list {
 table.match ul.players_list li {
   padding-bottom: 3px;
 }
+
+/*Footballer Page*/
+/* line 1532, ../../app/stylesheets/styles.scss */
+.photo_block {
+  width: 255px;
+  float: left;
+}
+/* line 1535, ../../app/stylesheets/styles.scss */
+.photo_block img {
+  border: 1px solid black;
+}
+
+/* line 1543, ../../app/stylesheets/styles.scss */
+.info_container {
+  float: left;
+  padding-left: 5px;
+  width: 660px;
+}

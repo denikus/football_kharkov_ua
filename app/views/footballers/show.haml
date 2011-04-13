@@ -1,5 +1,38 @@
-%h2.tournament-subtitle= "Футболист: #{@footballer.full_name}"
-%h3= "Принимал участие в турнирах:"
-%ul.team-list
-  -@tournaments_take_part.each do |item|
-    %li= "#{item.tournament_name} #{item.season_name}: в составе команды \"#{link_to(item.team_name, team_path(item.team_address), :target => "_blank")}\"".html_safe
+%h1.tournament-subtitle= "Футболист: #{@footballer.full_name}"
+
+.photo_block
+  = image_tag "default_footballer_avatar.jpg"
+  %p
+
+  -#- if @footballer.user.nil?
+  -#  %p{:style => "text-align: center;"}
+  -#    = link_to "Эй, да это же я!", "#"
+  -#- else
+  -#  Он же:
+  -#  %p.user_block
+
+.info_container
+  %h3= "Общие данные"
+  - unless @footballer.birth_date.nil?
+    %p
+      %strong= "Дата рождения:"
+      = Russian::strftime(@footballer.birth_date, "%d %B %Y года")
+  %h3= "Сводки с полей"
+
+  - @tournaments_teams.each do |tournament_team|
+    = render "tournament_info_block", :tournament_team => tournament_team
+    -#= "#{f_t.step.tournament.name} - #{f_t.step.name}"
+    -#%br/
+    
+
+.clear
+      
+
+  
+  
+  
+-#%h3= "Принимал участие в турнирах:"
+-#%ul.team-list
+-#  -@tournaments_take_part.each do |item|
+-#    %li= "#{item.tournament_name} #{item.season_name}: в составе команды \"#{link_to(item.team_name, team_path(item.team_address), :target => "_blank")}\"".html_safe
+

@@ -1,0 +1,8 @@
+%p
+  = "Принимал участие в "
+  = link_to tournament_team[:tournament].short_name, tournament_url(:host => with_subdomain(tournament_team[:tournament].url))
+  = "сезона \"#{tournament_team[:season].name}\" "
+  = "(#{tournament_team[:league].name}) "
+  = "в составе команды "
+  = "#{link_to tournament_team[:team].name, team_url(tournament_team[:team].url, :host => with_subdomain(tournament_team[:tournament].url))}. ".html_safe
+  = "Участвовал в #{Russian::t(:took_part_matches, :count => tournament_team[:footballer_matches])} из #{ Russian::t(:from_matches, :count => tournament_team[:total_team_matches]) } сезона."

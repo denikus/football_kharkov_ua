@@ -1,4 +1,19 @@
 ru:
+  matches:
+    one: "%{count} матч"
+    few: "%{count} матча"
+    many: "%{count} матчей"
+    other: "%{count} матча"
+  took_part_matches:
+    one: "%{count} матче"
+    few: "%{count} матчах"
+    many: "%{count} матчах"
+    other: "%{count} матчах"
+  from_matches:
+    one: "%{count} матча"
+    few: "%{count} матчей"
+    many: "%{count} матчей"
+    other: "%{count} матчей"
   date:
     formats:
       default: "%d.%m.%Y"

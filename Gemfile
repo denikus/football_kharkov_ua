@@ -32,13 +32,12 @@ group :production do
   gem 'whenever', :require => false
 end
 
-
-
 group :development do
   gem 'newrelic_rpm'
   gem 'sass', '3.1.0.alpha.216'
   gem 'compass'
   gem 'fancy-buttons'
+  gem 'newrelic_rpm'
 end
 
 group :test do
