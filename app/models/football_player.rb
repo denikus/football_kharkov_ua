@@ -7,7 +7,8 @@ class FootballPlayer < ActiveRecord::Base
   has_many :stats, :as => :statable, :extend => Stat::Ext, :dependent => :destroy
 
   scope :sort_by_number, :order => "number ASC"
-  
+  scope :by_competitor_footballer, lambda {|competitors_id, footballer_id| where("competitor_id IN (?) AND footballer_id = ? ", competitors_id, footballer_id)}
+
   def update stats
     #check stats and create keys for missed_goal_10, missed_goal_6 if needed
     full_stats = {}
@@ -32,7 +33,15 @@ class FootballPlayer < ActiveRecord::Base
     self.number = stats['number']
     STATS.each{ |s| self.stats.set s, *full_stats[s].split(',').map(&:to_i) unless full_stats[s].empty? }
   end
-  
+
+  def self.get_stats(ids)
+    FootballPlayer.select("COUNT(*), `stats`.name").
+                   joins("INNER JOIN `stats` ON (`stats`.statable_id = `football_players`.id AND `stats`.statable_type = 'FootballPlayer')").
+                   where("`football_players`.id IN (?)", ids).
+                   group("`stats`.name")
+
+  end
+
   def match_id
     competitor.match_id
   end

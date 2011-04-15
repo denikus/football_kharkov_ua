@@ -1,0 +1,19 @@
+.schedule-content
+  -schedules.each_with_index do |schedule_item, i|
+    %table.footballer-schedule
+      %caption
+        = Russian::strftime(schedule_item.match_on.to_date, "%A, %d %B %Y")
+        = schedule_item.match_at
+      -row_class = i%2 == 0 ? "" : "odd"
+      %tr{:class => row_class}
+        %td.tournament
+          = link_to schedule_item.step_tour.tournament.short_name, tournament_url(:subdomain => schedule_item.step_tour.tournament.url)
+        %td.venue
+          - unless schedule_item.venue.nil?
+            = (!schedule_item.venue.icon.nil? && !schedule_item.venue.icon.empty? ? image_tag("/images/icons/#{schedule_item.venue.icon}", :alt => "#{schedule_item.venue.name}", :title => "#{schedule_item.venue.name}") : "")
+            =link_to schedule_item.venue.short_name, venue_url(schedule_item.venue.url)
+        %td.hosts
+          = link_to schedule_item.hosts.name, team_url(schedule_item.hosts.url, :host => with_subdomain(schedule_item.step_tour.tournament.url))
+        %td{:style => "width: 20px;"}= "-"
+        %td.guests
+          = link_to schedule_item.guests.name, team_url(schedule_item.guests.url, :host => with_subdomain(schedule_item.step_tour.tournament.url))

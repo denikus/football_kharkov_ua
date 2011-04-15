@@ -10,6 +10,7 @@ class Schedule < ActiveRecord::Base
   has_one :match
 
   after_create :create_resources
+
 #  accepts_nested_attributes_for :quick_match_result, :allow_destroy => false
   
 
@@ -39,6 +40,13 @@ class Schedule < ActiveRecord::Base
   end
 
   class << self
+
+    def future_footballer_matches(footballer_id)
+      joins({:hosts => :footballers_teams, :guests => :footballers_teams}).
+      where("footballers_teams.footballer_id = ? AND `schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ?", footballer_id, Time.now.to_date).
+      group("`schedules`.id")
+    end
+
     def get_min_date(tournament, with_results = false)
 
       condition_str = "1"

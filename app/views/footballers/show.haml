@@ -17,14 +17,16 @@
     %p
       %strong= "Дата рождения:"
       = Russian::strftime(@footballer.birth_date, "%d %B %Y года")
-  %h3= "Сводки с полей"
+      %br/
+      %br/
+  %h3= "Краткая информация по участию в турнирах"
 
   - @tournaments_teams.each do |tournament_team|
     = render "tournament_info_block", :tournament_team => tournament_team
-    -#= "#{f_t.step.tournament.name} - #{f_t.step.name}"
-    -#%br/
-    
 
+  %h3= "Ближайшие матчи"
+  = render "schedule_info_block", :schedules => @schedules
+  
 .clear
       
 
