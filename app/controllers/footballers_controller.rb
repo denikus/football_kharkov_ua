@@ -2,6 +2,11 @@ class FootballersController < ApplicationController
   layout "app_without_sidebar"
   
   def show
+    unless current_subdomain.nil?
+      redirect_params = {:subdomain => nil, :id => params[:id] }
+      redirect_to footballer_url(redirect_params), :status=>301
+    end
+
     @footballer = Footballer.find_by_url(params[:id])
 
 

@@ -2,4 +2,4 @@
 %h3= "Состав (#{@tournament.name} #{@season.name})"
 %ul.player-list
   -@footballers.each do |item|
-    %li= link_to item.full_name, footballer_path(:id => item.url, :subdomain => false), :target => "_blank"
+    %li= link_to item.full_name, footballer_url(:id => item.url, :subdomain => nil), :target => "_blank"
