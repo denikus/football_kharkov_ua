@@ -4,8 +4,7 @@ class PlayerRatesController < ApplicationController
 
     @leagues = StepLeague.get_leagues_in_season(@seasons.last)
 
-    @league_footballers = Footballer.by_team_step(:step_id =>)
-        FootballPlayer.all(
+    @league_footballers = FootballPlayer.all(
         :select => "football_players.*, footballers.*, steps_teams.step_id as league_id, teams.*",
          :joins =>
             "INNER JOIN footballers " +
