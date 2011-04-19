@@ -11,6 +11,12 @@ class Footballer < ActiveRecord::Base
     :conditions => {:footballers_teams => {:step_id => options[:step_id], :team_id => options[:team_id]}},
     :order => 'last_name ASC'
   } }
+
+#  scope :by_step, lambda{ |options| {
+#      :joins => [:football_players,
+#                 :competitor => {:competitor[:id] => :football_players[:footballer_id]},
+#                 : ]
+#  }}
   
   def full_name
     [last_name, first_name, patronymic].join(" ")
@@ -19,7 +25,7 @@ class Footballer < ActiveRecord::Base
   alias_method :name, :full_name
   
   def get_teams_seasons
-    Footballer.find(:all,
+    Footballer.all(
         :select => "tournaments.name AS tournament_name, steps.name AS season_name, teams.name AS team_name, teams.url AS team_address",
         :joins => "INNER JOIN footballers_teams ON (footballers.id = footballers_teams.footballer_id) " +
                   "INNER JOIN teams ON (footballers_teams.team_id = teams.id) " +

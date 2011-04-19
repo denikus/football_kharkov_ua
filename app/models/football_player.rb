@@ -16,6 +16,15 @@ class FootballPlayer < ActiveRecord::Base
   def match_id
     competitor.match_id
   end
+
+  def player_stats
+    pl_stats = {}
+    STATS.each do |s|
+      pl_stats[s] = self.stats.count(:conditions => {:name => s})
+    end
+
+    pl_stats
+  end
   
   def generate_events
     stats.all(

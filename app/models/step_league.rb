@@ -5,7 +5,7 @@ class StepLeague < Step
   has_many :matches, :through => :schedules
   
   def StepLeague.get_leagues_in_season (season_id)
-    leagues = self.find(:all,
+    leagues = self.all(
               :select => "steps.* ",
               :joins => "INNER JOIN `steps_phases` AS stages_2_leagues " +
                           "ON (steps.id = stages_2_leagues.phase_id) " +
