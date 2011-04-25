@@ -72,5 +72,5 @@ FootballKharkov::Application.configure do
   }.freeze
 
 
-  MEGA_USER = [1, 107, 74]
+  MEGA_USER = [1, 107, 74, 87]
 end

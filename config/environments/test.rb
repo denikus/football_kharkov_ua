@@ -25,6 +25,8 @@ FootballKharkov::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  config.action_mailer.default_url_options = { :host => 'football.lvh.me' }
+
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
   # like if you have constraints or database-specific column types
@@ -32,4 +34,9 @@ FootballKharkov::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  BITLY = {
+    :username => 'footballkharkov',
+    :api_key => 'R_284aa8534d40494118bf2dadca17695a'
+  }.freeze
 end

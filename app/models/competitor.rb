@@ -20,6 +20,8 @@ class Competitor < ActiveRecord::Base
     end
   end
   has_many :stats, :as => :statable, :extend => Stat::Ext, :dependent => :destroy
+
+  scope :by_team_matches, lambda {|team_id, matches_id| where("team_id = ? AND match_id IN (?)", team_id, matches_id)}
   
   SIDES = [:hosts, :guests].freeze
   STATS = %w{score first_period_fouls second_period_fouls}.freeze

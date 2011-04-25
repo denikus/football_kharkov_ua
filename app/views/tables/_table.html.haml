@@ -1,23 +1,6 @@
--#%table{:border => '1'}
--#  %tr{:style => "font-weight: bold"}
--#    %td Название
--#    -#%td{:colspan => records.length} Счёт
--#    %td И
--#    %td В
--#    %td Н
--#    %td П
--#    %td О
--#    %td P
--#  - records.each do |record|
--#    %tr
--#      %td= record.team.name
--#      -#- records.collect{ |r| r.team.id }.each do |id|
--#      -#  %td= record.results[id].nil? ? '-' : record.results[id]
--#      %td= record.games_count
--#      - record.games.each do |g|
--#        %td= g
--#      %td= record.score
--#      %td= record.position_change
+-#- @stages.each do |stage|
+-#  %h2= stage.name
+
 
 %table.tournament-position{:style => "margin-right: 10px;"}
   %tr

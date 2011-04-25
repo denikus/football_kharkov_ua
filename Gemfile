@@ -25,6 +25,7 @@ gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 gem 'awesome_print'
 gem 'ruby-debug'
 gem 'jquery-rails', '>= 0.2.6'
+
 group :production do
   gem 'exception_notification_rails3', :require => 'exception_notifier'
   gem 'sitemap_generator'
@@ -36,6 +37,15 @@ group :development do
   gem 'sass', '3.1.0.alpha.216'
   gem 'compass'
   gem 'fancy-buttons'
+  gem 'newrelic_rpm'
+end
+
+group :test do
+  gem 'ZenTest'
+  gem 'autotest-rails'
+  gem 'factory_girl_rails'
+  gem 'redgreen'
+  gem 'test_notifier'
 end
 # Use unicorn as the web server
 # gem 'unicorn'

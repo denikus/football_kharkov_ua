@@ -26,8 +26,12 @@
                 = "("
                 - player.stats.each do |stat|
                   = "#{stat.value}'"
-                  - if stat.name == 'goal'
+                  - if ['goal', 'goal_10', 'goal_6'].include?(stat.name)
                     = image_tag "/images/icons/sport_soccer.png"
+                  - elsif stat.name == 'auto_goal'
+                    = image_tag "/images/icons/auto_goal.png"
+                  - elsif ['missed_goal_6', 'missed_goal_10'].include?(stat.name)
+                    = image_tag "/images/icons/missed_goal.png"
                   - elsif stat.name == 'red_card'
                     = image_tag "/images/icons/red_card.png"
                   - elsif stat.name == 'yellow_card'
@@ -42,8 +46,12 @@
           %tr{:class => row_class}
             %td.minute
               = "#{event.minute}'"
-              - if event.match_event_type.symbol == 'goal'
+              - if ['goal', 'goal_10', 'goal_6'].include?(event.match_event_type.symbol)
                 = image_tag "/images/icons/sport_soccer.png"
+              - elsif event.match_event_type.symbol == 'auto_goal'
+                = image_tag "/images/icons/auto_goal.png"
+              - elsif ['missed_goal_6', 'missed_goal_10'].include?(event.match_event_type.symbol)
+                = image_tag "/images/icons/missed_goal.png"
               - elsif event.match_event_type.symbol == 'red_card'
                 = image_tag "/images/icons/red_card.png"
               - elsif event.match_event_type.symbol == 'yellow_card'
@@ -61,18 +69,22 @@
                 = "("
                 - player.stats.each do |stat|
                   = "#{stat.value}'"
-                  - if stat.name == 'goal'
+                  - if ['goal', 'goal_10', 'goal_6'].include?(stat.name)
                     = image_tag "/images/icons/sport_soccer.png"
+                  - elsif stat.name == 'auto_goal'
+                    = image_tag "/images/icons/auto_goal.png"
+                  - elsif ['missed_goal_6', 'missed_goal_10'].include?(stat.name)
+                    = image_tag "/images/icons/missed_goal.png"
                   - elsif stat.name == 'red_card'
                     = image_tag "/images/icons/red_card.png"
                   - elsif stat.name == 'yellow_card'
                     = image_tag "/images/icons/yellow_card.png"
-                = ")"
+                  = ")"
   %tr
     %td.statistic
       %p.subheader Статистика
       %p
-        = "Фолы в 1-м тайме:&nbsp;&nbsp;"
+        = "Фолы в 1-м тайме:&nbsp;&nbsp;".html_safe
         %span= @match.hosts.stats.find_by_name('first_period_fouls').value
       %p
         = "Фолы во 2-м тайме: "
@@ -88,7 +100,7 @@
     %td.statistic
       %p.subheader Статистика
       %p
-        = "Фолы в 1-м тайме:&nbsp;&nbsp;"
+        = "Фолы в 1-м тайме:&nbsp;&nbsp;".html_safe
         %span= @match.guests.stats.find_by_name('first_period_fouls').value
       %p
         = "Фолы во 2-м тайме: "

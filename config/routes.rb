@@ -84,11 +84,9 @@ FootballKharkov::Application.routes.draw do
 
 #  with_options :constraints => {:subdomain => /.+/} do
   constraints(Subdomain) do
-#  scope '/tournaments' do
     match '/feed' =>  "tournaments#feed"
     match '/' => "tournaments#index", :as => "tournament"
     match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
-#    match '/post' => 'post#show', :constraints =>  {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/, :subdomain => /.+/}
   end
 
   resources :teams, :only => ["index", "show"]

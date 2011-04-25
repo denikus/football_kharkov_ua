@@ -13,6 +13,8 @@ class Profile < ActiveRecord::Base
   USER_TYPE_OPTIONS = [[:fan, 'Болельщик'], [:footballer, 'Футболист']]
   ROLE_OPTIONS = [[:unknown, 'Еще не определился'], [:ball_boy, 'Подаю мячи'], [:goalkeeper, 'Вратарь'], [:fullback, 'Защитник'], [:halfback, 'Полузащитник'], [:forward, 'Форвард'], [:coach, 'Тренер']]
 
+  before_update :crop_image
+
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
@@ -22,7 +24,7 @@ class Profile < ActiveRecord::Base
     @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
   end
 
-  def before_update
+  def crop_image
     if cropping?
       self.crop_x_left    = crop_x
       self.crop_y_top     = crop_y

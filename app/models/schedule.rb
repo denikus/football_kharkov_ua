@@ -8,6 +8,9 @@ class Schedule < ActiveRecord::Base
   belongs_to :step_league, :foreign_key => 'league_id'
   #has_one :quick_match_result
   has_one :match
+
+  after_create :create_resources
+
 #  accepts_nested_attributes_for :quick_match_result, :allow_destroy => false
   
 
@@ -21,8 +24,8 @@ class Schedule < ActiveRecord::Base
   #                                     )
   #end
 
-  def after_create
-    new_match = create_match({})
+  def create_resources
+    new_match = create_match
     new_match.save!
     new_match.competitors.create({:team_id => self.host_team_id, :side => "hosts"})
     new_match.competitors.create({:team_id => self.guest_team_id, :side => "guests"})
@@ -37,6 +40,13 @@ class Schedule < ActiveRecord::Base
   end
 
   class << self
+
+    def future_footballer_matches(footballer_id)
+      joins({:hosts => :footballers_teams, :guests => :footballers_teams}).
+      where("footballers_teams.footballer_id = ? AND `schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ?", footballer_id, Time.now.to_date).
+      group("`schedules`.id")
+    end
+
     def get_min_date(tournament, with_results = false)
 
       condition_str = "1"

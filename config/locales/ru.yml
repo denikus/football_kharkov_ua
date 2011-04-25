@@ -1,4 +1,39 @@
 ru:
+  matches:
+    one: "%{count} матч"
+    few: "%{count} матча"
+    many: "%{count} матчей"
+    other: "%{count} матча"
+  took_part_matches:
+    one: "%{count} матче"
+    few: "%{count} матчах"
+    many: "%{count} матчах"
+    other: "%{count} матчах"
+  from_matches:
+    one: "%{count} матча"
+    few: "%{count} матчей"
+    many: "%{count} матчей"
+    other: "%{count} матчей"
+  goals:
+    one: "%{count} гол"
+    few: "%{count} гола"
+    many: "%{count} голов"
+    other: "%{count} голов"
+  get_yellow_cards:
+    one: "%{count} желтую карточку"
+    few: "%{count} желтые карточки"
+    many: "%{count} желтых карточек"
+    other: "%{count} желтых карточек"
+  get_red_cards:
+    one: "%{count} красную карточку"
+    few: "%{count} красные карточки"
+    many: "%{count} красных карточек"
+    other: "%{count} красных карточек"
+  make_auto_goals:
+    one: "%{count} автоголом"
+    few: "%{count} автоголами"
+    many: "%{count} автоголами"
+    other: "%{count} автоголами"
   date:
     formats:
       default: "%d.%m.%Y"

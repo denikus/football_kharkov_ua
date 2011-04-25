@@ -8,13 +8,29 @@ class Team < ActiveRecord::Base
   
   has_many :footballers_teams
   has_and_belongs_to_many :steps
-  
+
+  before_save :prepare_url
+
   def footballer_ids
     @footballers_proxy ||= FootballersProxy.new self
   end
 
-  def before_save
+  def prepare_url
     self.url = self.name.gsub(/[^a-zA-Zа-яА-Я0-9\-]/, '-')
+  end
+
+  def get_league(footballer_id, season_id)
+    Team.select("step_leagues.* ").
+              joins(
+                "INNER JOIN `footballers_teams` ON (`footballers_teams`.team_id = `teams`.id) " +
+                "INNER JOIN `steps_phases` AS stages ON (`stages`.step_id = `footballers_teams`.step_id) " +
+                "INNER JOIN `steps_phases` AS leagues ON (`leagues`.step_id = `stages`.phase_id) " +
+                "INNER JOIN `steps_teams` ON (`steps_teams`.step_id = `leagues`.phase_id) " +
+                "INNER JOIN `steps` AS step_leagues ON (`step_leagues`.id = `steps_teams`.step_id AND `step_leagues`.type = 'StepLeague') "
+              ).
+            where(
+              [" `teams`.id = ? AND  `footballers_teams`.step_id = ? AND `footballers_teams`.footballer_id = ? AND `steps_teams`.team_id = ? ", self, season_id, footballer_id, self]
+            ).group("step_leagues.id").first
   end
 
   def get_schedule_for_season(season_id)

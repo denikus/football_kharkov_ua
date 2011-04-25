@@ -7,19 +7,19 @@ class Admin::TempController < ApplicationController
     cookies[:schedule_tournament_id] ||= 2
 
 
-   @tournaments = Tournament.all
+    @tournaments = Tournament.all
             
-   @tours = StepTour.find(:all,
+    @tours = StepTour.find(:all,
                            :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],
                            :order => "identifier ASC"
                           )
     @venues = Venue.all
-    @schedule = Schedule.new({:match_on => "2011-01-"})
+    @schedule = Schedule.new({:match_on => "2011-04-"})
     
     @last_schedules = Schedule.find(
                                     :all,
                                     :joins => "INNER JOIN steps ON (steps.id = schedules.tour_id AND steps.type = 'StepTour')",
-                                    :conditions => ["tournament_id = ? ", 2],
+                                    :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],
                                     :order => "match_on DESC, venue_id ASC, match_at ASC",
                                     :limit => 80
                                    )
@@ -34,7 +34,26 @@ class Admin::TempController < ApplicationController
   end
 
   def get_tours
+
+    if params["tournament_id"].nil?
+      return false
+    end
+
+    last_season = StepSeason.by_tournament(params["tournament_id"]).last
     
+    cookies[:schedule_tournament_id] = params["tournament_id"]
+    @tours = StepTour.find(:all,
+                         :joins => "INNER JOIN `steps_phases` ON (phase_id = steps.id) ",
+                         :conditions => ["steps_phases.step_id IN (#{last_season.stages.collect!{|x| x.id}.join(',')})"],
+                         :order => "identifier ASC"
+                        )
+    data = @tours.collect do |tour|
+      {:text => tour.name,
+       :value => tour.id
+      }
+    end
+
+    render :layout => false, :json => data.to_json.html_safe
   end
 
   def teams
