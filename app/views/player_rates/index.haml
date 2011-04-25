@@ -1,0 +1,19 @@
+%h2.team_rate-subtitle Индивидуальный Индекс Лутицкого-Громыхаева
+%br
+- @leagues.each do |league|
+  %table.team_rate-position
+    %tr
+      %th{:colspan => 2}= league.name
+    %tr.header
+      %td
+        Место
+      %td
+        Игрок
+      %td
+        Сезонный Индекс
+    - @league_footballers.select{|footballer| footballer.league_id == league.id}.each_with_index do |item, index|
+      - row_class = index%2 == 0 ? "" : "odd"
+      %tr{:class => row_class}
+      %td.place= index + 1
+      %td.team= "#{link_to(item.first_name + " " + item.last_name, footballer_path(item.url))} #{link_to(item.namespace_path, team_path())}
+      %td.rate= (item.rate.nil?) ? "-" : sprintf('%0.03f', item.rate)
