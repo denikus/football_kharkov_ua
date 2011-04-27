@@ -26,6 +26,9 @@ gem 'awesome_print'
 gem 'ruby-debug'
 gem 'oauth2'
 gem 'jquery-rails', '>= 0.2.6'
+gem 'sass', '3.1.0.alpha.216'
+gem 'compass'
+  
 
 group :production do
   gem 'exception_notification_rails3', :require => 'exception_notifier'
@@ -35,8 +38,6 @@ end
 
 group :development do
   gem 'newrelic_rpm'
-  gem 'sass', '3.1.0.alpha.216'
-  gem 'compass'
   gem 'fancy-buttons'
   gem 'newrelic_rpm'
 end
