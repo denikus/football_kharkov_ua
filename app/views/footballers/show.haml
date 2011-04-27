@@ -6,7 +6,7 @@
 
   -#- if @footballer.user.nil?
   -#  %p{:style => "text-align: center;"}
-  -#    = link_to "Эй, да это же я!", "#"
+  -#    = link_to "Эй, да это же я!", footballer_its_me_path(@footballer.url)
   -#- else
   -#  Он же:
   -#  %p.user_block

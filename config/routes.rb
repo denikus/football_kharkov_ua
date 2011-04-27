@@ -77,7 +77,9 @@ FootballKharkov::Application.routes.draw do
   end
 
   match '/itleague_draw' => "itleague_draw#index"
-  resources :footballers, :only => ["index", "show"]
+  resources :footballers, :only => ["index", "show"] do
+    get :its_me
+  end
   resources :quick_match_results, :only => ["show"]
   resources :venues, :only => ["show"]
 
@@ -99,6 +101,8 @@ FootballKharkov::Application.routes.draw do
   end
 
   root :to => "blog#index"
+
+  match '/vkontakte_oauth/:action' => "vkontakte_oauth", :as => "vkontakte_oauth"
 
   match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
 

@@ -1,14 +1,10 @@
 class FootballersController < ApplicationController
   layout "app_without_sidebar"
+
+  before_filter :redirect_to_main_domain
   
   def show
-    unless current_subdomain.nil?
-      redirect_params = {:subdomain => nil, :id => params[:id] }
-      redirect_to footballer_url(redirect_params), :status=>301
-    end
-
     @footballer = Footballer.find_by_url(params[:id])
-
 
     tournaments = @footballer.footballers_teams.joins(:step).group("steps.tournament_id").collect{|item| item.step.tournament}
 
@@ -65,5 +61,18 @@ class FootballersController < ApplicationController
 #    @tournaments_take_part = @footballer.get_teams_seasons
 
     
+  end
+
+  def its_me
+    @footballer = Footballer.find_by_url(params[:footballer_id])
+  end
+
+  private
+
+  def redirect_to_main_domain
+    unless current_subdomain.nil?
+      redirect_params = {:subdomain => nil, :id => params[:id] }
+      redirect_to footballer_url(redirect_params), :status=>301
+    end
   end
 end

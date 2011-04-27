@@ -24,6 +24,7 @@ gem 'ruby_parser'
 gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'
 gem 'awesome_print'
 gem 'ruby-debug'
+gem 'oauth2'
 gem 'jquery-rails', '>= 0.2.6'
 
 group :production do

@@ -1,0 +1,2 @@
+module VkontakteOauthHelper
+end
