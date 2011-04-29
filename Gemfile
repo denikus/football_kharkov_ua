@@ -15,6 +15,7 @@ gem 'hpricot'
 gem 'russian'
 #gem 'rutils'
 gem 'cells'
+#gem 'omniauth'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
 gem "paperclip", "~> 2.3"

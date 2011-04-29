@@ -25,7 +25,7 @@ class Post < ActiveRecord::Base
   STATUSES = [[:published, "Публиковать/Завершена"], [:updating, "Публиковать/Обновляется"]]
 
   def prepare_dates_and_url
-    self.url = self.title.dirify
+    self.url = dirify(self.title)
     self.url_year  = Time.now.strftime("%Y")
     self.url_month = Time.now.strftime("%m")
     self.url_day  = Time.now.strftime("%d")
@@ -43,5 +43,13 @@ class Post < ActiveRecord::Base
       return false
     end
   end
-  
+
+  def dirify(str)
+    st = Russian.transliterate(str)
+    st.gsub!(/(\s\&\s)|(\s\&amp\;\s)/, ' and ') # convert & to "and"
+    st.gsub!(/\W/, ' ') #replace non-chars
+    st.gsub!(/(_)$/, '') #trailing underscores
+    st.gsub!(/^(_)/, '') #leading unders
+    st.strip.gsub(/(\s)/,'-').downcase.squeeze('-')
+  end
 end
