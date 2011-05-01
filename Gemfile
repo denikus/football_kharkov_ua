@@ -5,7 +5,7 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql2', '=0.2.7'
 gem 'will_paginate', '~> 3.0.beta'
 gem 'mongrel'
 gem 'haml'
@@ -15,7 +15,6 @@ gem 'hpricot'
 gem 'russian'
 #gem 'rutils'
 gem 'cells'
-#gem 'omniauth'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
 gem "paperclip", "~> 2.3"
@@ -29,7 +28,8 @@ gem 'oauth2'
 gem 'jquery-rails', '>= 0.2.6'
 gem 'sass', '3.1.0.alpha.216'
 gem 'compass'
-  
+gem 'omniauth', '>=0.2.5'
+
 
 group :production do
   gem 'exception_notification_rails3', :require => 'exception_notifier'

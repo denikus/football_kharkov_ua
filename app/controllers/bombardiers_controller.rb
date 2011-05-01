@@ -30,7 +30,7 @@ class BombardiersController < ApplicationController
                               "INNER JOIN (SELECT stats.statable_id, COUNT(stats.id) AS statable_total " +
 		                                       "FROM`stats` " +
 		                                       "WHERE " +
-		                                       "stats.statable_type='FootballPlayer' AND stats.name='goal' " +
+		                                       "stats.statable_type='FootballPlayer' AND stats.name IN ('goal', 'goal_6', 'goal_10') " +
                                         	 "GROUP BY stats.statable_id) AS statistic " +
                                 "ON (statistic.statable_id=football_players.id) ",
                     :conditions => ["footballers.id >0 AND leagues.id IN (#{@leagues.collect!{|x| x.id}.join(',')})"],
