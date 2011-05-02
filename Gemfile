@@ -29,6 +29,7 @@ gem 'jquery-rails', '>= 0.2.6'
 gem 'sass', '3.1.0.alpha.216'
 gem 'compass'
 gem 'omniauth', '>=0.2.5'
+gem 'yajl-ruby'
 
 
 group :production do
