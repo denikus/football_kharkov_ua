@@ -102,7 +102,7 @@ FootballKharkov::Application.routes.draw do
 
   root :to => "blog#index"
 
-  match '/vkontakte_oauth/:action' => "vkontakte_oauth", :as => "vkontakte_oauth"
+  match '/auth/:provider/callback' => 'vkontakte_oauth#callback'
 
   match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
 
