@@ -1,8 +1,6 @@
 <script language="javascript">
 
 </script>
--#= "Итак, вы утверждаете что вас зовут"
--#%strong=
 %p
   Итак, вы утверждаете, что вас зовут
   %strong= "#{@footballer.full_name}"
@@ -20,11 +18,18 @@
   %ol
     %li
       Вы просто проходите авторизацию через vkontakte.ru - нажав вот эту кнопку:
-      = link_to "Авторизация vkontakte.ru", vkontakte_oauth_path(:action => "start")
-      <a href="http://api.vk.com/oauth/authorize?client_id=2304423&redirect_uri=http://football.kharkov.ua/&scope=offline&display=wap">Вконтакте.ru</a>
+      = link_to "Авторизация vkontakte.ru", oauth_provider_path(:provider => "vkontakte", :action => "create", :footballer_id => @footballer.id)
 
-    %li С помощью формы - вы отправляете нам скан документа подтверждающего вашу личность (принимается скан первой страницы паспорта или водительское удостоверение)
-
+    %li
+      С помощью формы - вы отправляете нам скан документа подтверждающего вашу личность (принимается скан первой страницы паспорта или водительского удостоверения)
+      %br/
+      %br/
+      - form_for :user_connect_footballer_request, UserConnectFootballerRequest.new, :url => oauth_provider_path(:action => "scan_auth", :provider => "vkontakte"), :html => { :multipart => true } do |f|
+        = f.hidden_field :footballer_id, :value => @footballer.id
+        = f.file_field :photo
+        = submit_tag "Отправить", :class => "fancy-button", :style => "color: #FFF;"
+%br/
+%p
   P.S. Безусловно, мы понимаем что и сканы и страничку вконтакте можно подделать. Но мы отказались от идеи сканировать сетчатку вашего глаза с помощью скрипта на javascript, и просто надеемся на ваше благоразумие и порядочность.
 
 

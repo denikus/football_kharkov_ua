@@ -835,13 +835,19 @@ a.add-image-link {
 }
 
 .error {
-    background:#FBE3E4 none repeat scroll 0% 0%;
+    background:#fbe3e4 none repeat scroll 0% 0%;
     border-color:#FBC2C4;
     color:#8A1F11;
 }
 
-.success {
-    background:#E6EFC2 none repeat scroll 0% 0%;
+.warning {
+    background:#fff6bf none repeat scroll 0% 0%;
+    border-color:#FBC2C4;
+    color:#8A1F11;
+}
+
+.notice {
+    background:#e6efc2 none repeat scroll 0% 0%;
     border-color:#C6D880;
     color:#264409;
 }

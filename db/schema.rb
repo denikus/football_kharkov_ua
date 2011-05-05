@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110307202350) do
+ActiveRecord::Schema.define(:version => 20110503084623) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -427,6 +427,21 @@ ActiveRecord::Schema.define(:version => 20110307202350) do
   end
 
   add_index "tours", ["stage_id"], :name => "tour_2_stage"
+
+  create_table "user_connect_footballer_requests", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "footballer_id"
+    t.integer  "provider_uid"
+    t.string   "provider"
+    t.text     "provider_data"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.boolean  "processed",          :default => false
+    t.datetime "photo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",             :limit => 64,                    :null => false
