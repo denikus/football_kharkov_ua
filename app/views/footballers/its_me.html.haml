@@ -17,9 +17,13 @@
   Есть два варианта:
   %ol
     %li
-      Вы просто проходите авторизацию через vkontakte.ru - нажав вот эту кнопку:
-      = link_to "Авторизация vkontakte.ru", oauth_provider_path(:provider => "vkontakte", :action => "create", :footballer_id => @footballer.id)
-
+      Вы просто проходите авторизацию через:
+      %br/
+      %strong= link_to "Vkontakte.ru", oauth_provider_path(:provider => "vkontakte", :action => "create", :footballer_id => @footballer.id)
+      %br/
+      или же
+      %br/
+      %strong= link_to "Facebook.com", oauth_provider_path(:provider => "facebook", :action => "create", :footballer_id => @footballer.id)
     %li
       С помощью формы - вы отправляете нам скан документа подтверждающего вашу личность (принимается скан первой страницы паспорта или водительского удостоверения)
       %br/

@@ -1,0 +1,25 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+*.tmp
+
+#database scheme
+db/schema.rb
+
+#rubymine project files
+.idea/*
+
+#database config file
+config/database.yml
+
+#doc files
+doc/*
+
+#user files
+public/user
+
+public/source/
+public/system/
+public/ckeditor_assets/
+

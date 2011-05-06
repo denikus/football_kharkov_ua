@@ -28,7 +28,7 @@ class OauthProviderController < ApplicationController
 
   def create
     cookies[:request_footballer_id] = params[:footballer_id]
-    redirect_to "/auth/vkontakte"
+    redirect_to "/auth/#{params["provider"]}"
   end
 
   def scan_auth
