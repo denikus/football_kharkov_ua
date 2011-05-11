@@ -1,15 +1,14 @@
 = render :partial => "blog/filter_block"
--#=url_for(:host => "football.lvh.me:3000/blog/index")
 - for post in @posts
   .content
     - if post.resource_type=='Article'
-      -#:controller => "blog", :action => "index", :host => "football.lvh.me:3000"
-      -#=url_for(:host => "football.lvh.me:3000/blog/index")
       = render(:partial => "article_item", :locals => { :post => post })
     - elsif post.resource_type=='SchedulePost'
       = render(:partial => "schedule_post_item", :locals => { :post => post })
     - elsif post.resource_type=='PhotoGallery'
       = render(:partial => "photo_gallery_item", :locals => { :post => post })
+    - elsif post.resource_type=='Status'
+      = render(:partial => "status_item", :locals => { :post => post })
     = render :partial => "shared/blog_link_panel", :locals => {:post=>post}
   .clear
 = will_paginate @posts

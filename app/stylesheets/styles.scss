@@ -183,6 +183,33 @@ h2 {
   }
 }
 
+h4.status {
+  border:none;
+  font-size:105%;
+  /*font-weight:normal;*/
+  margin-bottom:0.1em;
+  span.right-arrow, a.tournament {
+    color: $block_border_color;
+  }
+
+  a {
+    color: #336999;
+    text-decoration: underline;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+
+  a.tournament, a.tournament:hover{
+    text-decoration: none;
+    color: #A5BE0E;
+  }
+  a.tournament:hover {
+    text-decoration: none;
+    color: #336999;
+  }
+}
+
 h4 {
     font-size:118%;
     font-weight:bold;

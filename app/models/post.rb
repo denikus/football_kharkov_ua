@@ -25,16 +25,24 @@ class Post < ActiveRecord::Base
   STATUSES = [[:published, "Публиковать/Завершена"], [:updating, "Публиковать/Обновляется"]]
 
   def prepare_dates_and_url
-    self.url = dirify(self.title)
-    self.url_year  = Time.now.strftime("%Y")
-    self.url_month = Time.now.strftime("%m")
-    self.url_day  = Time.now.strftime("%d")
+    unless self.resource.class.name=='Status'
+      self.url = dirify(self.title)
+      self.url_year  = Time.now.strftime("%Y")
+      self.url_month = Time.now.strftime("%m")
+      self.url_day  = Time.now.strftime("%d")
+    else
+      self.url = self.resource.id
+    end
   end
 
   def generate_short_link
     Bitly.use_api_version_3
     bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
-    self.short_url = bitly.shorten("http://football.kharkov.ua/#{self.created_at.strftime('%Y')}/#{self.created_at.strftime('%m')}/#{self.created_at.strftime('%d')}/#{self.url}").short_url
+    unless self.resource.class.name=='Status'
+      self.short_url = bitly.shorten("http://football.kharkov.ua/#{self.created_at.strftime('%Y')}/#{self.created_at.strftime('%m')}/#{self.created_at.strftime('%d')}/#{self.url}").short_url
+    else
+      self.short_url = bitly.shorten("http://football.kharkov.ua/statuses/#{self.resource.id}").short_url
+    end
     self.save!
   end
 

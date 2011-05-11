@@ -1,0 +1,7 @@
+- form_for @status do |f|
+  %p= text_area :post, :title, :cols => 50, :rows => 5
+  %p= f.select :status_type, [['Общий', 'global'], ['Личный', 'personal']], {:selected => 'global'}
+  %p= select :post, :tournament_id, Tournament.all.collect {|p| [ p.name, p.id ] }, {:include_blank => true}
+  %p= f.submit "Сохранить", :class=>"fancy-button"
+
+

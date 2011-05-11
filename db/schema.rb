@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110503084623) do
+ActiveRecord::Schema.define(:version => 20110509174511) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -344,6 +344,10 @@ ActiveRecord::Schema.define(:version => 20110503084623) do
 
   add_index "stats", ["name"], :name => "index_stats_on_name"
   add_index "stats", ["statable_id", "statable_type"], :name => "index_stats_on_statable_id_and_statable_type"
+
+  create_table "statuses", :force => true do |t|
+    t.string "status_type", :default => "personal"
+  end
 
   create_table "step_properties", :force => true do |t|
     t.integer "step_id"

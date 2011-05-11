@@ -17,13 +17,6 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
                       :tournament_id => params[:post][:tournament_id]
                      })
 
-#    unless params['article_image']['file'].empty?
-#      image_params = params['article_image']
-#      image_params[:source_path] = RAILS_ROOT + '/public/user/' + current_user[:id].to_s + '/images/'
-#
-#      @article_image = ArticleImage.new(image_params)
-#      @article.article_image = @article_image
-#    end
     @post.resource = @article
     respond_to do |format|
       if @post.save
@@ -46,23 +39,6 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
   def update
     @article = Article.find(params[:id])
     respond_to do |format|
-=begin
-      unless params['article_image']['file'].empty?
-        image_params = params['article_image']
-        image_params[:source_path] = RAILS_ROOT + '/public/user/' + current_user[:id].to_s + '/images/'
-
-        unless @article.article_image.nil?
-          @article.article_image.update_attributes(image_params)
-        else
-          @article_image = ArticleImage.new(image_params)
-          @article.article_image = @article_image
-        end
-      else
-        unless @article.article_image.nil?
-          @article.article_image.destroy
-        end
-      end
-=end
 
       if @article.update_attributes(params[:article]) && @article.post.update_attributes(params[:post])
         flash[:notice] = "Статья успешно сохранена"

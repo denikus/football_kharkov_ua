@@ -5,6 +5,6 @@
     - @comments.each do |item|
       %li
         %p.author= item.user.username
-        %p.post-title= link_to(item.post.title, post_url({:year => item.post[:url_year], :month => item.post[:url_month], :day => item.post[:url_day], :url => !item.post.url.nil? ? item.post.url : '', :anchor => "comment-#{item.id}", :host => with_subdomain(item.post.tournament.nil? ? "" : item.post.tournament.url )}))
+        %p.post-title= link_to(item.post.title, item.post.resource_type=='Status' ? status_path(item.post.resource.id) : post_url({:year => item.post[:url_year], :month => item.post[:url_month], :day => item.post[:url_day], :url => !item.post.url.nil? ? item.post.url : '', :anchor => "comment-#{item.id}", :host => with_subdomain(item.post.tournament.nil? ? "" : item.post.tournament.url )}))
         %p.post-date= "#{time_ago_in_words(item.created_at)} назад" 
         -#%p.post-date= Russian::strftime(item.created_at, "%B %d; %H:%M")

@@ -68,6 +68,7 @@ FootballKharkov::Application.routes.draw do
   resources :users
   resources :pages
   resources :schedules
+  resources :statuses
   resource :profile do
     collection do
       get :edit_photo, :crop
