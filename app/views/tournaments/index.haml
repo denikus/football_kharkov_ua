@@ -6,6 +6,8 @@
       = render(:partial => "blog/schedule_post_item", :locals => { :post => post })
     - elsif post.resource_type=='PhotoGallery'
       = render(:partial => "blog/photo_gallery_item", :locals => { :post => post })
+    - elsif post.resource_type=='Status'
+      = render(:partial => "blog/status_item", :locals => { :post => post })
     = render :partial => "shared/blog_link_panel", :locals => {:post=>post}
     .clear
 = will_paginate @posts
