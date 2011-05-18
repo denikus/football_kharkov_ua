@@ -9,10 +9,10 @@
 -#      = link_to "Редактировать", edit_user_profile_path(@profile.user)
 -#    - else
 -#      = link_to "Добавить", new_user_profile_path(@profile.user)
-%ul#left-sidebar-menu
-  %li= link_to 'Профиль', user_path(@profile.user)
-  -#- if @opts[:signed_in] && @opts[:current_user].id == @profile.user.id
-  - if user_signed_in? && current_user.id == @profile.user.id
-    %li= link_to 'Редактировать профиль', edit_profile_path
-
-        
+-#%ul#left-sidebar-menu
+-#  %li= link_to 'Профиль', user_path(@profile.user)
+-#  -#- if @opts[:signed_in] && @opts[:current_user].id == @profile.user.id
+-#  - if user_signed_in? && current_user.id == @profile.user.id
+-#    %li= link_to 'Редактировать профиль', edit_profile_path
+-#
+-#        

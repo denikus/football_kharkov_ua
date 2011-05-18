@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110509174511) do
+ActiveRecord::Schema.define(:version => 20110518010640) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -102,13 +102,21 @@ ActiveRecord::Schema.define(:version => 20110509174511) do
 
   create_table "footballers", :force => true do |t|
     t.integer  "user_id"
-    t.string   "first_name", :null => false
-    t.string   "last_name",  :null => false
+    t.string   "first_name",         :null => false
+    t.string   "last_name",          :null => false
     t.string   "patronymic"
     t.date     "birth_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "crop_x_left"
+    t.integer  "crop_y_top"
+    t.integer  "crop_width"
+    t.integer  "crop_height"
   end
 
   add_index "footballers", ["user_id"], :name => "user_id"

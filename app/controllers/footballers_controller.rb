@@ -1,10 +1,14 @@
 class FootballersController < ApplicationController
-  layout "app_without_sidebar"
+  layout "footballer"
 
   before_filter :redirect_to_main_domain
-  
+  before_filter :authenticate_user!, :except => [:show, :its_me]
+  before_filter :check_permission, :except => [:show, :its_me]
+
   def show
     @footballer = Footballer.find_by_url(params[:id])
+
+    @title = "Футболист: #{@footballer.full_name}"
 
     tournaments = @footballer.footballers_teams.joins(:step).group("steps.tournament_id").collect{|item| item.step.tournament}
 
@@ -53,18 +57,45 @@ class FootballersController < ApplicationController
                             }
     end
     @schedules = Schedule.future_footballer_matches(@footballer.id)
-
-
-#    ap @footballer.footballers_teams.joins(:step).group("steps.tournament_id").to_sql
-    
-#    @footballer.footballers_teams
-#    @tournaments_take_part = @footballer.get_teams_seasons
-
-    
   end
 
   def its_me
+    @title = "Заявка на управление странице футболиста"
     @footballer = Footballer.find_by_url(params[:footballer_id])
+  end
+
+  def edit_photo
+    @title = "Редактирование фотографии"
+  end
+
+#  def update_photo
+#    @footballer.attributes = params[:footballer]
+#    @footballer.save!
+#
+#    redirect_to edit_photo_footballer_path(@footballer.url)
+#  end
+
+  def upload_photo
+    @footballer.attributes = params[:footballer]
+    @footballer.save!
+
+    redirect_to :action => :edit_photo
+  end
+
+  def make_crop
+    @footballer.attributes = params[:footballer]
+    @footballer.profile.save!
+
+    redirect_to :action => :edit_photo
+  end
+
+  def destroy_photo
+    current_user.profile.photo = nil
+    if current_user.profile.save!
+      flash[:success] = "Фото успешно удалено"
+    end
+
+    redirect_to :action => :edit_photo
   end
 
   private
@@ -73,6 +104,13 @@ class FootballersController < ApplicationController
     unless current_subdomain.nil?
       redirect_params = {:subdomain => nil, :id => params[:id] }
       redirect_to footballer_url(redirect_params), :status=>301
+    end
+  end
+
+  def check_permission
+    @footballer = Footballer.find_by_url(params[:footballer_id])
+    unless @footballer.user_id == current_user.id
+      redirect_to footballer_path(@footballer.url)
     end
   end
 end

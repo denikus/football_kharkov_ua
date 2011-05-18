@@ -79,7 +79,9 @@ FootballKharkov::Application.routes.draw do
 
   match '/itleague_draw' => "itleague_draw#index"
   resources :footballers, :only => ["index", "show"] do
-    get :its_me
+    get :edit_photo, :crop, :its_me
+    post :upload_photo, :make_crop
+    delete :destroy_photo
   end
   resources :quick_match_results, :only => ["show"]
   resources :venues, :only => ["show"]

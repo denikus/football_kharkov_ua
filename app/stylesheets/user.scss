@@ -4,7 +4,7 @@ $grey_menu_background: #DCDCDC;
 div#left-sidebar {
   width: 250px;
   float: left;
-  border-right:1px solid $grey_border;
+  /*border-right:1px solid $grey_border;*/
 }
 
 div#col-left {
@@ -60,26 +60,34 @@ ul#left-sidebar-menu {
 
 ul#tabnav
 {
-  height: 27px;
+/*  height: 27px;
   color:#292929;
-  /*float:right;*/
   height:27px;
   line-height:1em;
   margin: 0;
   float: right;
   margin-bottom:-43px;
   position:relative;
-  top:-40px;
-  /*margin-bottom:-43px;*/
-  /*position:relative;*/
-  /*top:-43px;*/
+  top:-40px;*/
+  position:relative;
+  float: right;
+  margin-bottom:-43px;
+  top:-38px;
+  height: 27px;
+  /*clear: both;*/
+  /*border-bottom: 1px solid #EEE;*/
+  padding: 0 0 0 5px;
 
   li {
-    border-right: 1px solid $grey_border;
-    float: left;
-    list-style-type:none;
-    background:url("/images/top_nav_tab_background.gif") repeat-x scroll left top #FFFFFF;
-    padding: 0 5px;
+    /*border-right: 1px solid $grey_border;*/
+    /*float: left;*/
+    /*list-style-type:none;*/
+    /*background:url("/images/top_nav_tab_background.gif") repeat-x scroll left top #FFFFFF;*/
+    /*padding: 0 5px;*/
+    float: right;
+    display: block;
+    list-style: none;
+    font-size: 13px;
   }
 
   li.first {
@@ -87,27 +95,55 @@ ul#tabnav
   }
 
   a:link, a:visited, span {
-    display:block;
-    padding:9px 9px 6px 20px;
+    /*display:block;*/
+    /*padding:9px 9px 6px 20px;*/
+    font-weight: bold;
+    text-decoration: none;
+    float: left;
+    display: block;
+    padding: 4px 10px 6px;
+    margin: 2px 5px 0 0;
+    background: #FAFAFA;
+    border: 1px solid #EEE;
+    line-height: 14px;
+    font-size: 11px;
+    border-bottom: 0;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    border-top-left-radius: 6px 6px;
+    border-top-right-radius: 6px 6px;
   }
 
-  span {
-    font-weight: bold;
-  }
+  /*span {*/
+    /*font-weight: bold;*/
+  /*}*/
 
   a.current {
     /*background:url("/images/top_nav_tab_background.gif") repeat-x scroll left top #FFFFFF;*/
-    color:#292929;
-    padding-bottom:7px !important;
+    /*color:#292929;*/
+    /*padding-bottom:7px !important;*/
+    /*color: #333;*/
+    text-decoration: none;
+    border-bottom: 1px solid white;
+    margin-bottom: -1px;
+    background: white;
+    position: relative;
+    z-index: 5;
+    font-size: 13px;
+    padding: 5px 10px 7px;
+    margin-top: 0;
+    
   }
 
-  #profile-edit {
+/*  #profile-edit {
     background: url('/images/icons/user_edit.png') no-repeat scroll 0 50% transparent;
   }
 
   #photo-edit {
     background: url('/images/icons/picture_edit.png') no-repeat scroll 0 50% transparent;
-  }
+  }*/
 }
 
 /*EOF Tab Top Navigation*/

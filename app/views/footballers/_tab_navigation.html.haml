@@ -1,0 +1,6 @@
+- if !current_user.nil? && @footballer.user_id == current_user.id
+  %ul#tabnav
+    %li
+      = link_to("Редактировать фото", footballer_edit_photo_path(@footballer.url), {:class => params[:action]=='edit_photo' ? "current" : "" })
+    %li
+      = link_to("Инфо", footballer_path(@footballer.url), {:class => params[:action]=='show' ? "current" : ""})

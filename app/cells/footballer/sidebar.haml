@@ -1,0 +1,13 @@
+#profile-photo-menu-container{:style => "width: 200px;overflow:hidden;"}
+  #profile-photo-block
+  .avatar
+    - unless @footballer.photo.nil?
+      = link_to image_tag(@footballer.photo.url(:medium)), @footballer.photo.url(:original), :id => "footballer_photo"
+    - else
+      = image_tag "default_footballer_avatar.jpg"
+    - if @footballer.user.nil?
+      %p{:style => "text-align: center;"}
+        = link_to "Эй, да это же я!", footballer_its_me_path(@footballer.url)
+    - elsif current_user.id && @footballer.user_id != current_user.id
+      Он же:
+      %p.user_block
