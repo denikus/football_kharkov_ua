@@ -5,6 +5,10 @@
       = image_tag @profile.photo.url(:medium)
     - else
       = image_tag "/images/default_photo.jpg"
+    - unless @profile.user.footballer.nil?
+      %p
+        Он же:
+        = link_to @profile.user.footballer.full_name, footballer_path(@profile.user.footballer.url)
 -#    - unless @profile.photo.nil?
 -#      = link_to "Редактировать", edit_user_profile_path(@profile.user)
 -#    - else

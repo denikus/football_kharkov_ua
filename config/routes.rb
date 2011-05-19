@@ -62,6 +62,9 @@ FootballKharkov::Application.routes.draw do
     resources :footballers
     resources :permissions
     resources :venues
+    resources :user_requests do
+      post :merge
+    end
     match 'temp(/:action(/:id))' => "temp"
   end
 

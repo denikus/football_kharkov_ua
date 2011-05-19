@@ -8,6 +8,7 @@
     - if @footballer.user.nil?
       %p{:style => "text-align: center;"}
         = link_to "Эй, да это же я!", footballer_its_me_path(@footballer.url)
-    - elsif current_user.id && @footballer.user_id != current_user.id
-      Он же:
+    - elsif current_user.nil? || (!current_user.nil? && @footballer.user_id != current_user.id)
       %p.user_block
+        Он же:
+        = link_to @footballer.user.username, user_url(@footballer.user, :subdomain => false)
