@@ -2,7 +2,7 @@ class FootballersController < ApplicationController
   layout "footballer"
 
   before_filter :redirect_to_main_domain
-  before_filter :authenticate_user!, :except => [:show, :its_me]
+  before_filter :authenticate_user!, :except => [:show]
   before_filter :check_permission, :except => [:show, :its_me]
 
   def show
