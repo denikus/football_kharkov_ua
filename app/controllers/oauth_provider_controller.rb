@@ -32,7 +32,7 @@ class OauthProviderController < ApplicationController
   end
 
   def scan_auth
-    params[:user_connect_footballer_request].merge!({:user_id => current_user.id, :footballer_id => cookies[:request_footballer_id], :provider => "scan_auth"})
+    params[:user_connect_footballer_request].merge!({:user_id => current_user.id, :provider => "scan_auth"})
     user_request = UserConnectFootballerRequest.new(params[:user_connect_footballer_request])
 
     unless user_request.valid?
