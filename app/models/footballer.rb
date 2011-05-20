@@ -5,7 +5,7 @@ class Footballer < ActiveRecord::Base
   
   has_many :footballers_teams
 
-
+  has_one :user_connect_footballer_request
   belongs_to :user
   #named_scope :by_team_season, lambda{ |options|
   #    {:joins => "INNER JOIN footballers_teams ON (footballers_teams.footballer_id=footballers.id)",
@@ -56,6 +56,10 @@ class Footballer < ActiveRecord::Base
     self.url = [self.last_name, self.first_name, self.patronymic].join("-")
   end
 
+  def merge_user(user_id)
+    self.user_id = user_id
+    save
+  end
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?

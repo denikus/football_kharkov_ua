@@ -1,0 +1,22 @@
+%table.user_requests{:cellspacing=>"0"}
+  %tr
+    %th ID
+    %th User ID
+    %th Username
+    %th Footballer ID
+    %th Footballer Name
+    %th Provider
+    %th Request Data
+    %th Action
+  - @requests.each do |request|
+    %tr
+      %td= request.id
+      %td= request.user.id
+      %td= link_to request.user.username, user_path(request.user.username)
+      %td= request.footballer.id
+      %td= link_to request.footballer.full_name, footballer_path(request.footballer.url)
+      %td= request.provider
+      %td= request.provider_data
+      %td= link_to "Accept",  admin_user_request_merge_path(request.id), :method => "post" unless request.processed
+
+

@@ -1,0 +1,5 @@
+/* line 2, ../../app/stylesheets/admin.scss */
+table.user_requests td {
+  border: 1px solid grey;
+  padding: 2px;
+}

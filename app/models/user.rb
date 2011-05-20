@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   
   has_one :profile
 
+  has_one :user_connect_footballer_request
   has_many :comments
   has_many :subscribers
   has_many :posts, :through => :subscribers
