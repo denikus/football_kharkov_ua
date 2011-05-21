@@ -1,7 +1,7 @@
 class Footballer < ActiveRecord::Base
   has_attached_file :photo, :styles => {:large => {:geometry => "500x500>"}, :medium=> {:geometry => "200x200>", :processors => [:cropper]}, :thumb => {:geometry => "50x50>", :processors => [:cropper]}, :small_thumb => {:geometry => "35x35", :processors => [:cropper]} },
-                    :path => ":rails_root/public/:class/:attachment/:id/:style_:basename.:extension",
-                    :url => "/:class/:attachment/:id/:style_:basename.:extension",
+                    :path => ":rails_root/public/:class/:attachment/:id/:style/:basename.:extension",
+                    :url => "/:class/:attachment/:id/:style/:basename.:extension",
                     :default_url => "/:class/:attachment/missing_:style.png"
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_photo, :if => :cropping?
