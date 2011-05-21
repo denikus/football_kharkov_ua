@@ -42,8 +42,10 @@ class Schedule < ActiveRecord::Base
   class << self
 
     def future_footballer_matches(footballer_id)
-      joins({:hosts => :footballers_teams, :guests => :footballers_teams}).
-      where("footballers_teams.footballer_id = ? AND `schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ?", footballer_id, Time.now.to_date).
+#      {:hosts => :footballers_teams, :guests => :footballers_teams}
+      joins("LEFT JOIN `footballers_teams` AS `with_guest_team` ON (`with_guest_team`.`team_id` = `schedules`.`guest_team_id` AND `with_guest_team`.`footballer_id` = #{footballer_id.to_i})" +
+            "LEFT JOIN `footballers_teams` AS `with_host_team` ON (`with_host_team`.`team_id` = `schedules`.`host_team_id` AND `with_host_team`.`footballer_id` = #{footballer_id.to_i})").
+      where("`schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ? AND (`with_guest_team`.`team_id` IS NOT NULL OR `with_host_team`.`team_id` IS NOT NULL )", Time.now.to_date).
       group("`schedules`.id")
     end
 
