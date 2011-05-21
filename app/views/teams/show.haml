@@ -1,5 +1,22 @@
+- content_for :head_declarations do
+  = stylesheet_link_tag "/javascripts/jquery-plugins/fancybox/jquery.fancybox-1.3.4.css", :media => "all"
+  = javascript_include_tag "jquery-plugins/fancybox/jquery.fancybox-1.3.4.pack"
+  = javascript_include_tag "jquery-plugins/fancybox/jquery.easing-1.3.pack"
+
 %h2.tournament-subtitle= "Команда: #{@team.name}"
 %h3= "Состав (#{@tournament.name} #{@season.name})"
-%ul.player-list
-  -@footballers.each do |item|
-    %li= link_to item.full_name, footballer_url(:id => item.url, :subdomain => nil), :target => "_blank"
+%br/
+%table.player-list
+  -@footballers.in_groups_of(2, false) do |rows|
+    %tr
+      - rows.each do |footballer|
+        %td.avatar= link_to image_tag(footballer.photo.url(:thumb)), footballer.photo.url(:original), :class => "footballer_avatar"
+        %td.footballer
+          %dl
+            %dt= link_to footballer.full_name, footballer_url(:id => footballer.url, :subdomain => nil), :target => "_blank"
+            - unless footballer.user.nil?
+              %dd.user= link_to footballer.user.username, user_url(footballer.user, :subdomain => false), :target => "_blank"
+:javascript
+  $(function() {
+    $("a.footballer_avatar").fancybox();
+  });
