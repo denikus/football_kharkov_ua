@@ -17,7 +17,7 @@
                 = image_tag "#{author.profile.photo.url(:thumb)}"
               .author-and-comment-container{:style=>"float:left;width: 87%;"}
                 %p.comment-author
-                  = link_to "#{author.username}", user_path(author) |
+                  = link_to "#{author.username}", user_path(author), :class => ("public_footballer" unless author.footballer.nil?) |
                   = Russian::strftime(item.created_at, "%d %B %Y; %H:%M")
                 %p.comment-body
                   = show_comment(post, item)
