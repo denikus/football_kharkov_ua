@@ -23,7 +23,7 @@ FootballKharkov::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'football.lvh.me:3000' }
   
   TLD_SIZE = 2
 

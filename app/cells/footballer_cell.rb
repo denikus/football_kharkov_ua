@@ -1,4 +1,6 @@
 class FootballerCell < Cell::Rails
+  helper UrlHelper
+  helper ApplicationHelper
   include Devise::Controllers::Helpers
 
   def sidebar
@@ -6,5 +8,13 @@ class FootballerCell < Cell::Rails
     @footballer = Footballer.find_by_url(id)
     
     render
+  end
+
+  def future_matches_block
+    if !current_user.nil? && !current_user.footballer.nil?
+      @schedules = Schedule.future_footballer_matches(current_user.footballer.id)
+      render
+    end
+
   end
 end

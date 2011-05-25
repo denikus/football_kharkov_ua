@@ -603,6 +603,19 @@ input.fancy-submit:hover {
 
     }
   }
+
+  ul.my-schedule-block {
+
+    li{
+      a{
+        color:$block_header_color;
+        font-weight: normal;
+      }
+      a:hover {
+        color: $block_link_color;
+      }
+    }
+  }
 }
 
 .sidebar-block-header {
@@ -1661,3 +1674,4 @@ table.match {
     margin-bottom: 0;
   }
 }
+

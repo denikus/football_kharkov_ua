@@ -12,6 +12,7 @@
 
   /right column
   #col-right
+    = render_cell :footballer, :future_matches_block, :title => "Мои матчи"
     - if !current_subdomain.nil? || post_belongs_2_subdomain?
       = render_cell :sidebar_block, :quick_results, :title => "Блиц-результаты", :subdomain => !current_subdomain.nil? ? current_subdomain : post_subdomain
     - if current_subdomain.nil?

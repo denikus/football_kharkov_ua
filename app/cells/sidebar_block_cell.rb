@@ -39,8 +39,12 @@ class SidebarBlockCell < ::Cell::Base
     @schedules = Schedule.get_records_by_day(@max_date, tournament)
 
     render :locals => {:min_date => @min_date , :max_date => @max_date}, :layout => false
+  end
 
+  def footballer_matches
 
+    @schedules = Schedule.future_footballer_matches(@footballer.id)
+    render
   end
 
   def advertisement
