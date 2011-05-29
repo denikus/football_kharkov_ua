@@ -100,6 +100,7 @@ FootballKharkov::Application.routes.draw do
   resources :teams, :only => ["index", "show"]
   resources :tables, :only => ["index"]
   resources :bombardiers, :only => ["index"]
+  resources :disqualifications, :only => ["index"]
   resources :it_forecast, :only => ["index"]
   resources :pages, :only => ["show"]
   resources :seasons do
