@@ -480,7 +480,7 @@ input.fancy-submit:hover {
       font-size:14px;
       padding:5px;
       padding-left: 20px;
-      margin-left: 10px;
+      margin-left: 5px;
       background-repeat: no-repeat;
       background-attachment: scroll;
       background-position: center left;
@@ -500,6 +500,9 @@ input.fancy-submit:hover {
 	  }
 	  a#top-submenu-bombardiers {
 	    background-image: url("/images/icons/sport_soccer.png");
+	  }
+	  a#top-submenu-disqualifications {
+	    background-image: url("/images/icons/cards.png");
 	  }
 	  a#top-submenu-it-forecast {
 	    background-image: url("/images/icons/money-coin.png");

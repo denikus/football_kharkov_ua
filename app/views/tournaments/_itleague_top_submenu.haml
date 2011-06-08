@@ -10,6 +10,7 @@
   = link_to "Таблицы", tables_path, :id => "top-submenu-tables"
   = link_to "Матчи", season_matches_path(:season_id => Tournament.find_by_url(current_subdomain).step_seasons.find(:last, :order => "identifier ASC").url), :id => "top-submenu-matches"
   = link_to "Бомбардиры", bombardiers_path, :id => "top-submenu-bombardiers"
+  = link_to "Нарушители", disqualifications_path, :id => "top-submenu-disqualifications"
   = link_to "IT-Прогноз", it_forecast_index_path, :id => "top-submenu-it-forecast"
   = link_to "О турнире", page_path(:id=> "about"), :id => "top-submenu-about"
   .clear
