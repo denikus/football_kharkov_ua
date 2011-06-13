@@ -9,8 +9,11 @@ class CommentObserver < ActiveRecord::Observer
                           )
     recipients = subscribers.collect{|x | x.user[:email]}
     unless recipients.empty?
-#      model.logger.info("Comment #{recipients.to_s} created" )
-      CommentNotify.deliver_new_comment_email(model.post, model, recipients)
+      recipient = recipients.pop
+      #
+      # model.logger.info("Comment #{recipients.to_s} created" )
+
+      CommentNotify.deliver_new_comment_email(model.post, model, recipient, recipients)
     end  
   end
 end
