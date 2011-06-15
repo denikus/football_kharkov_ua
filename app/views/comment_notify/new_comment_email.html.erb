@@ -7,7 +7,12 @@
    <h2> <%= @comment.user.username %> оставил(а) новый комментарий в статье: "<%= @post.title %> ":</h2>
    <p>
         Перейдите по ссылке чтобы прочитать:<br />
+     <% if @post.resource_type=='Status' %>
+       <%= link_to @post.title, status_url(@post.resource.id, :anchor => "comment-#{@comment.id}") %><br />
+     <% else %>
        <%= link_to @post.title, post_url({:year => @post.created_at.strftime('%Y'), :month => @post.created_at.strftime('%m'), :day => @post.created_at.strftime('%d'), :url => !@post.url.nil? ? @post.url : '', :anchor => "comment-#{@comment.id}"}) %><br />
+     <% end %>
+
 
      Чтобы отписаться от комментариев, уберите на странице галочку "Подписаться".
    </p>

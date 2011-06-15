@@ -10,15 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110526173626) do
+ActiveRecord::Schema.define(:version => 20110523184818) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
     t.boolean  "super_admin",                        :default => false, :null => false
-    t.string   "email",                              :default => "",    :null => false
-    t.string   "encrypted_password",  :limit => 128, :default => "",    :null => false
-    t.string   "password_salt",                      :default => "",    :null => false
-    t.string   "remember_token"
+    t.string   "email",               :limit => 100,                    :null => false
+    t.string   "encrypted_password",  :limit => 40,                     :null => false
+    t.string   "password_salt",       :limit => 20,                     :null => false
+    t.string   "remember_token",      :limit => 20
     t.datetime "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.string  "file"
     t.string  "title"
   end
+
+  add_index "article_images", ["article_id"], :name => "article_id"
 
   create_table "articles", :force => true do |t|
     t.text "body"
@@ -63,7 +65,9 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["author_id"], :name => "fk_user_comment"
   add_index "comments", ["author_id"], :name => "index_comments_on_author_id"
+  add_index "comments", ["post_id"], :name => "post_id"
 
   create_table "competitors", :force => true do |t|
     t.integer "match_id",                                                  :null => false
@@ -90,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.integer "footballer_id"
     t.enum    "response",      :limit => [:not_responded, :accepted, :declined, :tentative], :default => :not_responded, :null => false
   end
+  
+  add_index "contents", ["author_id"], :name => "author_id"
 
   create_table "football_players", :force => true do |t|
     t.integer "competitor_id",              :null => false
@@ -119,6 +125,8 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.integer  "crop_height"
   end
 
+  add_index "footballers", ["user_id"], :name => "user_id"
+
   create_table "footballers_teams", :id => false, :force => true do |t|
     t.integer "footballer_id"
     t.integer "team_id"
@@ -128,19 +136,6 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
   add_index "footballers_teams", ["footballer_id"], :name => "index_footballers_teams_on_footballer_id"
   add_index "footballers_teams", ["step_id"], :name => "index_footballers_teams_on_season_id"
   add_index "footballers_teams", ["team_id"], :name => "index_footballers_teams_on_team_id"
-
-  create_table "leagues", :force => true do |t|
-    t.integer  "stage_id",   :null => false
-    t.string   "name",       :null => false
-    t.string   "url",        :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "leagues_teams", :id => false, :force => true do |t|
-    t.integer "league_id"
-    t.integer "team_id"
-  end
 
   create_table "match_event_types", :force => true do |t|
     t.string "symbol"
@@ -164,11 +159,15 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.string  "link_text"
   end
 
+  add_index "match_links", ["match_id"], :name => "match_id"
+
   create_table "matches", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "schedule_id"
   end
+
+  add_index "matches", ["schedule_id"], :name => "match_2_schedule"
 
   create_table "matches_referees", :id => false, :force => true do |t|
     t.integer "match_id"
@@ -187,6 +186,8 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.integer  "tournament_id"
   end
 
+  add_index "pages", ["tournament_id"], :name => "tournament_id"
+
   create_table "permissions", :force => true do |t|
     t.integer "admin_id"
     t.string  "controller", :null => false
@@ -203,6 +204,8 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.string  "title"
     t.string  "filename"
   end
+
+  add_index "photos", ["photo_gallery_id"], :name => "photo_gallery_id"
 
   create_table "posts", :force => true do |t|
     t.integer  "author_id"
@@ -221,20 +224,11 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.integer  "url_day",       :limit => 2
   end
 
+  add_index "posts", ["author_id"], :name => "fk_user_post"
   add_index "posts", ["author_id"], :name => "index_posts_on_author_id"
   add_index "posts", ["resource_id", "resource_type"], :name => "index_posts_on_resource_id_and_resource_type"
+  add_index "posts", ["tournament_id"], :name => "fk_tournaments_2_posts"
   add_index "posts", ["url_year", "url_month", "url_day", "url"], :name => "index_posts_on_url_year_and_url_month_and_url_day_and_url"
-
-  create_table "profile_avatars", :force => true do |t|
-    t.integer  "profile_id"
-    t.string   "content_type", :null => false
-    t.string   "filename",     :null => false
-    t.integer  "size",         :null => false
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
@@ -260,13 +254,7 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.integer  "crop_height"
   end
 
-  create_table "quick_match_results", :force => true do |t|
-    t.integer  "hosts_score"
-    t.integer  "guests_score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "schedule_id"
-  end
+  add_index "profiles", ["user_id"], :name => "user_id"
 
   create_table "referees", :force => true do |t|
     t.integer  "user_id"
@@ -277,6 +265,8 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "referees", ["user_id"], :name => "user_id"
 
   create_table "schedules", :force => true do |t|
     t.integer  "venue_id"
@@ -294,24 +284,9 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
 
   add_index "schedules", ["guest_team_id"], :name => "index_schedules_on_guest_team_id"
   add_index "schedules", ["host_team_id"], :name => "index_schedules_on_host_team_id"
+  add_index "schedules", ["league_id"], :name => "fk_schedules_step_leagues"
+  add_index "schedules", ["tour_id"], :name => "fk_schedules_step_tours"
   add_index "schedules", ["venue_id"], :name => "index_schedules_on_venue_id"
-
-  create_table "seasons", :force => true do |t|
-    t.integer  "tournament_id", :null => false
-    t.string   "name",          :null => false
-    t.string   "url",           :null => false
-    t.date     "started_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "seasons_teams", :id => false, :force => true do |t|
-    t.integer "season_id"
-    t.integer "team_id"
-  end
-
-  add_index "seasons_teams", ["season_id"], :name => "index_seasons_teams_on_season_id"
-  add_index "seasons_teams", ["team_id"], :name => "index_seasons_teams_on_team_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -322,13 +297,6 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "stages", :force => true do |t|
-    t.integer  "season_id",  :null => false
-    t.integer  "number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "stats", :force => true do |t|
     t.integer "statable_id"
@@ -361,6 +329,8 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.string   "short_name"
   end
 
+  add_index "steps", ["tournament_id"], :name => "tournament_id"
+
   create_table "steps_phases", :id => false, :force => true do |t|
     t.integer "step_id"
     t.integer "phase_id"
@@ -371,10 +341,16 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.integer "team_id"
   end
 
+  add_index "steps_teams", ["step_id"], :name => "fk_steps_teams_steps"
+  add_index "steps_teams", ["team_id"], :name => "fk_steps_teams_teams"
+
   create_table "subscribers", :force => true do |t|
     t.integer "post_id"
     t.integer "user_id"
   end
+
+  add_index "subscribers", ["post_id"], :name => "post_id"
+  add_index "subscribers", ["user_id"], :name => "user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -397,22 +373,12 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.datetime "updated_at"
   end
 
-  create_table "tour_results", :force => true do |t|
-    t.integer "season_id"
-    t.text    "body"
-  end
-
   create_table "tournaments", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "url",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "short_name"
-  end
-
-  create_table "tours", :force => true do |t|
-    t.string  "name",     :null => false
-    t.integer "stage_id"
   end
 
   create_table "user_connect_footballer_requests", :force => true do |t|

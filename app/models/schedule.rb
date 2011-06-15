@@ -43,16 +43,28 @@ class Schedule < ActiveRecord::Base
 
     def future_footballer_matches(footballer_id)
       #get seasons where footballer play in team
-      tours = FootballersTeam.
-              select("footballers_teams.*, `tours`.id AS tour_id").
-              joins("INNER JOIN `steps_phases` AS `stages_phase` ON (`stages_phase`.`step_id` = `footballers_teams`.`step_id`) " +
-                    "INNER JOIN `steps_phases` AS `tours_phase` ON (`tours_phase`.`step_id` = `stages_phase`.`phase_id`) " +
-                    "INNER JOIN `steps` AS `tours` ON (`tours`.`id` = `tours_phase`.`phase_id` AND `tours`.`type`='StepTour') " +
-                    "INNER JOIN `schedules` ON (`schedules`.`tour_id` = `tours`.`id` ) ").
-              where( "footballer_id =? AND `schedules`.match_on > ?", footballer_id, Time.now.to_date).collect{|x| x.tour_id}.uniq
-      joins("LEFT JOIN `footballers_teams` AS `with_guest_team` ON (`with_guest_team`.`team_id` = `schedules`.`guest_team_id` AND `with_guest_team`.`footballer_id` = #{footballer_id.to_i}) " +
-            "LEFT JOIN `footballers_teams` AS `with_host_team` ON (`with_host_team`.`team_id` = `schedules`.`host_team_id` AND `with_host_team`.`footballer_id` = #{footballer_id.to_i})").
-      where("`schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ? AND `schedules`.`tour_id` IN (?) AND (`with_guest_team`.`team_id` IS NOT NULL OR `with_host_team`.`team_id` IS NOT NULL )", Time.now.to_date, tours.join(',')).
+#      footballers_teams = FootballersTeam.
+#              select("footballers_teams.*, `tours`.id AS tour_id").
+#              joins("INNER JOIN `steps_phases` AS `stages_phase` ON (`stages_phase`.`step_id` = `footballers_teams`.`step_id`) " +
+#                    "INNER JOIN `steps_phases` AS `tours_phase` ON (`tours_phase`.`step_id` = `stages_phase`.`phase_id`) " +
+#                    "INNER JOIN `steps` AS `tours` ON (`tours`.`id` = `tours_phase`.`phase_id` AND `tours`.`type`='StepTour') " +
+#                    "INNER JOIN `schedules` ON (`schedules`.`tour_id` = `tours`.`id` ) ").
+#              where( "footballer_id =? AND `schedules`.match_on > ?", footballer_id, Time.now.to_date)
+
+#      tours = footballers_teams.collect{|x| x.tour_id}.uniq
+#      ap select("schedules.*, `with_guest_team`.team_id AS guest_team_id, `with_host_team`.team_id AS host_team_id").
+      select("`schedules`.*, `footballers_teams`.footballer_id ").
+      joins(
+            "INNER JOIN `steps_phases` AS `tours_phase` ON (`tours_phase`.`phase_id` = `schedules`.`tour_id`) " +
+            "INNER JOIN `steps_phases` AS `seasons_phase` ON (`seasons_phase`.`phase_id` = `tours_phase`.`step_id`) " +
+            "INNER JOIN `footballers_teams` ON (`footballers_teams`.`step_id` = `seasons_phase`.`step_id`) " +
+            "LEFT JOIN `footballers_teams` AS `with_guest_team` ON (`with_guest_team`.`team_id` = `schedules`.`guest_team_id` AND `with_guest_team`.`footballer_id` = #{footballer_id.to_i}) " +
+            "LEFT JOIN `footballers_teams` AS `with_host_team` ON (`with_host_team`.`team_id` = `schedules`.`host_team_id` AND `with_host_team`.`footballer_id` = #{footballer_id.to_i})"
+           ).
+#            "LEFT JOIN `footballers_teams` AS `with_guest_team` ON (`with_guest_team`.`team_id` = `schedules`.`guest_team_id` AND `with_guest_team`.`footballer_id` = #{footballer_id.to_i})" +
+#            "LEFT JOIN `footballers_teams` AS `with_host_team` ON (`with_host_team`.`team_id` = `schedules`.`host_team_id` AND `with_host_team`.`footballer_id` = #{footballer_id.to_i})").
+#      where("`schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ? AND `schedules`.`tour_id` IN (?) AND (`with_guest_team`.`team_id` IS NOT NULL OR `with_host_team`.`team_id` IS NOT NULL )", Time.now.to_date, tours.join(',')).
+      where("`schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `footballers_teams`.footballer_id = ? AND `schedules`.match_on > ? AND ( `with_guest_team`.`team_id` = `footballers_teams`.team_id OR `with_host_team`.`team_id`  = `footballers_teams`.team_id )", footballer_id, Time.now.to_date).
       group("`schedules`.id")
     end
 

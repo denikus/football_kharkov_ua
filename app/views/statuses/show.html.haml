@@ -1,4 +1,4 @@
-%h1= auto_link(@post.title)
+%h1= auto_link(@post.title).html_safe
 
 = render :partial => "shared/blog_link_panel", :locals => {:post=>@post}
 = render :partial => "shared/comment_block", :locals => {:post=>@post}

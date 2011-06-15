@@ -5,7 +5,7 @@ class Step < ActiveRecord::Base
   
   has_and_belongs_to_many :teams
 
-  #  has_many :step_property
+  has_many :step_property
   
   #has_and_belongs_to_many :phases,
   #  :class_name => 'Step',

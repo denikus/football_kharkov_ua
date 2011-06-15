@@ -23,7 +23,7 @@
 
     <label for="article_body">Текст:</label>
     <div>
-        <%= ckeditor_textarea(:article, :body, :toolbarSet => 'Football', :width => '95%', :height => '500px') %>
+        <%= f.cktext_area(:body, :toolbarSet => 'Football', :width => '95%', :height => '500px') %>
     </div>
 
     <label for="post_title">Относится к турниру:</label>
