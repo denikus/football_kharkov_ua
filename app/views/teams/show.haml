@@ -16,6 +16,9 @@
             %dt= link_to footballer.full_name, footballer_url(:id => footballer.url, :subdomain => nil), :target => "_blank"
             - unless footballer.user.nil?
               %dd.user= link_to footballer.user.username, user_url(footballer.user, :subdomain => false), :target => "_blank"
+.info_container
+  %h3= "Ближайшие матчи"
+  = render "schedule_info_block", :schedules => @schedules, :team => @team
 :javascript
   $(function() {
     $("a.footballer_avatar").fancybox();

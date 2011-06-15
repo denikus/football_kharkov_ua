@@ -1,0 +1,2 @@
+module TeamAppointmentHelper
+end

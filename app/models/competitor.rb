@@ -1,6 +1,9 @@
 class Competitor < ActiveRecord::Base
   belongs_to :match
   belongs_to :team
+
+  after_create :create_resources
+
   has_many :football_players, :dependent => :destroy do
     def update_stats stats
       load_target unless loaded?
@@ -20,6 +23,7 @@ class Competitor < ActiveRecord::Base
     end
   end
   has_many :stats, :as => :statable, :extend => Stat::Ext, :dependent => :destroy
+  has_many :football_player_appointments, :dependent => :destroy
 
   scope :by_team_matches, lambda {|team_id, matches_id| where("team_id = ? AND match_id IN (?)", team_id, matches_id)}
   
@@ -35,5 +39,11 @@ class Competitor < ActiveRecord::Base
   
   def to_tpl
     team.name
+  end
+
+  def create_resources
+    FootballersTeam.find_all_by_team_id(self.team.id, :conditions => {:step_id => StepSeason.find_last_by_tournament_id(self.team.steps[0].tournament_id)}).each do |footballer_team|
+      self.football_player_appointments.create(:competitor_id => self.id, :footballer_id => footballer_team.footballer_id)
+    end
   end
 end

@@ -39,6 +39,7 @@ class TeamsController < ApplicationController
                                 )
 #      @team.seasons.by_tournament(@tournament.id)
       @footballers = Footballer.by_team_step({:team_id => @team.id, :step_id => @season.id} )
+      @schedules = Schedule.future_team_matches(@team.id)
     end
   end
 end

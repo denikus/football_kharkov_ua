@@ -26,8 +26,8 @@
     = render "tournament_info_block", :tournament_team => tournament_team
 
   %h3= "Ближайшие матчи"
-  = render "schedule_info_block", :schedules => @schedules
-  
+  = render "schedule_info_block", :schedules => @schedules, :footballer => @footballer
+
 .clear
       
 :javascript
