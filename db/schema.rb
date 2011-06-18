@@ -353,9 +353,9 @@ ActiveRecord::Schema.define(:version => 20110523184818) do
   end
 
   create_table "step_properties", :force => true do |t|
-    t.integer "step_id"
     t.string  "property_name"
     t.string  "property_value"
+    t.integer "step_id"
   end
 
   create_table "steps", :force => true do |t|
