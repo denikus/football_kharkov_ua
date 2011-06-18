@@ -1,10 +1,15 @@
 .schedule-content
   -schedules.each_with_index do |schedule_item, i|
+    -competitors = Competitor.find_all_by_match_id(Match.find_by_schedule_id(schedule_item.id).id)
+    -appointment = FootballPlayerAppointment.find_by_footballer_id(footballer.id, :conditions => ["competitor_id IN (#{competitors.collect{|c| c.id}.join(',')})"])
     %table.footballer-schedule
       %caption
         = Russian::strftime(schedule_item.match_on.to_date, "%A, %d %B %Y")
         = schedule_item.match_at
       -row_class = i%2 == 0 ? "" : "odd"
+      -accepted = appointment.response == :accepted ? "appointment_response" : ""
+      -declined = appointment.response == :declined ? "appointment_response" : ""
+      -tentative = appointment.response == :tentative ? "appointment_response" : ""
       %tr{:class => row_class}
         %td.tournament
           = link_to schedule_item.step_tour.tournament.short_name, tournament_url(:subdomain => schedule_item.step_tour.tournament.url)
@@ -17,3 +22,7 @@
         %td{:style => "width: 20px;"}= "-"
         %td.guests
           = link_to schedule_item.guests.name, team_url(schedule_item.guests.url, :host => with_subdomain(schedule_item.step_tour.tournament.url))
+        -if(user_signed_in? && current_user.id == appointment.footballer.user_id)
+          %td{:class => accepted}= link_to "Приду", football_player_appointment_path(appointment, :appointment_response => "accepted"), :method => :put
+          %td{:class => declined}= link_to "Не приду", football_player_appointment_path(appointment, :appointment_response => "declined"), :method => :put
+          %td{:class => tentative}= link_to "Не знаю", football_player_appointment_path(appointment, :appointment_response => "tentative"), :method => :put

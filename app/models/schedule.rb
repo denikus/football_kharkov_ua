@@ -68,6 +68,15 @@ class Schedule < ActiveRecord::Base
       group("`schedules`.id")
     end
 
+    def future_team_matches(team_id)
+      schedules = Competitor.
+          select("matches.schedule_id").
+          joins("INNER JOIN matches ON competitors.match_id = matches.id").
+          where('competitors.team_id = ?', team_id).collect{|x| x.schedule_id.to_s}.uniq
+      where("schedules.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ? AND schedules.id in (#{schedules.join(',')})", Time.now.to_date).
+      group("`schedules`.id")
+    end
+
     def get_min_date(tournament, with_results = false)
 
       condition_str = "1"

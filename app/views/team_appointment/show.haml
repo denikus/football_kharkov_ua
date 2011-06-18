@@ -1,0 +1,9 @@
+%h2.tournament-subtitle Список игроков на матч #{@competitor.nil? ? "" : @competitor.match.schedule.name}
+- unless @competitor.nil?
+  - @competitor.football_player_appointments.each do |appointment|
+    %table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
+      %tr
+        %td
+          = link_to appointment.footballer.full_name, footballer_url(appointment.footballer.url)
+        %td
+          = appointment.response_to_s

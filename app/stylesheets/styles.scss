@@ -1493,8 +1493,15 @@ div.schedule-content {
       width: 40px;
       text-align: center;
     }
+    td.date {
+      width: 120px;
+      text-align: center;
+    }
     td.league {
       text-align: center;
+    }
+    td.appointment_response {
+        font-weight: bold;
     }
   }
 }
@@ -1677,4 +1684,3 @@ table.match {
     margin-bottom: 0;
   }
 }
-

@@ -1,0 +1,17 @@
+.schedule-content
+-schedules.each_with_index do |future_match_schedule, i|
+  %table.footballer-schedule
+    -row_class = i%2 == 0 ? "" : "odd"
+    %tr{:class => row_class}
+      %td= Russian::strftime(future_match_schedule.match_on.to_date, "%A, %d %B %Y")
+      %td.time= future_match_schedule.match_at
+      %td.venue
+        -unless future_match_schedule.venue.nil?
+          = (!future_match_schedule.venue.icon.nil? && !future_match_schedule.venue.icon.empty? ? image_tag("/images/icons/#{future_match_schedule.venue.icon}", :alt => "#{future_match_schedule.venue.name}", :title => "#{future_match_schedule.venue.name}") : "")
+          =link_to future_match_schedule.venue.short_name, venue_url(future_match_schedule.venue.url)
+
+      %td.hosts= link_to(future_match_schedule.hosts.name, team_path(future_match_schedule.hosts.url), :host => with_subdomain(future_match_schedule.step_tour.tournament.url))
+      %td{:style => "width: 20px;", :text_align => "center"}= "-"
+      %td.guests= link_to(future_match_schedule.guests.name, team_path(future_match_schedule.guests.url, :host => with_subdomain(future_match_schedule.step_tour.tournament.url)))
+      -if(user_signed_in? && !FootballersTeam.find_by_footballer_id(Footballer.find_by_user_id(current_user.id).id, :conditions => {:team_id => team.id}).nil?)
+        %td{:style => "width: 45px;", :text_align => "center"}= link_to("Посмотреть участников", team_appointment_path(Competitor.find_by_match_id(Match.find_by_schedule_id(future_match_schedule.id).id, :conditions => {:team_id => team.id})))

@@ -96,7 +96,9 @@ FootballKharkov::Application.routes.draw do
     match '/' => "tournaments#index", :as => "tournament"
     match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
   end
-
+  
+  resources :football_player_appointment, :only => ["update"]
+  resources :team_appointment, :only => ["show"]
   resources :teams, :only => ["index", "show"]
   resources :tables, :only => ["index"]
   resources :bombardiers, :only => ["index"]
