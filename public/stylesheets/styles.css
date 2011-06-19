@@ -1692,14 +1692,23 @@ div.schedule-content table td.time {
   text-align: center;
 }
 /* line 1496, ../../app/stylesheets/styles.scss */
+div.schedule-content table td.date {
+  width: 120px;
+  text-align: center;
+}
+/* line 1500, ../../app/stylesheets/styles.scss */
 div.schedule-content table td.league {
   text-align: center;
+}
+/* line 1503, ../../app/stylesheets/styles.scss */
+div.schedule-content table td.appointment_response {
+  font-weight: bold;
 }
 
 /**
 * Filter block styles
 */
-/* line 1506, ../../app/stylesheets/styles.scss */
+/* line 1513, ../../app/stylesheets/styles.scss */
 .b-slide-filter {
   font-size: 13px;
   height: 25px;
@@ -1707,43 +1716,43 @@ div.schedule-content table td.league {
   margin-bottom: 21px;
   padding-bottom: 22px;
 }
-/* line 1512, ../../app/stylesheets/styles.scss */
+/* line 1519, ../../app/stylesheets/styles.scss */
 .b-slide-filter .lbl {
   cursor: text;
   line-height: 22px;
   margin-right: 20px;
 }
-/* line 1517, ../../app/stylesheets/styles.scss */
+/* line 1524, ../../app/stylesheets/styles.scss */
 .b-slide-filter * {
   vertical-align: middle;
 }
-/* line 1521, ../../app/stylesheets/styles.scss */
+/* line 1528, ../../app/stylesheets/styles.scss */
 .b-slide-filter .l-slide-menu {
   background-position: 0 -346px;
   display: inline-block;
   position: relative;
 }
-/* line 1527, ../../app/stylesheets/styles.scss */
+/* line 1534, ../../app/stylesheets/styles.scss */
 .b-slide-filter b, .b-slide-filter .l-slide-menu, .b-slide-filter .slide {
   height: 25px;
 }
-/* line 1530, ../../app/stylesheets/styles.scss */
+/* line 1537, ../../app/stylesheets/styles.scss */
 .b-slide-filter b {
   position: absolute;
   top: 0;
   width: 15px;
 }
-/* line 1537, ../../app/stylesheets/styles.scss */
+/* line 1544, ../../app/stylesheets/styles.scss */
 .b-slide-filter .slide .l {
   background-position: -138px -308px;
   left: -15px;
 }
-/* line 1541, ../../app/stylesheets/styles.scss */
+/* line 1548, ../../app/stylesheets/styles.scss */
 .b-slide-filter .slide .r {
   background-position: -168px -308px;
   right: -15px;
 }
-/* line 1545, ../../app/stylesheets/styles.scss */
+/* line 1552, ../../app/stylesheets/styles.scss */
 .b-slide-filter .slide .c {
   background-position: -152px -308px;
   height: 31px;
@@ -1753,18 +1762,18 @@ div.schedule-content table td.league {
 }
 
 /*Match page*/
-/* line 1556, ../../app/stylesheets/styles.scss */
+/* line 1563, ../../app/stylesheets/styles.scss */
 h3 a.season-matches-link, h3 a.season-matches-link:hover {
   color: #A5BE0E;
   font-size: 90%;
 }
 
-/* line 1560, ../../app/stylesheets/styles.scss */
+/* line 1567, ../../app/stylesheets/styles.scss */
 h3 a.season-matches-link:hover {
   color: #336999;
 }
 
-/* line 1564, ../../app/stylesheets/styles.scss */
+/* line 1571, ../../app/stylesheets/styles.scss */
 table.match {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   border-collapse: collapse;
@@ -1772,48 +1781,48 @@ table.match {
   margin-top: 10px;
   width: 100%;
 }
-/* line 1571, ../../app/stylesheets/styles.scss */
+/* line 1578, ../../app/stylesheets/styles.scss */
 table.match td.broadcasting {
   padding: 0;
 }
-/* line 1573, ../../app/stylesheets/styles.scss */
+/* line 1580, ../../app/stylesheets/styles.scss */
 table.match td.broadcasting table {
   border: none;
   width: 100%;
 }
-/* line 1576, ../../app/stylesheets/styles.scss */
+/* line 1583, ../../app/stylesheets/styles.scss */
 table.match td.broadcasting table td {
   border: none;
 }
-/* line 1582, ../../app/stylesheets/styles.scss */
+/* line 1589, ../../app/stylesheets/styles.scss */
 table.match th.host, table.match th.guest {
   width: 250px;
 }
-/* line 1585, ../../app/stylesheets/styles.scss */
+/* line 1592, ../../app/stylesheets/styles.scss */
 table.match td, table.match th {
   border: 1px solid #d9d9d9;
   padding: 5px;
 }
-/* line 1589, ../../app/stylesheets/styles.scss */
+/* line 1596, ../../app/stylesheets/styles.scss */
 table.match td {
   text-align: left;
   vertical-align: top;
 }
-/* line 1592, ../../app/stylesheets/styles.scss */
+/* line 1599, ../../app/stylesheets/styles.scss */
 table.match td p.subheader {
   color: #BE420E;
   font-weight: bold;
 }
-/* line 1599, ../../app/stylesheets/styles.scss */
+/* line 1606, ../../app/stylesheets/styles.scss */
 table.match td.statistic p span {
   color: #BE420E;
   font-weight: bold;
 }
-/* line 1604, ../../app/stylesheets/styles.scss */
+/* line 1611, ../../app/stylesheets/styles.scss */
 table.match td.minute {
   width: 40px;
 }
-/* line 1608, ../../app/stylesheets/styles.scss */
+/* line 1615, ../../app/stylesheets/styles.scss */
 table.match th {
   color: #be420e;
   font-size: 100%;
@@ -1821,42 +1830,42 @@ table.match th {
   margin: 0.6em 0 0.6em 0.4em;
   padding: 5px;
 }
-/* line 1616, ../../app/stylesheets/styles.scss */
+/* line 1623, ../../app/stylesheets/styles.scss */
 table.match ul.players_list {
   list-style-type: none;
 }
-/* line 1618, ../../app/stylesheets/styles.scss */
+/* line 1625, ../../app/stylesheets/styles.scss */
 table.match ul.players_list li {
   padding-bottom: 3px;
 }
 
 /*Footballer Page*/
-/* line 1627, ../../app/stylesheets/styles.scss */
+/* line 1634, ../../app/stylesheets/styles.scss */
 .photo_block {
   width: 255px;
   float: left;
 }
-/* line 1630, ../../app/stylesheets/styles.scss */
+/* line 1637, ../../app/stylesheets/styles.scss */
 .photo_block img {
   border: 1px solid black;
 }
 
-/* line 1638, ../../app/stylesheets/styles.scss */
+/* line 1645, ../../app/stylesheets/styles.scss */
 .info_container {
   float: left;
   padding-left: 5px;
   width: 660px;
 }
-/* line 1642, ../../app/stylesheets/styles.scss */
+/* line 1649, ../../app/stylesheets/styles.scss */
 .info_container h3 {
   margin-bottom: 10px;
 }
-/* line 1645, ../../app/stylesheets/styles.scss */
+/* line 1652, ../../app/stylesheets/styles.scss */
 .info_container p.season-content {
   margin-bottom: 0;
   padding-bottom: 7px;
 }
-/* line 1649, ../../app/stylesheets/styles.scss */
+/* line 1656, ../../app/stylesheets/styles.scss */
 .info_container h4 {
   font-weight: bold;
   margin: 0;
@@ -1864,19 +1873,19 @@ table.match ul.players_list li {
   margin-bottom: 10px;
   /*display: inline;*/
 }
-/* line 1655, ../../app/stylesheets/styles.scss */
+/* line 1662, ../../app/stylesheets/styles.scss */
 .info_container h4 a {
   text-decoration: none;
   color: #336999;
 }
-/* line 1661, ../../app/stylesheets/styles.scss */
+/* line 1668, ../../app/stylesheets/styles.scss */
 .info_container table.footballer-schedule {
   background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
-/* line 1666, ../../app/stylesheets/styles.scss */
+/* line 1673, ../../app/stylesheets/styles.scss */
 .info_container table.footballer-schedule caption {
   padding: 0 0 5px 0;
   width: 100%;
@@ -1885,7 +1894,7 @@ table.match ul.players_list li {
   text-align: left;
 }
 
-/* line 1676, ../../app/stylesheets/styles.scss */
+/* line 1683, ../../app/stylesheets/styles.scss */
 #col-left p.season-header {
   margin-bottom: 0;
 }
