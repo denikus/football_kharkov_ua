@@ -11,7 +11,8 @@
             Пароль:
             = f.password_field :password, :tabindex=>"2", :id=>"password", :size => 10, :class=>"fancy-field"
         %li.submit
-          = submit_tag "Войти", :tabindex=>"3", :class => "fancy-button login light"
+          -#= submit_tag "Войти", :tabindex=>"3", :class => "fancy-button login light"
+          = submit_tag "Войти", :tabindex=>"3", :class => "colored-button"
 
         .clear
         %p

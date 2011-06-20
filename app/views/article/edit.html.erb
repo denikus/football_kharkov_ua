@@ -40,7 +40,7 @@
     <label for="post_hide_comments" style="display:inline;">Спрятать комментарии</label>
   </fieldset>
   <div class="clear"></div>
-<%= f.submit "Сохранить", :class=>"fancy-button" %>
+<%= f.submit "Сохранить", :class=>"colored-button big primary" %>
 <%end%>
 <script language="javascript">
   uploaded_file_path = '/images/articles/<%=  @article.post.created_at.strftime("%Y-%m-%d") %>/';

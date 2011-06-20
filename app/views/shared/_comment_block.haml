@@ -23,7 +23,7 @@
                   = show_comment(post, item)
                   - if user_signed_in?
                     %p.comment-reply{:style => "float: right;"}
-                      = "<a href=\"#\" onclick=\"addCommentForm(#{item.id}, #{item.level}, #{post.id});return false;\">ответить</a>".html_safe
+                      = "<a href=\"#\" onclick=\"addCommentForm(#{item.id}, #{item.level}, #{post.id});return false;\" class=\"button\">ответить</a>".html_safe
                     .clear
               .clear        
 - unless user_signed_in?
@@ -45,4 +45,4 @@
       = f.text_area :body, :cols => 30, :rows => 5, :style => "height: 100px; width: 300px;"
       .clear
       %p
-        %input.fancy-button{:type=>"submit", :value => "Отправить"}/
+        %input.colored-button.primary.big{:type=>"submit", :value => "Отправить"}/
