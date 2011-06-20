@@ -57,7 +57,7 @@ function addCommentForm(parent_id, parent_level, post_id) {
   var parent_id_field  = $('<input type="hidden" name="comment[parent_id]" value="' + parent_id + '" />');
   var post_id_field    = $('<input type="hidden" name="comment[post_id]" value="' + post_id + '" />');
   var body_textarea    = $('<textarea name="comment[body]" id="new-comment-body" cols="30" rows="5" style="height: 100px; width: 300px;"></textarea>');
-  var form_submit      = $('<div class="clear" style="border:0; margin:0; padding:0;"></div><p><input type="submit" value="Отправить" class="fancy-submit" /></p>');
+  var form_submit      = $('<div class="clear" style="border:0; margin:0; padding:0;"></div><p><input type="submit" value="Отправить" class="button primary" /></p>');
   
   form_element.append(parent_id_field);
   form_element.append(post_id_field);

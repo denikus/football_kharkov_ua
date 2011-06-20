@@ -16,7 +16,7 @@
 
     .clear-space &nbsp;
 
-    %p= f.submit "Войти", :class=>"fancy-button"
+    %p= f.submit "Войти", :class=>"colored-button big primary"
 
     - if devise_mapping.recoverable?
       = link_to "Забыли пароль?", new_password_path(resource_name)

@@ -62,8 +62,8 @@ GEM
     cgi_multipart_eof_fix (2.5.0)
     chunky_png (1.2.0)
     columnize (0.3.2)
-    compass (0.11.1)
-      chunky_png (~> 1.1)
+    compass (0.11.3)
+      chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
     crack (0.1.8)
@@ -198,7 +198,7 @@ GEM
     russian (0.2.7)
     sanitize (2.0.2)
       nokogiri (~> 1.4.4)
-    sass (3.1.0.alpha.216)
+    sass (3.1.2)
     sexp_processor (3.0.5)
     sitemap_generator (2.0.0)
     subexec (0.0.4)
@@ -250,7 +250,7 @@ DEPENDENCIES
   ruby_parser
   russian
   sanitize
-  sass (= 3.1.0.alpha.216)
+  sass
   sitemap_generator
   test_notifier
   whenever

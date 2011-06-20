@@ -26,11 +26,20 @@ xml.rss "version" => "2.0" , "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
           xml.description Hpricot(article_announce(post.resource['generated_body'])).to_html unless post.resource['generated_body'].nil?
         end
         xml.pubDate CGI.rfc1123_date(post.updated_at.to_time)
-        xml.guid post_url(:only_path => false,
+        unless post.resource_type=='Status'
+          xml.guid post_url(:only_path => false,
                      :year => post.created_at.strftime('%Y'),
                      :month => post.created_at.strftime('%m'),
                      :day => post.created_at.strftime('%d'),
                      :url => !post.url.nil? ? post.url : '')
+        else
+          xml.link status_url(post.resource_id)
+        end
+#        xml.guid post_url(:only_path => false,
+#                     :year => post.created_at.strftime('%Y'),
+#                     :month => post.created_at.strftime('%m'),
+#                     :day => post.created_at.strftime('%d'),
+#                     :url => !post.url.nil? ? post.url : '')
         xml.author h(User.find(post.author_id).username)
       end
     end
