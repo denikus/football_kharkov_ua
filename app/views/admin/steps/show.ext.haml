@@ -13,7 +13,7 @@
 - elsif type
   - nodes = @node.send(nodes).map do |s|
     - {:text => s.full_name, :cls => params['type'] == 'leagues' ? 'leaf' : 'folder', :id => "nav-tournament-#{s.id}", :leaf => params['type'] == 'leagues', '_id' => s.id, '_identifier' => s.identifier, '_name' => s.name, '_url' => s.url, '_type' => s.type,
-     '_playoff' => (type == 'StepStage') ? s.is_playoff : false}
+     '_playoff' => (type == 'StepStage') ? s.is_playoff : false, '_bonus_point' => (type == 'StepLeague') ? s.is_bonus_point : false}
   - id = "nav-tournament-add-to-#{params[:id] || 'root'}"
   - id << "-#{params[:type]}" if params[:type]
   - nodes.push(:text => 'Добавить ' + name, :cls => 'add', :id => id, :leaf => true, :draggable => false, '_type' => type, '_owner_id' => params[:id] || 'root')
