@@ -34,10 +34,10 @@
           - else
             = "-"  
         %td.time= schedule_item.match_at
-        %td.hosts= "#{schedule_item.hosts.name} "
+        %td.hosts= link_to schedule_item.hosts.name, team_url(schedule_item.hosts.url)
         %td.score-container
           .fancy-score{:class => hosts_class, :id => "host_score_view_#{schedule_item.id}" }= !schedule_item.host_scores.nil? ? schedule_item.host_scores : "-"
           .fancy-score.fancy-score-right{:class => guests_class, :id => "guest_score_view_#{schedule_item.id}"}= !schedule_item.guest_scores.nil? ? schedule_item.guest_scores : "-"
           .clear
-        %td.guests= "#{schedule_item.guests.name}"
+        %td.guests= link_to schedule_item.guests.name, team_url(schedule_item.guests.url)
         -#%td= schedule_item.league_id

@@ -563,8 +563,8 @@ input.fancy-submit:hover {
   margin:0 0 1em 0;
 
   a {
-    text-decoration: none;
     color: $block_link_color;
+    text-decoration: none;
     font-family: arial, verdana,helvetica;
     font-size:14px;
     font-weight: bold;
@@ -572,6 +572,7 @@ input.fancy-submit:hover {
 //  a.normal {
 //    font-weight: normal;
 //  }
+
   a:hover {
     color:$block_header_color;
   }
@@ -601,9 +602,13 @@ input.fancy-submit:hover {
       }
 
       p.author {
+        a {
+            color: $block_grey_text_color;
+            font-weight: normal;
+            text-decoration: underline;       
+        }
         line-height:1.2em;
       }
-
     }
   }
 
@@ -729,8 +734,7 @@ ul.comment p.comment-body {
 }*/
 
 .blog_link_panel div {
-    float: left;
-    border-right:1px solid #EEEEEE;
+    float: left;    
     margin-right:-1px;
     margin-top:-1px;
     /*height: 25px;*/

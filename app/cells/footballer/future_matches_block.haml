@@ -4,7 +4,7 @@
   .bd
     %ul.my-schedule-block
       -@schedules.each_with_index do |schedule_item, i|
-        %li= link_to "#{Russian::strftime(schedule_item.match_on.to_date, "%A, %d %B %Y")} #{schedule_item.match_at}",  footballer_url(:id => current_user.footballer.url, :subdomain => nil)
+        %li= link_to "#{Russian::strftime(schedule_item.match_on.to_date, "%A, %d %B")} #{schedule_item.match_at} (#{schedule_item.venue.name})",  footballer_url(:id => current_user.footballer.url, :subdomain => nil)
     -#%table.footballer-schedule
     -#  %caption
     -#    = Russian::strftime(schedule_item.match_on.to_date, "%A, %d %B %Y")
