@@ -1,14 +1,30 @@
 $grey_border: #EEEEEE;
 $grey_menu_background: #DCDCDC;
 
+$block_border_color: #D9D9D9;
+$block_header_color: #BE420E;
+$block_link_color: #006CA2;
+$block_grey_text_color: #666666;
+
 div#left-sidebar {
   width: 250px;
   float: left;
   /*border-right:1px solid $grey_border;*/
+
+  ul{
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+
+    li{
+      line-height:1.2em;
+    }
+  }
 }
 
+
 div#col-left {
-  width: 650px;
+  width: 450px;
   float: right;
   border-right: none;
   hr {
@@ -25,6 +41,118 @@ div#col-left {
   }
 }
 
+div#posts{
+  width: 50%;
+  float: left;
+  border:1px solid $block_border_color;
+  padding-left: 5px;
+  margin:0 0 1em 0;
+
+  h4 {
+  background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border-bottom:1px solid $block_border_color;
+  margin:0 0 1em 0;
+  margin-left: -5px;
+  }
+}
+#right-sidebar .sidebar-block {
+  width: 200px;
+  float:right;
+  background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border:1px solid $block_border_color;
+  margin:0 0 1em 0;
+
+  a {
+    color: $block_link_color;
+    text-decoration: none;
+    font-family: arial, verdana,helvetica;
+    font-size:14px;
+    font-weight: bold;
+  }
+//  a.normal {
+//    font-weight: normal;
+//  }
+
+  a:hover {
+    color:$block_header_color;
+  }
+
+  ul {
+    margin:0;
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    li {
+      line-height:1.2em;
+      padding:5px;
+      border: 0;
+      border-top:1px solid $block_border_color;
+
+      p.post-title {
+        line-height:1.2em;
+        margin-bottom:3px;
+      }
+
+      p.post-date {
+        color: $block_grey_text_color;
+        //        margin:0 0.6em;
+        line-height:1em;
+        padding:0;
+        margin-bottom:2px;
+      }
+
+      p.author {
+        a {
+            color: $block_grey_text_color;
+            font-weight: normal;
+            text-decoration: underline;
+        }
+        line-height:1.2em;
+      }
+    }
+  }
+
+  ul.my-schedule-block {
+
+    li{
+      a{
+        color:$block_header_color;
+        font-weight: normal;
+      }
+      a:hover {
+        color: $block_link_color;
+      }
+    }
+  }
+}
+
+.sidebar-block-header {
+  //  border-bottom: 1px solid $block_border_color;
+  background-color: transparent;
+  h4 {
+    font-size: 100%;
+    color:$block_header_color;
+    font-weight:bold;
+    margin:0.6em 0 0.6em 0.4em;
+    text-transform:uppercase;
+    padding: 0;
+  }
+}
+
+
+div.header-bottom{
+  table {
+    width: 100%;
+    color: $block_header_color;
+    td {
+      font-size: 12px;
+      text-align: center;
+    }
+    td.control {
+      width: 20px;
+    }
+  }
+}
 div#container {
   h1 {
     font-size:180%;
@@ -55,6 +183,8 @@ ul#left-sidebar-menu {
     }
   }
 }
+
+
 
 /*Tab Top Navigation*/
 

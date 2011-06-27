@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def show
     @title = 'Профиль'
     @profile = User.from_param(params[:id]).profile
+
+    params[:page] = 1 if !params[:page]
+    @posts = Post.paginate(:page => params[:page], :per_page => 5, :order => 'created_at DESC', :conditions => {:author_id => @profile.user_id})
     render :layout => "user"
   end
 
@@ -41,7 +44,15 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
+  def feed
+    @profile = User.from_param(params[:id]).profile
+    @posts = Post.paginate(:page => params[:page], :per_page => 10, :order => 'created_at DESC', :conditions => {:author_id => @profile.user_id})
+    @feed = {:title => "Футбольная лента #{@profile.user.username}"}
+    render :layout=>false, :template => "feed/index"
+    response.headers["Content-Type"] = "application/xml; charset=utf-8"
+  end
+
   private
   
 #  def create_forum_user_for_user user

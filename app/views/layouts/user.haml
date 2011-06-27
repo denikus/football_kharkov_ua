@@ -6,6 +6,16 @@
   /content
   #left-sidebar
     = render_cell :user, :sidebar
+    = render_cell :user, :statbar
+  #posts
+    -unless @posts.nil? || @posts.length == 0
+      %h4
+        = "Статьи:"
+        = link_to image_tag("/images/icons/feed.png", :size => "16x16"), url_for({:action=>"feed", :controller=>"users"}), :class => "feed-link"
+      = render :template => "blog/index"
+  /eof center column
+  #right-sidebar
+    = render_cell :sidebar_block, :user_comments, :title => "Комментарии"
   #col-left
     - if flash[:error]
       #main-error-block.error= flash[:error]

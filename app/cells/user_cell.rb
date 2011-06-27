@@ -9,4 +9,9 @@ class UserCell < Cell::Rails
     end
     render
   end
+
+  def statbar
+    @profile = User.from_param(params[:id]).profile
+    render
+  end
 end
