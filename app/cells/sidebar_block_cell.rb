@@ -17,7 +17,7 @@ class SidebarBlockCell < ::Cell::Base
 
   def user_comments
     user = User.from_param(params[:id])
-    @comments = Comment.tournament(@opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => {:post , :user}, :conditions => ["author_id = #{user.id} AND parent_id IS NOT NULL"])
+    @comments = Comment.tournament(@opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => {:post , :user}, :conditions => ["comments.author_id = #{user.id} AND parent_id IS NOT NULL"])
 
     render :file => 'app/cells/sidebar_block/comments'
   end

@@ -1,64 +1,185 @@
-/* line 4, ../../app/stylesheets/user.scss */
+/* line 9, ../../app/stylesheets/user.scss */
 div#left-sidebar {
   width: 250px;
   float: left;
   /*border-right:1px solid $grey_border;*/
 }
+/* line 14, ../../app/stylesheets/user.scss */
+div#left-sidebar ul {
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+}
+/* line 19, ../../app/stylesheets/user.scss */
+div#left-sidebar ul li {
+  line-height: 1.2em;
+}
 
-/* line 10, ../../app/stylesheets/user.scss */
+/* line 26, ../../app/stylesheets/user.scss */
 div#col-left {
-  width: 650px;
+  width: 450px;
   float: right;
   border-right: none;
 }
-/* line 14, ../../app/stylesheets/user.scss */
+/* line 30, ../../app/stylesheets/user.scss */
 div#col-left hr {
   color: #eeeeee;
   background-color: #eeeeee;
   height: 1px;
   border: none;
 }
-/* line 22, ../../app/stylesheets/user.scss */
+/* line 38, ../../app/stylesheets/user.scss */
 div#col-left div#profile-data-block-view label {
   display: inline;
 }
 
-/* line 29, ../../app/stylesheets/user.scss */
+/* line 44, ../../app/stylesheets/user.scss */
+div#posts {
+  width: 50%;
+  float: left;
+  border: 1px solid #d9d9d9;
+  padding-left: 5px;
+  margin: 0 0 1em 0;
+}
+/* line 51, ../../app/stylesheets/user.scss */
+div#posts h4 {
+  background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border-bottom: 1px solid #d9d9d9;
+  margin: 0 0 1em 0;
+  margin-left: -5px;
+}
+
+/* line 58, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block {
+  width: 200px;
+  float: right;
+  background: url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
+  border: 1px solid #d9d9d9;
+  margin: 0 0 1em 0;
+}
+/* line 65, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block a {
+  color: #006ca2;
+  text-decoration: none;
+  font-family: arial, verdana,helvetica;
+  font-size: 14px;
+  font-weight: bold;
+}
+/* line 76, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block a:hover {
+  color: #be420e;
+}
+/* line 80, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul {
+  margin: 0;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+}
+/* line 85, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li {
+  line-height: 1.2em;
+  padding: 5px;
+  border: 0;
+  border-top: 1px solid #d9d9d9;
+}
+/* line 91, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li p.post-title {
+  line-height: 1.2em;
+  margin-bottom: 3px;
+}
+/* line 96, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li p.post-date {
+  color: #666666;
+  line-height: 1em;
+  padding: 0;
+  margin-bottom: 2px;
+}
+/* line 104, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li p.author {
+  line-height: 1.2em;
+}
+/* line 105, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li p.author a {
+  color: #666666;
+  font-weight: normal;
+  text-decoration: underline;
+}
+/* line 118, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul.my-schedule-block li a {
+  color: #be420e;
+  font-weight: normal;
+}
+/* line 122, ../../app/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul.my-schedule-block li a:hover {
+  color: #006ca2;
+}
+
+/* line 129, ../../app/stylesheets/user.scss */
+.sidebar-block-header {
+  background-color: transparent;
+}
+/* line 132, ../../app/stylesheets/user.scss */
+.sidebar-block-header h4 {
+  font-size: 100%;
+  color: #be420e;
+  font-weight: bold;
+  margin: 0.6em 0 0.6em 0.4em;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+/* line 144, ../../app/stylesheets/user.scss */
+div.header-bottom table {
+  width: 100%;
+  color: #be420e;
+}
+/* line 147, ../../app/stylesheets/user.scss */
+div.header-bottom table td {
+  font-size: 12px;
+  text-align: center;
+}
+/* line 151, ../../app/stylesheets/user.scss */
+div.header-bottom table td.control {
+  width: 20px;
+}
+
+/* line 157, ../../app/stylesheets/user.scss */
 div#container h1 {
   font-size: 180%;
   margin-bottom: 10px;
   border-bottom: 1px solid #eeeeee;
 }
 
-/* line 36, ../../app/stylesheets/user.scss */
+/* line 164, ../../app/stylesheets/user.scss */
 ul#left-sidebar-menu {
   margin: 0;
   margin-top: 10px;
   text-align: left;
   list-style-type: none;
 }
-/* line 41, ../../app/stylesheets/user.scss */
+/* line 169, ../../app/stylesheets/user.scss */
 ul#left-sidebar-menu li {
   display: block;
   border-bottom: 1px solid #eeeeee;
 }
-/* line 44, ../../app/stylesheets/user.scss */
+/* line 172, ../../app/stylesheets/user.scss */
 ul#left-sidebar-menu li a {
   text-decoration: none;
   display: block;
   padding: 4px;
 }
-/* line 49, ../../app/stylesheets/user.scss */
+/* line 177, ../../app/stylesheets/user.scss */
 ul#left-sidebar-menu li a:hover {
   background-color: #eeeeee;
 }
-/* line 53, ../../app/stylesheets/user.scss */
+/* line 181, ../../app/stylesheets/user.scss */
 ul#left-sidebar-menu li a.active {
   background-color: #dcdcdc;
 }
 
 /*Tab Top Navigation*/
-/* line 62, ../../app/stylesheets/user.scss */
+/* line 192, ../../app/stylesheets/user.scss */
 ul#tabnav {
   /*  height: 27px;
     color:#292929;
@@ -88,7 +209,7 @@ ul#tabnav {
       background: url('/images/icons/picture_edit.png') no-repeat scroll 0 50% transparent;
     }*/
 }
-/* line 81, ../../app/stylesheets/user.scss */
+/* line 211, ../../app/stylesheets/user.scss */
 ul#tabnav li {
   /*border-right: 1px solid $grey_border;*/
   /*float: left;*/
@@ -100,11 +221,11 @@ ul#tabnav li {
   list-style: none;
   font-size: 13px;
 }
-/* line 93, ../../app/stylesheets/user.scss */
+/* line 223, ../../app/stylesheets/user.scss */
 ul#tabnav li.first {
   border-left: 1px solid #EEEEEE;
 }
-/* line 97, ../../app/stylesheets/user.scss */
+/* line 227, ../../app/stylesheets/user.scss */
 ul#tabnav a:link, ul#tabnav a:visited, ul#tabnav span {
   /*display:block;*/
   /*padding:9px 9px 6px 20px;*/
@@ -126,7 +247,7 @@ ul#tabnav a:link, ul#tabnav a:visited, ul#tabnav span {
   border-top-left-radius: 6px 6px;
   border-top-right-radius: 6px 6px;
 }
-/* line 123, ../../app/stylesheets/user.scss */
+/* line 253, ../../app/stylesheets/user.scss */
 ul#tabnav a.current {
   /*background:url("/images/top_nav_tab_background.gif") repeat-x scroll left top #FFFFFF;*/
   /*color:#292929;*/
