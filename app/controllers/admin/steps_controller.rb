@@ -13,6 +13,11 @@ class Admin::StepsController < ApplicationController
   end
   
   def create
+    if params[:step][:step_properties][:playoff]=="on"
+      params[:step][:step_properties_attributes] = [{:property_name => "playoff", :property_value => 1}]
+      params[:step].delete("step_properties")
+    end
+
     assoc = params[:step][:type][/Step(\w+)/, 1].downcase.pluralize
     klass = params[:step].delete(:type).constantize
     parent_id = params[:step].delete(:parent_id)
