@@ -33,10 +33,17 @@ Ext.ux.tournament.StepForm = function Panel(options) {
         allowBlank: true
       }, { xtype: 'checkbox',
           fieldLabel: 'Плей-офф',
-          name: 'step[playoff]',
+          name: 'step[step_properties][playoff]',
           checked: options.playoff,
           value: options.playoff,
           hidden: options.type != 'StepStage'
+      },
+          { xtype: 'checkbox',
+          fieldLabel: 'Бонус в рейтинг',
+          name: 'step[bonus_point]',
+          checked: options.bonus_point,
+          value: options.bonus_point,
+          hidden: options.type != 'StepLeague'
       }
     ],
     buttons: [{

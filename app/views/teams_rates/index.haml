@@ -19,6 +19,8 @@
       %td
         L
       %td
+        B
+      %td
         Индекс
     - @teams.each_with_index do |item, index|
       -row_class = index%2 == 0 ? "" : "odd"
@@ -30,5 +32,6 @@
           %td.stat= (stat.season_rate.nil?) ? "-" : stat.wins
           %td.stat= (stat.season_rate.nil?) ? "-" : stat.draws
           %td.stat= (stat.season_rate.nil?) ? "-" : stat.loses
+          %td.stat= (stat.season_rate.nil?) ? "-" : stat.bonus_points
           %td.rate= (stat.season_rate.nil?) ? "-" : sprintf('%0.03f', stat.season_rate)
         %td.rate= sprintf('%0.03f', item[:rate])

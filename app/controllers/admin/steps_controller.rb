@@ -13,6 +13,11 @@ class Admin::StepsController < ApplicationController
   end
   
   def create
+    if params[:step][:step_properties][:playoff]=="on"
+      params[:step][:step_properties_attributes] = [{:property_name => "playoff", :property_value => 1}]
+      params[:step].delete("step_properties")
+    end
+
     assoc = params[:step][:type][/Step(\w+)/, 1].downcase.pluralize
     klass = params[:step].delete(:type).constantize
     parent_id = params[:step].delete(:parent_id)
@@ -23,19 +28,13 @@ class Admin::StepsController < ApplicationController
     
     render ext_success
   end
-  
+
   def update
     [:type, :parent_id].each{ |p| params[:step].delete p }
 
     step = Step.find(params[:id])
 
-    if step.is_a? StepStage then
-      step.is_playoff =  params[:step][:playoff]  == 'on'
-    end
-
-    if params[:step][:playoff] then
-      params[:step].delete :playoff
-    end
+    process_step_properties(step)
 
     step.update_attributes params[:step]
     render ext_success
@@ -62,5 +61,18 @@ class Admin::StepsController < ApplicationController
   def update_teams
     Step.find(params[:id]).team_ids = params[:team_ids].split(',').map(&:to_i)
     render ext_success
+  end
+
+  private
+    def process_step_properties(step)
+    if step.is_a? StepStage then
+      step.is_playoff = params[:step][:playoff] == 'on'
+    end
+
+    if step.is_a? StepLeague then
+      step.is_bonus_point = params[:step][:bonus_point] == 'on'
+    end
+
+   params[:step].delete [:playoff, :bonus_point]   
   end
 end

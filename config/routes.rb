@@ -68,7 +68,12 @@ FootballKharkov::Application.routes.draw do
     match 'temp(/:action(/:id))' => "temp"
   end
 
-  resources :users
+  match "/!!/:id" => 'users#show', :constraints => {:controller => '#!'}
+  match 'users/feed/:id' => 'users#feed'
+
+  resources :users do
+      get :feed    
+  end
   resources :pages
   resources :schedules
   resources :statuses

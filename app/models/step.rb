@@ -6,6 +6,7 @@ class Step < ActiveRecord::Base
   has_and_belongs_to_many :teams
 
   has_many :step_properties
+  accepts_nested_attributes_for :step_properties
   
   #has_and_belongs_to_many :phases,
   #  :class_name => 'Step',

@@ -1,18 +1,15 @@
-- content_for :head_declarations do
-  = stylesheet_link_tag "user", :media => "all"
 - content_for :content do
-  %h1= @title ||= 'Футбольный сайт'
-  = render :partial => "profiles/tab_navigation"
-  /content
-  #left-sidebar
-    = render_cell :user, :sidebar
+  /left column
   #col-left
-    - if flash[:error]
-      #main-error-block.error= flash[:error]
-    -if flash[:warning]
-      #main-notice-block.notice= flash[:warning]
-    -if flash[:notice]
-      #main-success-block.notice= flash[:notice]
     = yield
   /eof left column
+
+  /right column
+  #col-right
+    = render_cell :user, :sidebar, :title => "О пользователе"
+    = render_cell :sidebar_block, :user_comments, :title => "Комментарии"
+
+- content_for :top_submenu do
+  = "user"
+
 = render :template => 'layouts/app'

@@ -1,14 +1,19 @@
-#profile-photo-menu-container{:style => "width: 200px;overflow:hidden;"}
-  #profile-photo-block
-  .avatar
-    - unless @profile.photo.nil?
-      = image_tag @profile.photo.url(:medium)
-    - else
-      = image_tag "/images/default_photo.jpg"
+.sidebar-block
+  .sidebar-block-header
+    %h4= @opts[:title]
+  #profile-photo-menu-container{:style => "padding:3px;"}
+    .avatar{:style => "text-align: center;"}
+      - unless @profile.photo.nil?
+        = image_tag @profile.photo.url(:medium)
+      - else
+        = image_tag "/images/default_photo.jpg"
     - unless @profile.user.footballer.nil?
       %p
         Он же:
         = link_to @profile.user.footballer.full_name, footballer_path(@profile.user.footballer.url)
+    %p= "Зарегистрирован: " +  Russian::strftime(@profile.created_at, "%d %B %Y")
+    %p= "Статей: " + Post.count(:conditions => ["author_id = #{@profile.user_id}"]).to_s
+    %p= "Комментариев: " + Comment.count(:conditions => ["author_id = #{@profile.user_id} AND parent_id IS NOT NULL"]).to_s
 -#    - unless @profile.photo.nil?
 -#      = link_to "Редактировать", edit_user_profile_path(@profile.user)
 -#    - else

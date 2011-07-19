@@ -34,8 +34,11 @@
         / EOF Header
       / Container
       #container
-        -unless current_subdomain.nil?
+        - top_submenu_type =  content_for(:top_submenu).strip!.to_s
+        - if "tournament" == top_submenu_type
           = render :partial => "tournaments/#{current_subdomain}_top_submenu"
+        - elsif "user" == top_submenu_type
+          = render :partial => "users/top_submenu"
         - else
           = render :partial => "shared/top_submenu"
         #near-scroll-panel

@@ -2,13 +2,13 @@
 - for post in @posts
   .content
     - if post.resource_type=='Article'
-      = render(:partial => "article_item", :locals => { :post => post })
+      = render(:partial => "blog/article_item", :locals => { :post => post })
     - elsif post.resource_type=='SchedulePost'
-      = render(:partial => "schedule_post_item", :locals => { :post => post })
+      = render(:partial => "blog/schedule_post_item", :locals => { :post => post })
     - elsif post.resource_type=='PhotoGallery'
-      = render(:partial => "photo_gallery_item", :locals => { :post => post })
+      = render(:partial => "blog/photo_gallery_item", :locals => { :post => post })
     - elsif post.resource_type=='Status'
-      = render(:partial => "status_item", :locals => { :post => post })
+      = render(:partial => "blog/status_item", :locals => { :post => post })
     = render :partial => "shared/blog_link_panel", :locals => {:post=>post}
   .clear
 = will_paginate @posts

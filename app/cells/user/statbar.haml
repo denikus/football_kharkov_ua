@@ -1,0 +1,4 @@
+%ul
+  %li= "Зарегистрирован: " +  Russian::strftime(@profile.created_at, "%d %B %Y")
+  %li= "Статей: " + Post.count(:conditions => ["author_id = #{@profile.user_id}"]).to_s
+  %li= "Комментариев: " + Comment.count(:conditions => ["author_id = #{@profile.user_id} AND parent_id IS NOT NULL"]).to_s

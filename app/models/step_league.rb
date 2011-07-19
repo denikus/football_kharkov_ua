@@ -5,7 +5,7 @@ class StepLeague < Step
   has_many :matches, :through => :schedules
   
   def StepLeague.get_leagues_in_season (season_id)
-    leagues = self.find(:all,
+    leagues = self.all(
               :select => "steps.* ",
               :joins => "INNER JOIN `steps_phases` AS stages_2_leagues " +
                           "ON (steps.id = stages_2_leagues.phase_id) " +
@@ -40,6 +40,21 @@ class StepLeague < Step
     returning StepTour::Table.new do |table|
       matches.sort_by{ |m| m.schedule.match_on }.each{ |match| table << match }
       table.process
+    end
+  end
+
+  def is_bonus_point
+    StepProperty.exists?(:step_id => self.id, :property_name => "IS_BONUS_POINT", :property_value => "true")
+  end
+
+  def is_bonus_point= (is_bonus_point_flag)
+    if is_bonus_point_flag
+      if !is_bonus_point
+        StepProperty.create(:step_id => self.id, :property_name => "IS_BONUS_POINT", :property_value => "true")
+      end
+    else
+      step_property = StepProperty.first(:conditions => {:step_id => self.id, :property_name => "IS_BONUS_POINT "})
+      StepProperty.delete(step_property.id)
     end
   end
 end

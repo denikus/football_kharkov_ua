@@ -1,19 +1,19 @@
-#profile-data-block-view
-  - unless @profile.first_name.nil? 
-    %label{:for=>"profile_first_name"} Имя:
-    %span.text#profile_first_name= @profile.first_name
-    %br/
-      
-  - unless @profile.last_name.nil?
-    %label{:for => "profile_last_name"} Фамилия:
-    %span.text#profile_last_name= @profile.last_name
-    %br/
-
-  - unless @profile.birthday.nil?
-    %label{:for => "profile_birthday"} Дата рождения:
-    %span.text#profile_birthday= @profile.birthday.strftime('%Y-%m-%d')
-    %br/
-
-  - unless @profile.gender?
-    %label{:for =>"profile_gender"} Пол:
-    %span.text#profile_gender= Hash[*Profile::GENDER_OPTIONS.flatten][@profile.gender]
+-##profile-data-block-view
+-#  - unless @profile.first_name.nil?
+-#    %label{:for=>"profile_first_name"} Имя:
+-#    %span.text#profile_first_name= @profile.first_name
+-#    %br/
+-#
+-#  - unless @profile.last_name.nil?
+-#    %label{:for => "profile_last_name"} Фамилия:
+-#    %span.text#profile_last_name= @profile.last_name
+-#    %br/
+-#
+-#  - unless @profile.birthday.nil?
+-#    %label{:for => "profile_birthday"} Дата рождения:
+-#    %span.text#profile_birthday= @profile.birthday.strftime('%Y-%m-%d')
+-#    %br/
+-#
+-#  - unless @profile.gender?
+-#    %label{:for =>"profile_gender"} Пол:
+-#    %span.text#profile_gender= Hash[*Profile::GENDER_OPTIONS.flatten][@profile.gender]
