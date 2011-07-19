@@ -11,3 +11,5 @@
     = render :partial => "shared/blog_link_panel", :locals => {:post=>post}
     .clear
 = will_paginate @posts
+- content_for :top_submenu do
+  = "tournament"
