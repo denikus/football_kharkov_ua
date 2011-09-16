@@ -1,0 +1,19 @@
+= form_tag '/admin/import/create', :method => "post" do
+  %p
+    = select_tag(:season_id, options_from_collection_for_select(@seasons, "id", "name"))
+  %p
+    = select_tag(:stage_id, options_from_collection_for_select(@stages, "id", "name"))
+  %p
+    %label{:for => "template_league"} Введите шаблон URL Лиг (например, "http://liga.metalist.ua/tournaments/15/standings/{a}/")
+    = text_field :template, :league
+  %p
+    %label{:for => "template_league"} Начальное значение переменной в шаблоне
+    = text_field :template, :counter_start, :size => 3
+  %p
+    %label{:for => "template_league"} Конечное значение переменной в шаблоне
+    = text_field :template, :counter_finish, :size => 3
+  %p
+    %label{:for => "template_team_list"} Введите URL Страницы со списком всех команд (например, "http://liga.metalist.ua/teams/")
+    = text_field  :template, :team_list
+  %p
+    =submit_tag "Запуск"

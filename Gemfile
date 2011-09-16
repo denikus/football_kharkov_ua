@@ -34,7 +34,6 @@ gem 'compass'
 gem 'omniauth', '>=0.2.5'
 gem 'yajl-ruby'
 
-
 group :production do
   gem 'exception_notification_rails3', :require => 'exception_notifier'
   gem 'sitemap_generator'

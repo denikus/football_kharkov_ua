@@ -3,8 +3,10 @@ class StepLeague < Step
   
   has_many :schedules, :foreign_key => 'league_id'
   has_many :matches, :through => :schedules
-  
-  def StepLeague.get_leagues_in_season (season_id)
+
+  scope :for_table, :include => {:matches => [{:schedule => :step_tour}, {:competitors => [:team, :stats, {:football_players => :stats}]}]}
+
+  def StepLeague.get_leagues_in_season(season_id)
     leagues = self.all(
               :select => "steps.* ",
               :joins => "INNER JOIN `steps_phases` AS stages_2_leagues " +
@@ -18,7 +20,10 @@ class StepLeague < Step
     leagues
   end
 
-  scope :for_table, :include => {:matches => [{:schedule => :step_tour}, {:competitors => [:team, :stats, {:football_players => :stats}]}]}
+  def StepLeague.exists?(season_id, league_name)
+    self.where(:season_)
+  end
+
 
   def table_set
     @set ||= StepTour::Table::Set.new do |set|

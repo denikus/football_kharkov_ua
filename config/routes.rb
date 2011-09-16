@@ -66,6 +66,7 @@ FootballKharkov::Application.routes.draw do
       post :merge
     end
     match 'temp(/:action(/:id))' => "temp"
+    match 'import(/:action(/:id))' => "import"
   end
 
   match "/!!/:id" => 'users#show', :constraints => {:controller => '#!'}
