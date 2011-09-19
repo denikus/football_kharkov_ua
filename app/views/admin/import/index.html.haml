@@ -1,3 +1,5 @@
+- content_for :head_declarations do
+  = javascript_include_tag "admin/import"
 = form_tag '/admin/import/create', :method => "post" do
   %p
     = select_tag(:season_id, options_from_collection_for_select(@seasons, "id", "name"))

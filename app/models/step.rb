@@ -29,7 +29,7 @@ class Step < ActiveRecord::Base
     when StepSeason: 'Сезон ' + name
     when StepStage: 'Этап ' + identifier.to_s
     when StepLeague: name
-    when StepTour: name + ' Тур'
+    when StepTour: name
     end
   end
   

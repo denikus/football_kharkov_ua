@@ -3,6 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/
 *.tmp
+*.DS_Store
 
 #database scheme
 db/schema.rb
