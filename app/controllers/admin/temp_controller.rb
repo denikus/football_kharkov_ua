@@ -14,7 +14,7 @@ class Admin::TempController < ApplicationController
                            :order => "identifier ASC"
                           )
     @venues = Venue.all
-    @schedule = Schedule.new({:match_on => "2011-04-"})
+    @schedule = Schedule.new({:match_on => "2011-09-"})
     
     @last_schedules = Schedule.find(
                                     :all,

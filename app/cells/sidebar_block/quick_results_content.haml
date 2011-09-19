@@ -15,9 +15,11 @@
       - guests_class = "fancy-score-equal"
     -row_class = i%2 == 0 ? "" : "odd"
     %li{:class => row_class}
-      .hosts= link_to item.hosts.name, team_path(item.hosts.url)
+      - unless item.hosts.nil? 
+        .hosts= link_to item.hosts.name, team_path(item.hosts.url)
       .score-container
         .fancy-score{:class => hosts_class }= !item.host_scores.nil? ? item.host_scores : "-"
         .fancy-score.fancy-score-right{:class => guests_class }= !item.guest_scores.nil? ? item.guest_scores : "-"
-      .guests= link_to item.guests.name, team_path(item.guests.url)
+      - unless item.guests.nil?   
+        .guests= link_to item.guests.name, team_path(item.guests.url)
       .clear
