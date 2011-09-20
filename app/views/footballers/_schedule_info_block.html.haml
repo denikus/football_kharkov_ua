@@ -7,9 +7,9 @@
         = Russian::strftime(schedule_item.match_on.to_date, "%A, %d %B %Y")
         = schedule_item.match_at
       -row_class = i%2 == 0 ? "" : "odd"
-      -accepted = appointment.response == :accepted ? "appointment_response" : ""
-      -declined = appointment.response == :declined ? "appointment_response" : ""
-      -tentative = appointment.response == :tentative ? "appointment_response" : ""
+      -accepted = (!appointment.nil? && appointment.response == :accepted) ? "appointment_response" : ""
+      -declined = (!appointment.nil? && appointment.response == :declined) ? "appointment_response" : ""
+      -tentative = (!appointment.nil? && appointment.response == :tentative) ? "appointment_response" : ""
       %tr{:class => row_class}
         %td.tournament
           = link_to schedule_item.step_tour.tournament.short_name, tournament_url(:subdomain => schedule_item.step_tour.tournament.url)
