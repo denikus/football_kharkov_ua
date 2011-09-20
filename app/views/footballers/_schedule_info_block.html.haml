@@ -22,7 +22,7 @@
         %td{:style => "width: 20px;"}= "-"
         %td.guests
           = link_to schedule_item.guests.name, team_url(schedule_item.guests.url, :host => with_subdomain(schedule_item.step_tour.tournament.url))
-        -if(user_signed_in? && current_user.id == appointment.footballer.user_id)
+        -if(user_signed_in? && !appointment.nil? && current_user.id == appointment.footballer.user_id)
           %td{:class => accepted}= link_to "Приду", football_player_appointment_path(appointment, :appointment_response => "accepted"), :method => :put
           %td{:class => declined}= link_to "Не приду", football_player_appointment_path(appointment, :appointment_response => "declined"), :method => :put
           %td{:class => tentative}= link_to "Не знаю", football_player_appointment_path(appointment, :appointment_response => "tentative"), :method => :put
