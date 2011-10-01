@@ -1,2 +1,2 @@
 <% title_image = !post.resource.article_image.nil? ? image_tag("/images/articles/#{post.created_at.strftime("%Y-%m-%d")}/#{post.resource.article_image.file}", :class=>"article-title-image", :alt =>post.resource.article_image.title ) : '' %>
-<%= raw (title_image + full_article(post.resource.body) ) %>
+ <%= raw (title_image + full_article(post.resource.body) ) %>

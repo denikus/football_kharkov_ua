@@ -3,7 +3,7 @@ Sanitize::Config::FOOTBALL_ARTICLE = {
     'a', 'b', 'blockquote', 'br', 'cite', 'dd', 'dl', 'dt', 'em',
     'i', 'li', 'ol', 'p', 'q', 'strike', 'strong', 'sub',
     'sup', 'u', 'ul', 'img', 'div', 'object', 'embed', 'param',
-    'h3', 'h4', 'span'],
+    'h3', 'h4', 'span', 'iframe'],
   :attributes => {
     'a' => ['href', 'title'],
     'blockquote' => ['cite'],
