@@ -20,3 +20,5 @@
             = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{link_to(team.name, team_path(team.url))})".html_safe
             %br/
         %td.goals= "#{item[0]}".to_i
+- content_for :top_submenu do
+  = "tournament"

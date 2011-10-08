@@ -105,3 +105,5 @@
       %p
         = "Фолы во 2-м тайме: "
         %span= @match.guests.stats.find_by_name('second_period_fouls').value
+- content_for :top_submenu do
+  = "tournament"

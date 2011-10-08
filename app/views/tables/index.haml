@@ -5,3 +5,5 @@
     - stage.leagues.each do |league|
       -#- @leagues.each do |league|
       = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league}
+- content_for :top_submenu do
+  = "tournament"

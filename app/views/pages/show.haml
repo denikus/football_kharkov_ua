@@ -1,6 +1,7 @@
 %h1= @page_title
 = @page.body.html_safe
-
+- content_for :top_submenu do
+  = "tournament"
 -#%h2 Состав групп
 -#
 -#%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
