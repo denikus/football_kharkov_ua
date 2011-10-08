@@ -9,7 +9,8 @@
 .wrap-container
   .schedule-content-wrap
     = render :partial => "/schedules/day", :layout => false, :locals => {:schedules => @schedules}
-
+- content_for :top_submenu do
+  = "tournament"
 :javascript
   $(function() {
     //min_date, max_date, current_date
