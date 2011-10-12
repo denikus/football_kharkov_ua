@@ -14,6 +14,7 @@ ul.topnav {
     margin: 0;
     padding: 0 14px;
     position: relative; /*--Declare X and Y axis base for sub navigation--*/
+    z-index: 10;
     background: url(/images/top-menu/seperator.gif) no-repeat left;
     a{
       padding: 7px 5px 14px;
