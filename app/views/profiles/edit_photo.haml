@@ -6,7 +6,6 @@
   = image_tag "/images/ajax-loader.gif"
   %br/
   Идет загрузка...
-
 - form_for :profile, @profile, {:url => upload_photo_profile_path, :html => {:multipart => true, :id => "photo-upload-form"}} do |f|
   %label{:for => "photo-upload-field"} Загрузить новое фото:
   = f.file_field :photo, {:class=>"text", :id => "photo-upload-field"}

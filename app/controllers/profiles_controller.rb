@@ -18,7 +18,7 @@ respond_to do |format|
   def edit
     @title = "Редактирование профиля"
     @profile = current_user.profile
-    render :layout => "application"
+    render :layout => "profile"
   end
   
   # PUT /users/1/profile
@@ -41,6 +41,7 @@ respond_to do |format|
   def edit_photo
     @title = "Редактирование фотографии"
     @profile = current_user.profile
+    render :layout => "profile"
   end
 
   def update_photo
