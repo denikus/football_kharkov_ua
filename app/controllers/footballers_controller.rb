@@ -7,7 +7,11 @@ class FootballersController < ApplicationController
 
   def show
     @footballer = Footballer.find_by_url(params[:id])
-
+    if @footballer.nil?
+      render "#{Rails.root}/public/404.html", :status => 404, :layout => false
+      return
+    end
+    
     @title = "Футболист: #{@footballer.full_name}"
 
     tournaments = @footballer.footballers_teams.joins(:step).group("steps.tournament_id").collect{|item| item.step.tournament}
