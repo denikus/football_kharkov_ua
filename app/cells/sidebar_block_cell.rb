@@ -1,6 +1,8 @@
 class SidebarBlockCell < ::Cell::Base
   helper UrlHelper
   helper ApplicationHelper
+  include Devise::Controllers::Helpers
+  
   def helpers
 
   end
@@ -16,7 +18,8 @@ class SidebarBlockCell < ::Cell::Base
   end
 
   def user_comments
-    user = User.from_param(params[:id])
+    username = params[:id].nil? ? current_user.username : params[:id]
+    user = User.from_param(username)
     @comments = Comment.tournament(@opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => {:post , :user}, :conditions => ["comments.author_id = #{user.id} AND parent_id IS NOT NULL"])
 
     render :file => 'app/cells/sidebar_block/comments'
