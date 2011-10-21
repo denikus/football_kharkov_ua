@@ -49,7 +49,7 @@ class SeasonStats
     if total_games == 0 then
       @season_rate = nil
     else
-      @season_rate = ((3 * @wins + @draws + @bonus_points).to_f / total_games.to_f).to_f
+      @season_rate = ((2 * @wins + @draws + @bonus_points).to_f / total_games.to_f).to_f
     end
 
     @season_rate
