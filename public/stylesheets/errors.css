@@ -1,0 +1,70 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    background: #fff;
+    font: normal 13px/1.5 Verdana, Arial, Helvetica; 
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section
+{
+    display:block;
+}
+.inner
+{
+    width: 970px;
+    margin: 0 auto;
+}
+header
+{
+    background: url("../images/header_bg.gif") 0 0 repeat-x;
+    height: 120px;
+}
+a
+{
+    color: #369;
+    }
+    a img
+    {
+        border: 0;
+    }
+a:hover
+{
+    color: #be420e;
+}
+p
+{
+    margin: 0 0 15px;
+}
+#page404 .content
+{
+    background: url("../images/errors/404.jpg") 100% 100% no-repeat;
+    position: relative;
+    height: 600px;
+    }
+    #page404 .content h1
+    {
+        position: absolute;
+        right: 560px;
+        top: 56px;
+        font-size: 40px;
+        font-weight: normal;
+        }
+        #page404 .content h1 em
+        {
+            left: -9999em;
+            position: absolute;
+        }
+    #page404 .content .message
+    {
+        width: 450px;
+        position: absolute;
+        left: 0;
+        top: 300px;        
+        font-size: 16px;
+        background: url("../images/errors/cards.jpg") 0 15px no-repeat;
+        padding-left: 120px;
+    }
