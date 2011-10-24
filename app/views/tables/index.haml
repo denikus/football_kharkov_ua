@@ -4,6 +4,6 @@
   - @stages.each do |stage|
     - stage.leagues.each do |league|
       -#- @leagues.each do |league|
-      = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league}
+      = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league} unless league.table_set[0].nil?
 - content_for :top_submenu do
   = "tournament"
