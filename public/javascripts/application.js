@@ -5,6 +5,9 @@
 //  var token = $("meta[name='csrf-token']").attr("content");
 //  xhr.setRequestHeader("X-CSRF-Token", token);
 //});
+
+if (!FHU) var FHU = {};
+
 $(function() {
   //error block effects
 //  $("#main-error-block,#main-notice-block,#main-success-block").fadeOut("fast").fadeIn("fast").fadeOut("fast").fadeIn("fast").fadeOut(5000);
@@ -19,6 +22,12 @@ $(function() {
         start: Math.floor(Math.random()*10+1)
   });*/
 
+  new FHU.topNav();
+
+});
+
+FHU.topNav = function()
+{
   //top menu
   $("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled - Adds empty span tag after ul.subnav
 
@@ -43,8 +52,8 @@ $(function() {
     }, function(){ //On Hover Out
       $(this).removeClass("subhover"); //On hover out, remove class "subhover"
   });
-
-});
+  
+}
 
 // nice effect for scroll
 $.easing.dance = function (x, t, b, c, d) {
@@ -59,4 +68,3 @@ function addScheduleBlock() {
 	// use API to add our new item. after the item is being added seek to the end
 	api.addItem($("#newItem div").clone()).end();
 }
-
