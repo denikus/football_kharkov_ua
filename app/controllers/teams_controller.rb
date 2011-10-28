@@ -32,7 +32,7 @@ class TeamsController < ApplicationController
   def show
     unless current_subdomain.nil?
       @team = Team.find_by_url(params[:id])
-      if @team.nil?
+      if @team.nil? 
         render "#{Rails.root}/public/404.html", :status => 404, :layout => false
         return
       end
