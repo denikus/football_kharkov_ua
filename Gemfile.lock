@@ -112,7 +112,7 @@ GEM
     multi_json (1.0.3)
     multi_xml (0.2.2)
     multipart-post (1.1.2)
-    mysql2 (0.2.7)
+    mysql2 (0.2.11)
     net-ldap (0.2.2)
     newrelic_rpm (3.0.1)
     nokogiri (1.4.4)
@@ -238,7 +238,7 @@ DEPENDENCIES
   mime-types
   mini_magick
   mongrel
-  mysql2 (= 0.2.7)
+  mysql2 (= 0.2.11)
   newrelic_rpm
   oauth2
   omniauth (>= 0.2.5)
