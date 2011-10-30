@@ -48,11 +48,22 @@ group :development do
 end
 
 group :test do
-  gem 'ZenTest'
-  gem 'autotest-rails'
+  # gem 'ZenTest'
+  # gem 'autotest-rails'
+  gem "capybara"
+  gem "guard-rspec"
+  gem "spork", "~> 0.9.0.rc"
   gem 'factory_girl_rails'
-  gem 'redgreen'
-  gem 'test_notifier'
+  # gem 'redgreen'
+  # gem 'test_notifier'
+end
+
+group :development, :test do 
+  gem 'rspec-rails', :branch => 'rails3'
+  gem "guard-rspec"
+  gem "guard-spork"
+  gem 'growl_notify', :require => false if RUBY_PLATFORM =~/darwin/i
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~/darwin/i
 end
 # Use unicorn as the web server
 # gem 'unicorn'
