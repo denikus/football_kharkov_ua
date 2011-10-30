@@ -32,6 +32,11 @@ class TeamsController < ApplicationController
   def show
     unless current_subdomain.nil?
       @team = Team.find_by_url(params[:id])
+      if @team.nil? 
+        render "#{Rails.root}/public/404.html", :status => 404, :layout => false
+        return
+      end
+      
       @tournament = Tournament.find_by_url(current_subdomain)
       @season = StepSeason.find(:last,
                                  :joins => "INNER JOIN `steps_teams` ON (steps.id = steps_teams.step_id) ",
