@@ -65,14 +65,14 @@ class Admin::StepsController < ApplicationController
 
   private
     def process_step_properties(step)
-    if step.is_a? StepStage then
-      step.is_playoff = params[:step][:playoff] == 'on'
-    end
+      if step.is_a? StepStage
+        step.is_playoff = params[:step][:playoff] == 'on'
+      end
 
-    if step.is_a? StepLeague then
-      step.is_bonus_point = params[:step][:bonus_point] == 'on'
-    end
+      if step.is_a? StepLeague
+        step.is_bonus_point = params[:step][:bonus_point] == 'on'
+      end
 
-   params[:step].delete [:playoff, :bonus_point]   
+     params[:step].delete [:playoff, :bonus_point]   
   end
 end
