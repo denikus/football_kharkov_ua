@@ -32,6 +32,5 @@
         .fancy-score{:class => hosts_class, :id => "host_score_view_#{schedule_item.id}" }= !schedule_item.host_scores.nil? ? schedule_item.host_scores : "-"
         .fancy-score.fancy-score-right{:class => guests_class, :id => "guest_score_view_#{schedule_item.id}"}= !schedule_item.guest_scores.nil? ? schedule_item.guest_scores : "-"
         .clear
-        
       %td.team
         = schedule_item.guests.name
