@@ -1,7 +1,8 @@
 - content_for :head_declarations do
-  %script{:type=>"text/javascript", :src=>"http://userapi.com/js/api/openapi.js?42"}
-  %script{:type=>"text/javascript"}
-    VK.init({apiId: 2679194, onlyWidgets: true});
+  / %script{:type=>"text/javascript", :src=>"http://userapi.com/js/api/openapi.js?42"}
+  / %script{:type=>"text/javascript"}
+  /   VK.init({apiId: 2679194, onlyWidgets: true});
+  %script{:type=>"text/javascript", :src=>"http://vkontakte.ru/js/api/share.js?11", :charset=>"windows-1251"}
 - title_image = !post.resource.article_image.nil? ? image_tag("/images/articles/#{post.created_at.strftime("%Y-%m-%d")}/#{post.resource.article_image.file}", :class=>"article-title-image", :alt =>post.resource.article_image.title ) : ''
 = raw Hpricot(full_article(post.resource.body) ).to_html
 / AddThis Button BEGIN
@@ -11,9 +12,11 @@
   %a{:class => "addthis_button_facebook_like", :"fb:like:layout"=>"button_count"}
   %a{:class=>"addthis_button_tweet"}
   %a{:class=>"addthis_button_google_plusone", :"g:plusone:size"=>"medium"}
-  #vk_like{:style=>"float:left;"}
-  %script{:type=>"text/javascript"}
-    VK.Widgets.Like("vk_like", {type: "mini", verb: 1}, );
   %a{:class=>"addthis_counter addthis_pill_style"}
+  %script{:type=>"text/javascript"}
+    document.write(VK.Share.button(false,{type: "round", text: "Интересно"}));
+  / #vk_like{:style=>"float:left;"}
+  /   %script{:type=>"text/javascript"}
+  /     VK.Widgets.Like("vk_like", {type: "mini", verb: 1}, );
 %script{:type=>"text/javascript", :src=>"http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ebeebb31f546997"}
 / AddThis Button END
