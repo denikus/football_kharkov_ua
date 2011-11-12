@@ -66,7 +66,7 @@ class Admin::StepsController < ApplicationController
   private
     def process_step_properties(step)
       if step.is_a? StepStage
-        step.is_playoff = params[:step][:playoff] == 'on'
+        step.playoff = params[:step][:playoff] == 'on'
       end
 
       if step.is_a? StepLeague
