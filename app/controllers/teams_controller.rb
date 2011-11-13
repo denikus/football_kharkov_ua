@@ -44,7 +44,9 @@ class TeamsController < ApplicationController
                                  # :order => "steps."
                                 )
 #      @team.seasons.by_tournament(@tournament.id)
-      @footballers = Footballer.by_team_step({:team_id => @team.id, :step_id => @season.id} )
+      unless @season.nil?
+        @footballers = Footballer.by_team_step({:team_id => @team.id, :step_id => @season.id} )
+      end  
       @schedules = Schedule.future_team_matches(@team.id)
     end
   end
