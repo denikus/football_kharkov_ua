@@ -1,5 +1,6 @@
 %h2#comments Комментарии:
 .clear
+- maxCommentLevel = 8
 - if  user_signed_in?
   = render :partial => "shared/subscribe_comments_block", :locals => {:post_id => post.id}
 %div
@@ -12,7 +13,8 @@
         - comments.each do |item|
           %li{:id => "comment-#{item.id}"}
             - author = User.find(item.author_id)
-            .comment-content{:style=>"margin-left: #{20 * (item.level-1)}px; "}
+            - shiftComment = (item.level > maxCommentLevel) ? maxCommentLevel : item.level
+            .comment-content{:style=>"margin-left: #{20 * (shiftComment-1)}px; "}
               %p.comment-author-photo{:style => "float:left;margin-right: 5px;width: 10%;"}
                 = image_tag "#{author.profile.photo.url(:thumb)}"
               .author-and-comment-container{:style=>"float:left;width: 87%;"}
@@ -23,7 +25,7 @@
                   = show_comment(post, item)
                   - if user_signed_in?
                     %p.comment-reply{:style => "float: right;"}
-                      = "<a href=\"#\" onclick=\"addCommentForm(#{item.id}, #{item.level}, #{post.id});return false;\" class=\"button\">ответить</a>".html_safe
+                      = "<a href=\"#\" onclick=\"addCommentForm(#{item.id}, #{shiftComment}, #{post.id});return false;\" class=\"button\">ответить</a>".html_safe
                     .clear
               .clear        
 - unless user_signed_in?
