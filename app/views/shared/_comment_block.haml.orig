@@ -52,8 +52,6 @@
   = javascript_include_tag 'application/comment/comment.js'
   .clear
   %div.newComment.postCommentBox
-    %h2
-      Зафутболить коммент:
     .error#comment-errors{:style => "display: none;"}
     - form_for :comment, Comment.new, :url => {:controller => :comment, :action => :create, :id => 'new'}, :html => {:id => 'newComment', :method => :post} do |f|
       = f.hidden_field :post_id, :value => post.id
@@ -62,5 +60,5 @@
       .clear
       %p
         %input.colored-button.primary.big{:type=>"submit", :value => "Отправить"}/
-    .loader
+  .loader
 

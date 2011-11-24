@@ -1,109 +1,189 @@
-var maxCommentLevel = 8;
+/*
 
-$(document).ready(function() { 
-    var options = { 
-        beforeSubmit:  showLoading,  // pre-submit callback 
-        success:       showComment,  // post-submit callback 
-        dataType:  'json'
-    }; 
-    $('#new-comment-post').ajaxForm(options); 
-    $('#comment_body').focus(function () {
-      $("#new-comment").remove();
-    })
-}); 
+"Харьков Футбольный"
+Comments functionality
 
-function showLoading(formData, jqForm, options) {
-  $('#new-comment-loading').show();
-  $('#new-comment-post').hide();
-  return true;
-}
+Author: "Харьков Футбольный"
+Copyright: 2011, "Харьков Футбольный". All rights resevered
 
-function showComment(response_data, response_status) {
-  $('#comment-errors').empty();
+-----------------------------------------------------------------------*/
 
-  if (!response_data.success) {
-    for (var i=0; i<response_data.errors.length; i++) {
-      $('#comment-errors').append('<div>' + response_data.errors[i] + '</div>');
-    }
-  } else {
-    
-  }
-  $('#new-comment-loading').fadeOut("slow");
-  $('#new-comment-post').reset();
-  $('#new-comment-post').show();
-  
-  $("#new-comment").fadeOut("slow");
-  
-  var shiftComment = (response_data.level > maxCommentLevel) ? maxCommentLevel : response_data.level;
-  var new_comment = $('<li id="comment-' + response_data.id + '">' + 
-                      '<div class="comment-content"  style="margin-left: ' + 20 * (shiftComment-1) + 'px; ">' + 
-                        '<p class="comment-author">' +
-                          response_data.author_login + ' | ' +
-                          response_data.comment_date + 
-                        '</p>' +
-                        '<p class="comment-body">' +
-                        response_data.body +
-                        '</p>' + 
-                        '<p class="comment-reply">' + 
-                          '(<a href="#" onclick="addCommentForm(' + response_data.id + ',' + shiftComment + ',' + response_data.post_id + ');return false;">ответить</a>)' + 
-                        '</p>' +
-                      '</div>' + 
-                    '</li>');
-   new_comment.hide();
-   $('#comment-tree').append(new_comment);
-   new_comment.fadeIn("slow");
-}
+if (!FHU) var FHU = {};
 
-function addCommentForm(parent_id, parent_level, post_id) {
-  $("#new-comment").remove();
-  var form_element     = $('<form action="/comment/create/new" id="new-comment-form" method="post"></form>');
-  var parent_id_field  = $('<input type="hidden" name="comment[parent_id]" value="' + parent_id + '" />');
-  var post_id_field    = $('<input type="hidden" name="comment[post_id]" value="' + post_id + '" />');
-  var body_textarea    = $('<textarea name="comment[body]" id="new-comment-body" cols="30" rows="5" style="height: 100px; width: 300px;"></textarea>');
-  var form_submit      = $('<div class="clear" style="border:0; margin:0; padding:0;"></div><p><input type="submit" value="Отправить" class="button primary" /></p>');
-  
-  form_element.append(parent_id_field);
-  form_element.append(post_id_field);
-  form_element.append(body_textarea);
-  form_element.append(form_submit);
- 
-  var shiftComment = (parent_level > maxCommentLevel) ? maxCommentLevel : parent_level;
-  var list_element = $('<li id="new-comment" style="margin-left: ' + 20*(shiftComment-1)  + 'px;"></li>').html(form_element);
-  list_element.insertAfter("#comment-" + parent_id);
-  $('#new-comment-body').focus();
-  
-  var options = {
-    beforeSubmit:  showInlineLoading,  // pre-submit callback 
-    success:       showInlineComment,  // post-submit callback 
-    dataType:  'json'
+// document ready
+$(document).ready(function() {
+
+    new FHU.postComment();
+
+});
+
+
+// ============================================================
+// POST COMMENT
+// ============================================================
+FHU.postComment = function () {
+  var maxCommentLevel = 8,
+      selectors = {
+        newComment: {
+          form: '#newComment',
+          txtArea: '#comment_body',
+          loader: '.newComment .loader'
+        },
+        newReply: {
+          holder: '#newReply',
+          link: '.comments a.commentReply',
+          formId: 'newReplyForm',
+          txtAreaId: 'newReplyTxtArea'
+        }
+      };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // CONSTRUCTOR
+  // // // // // // // // // // // //
+  this.postComment = function () {
+    var options = {
+      beforeSubmit: beforeCommentSubmit,  // pre-submit callback 
+      success: afterCommentSubmit,  // post-submit callback 
+      dataType: 'json'
+    };
+    $(selectors.newComment.form).ajaxForm(options);
+
+    $(selectors.newComment.txtArea).focus(function () {
+      $(selectors.newReply.holder).remove();
+    });
+
+    // user clicked on a "Reply" button
+    $(selectors.newReply.link).live('click', function () {
+      var self = $(this),
+          opts = self.data("options");
+
+      $(selectors.newReply.link).show();
+      self.hide();
+      addReply(opts.id, opts.level, opts.postId);
+      return false;
+    });
+
   };
-  $('#new-comment-form').ajaxForm(options);
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // before a comment submit actions
+  // // // // // // // // // // // //
+  var beforeCommentSubmit = function (formData, jqForm, options) {
+    beforeSubmitAction($(selectors.newComment.form), $(selectors.newComment.loader));
+  };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // before a reply submit actions
+  // // // // // // // // // // // //
+  var beforeReplySubmit = function (formData, jqForm, options) {
+    beforeSubmitAction($('#' + selectors.newReply.formId), $(selectors.newReply.holder).find('.loader'));
+  };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // before submit
+  // @formToHide - this form will be hidden
+  // @loader - loader will be shown instead of form
+  // // // // // // // // // // // //
+  var beforeSubmitAction = function (formToHide, loader) {
+    formToHide.css('visibility', 'hidden');
+    loader.show();
+  };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // actions when comment submit has been done successfully 
+  // // // // // // // // // // // //
+  var afterCommentSubmit = function (response_data, response_status) {
+    $('#comment-errors').empty();
+    if (!response_data.success) {
+      for (var i = 0; i < response_data.errors.length; i++) {
+        $('#comment-errors').append('<div>' + response_data.errors[i] + '</div>');
+      }
+    }
+
+    $(selectors.newComment.loader).fadeOut("slow");
+    $(selectors.newComment.form).each(function () {
+      this.reset();
+    });
+    $(selectors.newComment.form).css('visibility', 'visible');
+
+    var new_comment = $(getCommentHtml(response_data));
+    new_comment.hide();
+    $('#comment-tree').append(new_comment);
+    new_comment.fadeIn("slow");
+  };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // adding a reply to comment
+  // @parent_id - parent comment id
+  // @parent_level - parent comment level
+  // @post_id - current post id
+  // // // // // // // // // // // //
+  var addReply = function (parent_id, parent_level, post_id) {
+    $(selectors.newReply.holder).remove();
+
+    var addReplyBox = '<div class="postCommentBox">' +
+                        '<form action="/comment/create/new" id="' + selectors.newReply.formId + '" method="post">' +
+                          '<input type="hidden" name="comment[parent_id]" value="' + parent_id + '" />' +
+                          '<input type="hidden" name="comment[post_id]" value="' + post_id + '" />' +
+                          '<div class="txtAreaBox"><textarea name="comment[body]" id="' + selectors.newReply.txtAreaId + '"></textarea></div>' +
+                          '<div class="btnSubmitHolder"><input type="submit" value="Отправить" class="button primary" /></div>' +
+                        '</form>' +
+                        '<div class="loader"></div>' +
+                      '</div>';
+
+    var list_element = $('<li id="newReply" style="margin-left: ' + 20 * (parent_level) + 'px;"></li>').html(addReplyBox);
+    list_element.insertAfter("#comment-" + parent_id);
+    $('#' + selectors.newReply.txtAreaId).focus();
+
+    var options = {
+      beforeSubmit: beforeReplySubmit,  // pre-submit callback 
+      success: successReplySubmit,  // post-submit callback 
+      dataType: 'json'
+    };
+    $('#' + selectors.newReply.formId).ajaxForm(options);
+  }
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // actions when a reply has been submitted successfully
+  // // // // // // // // // // // //
+  var successReplySubmit = function (response_data, response_status) {
+    $(selectors.newReply.holder).fadeOut("slow");
+    var new_comment = $(getCommentHtml(response_data));
+    new_comment.hide()
+               .insertAfter("#comment-" + response_data.after)
+               .fadeIn("slow");
+    $(selectors.newReply.link).show();
+  };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // gets html for a just added comment
+  // @data - added comment data
+  // returns: html of added comment
+  // // // // // // // // // // // //
+  var getCommentHtml = function (data) {
+    var shiftComment = (data.level > maxCommentLevel) ? maxCommentLevel : data.level;
+
+    return '<li id="comment-' + data.id + '" class="comment">' +
+              '<div class="commentContent" style="margin-left: ' + 20 * (shiftComment - 1) + 'px; ">' +
+                '<div class="avatar"></div>' +
+                '<dl class="commentInfo">' +
+                  '<dt class="commentAuthor">' +
+                    '<a class="username">' + data.author_login + '</a>' +
+                  '</dt>' +
+                  '<dd class="datetime">' + data.comment_date + '</dd>' +
+                '</dl>' +
+                '<div class="commentBody">' +
+                  '<p>' + data.body + '</p>' +
+                '</div>' +
+              '</div>' +
+              '<a href="#" class="button commentReply" data-options=\'{"id": "' + data.id + '", "level": "' + shiftComment + '", "postId": "' + data.post_id + '"}\'>ответить</a>' +
+            '</li>';
+  }
+
+  // call constructor
+  this.postComment();
 }
 
-function showInlineLoading(formData, jqForm, options) {
-  $("#new-comment").html('<div style="text-align: center;"><img src="/images/ajax-loader.gif" /></div>');
-}
-function showInlineComment(response_data,response_status) {
-  $("#new-comment").fadeOut("slow");
-  var shiftComment = (response_data.level > maxCommentLevel) ? maxCommentLevel : response_data.level;
-  var new_comment = $('<li id="comment-' + response_data.id + '">' + 
-                      '<div class="comment-content" style="margin-left: ' + 20 * (shiftComment-1) + 'px; ">' + 
-                        '<p class="comment-author">' +
-                            response_data.author_login + ' | ' +
-                          response_data.comment_date + 
-                        '</p>' +
-                        '<p class="comment-body">' +
-                        response_data.body +
-                        '</p>' + 
-                        '<p class="comment-reply">' + 
-                          '(<a href="#" onclick="addCommentForm(' + response_data.id + ',' + response_data.level + ',' + response_data.post_id + ');return false;">ответить</a>)' + 
-                        '</p>' +
-                      '</div>' + 
-                    '</li>');
-   new_comment.hide();
-   new_comment.insertAfter("#comment-" + response_data.after );
-   new_comment.fadeIn("slow");
-}
 
 //subscribe/unsubscribe handler
 $("[id^=subscribe_unsibscribe_comments_]").live('click', function(obj) {

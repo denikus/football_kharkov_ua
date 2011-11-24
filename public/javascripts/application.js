@@ -23,36 +23,84 @@ $(function() {
   });*/
 
   new FHU.topNav();
+  new FHU.comments();
 
 });
 
-FHU.topNav = function()
-{
-  //top menu
-  $("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled - Adds empty span tag after ul.subnav
+FHU.comments = function() {
+  this.comments = function() {
+    navigate();
+  }
+  var navigate = function() {
+    var lnkGoToParent = $("#comment-tree a.goToParent"),
+        lnkBackToChildId = "backToChild",
+        lnkBackToChildHtml = '<li><a class="backToChild" id="' + lnkBackToChildId + '" href="#">Назад к ответу</a></li>';
 
-  $("ul.topnav li.drop").hover(function() { //When trigger is clicked...
-    //Following events are applied to the subnav itself (moving subnav up and down)
-    //    $(this.id + " ul.subnav").show('slow', function(){
-    //      $(this).height("auto");
-    //    });
-    $(this).find("ul.subnav").stop().slideDown(300).show(300, function(){
-      $(this).height("auto");
+    lnkGoToParent.click(function() {
+      var self = $(this);
+      var anchorToGo = self.attr("href"),
+          anchorToBack = self.parents("li.comment").attr("id");
+
+      goToComment(anchorToGo);
+      removeBackToChildLink();
+      setBackToChildLink(anchorToGo, anchorToBack);
+
+      return false;
     });
 
-    //Drop down the subnav on click
-    $(this).hover(function() {},
-      function(){
-        $(this).find("ul.subnav").stop().slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
+    $("#" + lnkBackToChildId).live("click", function() {
+      var self = $(this);
+      var anchorToBack = self.attr("href");
+      goToComment(anchorToBack);
+      removeBackToChildLink();
+      return false;
     });
 
-  //Following events are applied to the trigger (Hover events for the trigger)
-  }).hover(function() {
-      $(this).addClass("subhover"); //On hover over, add class "subhover"
-    }, function(){ //On Hover Out
-      $(this).removeClass("subhover"); //On hover out, remove class "subhover"
-  });
-  
+    // scroll to the comment with @id
+    var goToComment = function(idToGo) {
+      var movingSpeed = 500;
+      $.scrollTo(idToGo, movingSpeed);
+    };
+    // remove the "back to child" link
+    var removeBackToChildLink = function() {
+      $("#" + lnkBackToChildId).parent("li").remove();
+    };
+    // set the "back to child" link (add to the DOM and set a "href" attribute)
+    var setBackToChildLink = function(anchorToGo, anchorToBack) {
+      $(anchorToGo).find(".options ul").append(lnkBackToChildHtml);
+      $("#" + lnkBackToChildId).attr("href", "#" + anchorToBack);      
+    };
+  }
+
+  this.comments();
+}
+
+FHU.topNav = function() {
+
+  this.topNav = function() {
+    //top menu
+    $("ul.subnav").parent().append("<span></span>"); 
+
+    $("ul.topnav li.drop").hover(function() {
+      $(this).find("ul.subnav").stop().slideDown(300).show(300, function(){
+        $(this).height("auto");
+      });
+
+      //Drop down the subnav on click
+      $(this).hover(function() {},
+        function(){
+          $(this).find("ul.subnav").stop().slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
+      });
+
+    //Following events are applied to the trigger (Hover events for the trigger)
+    }).hover(function() {
+        $(this).addClass("subhover");
+      }, function() {
+        $(this).removeClass("subhover");
+    });    
+  }
+
+  this.topNav();  
 }
 
 // nice effect for scroll

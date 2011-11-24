@@ -21,14 +21,12 @@ $block_grey_text_color: #666666;
 *Layout
 */
 * {
-	margin: 0px;
-	padding: 0px;
-	border: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 
 html, body {
-	padding: 0;
-	margin: 0;
 	height: 100%;
 	font-family: Verdana, Arial, Helvetica;
 }
@@ -43,6 +41,21 @@ body
 
 ul {
     list-style-type:disc;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content:"";
+    display:table;
+}
+
+.clearfix:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+    zoom:1;
 }
 
 #outer {
@@ -224,31 +237,18 @@ h5 {
     margin-bottom:1em;
 }
 
-input.text, input.title, textarea, select {
-    border:1px solid #EEEEEE;
-    margin:0.5em 0pt;
-}
-
-textarea {
-    padding:5px;
-}
-
-input.text:focus, input.title:focus, textarea:focus {
-    background-color: #FFFFE7;
-}
-
 #col-left h1 {
-    border-bottom:1px solid #EEEEEE;
+    border-bottom:1px solid #eee;
     font-size:180%;
     font-weight:bold;
     margin-bottom: 10px;
 }
 
 #col-left hr {
-  color:#EEEEEE;
-  background-color:#EEEEEE;
-  height:2px;
-  border:none;
+  color: #eee;
+  background-color: #eee;
+  height: 2px;
+  border: 0;
 }
 
 /**
@@ -267,8 +267,8 @@ fieldset {
 }
 
 input.text, input.title, textarea, select {
-    border:1px solid #EEEEEE;
-    margin:0.5em 0pt;
+    border: 1px solid #eee;
+    margin: 0.5em 0;
 }
 
 select {
@@ -664,53 +664,144 @@ div.header-bottom{
 /**
 *Comment block
 */
-#comment_body {
-    height:100px;
-    width:350px;
-}
 
-ul.comment {
+ul.comments {
   clear: both;
   width: auto;
-  list-style-image:none;
-  list-style-position:outside;
-  list-style-type:none;
+  list-style: none;
   margin: 0;
+  li.comment {
+    margin: 0 0 20px;
+    padding: 0;
+    position: relative;
+  }
+  .commentContent {
+    background: url("/images/right-col-box-bg.png") repeat-x 0 0;
+    border: 1px solid $block_border_color;
+    margin: 10px 0;
+    padding: 3px;
+    position: relative;
+    overflow: hidden;
+    p {
+      padding: 3px;
+    }
+    .commentInfo {
+      margin: 0 0 5px;
+      padding: 3px;
+      border-bottom: 1px solid #eee;
+      color: #aaa;
+      overflow: hidden;
+      dt, dd {
+        margin: 0 10px 0 0;
+        padding: 0;
+        float: left;
+      }
+      dt {
+        position: relative;
+      }
+      a.username.registered {
+        font-weight: bold;
+        padding-left: 17px;
+      }
+      a.linkToProfile {
+        position: absolute;
+        left: 0;
+        top: 5px;
+        background: url("/images/icons/icn-comment-sprite.png") -39px 0 no-repeat;
+        width: 13px;
+        height: 13px;
+        text-indent: -9999em;
+      }
+    }
+    .avatar {
+      float: left;
+      margin-right: 15px; 
+      width: 50px;
+      overflow: hidden;
+      img {
+        padding: 3px;
+      }
+    } 
+  }
+  .commentBody {
+    overflow: hidden;
+    padding: 10px 0;
+  }
+  a.commentReply {
+    position: absolute;
+    right: 10px;
+    bottom: -12px;
+  }  
+  .options {
+    ul {
+      margin: 0;
+      padding: 3px 0 0;
+      list-style: none;      
+    }
+    li {
+      margin: 0 5px 0 0;
+      float: left;
+    }
+    a {
+      display: block;
+      width: 13px;
+      height: 13px;
+      text-indent: -999em;
+      background: url("/images/icons/icn-comment-sprite.png") 0 -13px no-repeat;
+    }
+    a.linkToComment:hover {
+      background-position: 0 0;
+    }
+    a.goToParent {
+      background-position: -13px -13px; 
+    }
+    a.goToParent:hover {
+      background-position: -13px 0; 
+    }    
+    a.backToChild {
+      background-position: -26px -13px; 
+    }
+    a.backToChild:hover {
+      background-position: -26px 0; 
+    }
+  }  
 }
-
-ul.comment li {
-  float:left;
-  width:100%;
-  margin: 3px 0 0 0;
-  padding: 0;
-}
-
-ul.comment div.comment-content {
-//  border :1px solid #EEE;
-//  background-color: #FAFAFA;
-  background:url("/images/right-col-box-bg.png") repeat-x scroll 0 0 transparent;
-  border:1px solid $block_border_color;
-//  width: 350px;
-  margin: 10px 0 10px 0;
-  padding: 3px;
-}
-
-ul.comment p {
-  padding: 3px;
-}
-
-ul.comment p.comment-author {
-  margin-bottom: 5px;
-  border-bottom: 1px solid #EEE;
-  color: #AAAAAA;
-  a.public_footballer {
-    font-weight: bold;
+.postCommentBox
+{
+  position: relative;
+  .txtAreaBox
+  {
+    padding: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+  }
+  textarea
+  {
+    width: 100%;
+    height: 120px;
+    border: 0;
+  }
+  .loader {
+    background: url("/images/ajax-loader.gif") 50% 40% no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+  }
+  h2 {
+    color: #aaa;
+    font-size: 12px;
+    border: 0;
   }
 }
-
-ul.comment p.comment-body {
-
+.newComment
+{
+  padding-top: 10px;
 }
+
+
 
 /**
 *EOF Comment block
