@@ -1,3 +1,5 @@
+var maxCommentLevel = 8;
+
 $(document).ready(function() { 
     var options = { 
         beforeSubmit:  showLoading,  // pre-submit callback 
@@ -32,8 +34,9 @@ function showComment(response_data, response_status) {
   
   $("#new-comment").fadeOut("slow");
   
+  var shiftComment = (response_data.level > maxCommentLevel) ? maxCommentLevel : response_data.level;
   var new_comment = $('<li id="comment-' + response_data.id + '">' + 
-                      '<div class="comment-content"  style="margin-left: ' + 20 * (response_data.level-1) + 'px; ">' + 
+                      '<div class="comment-content"  style="margin-left: ' + 20 * (shiftComment-1) + 'px; ">' + 
                         '<p class="comment-author">' +
                           response_data.author_login + ' | ' +
                           response_data.comment_date + 
@@ -42,7 +45,7 @@ function showComment(response_data, response_status) {
                         response_data.body +
                         '</p>' + 
                         '<p class="comment-reply">' + 
-                          '(<a href="#" onclick="addCommentForm(' + response_data.id + ',' + response_data.level + ',' + response_data.post_id + ');return false;">ответить</a>)' + 
+                          '(<a href="#" onclick="addCommentForm(' + response_data.id + ',' + shiftComment + ',' + response_data.post_id + ');return false;">ответить</a>)' + 
                         '</p>' +
                       '</div>' + 
                     '</li>');
@@ -64,7 +67,8 @@ function addCommentForm(parent_id, parent_level, post_id) {
   form_element.append(body_textarea);
   form_element.append(form_submit);
  
-  var list_element = $('<li id="new-comment" style="margin-left: ' + 20*(parent_level-1)  + 'px;"></li>').html(form_element);
+  var shiftComment = (parent_level > maxCommentLevel) ? maxCommentLevel : parent_level;
+  var list_element = $('<li id="new-comment" style="margin-left: ' + 20*(shiftComment-1)  + 'px;"></li>').html(form_element);
   list_element.insertAfter("#comment-" + parent_id);
   $('#new-comment-body').focus();
   
@@ -81,8 +85,9 @@ function showInlineLoading(formData, jqForm, options) {
 }
 function showInlineComment(response_data,response_status) {
   $("#new-comment").fadeOut("slow");
+  var shiftComment = (response_data.level > maxCommentLevel) ? maxCommentLevel : response_data.level;
   var new_comment = $('<li id="comment-' + response_data.id + '">' + 
-                      '<div class="comment-content" style="margin-left: ' + 20 * (response_data.level-1) + 'px; ">' + 
+                      '<div class="comment-content" style="margin-left: ' + 20 * (shiftComment-1) + 'px; ">' + 
                         '<p class="comment-author">' +
                             response_data.author_login + ' | ' +
                           response_data.comment_date + 
