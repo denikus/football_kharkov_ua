@@ -2,8 +2,12 @@
   = render :partial => "tables/#{current_subdomain}_table"
 - else
   - @stages.each do |stage|
+    %h2= stage.name
     - stage.leagues.each do |league|
-      -#- @leagues.each do |league|
-      = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league} unless league.table_set[0].nil?
+      - if stage.playoff?
+        = render :partial => 'playoff_table', :locals => {:league => league}
+      - else
+        = render :partial => 'table', :locals => {:records => league.table_set[0].get, :league => league} unless league.table_set[0].nil?
+    .clear    
 - content_for :top_submenu do
   = "tournament"

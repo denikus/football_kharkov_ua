@@ -1,0 +1,36 @@
+%table.tournament-position{:style => "margin-right: 10px;"}
+  %tr
+    %th{:colspan => 9}= league.name
+  %tr.header
+    %td.team
+      Команда(Хозяева)
+    %td.goals
+      Счет
+    %td.team
+      Команда(Гости)
+  - league.schedules.each_with_index do |schedule_item, index|
+    -row_class = index%2 == 0 ? "" : "odd"
+    - unless schedule_item.host_scores.nil?
+      - winner_class = "fancy-score-winner"
+      - loser_class = "fancy-score-loser"
+      - hosts_class = ""
+      - guests_class = ""
+      - if schedule_item.host_scores.to_i > schedule_item.guest_scores.to_i
+        - hosts_class = winner_class
+        - guests_class = loser_class
+      - elsif schedule_item.host_scores.to_i < schedule_item.guest_scores.to_i
+        - hosts_class = loser_class
+        - guests_class = winner_class
+      - else
+        - hosts_class = "fancy-score-equal"
+        - guests_class = "fancy-score-equal"
+    %tr{:class => row_class}
+      %td.team
+        = schedule_item.hosts.name
+      %td.scores
+        / # = schedule_item.score
+        .fancy-score{:class => hosts_class, :id => "host_score_view_#{schedule_item.id}" }= !schedule_item.host_scores.nil? ? schedule_item.host_scores : "-"
+        .fancy-score.fancy-score-right{:class => guests_class, :id => "guest_score_view_#{schedule_item.id}"}= !schedule_item.guest_scores.nil? ? schedule_item.guest_scores : "-"
+        .clear
+      %td.team
+        = schedule_item.guests.name
