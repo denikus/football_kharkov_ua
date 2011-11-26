@@ -10,7 +10,7 @@ Copyright: 2011, "Харьков Футбольный". All rights resevered
 
 if (!FHU) var FHU = {};
 
-(function($) {
+(function ($) {
 
   // document ready
   $(document).ready(function () {
@@ -35,14 +35,18 @@ if (!FHU) var FHU = {};
 
       $(nickToMention).live('click', function () {
         var self = $(this);
-        if (postComment.isReplyOpened()) {
-          currentForm = postComment.getReplyBox();
-          var txtArea = currentForm.find('textarea'),
-              currCommentText = txtArea.text();
-          txtArea.text(currCommentText + ' ' + self.text() + ',');
-          txtArea.focus();
-          $.scrollTo('#' + currentForm.attr('id'), 200);
+        
+        if (!postComment.isReplyOpened()) {
+          self.parents('.comment').find('a.commentReply').click();
         }
+
+        currentForm = postComment.getReplyBox();
+        var txtArea = currentForm.find('textarea'),
+            currCommentText = txtArea.text();
+        txtArea.text(currCommentText + ' ' + self.text() + ',');
+        txtArea.focus();
+        $.scrollTo('#' + currentForm.attr('id'), 200);
+
         return false;
       });
     };
@@ -109,14 +113,14 @@ if (!FHU) var FHU = {};
     // before a comment submit actions
     // // // // // // // // // // // //
     var beforeCommentSubmit = function (formData, jqForm, options) {
-      beforeSubmitAction($(selectors.newComment.form), $(selectors.newComment.loader));
+      return beforeSubmitAction($(selectors.newComment.form), $(selectors.newComment.loader));
     };
 
     // // // // // // // // // // // // // // // // // // // // // // // //
     // before a reply submit actions
     // // // // // // // // // // // //
     var beforeReplySubmit = function (formData, jqForm, options) {
-      beforeSubmitAction($('#' + selectors.newReply.formId), $(selectors.newReply.holder).find('.loader'));
+      return beforeSubmitAction($('#' + selectors.newReply.formId), $(selectors.newReply.holder).find('.loader'));
     };
 
     // // // // // // // // // // // // // // // // // // // // // // // //
@@ -125,8 +129,24 @@ if (!FHU) var FHU = {};
     // @loader - loader will be shown instead of form
     // // // // // // // // // // // //
     var beforeSubmitAction = function (formToHide, loader) {
+      if($.trim(formToHide.val()) == '') {
+        errorShakeForm();
+        return false;
+      }
       formToHide.css('visibility', 'hidden');
       loader.show();
+
+      return true;
+
+      function errorShakeForm() {
+        var currTxtArea = formToHide.find('.txtAreaBox');
+        currTxtArea.css('border-color', '#fcc1c1');
+        currTxtArea.animate({'left': '-10px'}, 200)
+                   .animate({'left': '0'}, 200, function(){
+                      currTxtArea.css('border-color', '#eee');
+                    });
+      }
+
     };
 
     // // // // // // // // // // // // // // // // // // // // // // // //
@@ -226,7 +246,7 @@ if (!FHU) var FHU = {};
 
 
   //subscribe/unsubscribe handler
-  $("[id^=subscribe_unsibscribe_comments_]").live('click', function(obj) {
+  $("[id^=subscribe_unsibscribe_comments_]").live('click', function (obj) {
     var matches = obj.currentTarget["id"].match(/^subscribe_unsibscribe_comments_(.*)/);
     var url = '/post/subscribe/';
     var checked = this.checked;
@@ -235,9 +255,9 @@ if (!FHU) var FHU = {};
     }
     $.ajax({
       url: url,
-      data: {id: matches[1]},
+      data: { id: matches[1] },
       type: 'post',
-      success: function() {
+      success: function () {
         if (!checked) {
           $("#subscribe_status").text("");
         } else {
