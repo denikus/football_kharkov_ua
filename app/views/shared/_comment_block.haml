@@ -41,7 +41,7 @@
                 = show_comment(post, item)
 
             - if user_signed_in?
-              = link_to  "ответить", "#", :class => "button commentReply", :"data-options" => "{\"id\": \"#{item.id}\", \"shiftComment\": \"#{item.level}\", \"postId\": \"#{post.id}\"}"
+              = link_to  "ответить", "#", :class => "button commentReply", :"data-options" => "{\"id\": \"#{item.id}\", \"level\": \"#{shiftComment}\", \"postId\": \"#{post.id}\"}"
 
 - unless user_signed_in?
   = link_to 'Зарегистрируйтесь', new_user_path
