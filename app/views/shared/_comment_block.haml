@@ -1,5 +1,6 @@
 %h2#comments Комментарии:
 .clear
+- maxCommentLevel = 8
 - if user_signed_in?
   = render :partial => "shared/subscribe_comments_block", :locals => {:post_id => post.id}
 %div
@@ -15,7 +16,9 @@
             - avatarUrl = author.profile.photo.url(:thumb)
             - linkToComment = (post_item_path(post) + "comment-#{item.id}")
             - linkToProfile = author.footballer.nil? ? linkToComment : user_path(author)
-            .commentContent{:style=>"margin-left: #{20 * (item.level-1)}px; "}
+            - shiftComment = (item.level > maxCommentLevel) ? maxCommentLevel : item.level
+            
+            .commentContent{:style=>"margin-left: #{20 * (shiftComment-1)}px; "}            
               - if avatarUrl
                 .avatar
                   = image_tag "#{avatarUrl}", :width => "50", :height => "50", :alt => "Аватарка пользователя #{author.username}"
@@ -38,7 +41,7 @@
                 = show_comment(post, item)
 
             - if user_signed_in?
-              = link_to  "ответить", "#", :class => "button commentReply", :"data-options" => "{\"id\": \"#{item.id}\", \"level\": \"#{item.level}\", \"postId\": \"#{post.id}\"}"
+              = link_to  "ответить", "#", :class => "button commentReply", :"data-options" => "{\"id\": \"#{item.id}\", \"shiftComment\": \"#{item.level}\", \"postId\": \"#{post.id}\"}"
 
 - unless user_signed_in?
   = link_to 'Зарегистрируйтесь', new_user_path
