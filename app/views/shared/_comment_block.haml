@@ -13,6 +13,8 @@
           %li{:id => "comment-#{item.id}", :class => "comment"}
             - author = User.find(item.author_id)
             - avatarUrl = author.profile.photo.url(:thumb)
+            - linkToComment = (post_item_path(post) + "comment-#{item.id}")
+            - linkToProfile = author.footballer.nil? ? linkToComment : user_path(author)
             .commentContent{:style=>"margin-left: #{20 * (item.level-1)}px; "}
               - if avatarUrl
                 .avatar
@@ -20,15 +22,13 @@
               
               %dl.commentInfo
                 %dt.commentAuthor
-                  = link_to "#{author.username}", "#", :class => author.footballer.nil? ? "username" : "username registered", :title => "Упомянуть #{author.username} в комменте" |
-                  - if !author.footballer.nil?
-                    = link_to "Перейти на профиль пользователя #{author.username}", user_path(author), :class => ("linkToProfile"), :title => "Перейти на профиль пользователя #{author.username}"                  
+                  = link_to "#{author.username}", linkToProfile, :class => author.footballer.nil? ? "username" : "username registered", :title => author.footballer.nil? ? "" : "Перейти на профиль пользователя #{author.username}" |
                 %dd.datetime
                   = Russian::strftime(item.created_at, "%d %B %Y; %H:%M")
                 %dd.options
                   %ul
                     %li
-                      = link_to "Ссылка на комментарий", post_item_path(post) + "comment-#{item.id}", :class => "linkToComment", :title => "Ссылка на комментарий"
+                      = link_to "Ссылка на комментарий", linkToComment, :class => "linkToComment", :title => "Ссылка на комментарий"
                     - if (item.level != 1)
                       %li
                         = link_to "На что ответ?", "#comment-#{item.parent_id}", :class => "goToParent", :title => "На что ответ?"

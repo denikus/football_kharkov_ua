@@ -16,42 +16,8 @@ if (!FHU) var FHU = {};
   $(document).ready(function () {
 
     new FHU.postComment();
-    new FHU.writeComment();
 
   });
-
-  // ============================================================
-  // WRITE COMMENT
-  // ============================================================
-  FHU.writeComment = function () {
-    var postComment = new FHU.postComment();
-
-    // constructor
-    this.writeComment = function () {
-      mention();
-    };
-    var mention = function () {
-      var nickToMention = '.commentAuthor .username';
-
-      $(nickToMention).live('click', function () {
-        var self = $(this);
-        
-        if (!postComment.isReplyOpened()) {
-          self.parents('.comment').find('a.commentReply').click();
-        }
-
-        currentForm = postComment.getReplyBox();
-        var txtArea = currentForm.find('textarea'),
-            currCommentText = txtArea.text();
-        txtArea.text(currCommentText + ' ' + self.text() + ',');
-        txtArea.focus();
-        $.scrollTo('#' + currentForm.attr('id'), 200);
-
-        return false;
-      });
-    };
-    this.writeComment();
-  };
 
   // ============================================================
   // POST COMMENT
