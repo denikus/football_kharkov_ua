@@ -129,7 +129,7 @@ if (!FHU) var FHU = {};
     // @loader - loader will be shown instead of form
     // // // // // // // // // // // //
     var beforeSubmitAction = function (formToHide, loader) {
-      if($.trim(formToHide.val()) == '') {
+      if($.trim(formToHide.find('textarea').val()) == '') {
         errorShakeForm();
         return false;
       }
