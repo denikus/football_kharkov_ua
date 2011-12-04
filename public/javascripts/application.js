@@ -24,8 +24,24 @@ $(function() {
 
   new FHU.topNav();
   new FHU.comments();
+  // new FHU.share();
 
 });
+
+FHU.share = function() {
+  this.share = function() {
+    var shareBox = $('#letsShare'),
+        shareHover = shareBox.children(".hoverLayer");
+
+    shareBox.hover(function(){
+      shareHover.stop().animate({"height": "0"}, 500);
+    }).mouseleave(function(){
+      shareHover.stop().animate({"height": "50px"}, 500);
+    })    
+  };
+
+  this.share();
+};
 
 FHU.comments = function() {
   this.comments = function() {
