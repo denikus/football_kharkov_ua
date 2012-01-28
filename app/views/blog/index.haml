@@ -11,5 +11,7 @@
       = render(:partial => "blog/status_item", :locals => { :post => post })
     = render :partial => "shared/blog_link_panel", :locals => {:post=>post}
   .clear
-= will_paginate @posts
+
+.football_pagination  
+  = will_paginate @posts
 
