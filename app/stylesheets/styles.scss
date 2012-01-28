@@ -861,10 +861,15 @@ ul.comments {
     overflow: hidden;
     clear: both;
 }
-.blog_link_panel div {
+.blog_link_panel div
+{
     float: left;    
     padding: 0 20px;
-}
+  }
+  .blog_link_panel div.last
+  {
+    float: right;
+  }
 
 .blog_link_panel a,
 .blog_link_panel span {
