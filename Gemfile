@@ -44,18 +44,12 @@ end
 group :development do
   gem 'newrelic_rpm'
   gem 'fancy-buttons'
-  gem 'newrelic_rpm'
 end
 
 group :test do
-  # gem 'ZenTest'
-  # gem 'autotest-rails'
   gem "capybara"
-  gem "guard-rspec"
   gem "spork", "~> 0.9.0.rc"
   gem 'factory_girl_rails'
-  # gem 'redgreen'
-  # gem 'test_notifier'
 end
 
 group :development, :test do 

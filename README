@@ -1,3 +1,14 @@
+Стек используемых технологий
+
+На 23 января 2012 года
+
+Ruby 1.8.7 ENTERPRISE EDITION
+Ruby on Rails 3.0.10
+Список текущих плагинов и движком можно посмотреть в файле Gemfile
+
+Почитать по установке Ruby:
+http://beginrescueend.com/
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
