@@ -76,21 +76,19 @@ module ApplicationHelper
   end
 
   def post_belongs_2_subdomain?
-    true
-    #if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
-    #  !Post.find_by_url(params[:url]).tournament.nil? ? true : false
-    #else
-    #  return false
-    #end
+    if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
+      !Post.find_by_url(params[:url]).tournament.nil? ? true : false
+    else
+      return false
+    end
   end
 
   def post_subdomain
-    true
-    #if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
-    #  Post.find_by_url(params[:url]).tournament.url
-    #else
-    #  false
-    #end
+    if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
+      Post.find_by_url(params[:url]).tournament.url
+    else
+      false
+    end
   end
 
 end
