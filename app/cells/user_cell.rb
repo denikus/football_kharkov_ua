@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UserCell < Cell::Rails
   include Devise::Controllers::Helpers
 

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TeamAppointmentController < ApplicationController
   def show
     unless params[:id].nil?

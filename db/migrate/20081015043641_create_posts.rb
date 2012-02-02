@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePosts < ActiveRecord::Migration
   def self.up
     #drop_table :contents

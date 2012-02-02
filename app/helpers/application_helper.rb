@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ApplicationHelper
 
   def article_announce(body)
@@ -45,7 +46,9 @@ module ApplicationHelper
                :day => post_item.url_day,
                :url => !post_item.url.nil? ? post_item.url : '',
                :anchor => with_anchor ? "announce-breaker" : "",
-               :host => with_subdomain(post_item.tournament.nil? ? false : post_item.tournament.url)
+               #:host => with_subdomain(post_item.tournament.nil? ? false : post_item.tournament.url, request)
+               #:host => [request.subdomain + '.', request.domain].join
+               :host => ["#{post_item.tournament.nil? ? false : post_item.tournament.url}.", request.domain].join
 #               :host => (post_item.tournament.nil? ? false : post_item.tournament.url)
               })
   end
@@ -64,28 +67,30 @@ module ApplicationHelper
 
   def to_facebook_button(title, link)
     url = "http://www.facebook.com/sharer.php?u=#{url_encode(link)}&t=#{title}"
-    link_to(image_tag("/images/icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook"})
+    link_to(image_tag("icons/facebook_icon_24x24.png", {:alt => "Опубликовать на Facebook"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Facebook"})
   end
 
   def to_vkontakte_button(title, link)
     url = "http://vkontakte.ru/share.php?url=#{url_encode(link)}"
-    link_to(image_tag("/images/icons/vkontakte_icon_32x32.png", {:alt => "Опубликовать на Вконтакте", :size => "23x22"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Вконтакте"})
+    link_to(image_tag("icons/vkontakte_icon_32x32.png", {:alt => "Опубликовать на Вконтакте", :size => "23x22"}), url, {:rel => "nofollow", :target => "_blank", :title => "Опубликовать на Вконтакте"})
   end
 
   def post_belongs_2_subdomain?
-    if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
-      !Post.find_by_url(params[:url]).tournament.nil? ? true : false
-    else
-      return false
-    end
+    true
+    #if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
+    #  !Post.find_by_url(params[:url]).tournament.nil? ? true : false
+    #else
+    #  return false
+    #end
   end
 
   def post_subdomain
-    if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
-      Post.find_by_url(params[:url]).tournament.url
-    else
-      false
-    end
+    true
+    #if !params.nil? && params[:controller] == "post" && !Post.find_by_url(params[:url]).nil?
+    #  Post.find_by_url(params[:url]).tournament.url
+    #else
+    #  false
+    #end
   end
 
 end

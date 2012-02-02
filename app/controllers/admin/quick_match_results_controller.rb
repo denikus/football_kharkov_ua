@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::QuickMatchResultsController < ApplicationController
   layout 'admin/main'
 

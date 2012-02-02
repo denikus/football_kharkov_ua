@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateTeamsFootballers < ActiveRecord::Migration
   def self.up
     create_table :footballers_teams, :id => false do |t|

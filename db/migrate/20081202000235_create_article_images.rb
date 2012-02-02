@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateArticleImages < ActiveRecord::Migration
   def self.up
     create_table :article_images do |t|

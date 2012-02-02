@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class StepSeason < Step
   has_steps :stages
   has_many :footballers_teams

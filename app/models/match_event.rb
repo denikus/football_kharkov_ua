@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MatchEvent < ActiveRecord::Base
   belongs_to :match
   belongs_to :match_event_type

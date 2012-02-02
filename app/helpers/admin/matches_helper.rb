@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Admin::MatchesHelper
   def show_matches tour
     remote_function :url => admin_tour_matches_path(tour)

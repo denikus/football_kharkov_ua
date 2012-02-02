@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::ToursController < ApplicationController
   def index
     tours = Tour.find(:all, :conditions => {:league_id => params[:id]}) do

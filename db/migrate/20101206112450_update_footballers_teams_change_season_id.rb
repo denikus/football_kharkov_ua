@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateFootballersTeamsChangeSeasonId < ActiveRecord::Migration
   def self.up
     rename_column :footballers_teams, :season_id, :step_id

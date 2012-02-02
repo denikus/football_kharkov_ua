@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Kernel
   def show_log
     unless @log_buffer_size

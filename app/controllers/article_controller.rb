@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ArticleController < ApplicationController
 #before_filter :authorize, :except => [:show]
 before_filter :authenticate_user!, :except => [:show]

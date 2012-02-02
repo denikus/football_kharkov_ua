@@ -41,7 +41,7 @@
                 %td.guests= link_to(schedule.guests.name, teams_path(:id => schedule.guests.url))
                 %td.protocol
                   - if !schedule.match.nil? && schedule.match.has_protocol?
-                    = link_to(image_tag("/images/icons/protocol.png"), season_match_path(:season_id => @season.url, :id => schedule.match.id))
+                    = link_to(image_tag("icons/protocol.png"), season_match_path(:season_id => @season.url, :id => schedule.match.id))
                   - else
                     = "-"
 - content_for :top_submenu do

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Article < ActiveRecord::Base
   include ActionView::Helpers::TextHelper
   has_one :post, :as => :resource, :dependent => :destroy

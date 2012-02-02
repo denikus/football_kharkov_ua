@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MatchEventType < ActiveRecord::Base
   @types ||= {}
   

@@ -1,5 +1,5 @@
 = render :partial => "blog/filter_block"
-- for post in @posts
+- @posts.each do |post|
   .content
     - if post.resource_type=='Article'
       = render(:partial => "blog/article_item", :locals => { :post => post })

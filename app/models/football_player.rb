@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FootballPlayer < ActiveRecord::Base
   STATS = %w{goal goal_10 goal_6 auto_goal yellow_card red_card missed_goal_6 missed_goal_10}.freeze
   

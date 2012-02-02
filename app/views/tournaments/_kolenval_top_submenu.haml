@@ -1,12 +1,12 @@
 .top-submenu-container
   %h1
     = tournament_title
-    = link_to image_tag("/images/icons/feed.png", :size => "16x16"), url_for({:action=>"feed", :controller=>"tournaments"}), :class => "feed-link"
+    = link_to image_tag("icons/feed.png", :size => "16x16"), url_for({:action=>"feed", :controller=>"tournaments"}), :class => "feed-link"
     .clear
   = link_to "Команды", teams_path, :id => "top-submenu-teams"
   = link_to "Расписание", schedules_path, :id => "top-submenu-schedules"
   = link_to "Таблицы", tables_path, :id => "top-submenu-tables"
   = link_to "Бомбардиры", bombardiers_path, :id => "top-submenu-bombardiers"
-  = link_to "Матчи", season_matches_path(:season_id => Tournament.find_by_url(current_subdomain).step_seasons.find(:last, :order => "identifier ASC").url), :id => "top-submenu-matches"
+  = link_to "Матчи", season_matches_path(:season_id => Tournament.find_by_url(request.subdomain).step_seasons.find(:last, :order => "identifier ASC").url), :id => "top-submenu-matches"
   = link_to "О турнире", page_path(:id=> "about"), :id => "top-submenu-about"
   .clear

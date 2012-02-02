@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FootballPlayerAppointment < ActiveRecord::Base
   belongs_to :competitor
   belongs_to :footballer

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateAdminsRoleFlagsToSuperAdmin < ActiveRecord::Migration
   def self.up
     rename_column :admins, :role_flags, :super_admin

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
@@ -51,13 +52,19 @@ Devise.setup do |config|
 
   config.authentication_keys = [:email]
 
-  config.confirm_within = 5.days
+  #config.confirm_within = 5.days
+  config.allow_unconfirmed_access_for=5.days
 
   config.remember_for = 3.month
+
+  config.use_salt_as_remember_token = true
+  config.reset_password_within = 6.hours
 
   config.timeout_in = 6.hour
 
   config.mailer_sender = "football.kharkov.ua@gmail.com"
+
+  config.case_insensitive_keys = [:email]
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time

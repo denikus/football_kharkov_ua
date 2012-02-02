@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateMatchesLink2Schedule < ActiveRecord::Migration
   def self.up
     remove_column :matches, :tour_id

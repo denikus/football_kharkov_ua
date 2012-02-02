@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SeasonStats
 
   attr_reader :season_rate, :wins, :draws, :loses, :bonus_points

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::UserRequestsController < ApplicationController
   before_filter :authenticate_admin!
 

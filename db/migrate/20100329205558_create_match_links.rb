@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMatchLinks < ActiveRecord::Migration
   def self.up
     create_table :match_links do |t|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Competitor < ActiveRecord::Base
   belongs_to :match
   belongs_to :team

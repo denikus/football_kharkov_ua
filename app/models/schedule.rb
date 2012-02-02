@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Schedule < ActiveRecord::Base
   #belongs_to :tour
   belongs_to :venue
@@ -91,14 +92,13 @@ class Schedule < ActiveRecord::Base
         condition_str += " AND (host_scores IS NOT NULL AND guest_scores IS NOT NULL) "
       end
 
-      find(:first,
-                 :select => "MIN(match_on) AS match_on",
-                 :joins => "INNER JOIN `steps`" +
-                            "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
-                 :conditions => [condition_str] + condition_vals
-#                 :conditions => !tournament.nil? ? ["tournament_id = ?", tournament.id] : "1"
-#                 :conditions => ["steps.tournament_id = ? ", tournament.id]
-                 )
+      select("MIN(match_on) AS match_on").joins("INNER JOIN `steps` ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')").where([condition_str] + condition_vals).first
+      #find(:first,
+      #           :select => ,
+      #           :joins =>  +
+      #                      "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
+      #           :conditions => [condition_str] + condition_vals
+      #           )
       
     end
 
@@ -114,14 +114,14 @@ class Schedule < ActiveRecord::Base
       if with_results
         condition_str += " AND (host_scores IS NOT NULL AND guest_scores IS NOT NULL) "
       end
-      
-      find(:first,
-                 :select => "MAX(match_on) AS match_on",
-                 :joins => "INNER JOIN `steps`" +
-                            "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
-                 :conditions => [condition_str] + condition_vals
-#                 :conditions => ["steps.tournament_id = ? ", tournament.id]
-                 )
+      select("MAX(match_on) AS match_on").joins("INNER JOIN `steps` ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')").where([condition_str] + condition_vals).first
+#      find(:first,
+#                 :select => "MAX(match_on) AS match_on",
+#                 :joins => "INNER JOIN `steps`" +
+#                            "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
+#                 :conditions => [condition_str] + condition_vals
+##                 :conditions => ["steps.tournament_id = ? ", tournament.id]
+#                 )
     end
 
     def get_tomorrow_record(tournament)
@@ -147,16 +147,18 @@ class Schedule < ActiveRecord::Base
       else
         conditions = ["match_on = ? ", day]
       end
-      find(:all,
-            :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name",
-            :joins => "INNER JOIN `steps`" +
-                "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
-                "LEFT JOIN `steps` AS leagues " +
-                  "ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ",
-            :conditions => conditions,
-            :include => [:hosts, :guests, :venue],
-            :order => "match_at ASC"
-           )
+      #includes([:hosts, :guests, :venue])
+      select("schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name").joins("INNER JOIN `steps` ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') LEFT JOIN `steps` AS leagues ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ").where(conditions).includes(:hosts, :guests, :venue).order("match_at ASC")
+      #find(:all,
+      #      :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name",
+      #      :joins => "INNER JOIN `steps`" +
+      #          "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
+      #          "LEFT JOIN `steps` AS leagues " +
+      #            "ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ",
+      #      :conditions => conditions,
+      #      :include => [:hosts, :guests, :venue],
+      #      :order => "match_at ASC"
+      #     )
     end
   end  
 end

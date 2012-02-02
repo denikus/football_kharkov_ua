@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::StatsController < ApplicationController
   def index
   end

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 FootballKharkov::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -64,7 +65,7 @@ FootballKharkov::Application.configure do
     :sender_address => %{"notifier" <info@football.kharkov.ua>},
     :exception_recipients => %w{denis.soloshenko@gmail.com}
 
-  TLD_SIZE = 2
+  config.action_dispatch.tld_length = 2
 
   BITLY = {
     :username => 'footballkharkov',

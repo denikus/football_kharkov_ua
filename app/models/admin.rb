@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin < ActiveRecord::Base
   devise :database_authenticatable, :rememberable
   has_many :permissions

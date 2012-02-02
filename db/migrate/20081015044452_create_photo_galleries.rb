@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePhotoGalleries < ActiveRecord::Migration
   def self.up
     create_table :photo_galleries do |t|

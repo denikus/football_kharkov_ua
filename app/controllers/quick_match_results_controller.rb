@@ -1,7 +1,8 @@
+# -*- encoding : utf-8 -*-
 class QuickMatchResultsController < ApplicationController
   def show
     render :json => {:content => render_cell(:sidebar_block, :quick_results,
-                                             :locals => {:current_subdomain => current_subdomain,
+                                             :locals => {:request.subdomain => request.subdomain,
                                                          :direction => params[:direction],
                                                          :current_date => params[:current_date],
                                                          :direction_date => params[:direction_date]}),

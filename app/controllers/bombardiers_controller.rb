@@ -1,8 +1,9 @@
+# -*- encoding : utf-8 -*-
 class BombardiersController < ApplicationController
   layout "app_without_sidebar"
 
   def index
-    seasons =  Step.find_all_by_tournament_id(Tournament.find_by_url(current_subdomain), :conditions => ["type = 'StepSeason'"])
+    seasons =  Step.find_all_by_tournament_id(Tournament.find_by_url(request.subdomain), :conditions => ["type = 'StepSeason'"])
 
     @leagues = StepLeague.find(:all,
                                :select => "steps.* ",

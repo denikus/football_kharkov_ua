@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TourResultController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
 #  before_filter :check_permissions, :except => [:show, :new, :create]

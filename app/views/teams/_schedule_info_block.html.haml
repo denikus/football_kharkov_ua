@@ -7,7 +7,7 @@
       %td.time= future_match_schedule.match_at
       %td.venue
         -unless future_match_schedule.venue.nil?
-          = (!future_match_schedule.venue.icon.nil? && !future_match_schedule.venue.icon.empty? ? image_tag("/images/icons/#{future_match_schedule.venue.icon}", :alt => "#{future_match_schedule.venue.name}", :title => "#{future_match_schedule.venue.name}") : "")
+          = (!future_match_schedule.venue.icon.nil? && !future_match_schedule.venue.icon.empty? ? image_tag("icons/#{future_match_schedule.venue.icon}", :alt => "#{future_match_schedule.venue.name}", :title => "#{future_match_schedule.venue.name}") : "")
           =link_to future_match_schedule.venue.short_name, venue_url(future_match_schedule.venue.url)
 
       %td.hosts= link_to(future_match_schedule.hosts.name, team_path(future_match_schedule.hosts.url), :host => with_subdomain(future_match_schedule.step_tour.tournament.url))

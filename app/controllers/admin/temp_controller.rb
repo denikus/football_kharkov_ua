@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::TempController < ApplicationController
   before_filter :authenticate_admin!
   

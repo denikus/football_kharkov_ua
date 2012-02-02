@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Factory.define :post do |f|
   f.sequence(:title) {|u| "title#{u}"}
   f.sequence(:url) {|u| "url#{u}"}

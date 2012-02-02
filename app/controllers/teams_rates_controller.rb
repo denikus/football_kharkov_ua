@@ -1,6 +1,7 @@
+# -*- encoding : utf-8 -*-
 class TeamsRatesController < ApplicationController
   def index
-    tournament = Tournament.find_by_url(current_subdomain)
+    tournament = Tournament.find_by_url(request.subdomain)
 
     @seasons =  Step.find_all_by_tournament_id(
         tournament,

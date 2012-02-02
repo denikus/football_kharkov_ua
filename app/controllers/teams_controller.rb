@@ -1,9 +1,10 @@
+# -*- encoding : utf-8 -*-
 class TeamsController < ApplicationController
   layout "app_without_sidebar"
   
   def index
-    unless current_subdomain.nil?
-      tournament = Tournament.find_by_url(current_subdomain)
+    unless request.subdomain.nil?
+      tournament = Tournament.find_by_url(request.subdomain)
       last_season = StepSeason.where(:tournament_id => tournament.id).order("identifier ASC").last
 
       @teams_by_groups = []
@@ -25,19 +26,19 @@ class TeamsController < ApplicationController
 #                               :conditions => ["tournament_id = ?", tournament.id],
 #                               :order => "name ASC"
 #                              )
-#      @teams = Tournament.find_by_url(current_subdomain).seasons.last.teams.find(:all, :order => "name ASC")
+#      @teams = Tournament.find_by_url(request.subdomain).seasons.last.teams.find(:all, :order => "name ASC")
     end
   end
 
   def show
-    unless current_subdomain.nil?
+    unless request.subdomain.nil?
       @team = Team.find_by_url(params[:id])
       if @team.nil? 
         render "#{Rails.root}/public/404.html", :status => 404, :layout => false
         return
       end
       
-      @tournament = Tournament.find_by_url(current_subdomain)
+      @tournament = Tournament.find_by_url(request.subdomain)
       @season = StepSeason.find(:last,
                                  :joins => "INNER JOIN `steps_teams` ON (steps.id = steps_teams.step_id) ",
                                  :conditions => ["steps_teams.team_id = ? AND steps.tournament_id = ? ", @team.id, @tournament.id]

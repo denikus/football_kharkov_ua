@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FeedController < ApplicationController
   def index
     @posts = Post.paginate :page => 1, :per_page => 10, :order => 'created_at DESC'

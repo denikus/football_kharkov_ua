@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddCropCoordinatesToProfile < ActiveRecord::Migration
   def self.up
     add_column :profiles, :crop_x_left, :integer

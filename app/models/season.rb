@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Season < ActiveRecord::Base
   belongs_to :tournament
   has_many :stages

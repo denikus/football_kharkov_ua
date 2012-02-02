@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'generator.rb'
 
 class Stat < ActiveRecord::Base

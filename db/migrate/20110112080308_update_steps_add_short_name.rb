@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateStepsAddShortName < ActiveRecord::Migration
   def self.up
     add_column :steps, :short_name, :string, :default => nil

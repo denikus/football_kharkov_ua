@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::VenuesController < ApplicationController
   layout 'admin/main'
 

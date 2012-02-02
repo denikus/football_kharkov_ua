@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateUserConnectFootballerRequests < ActiveRecord::Migration
   def self.up
     create_table :user_connect_footballer_requests do |t|

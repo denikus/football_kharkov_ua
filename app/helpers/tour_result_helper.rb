@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module TourResultHelper
   def match_label(match)
     host  = match.competitors.find(:first, :conditions => {:side => 'hosts'})

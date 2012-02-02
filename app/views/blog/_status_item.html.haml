@@ -1,5 +1,5 @@
 %h4.status
-  = link_to(post.tournament.short_name, tournament_url(:host => with_subdomain(post.tournament.url)), :class => "tournament") if !post.tournament.nil? && current_subdomain.nil?
-  - if !post.tournament.nil? && current_subdomain.nil?
+  = link_to(post.tournament.short_name, tournament_url(:subdomain => post.tournament.url), :class => "tournament") if !post.tournament.nil? && request.subdomain.nil?
+  - if !post.tournament.nil? && request.subdomain.nil?
     %span.right-arrow= ">".html_safe
   = auto_link(post.title).html_safe

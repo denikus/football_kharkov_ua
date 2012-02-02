@@ -1,6 +1,7 @@
+# -*- encoding : utf-8 -*-
 class PlayerRatesController < ApplicationController
   def index
-    @seasons =  Step.find_all_by_tournament_id(Tournament.find_by_url(current_subdomain), :conditions => ["type = 'StepSeason'"])
+    @seasons =  Step.find_all_by_tournament_id(Tournament.find_by_url(request.subdomain), :conditions => ["type = 'StepSeason'"])
 
     @leagues = StepLeague.get_leagues_in_season(@seasons.last)
 

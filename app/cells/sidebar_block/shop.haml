@@ -1,9 +1,9 @@
 .sidebar-block
   .sidebar-block-header
     %h4
-      = @opts[:title]
-      = image_tag"/images/buttons/next.png", {:class => "next"}
-      = image_tag"/images/buttons/prev.png", {:class => "prev"}
+      =@opts[:title]
+      =image_tag("buttons/next.png", :class => "next")
+      =image_tag("buttons/prev.png", :class => "prev")
       -#= "<a class=\"next\"><img src=\"/images/buttons/next.png\" /></a>"
       -#= "<a class=\"prev\"><img src=\"/images/buttons/prev.png\" /></a>"
       .clear

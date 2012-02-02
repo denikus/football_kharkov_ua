@@ -2,7 +2,7 @@
   / %script{:type=>"text/javascript", :src=>"http://userapi.com/js/api/openapi.js?42"}
   / %script{:type=>"text/javascript"}
   / VK.init({apiId: 2679194, onlyWidgets: true});
-- title_image = !post.resource.article_image.nil? ? image_tag("/images/articles/#{post.created_at.strftime("%Y-%m-%d")}/#{post.resource.article_image.file}", :class=>"article-title-image", :alt =>post.resource.article_image.title ) : ''
+- title_image = !post.resource.article_image.nil? ? image_tag("articles/#{post.created_at.strftime("%Y-%m-%d")}/#{post.resource.article_image.file}", :class=>"article-title-image", :alt =>post.resource.article_image.title ) : ''
 
 .singleArticle
   = raw Hpricot(full_article(post.resource.body) ).to_html

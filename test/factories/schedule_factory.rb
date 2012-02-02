@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Factory.define :schedule do |f|
   f.venue_id 1
   f.tour_id 1

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateVenuesAddPageContent < ActiveRecord::Migration
   def self.up
     add_column :venues, :page_content, :text

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CommentObserver < ActiveRecord::Observer
   def after_create(model)
 #    model.logger.info("Comment #{model.id} created" )

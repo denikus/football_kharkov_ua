@@ -1,0 +1,248 @@
+<<<<<<< Updated upstream
+var maxCommentLevel = 8;
+
+$(document).ready(function() { 
+=======
+if (!FHU) var FHU = {};
+
+$(document).ready(function() {
+
+    new FHU.postComment();
+
+}); 
+
+FHU.postComment = function() {
+  var newCommentForm = "#newComment",
+      newCommentTxtArea = "#comment_body",
+      newReplyHolder = "#newReply",
+      newReplyLink = ".comments a.commentReply";
+
+  // constructor
+  this.postComment = function() {
+
+>>>>>>> Stashed changes
+    var options = { 
+        beforeSubmit:  beforeCommentSubmit,  // pre-submit callback 
+        success:       afterCommentSubmit,  // post-submit callback 
+        dataType:  'json'
+    };
+    $(newCommentForm).ajaxForm(options);
+
+    $(newCommentTxtArea).focus(function () {
+      $(newReplyHolder).remove();
+    });
+
+    // user clicks on "Reply" button
+    $(newReplyLink).live('click', function(){
+      var self = $(this),
+          opts = self.data("options");
+      
+      $(newReplyLink).show();
+      self.hide();
+      addReply(opts.id, opts.level, opts.postId);
+      return false;
+    });
+
+  };
+
+  // functionality before submit comment 
+  var beforeCommentSubmit = function(formData, jqForm, options) {
+    $('#new-comment-loading').show();
+    $(newCommentForm).hide();
+    return true;
+  };
+  // functionality when submit comment has been done successfully 
+  var afterCommentSubmit = function(response_data, response_status) {
+    $('#comment-errors').empty();
+
+    if (!response_data.success) {
+      for (var i = 0; i < response_data.errors.length; i++) {
+        $('#comment-errors').append('<div>' + response_data.errors[i] + '</div>');
+      }
+    }
+    else {
+      
+    }
+    $('#new-comment-loading').fadeOut("slow");
+    $(newCommentForm).reset();
+    $(newCommentForm).show();
+    
+<<<<<<< Updated upstream
+  }
+  $('#new-comment-loading').fadeOut("slow");
+  $('#new-comment-post').reset();
+  $('#new-comment-post').show();
+  
+  $("#new-comment").fadeOut("slow");
+  
+  var shiftComment = (response_data.level > maxCommentLevel) ? maxCommentLevel : response_data.level;
+  var new_comment = $('<li id="comment-' + response_data.id + '">' + 
+                      '<div class="comment-content"  style="margin-left: ' + 20 * (shiftComment-1) + 'px; ">' + 
+                        '<p class="comment-author">' +
+                          response_data.author_login + ' | ' +
+                          response_data.comment_date + 
+                        '</p>' +
+                        '<p class="comment-body">' +
+                        response_data.body +
+                        '</p>' + 
+                        '<p class="comment-reply">' + 
+                          '(<a href="#" onclick="addCommentForm(' + response_data.id + ',' + shiftComment + ',' + response_data.post_id + ');return false;">ответить</a>)' + 
+                        '</p>' +
+                      '</div>' + 
+                    '</li>');
+   new_comment.hide();
+   $('#comment-tree').append(new_comment);
+   new_comment.fadeIn("slow");
+}
+=======
+    $(newReplyHolder).fadeOut("slow");
+    
+    var new_comment = $('<li id="comment-' + response_data.id + '">' + 
+                        '<div class="comment-content"  style="margin-left: ' + 20 * (response_data.level-1) + 'px; ">' + 
+                          '<p class="comment-author">' +
+                            response_data.author_login + ' | ' +
+                            response_data.comment_date + 
+                          '</p>' +
+                          '<p class="comment-body">' +
+                          response_data.body +
+                          '</p>' + 
+                          '<p class="comment-reply">' + 
+                            '(<a href="#" onclick="addReply(' + response_data.id + ',' + response_data.level + ',' + response_data.post_id + ');return false;">ответить</a>)' + 
+                          '</p>' +
+                        '</div>' + 
+                      '</li>');
+     new_comment.hide();
+     $('#comment-tree').append(new_comment);
+     new_comment.fadeIn("slow");
+     $(newReplyLink).show();
+  };
+>>>>>>> Stashed changes
+
+  // // // // // // // // // // // // // // // // // // // //
+  // add reply comment
+  var addReply = function(parent_id, parent_level, post_id) {
+    $(newReplyHolder).remove();
+
+    var addReplyBox = '<div class="postCommentBox">' +
+                        '<form action="/comment/create/new" id="newReplyForm" method="post">' +
+                          '<input type="hidden" name="comment[parent_id]" value="' + parent_id + '" />' +
+                          '<input type="hidden" name="comment[post_id]" value="' + post_id + '" />' +
+                          '<div class="txtAreaBox"><textarea name="comment[body]" id="newReplyTxtArea"></textarea></div>' +
+                          '<div class="btnSubmitCommentBox"><input type="submit" value="Отправить" class="button primary" /></div>' +
+                        '</form>' +
+                        '<div class="loader"></div>' +
+                      '</div>';
+ 
+<<<<<<< Updated upstream
+  var shiftComment = (parent_level > maxCommentLevel) ? maxCommentLevel : parent_level;
+  var list_element = $('<li id="new-comment" style="margin-left: ' + 20*(shiftComment-1)  + 'px;"></li>').html(form_element);
+  list_element.insertAfter("#comment-" + parent_id);
+  $('#new-comment-body').focus();
+  
+  var options = {
+    beforeSubmit:  showInlineLoading,  // pre-submit callback 
+    success:       showInlineComment,  // post-submit callback 
+    dataType:  'json'
+=======
+    var list_element = $('<li id="newReply" style="margin-left: ' + 20*(parent_level-1)  + 'px;"></li>').html(addReplyBox);
+    list_element.insertAfter("#comment-" + parent_id);
+    $('#newReplyTxtArea').focus();
+    
+    var options = {
+      beforeSubmit:  beforeReplySubmit,  // pre-submit callback 
+      success:       successReplySubmit,  // post-submit callback 
+      dataType:  'json'
+    };
+    $('#newReplyForm').ajaxForm(options);
+  }
+
+  // // // // // // // // // // // // // // // // // // // //
+  // funtionality before reply submit
+  var beforeReplySubmit = function(formData, jqForm, options) {
+    console.log('beforeReplySubmit');
+    $('#newReplyForm').css('visibility', 'hidden');
+    $(newReplyHolder).find('.loader').show();
+    console.log($(newReplyHolder).find('.loader').length)
+>>>>>>> Stashed changes
+  };
+
+<<<<<<< Updated upstream
+function showInlineLoading(formData, jqForm, options) {
+  $("#new-comment").html('<div style="text-align: center;"><img src="/images/ajax-loader.gif" /></div>');
+}
+function showInlineComment(response_data,response_status) {
+  $("#new-comment").fadeOut("slow");
+  var shiftComment = (response_data.level > maxCommentLevel) ? maxCommentLevel : response_data.level;
+  var new_comment = $('<li id="comment-' + response_data.id + '">' + 
+                      '<div class="comment-content" style="margin-left: ' + 20 * (shiftComment-1) + 'px; ">' + 
+                        '<p class="comment-author">' +
+                            response_data.author_login + ' | ' +
+                          response_data.comment_date + 
+                        '</p>' +
+                        '<p class="comment-body">' +
+                        response_data.body +
+                        '</p>' + 
+                        '<p class="comment-reply">' + 
+                          '(<a href="#" onclick="addCommentForm(' + response_data.id + ',' + response_data.level + ',' + response_data.post_id + ');return false;">ответить</a>)' + 
+                        '</p>' +
+                      '</div>' + 
+                    '</li>');
+   new_comment.hide();
+   new_comment.insertAfter("#comment-" + response_data.after );
+   new_comment.fadeIn("slow");
+=======
+  // // // // // // // // // // // // // // // // // // // //
+  // funtionality when reply submit is successful
+  var successReplySubmit = function(response_data,response_status) {
+    console.log('successReplySubmit');
+    $(newReplyHolder).fadeOut("slow");
+    var new_comment = $('<li id="comment-' + response_data.id + '" class="comment">' + 
+                          '<div class="commentContent" style="margin-left: ' + 20 * (response_data.level-1) + 'px; ">' + 
+                            '<div class="avatar"></div>' +
+                            '<dl class="commentInfo">' + 
+                              '<dt class="commentAuthor">' +
+                                '<a class="username">' + response_data.author_login + '</a>' +
+                              '</dt>' +
+                              '<dd class="datetime">' + response_data.comment_date + '</dd>' +
+                            '</dl>' + 
+                            '<div class="commentBody">' +
+                              '<p>' + response_data.body + '</p>' +
+                              
+                            '</div>' + 
+                          '</div>' + 
+                          '<a href="#" class="button commentReply" data-options="{id: ' + response_data.id + ', level: ' + response_data.level + ', postId: ' + response_data.post_id  + '}">ответить</a>' +
+                        '</li>');
+     new_comment.hide();
+     new_comment.insertAfter("#comment-" + response_data.after );
+     new_comment.fadeIn("slow");
+  };
+
+  this.postComment();
+>>>>>>> Stashed changes
+}
+
+
+
+//subscribe/unsubscribe handler
+$("[id^=subscribe_unsibscribe_comments_]").live('click', function(obj) {
+  var matches = obj.currentTarget["id"].match(/^subscribe_unsibscribe_comments_(.*)/);
+  var url = '/post/subscribe/';
+  var checked = this.checked;
+  if (!checked) {
+    url = '/post/unsubscribe';
+  }
+  $.ajax({
+    url: url,
+    data: {id: matches[1]},
+    type: 'post',
+    success: function() {
+      if (!checked) {
+        $("#subscribe_status").text("");
+      } else {
+        $("#subscribe_status").text("(Вы подписаны)");
+      }
+    }
+  });
+});
+
+

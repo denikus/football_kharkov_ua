@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -14,7 +15,8 @@ module FootballKharkov
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-    config.autoload_paths += %W(#{config.root}/../lib/*.rb #{config.root}/app/models/ckeditor)
+    config.autoload_paths += %W(#{Rails.root}/lib/*.rb #{Rails.root}/app/models/ckeditor)
+    #config.autoload_paths += %W(#{Rails.root}/app/models/ckeditor)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -42,6 +44,13 @@ module FootballKharkov
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+
 
     config.action_view.javascript_expansions[:defaults] = %w(rails)
   end

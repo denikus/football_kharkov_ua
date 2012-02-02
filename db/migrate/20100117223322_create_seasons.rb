@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSeasons < ActiveRecord::Migration
   def self.up
     create_table :seasons do |t|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UserFootballerMerge < ActionMailer::Base
   default :from => "football.kharkov.ua@gmail.com"
 

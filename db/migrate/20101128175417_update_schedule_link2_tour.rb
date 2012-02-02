@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateScheduleLink2Tour < ActiveRecord::Migration
   def self.up
     remove_column :schedules, :season_id

@@ -13,13 +13,13 @@
   /right column
   #col-right
     = render_cell :footballer, :future_matches_block, :title => "Мои матчи"
-    - if !current_subdomain.nil? || post_belongs_2_subdomain?
-      = render_cell :sidebar_block, :quick_results, :title => "Блиц-результаты", :subdomain => !current_subdomain.nil? ? current_subdomain : post_subdomain
-    - if current_subdomain.nil?
-      = render_cell :sidebar_block, :news, :title => "Новенькое", :subdomain => current_subdomain
-    - if !current_subdomain.nil? && current_subdomain == 'itleague'
+    - if !request.subdomain.nil? &&!request.subdomain.empty? || post_belongs_2_subdomain?
+      = render_cell :sidebar_block, :quick_results, :title => "Блиц-результаты", :subdomain => !request.subdomain.nil?  ? request.subdomain : post_subdomain
+    - if request.subdomain.nil? || request.subdomain.empty?
+      = render_cell :sidebar_block, :news, :title => "Новенькое", :subdomain => request.subdomain, :domain => request.domain
+    - if !request.subdomain.nil? && request.subdomain == 'itleague'
       = render_cell :sidebar_block, :advertisement, :title => "Спонсоры"
     = render_cell :sidebar_block, :shop, :title => "Амуниция"
-    = render_cell :sidebar_block, :comments, :title => "Комментарии", :subdomain => current_subdomain
+    = render_cell :sidebar_block, :comments, :title => "Комментарии", :subdomain => request.subdomain, :domain => request.domain
 
 = render :template => 'layouts/app'

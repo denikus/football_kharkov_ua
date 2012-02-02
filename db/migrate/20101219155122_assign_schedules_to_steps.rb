@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AssignSchedulesToSteps < ActiveRecord::Migration
   def self.up
     remove_column :schedules, :league_id

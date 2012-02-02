@@ -1,5 +1,5 @@
-- if !['kolenval', 'itleague'].include?(current_subdomain)
-  = render :partial => "tables/#{current_subdomain}_table"
+- if !['kolenval', 'itleague'].include?(request.subdomain)
+  = render :partial => "tables/#{request.subdomain}_table"
 - else
   - @stages.each do |stage|
     %h2= stage.name

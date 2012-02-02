@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ProfileController < ApplicationController
 #  before_filter :authorize, :except => [:index]
 #  before_filter :authorize, :except => [:index]

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SessionController < Devise::SessionsController
 #class UsersController < ApplicationController
   layout 'application'

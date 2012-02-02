@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FootballPlayerAppointmentController < ApplicationController
   def update
     if user_signed_in?
