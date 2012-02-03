@@ -2,7 +2,7 @@
   = link_to(post.tournament.short_name, tournament_url(subdomain: post.tournament.url), :class => "tournament") if !post.tournament.nil? && (request.subdomain.nil? || request.subdomain.empty?)
   - if !post.tournament.nil? && (request.subdomain.nil? || request.subdomain.empty?)
     %span.right-arrow= ">".html_safe
-  = link_to post.title, post_item_path(post)
+  = link_to post.title, post_item_path(post, "announce-breaker")
 %div
   -#- title_image = !post.resource.article_image.nil? ? image_tag("/images/articles/#{post.created_at.strftime("%Y-%m-%d")}/#{post.resource.article_image.file}", :class=>"article-title-image", :alt =>post.resource.article_image.title ) : ''
   = raw Hpricot(article_announce(post.resource.body)).to_html
