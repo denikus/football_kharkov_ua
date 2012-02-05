@@ -51,23 +51,6 @@ class SidebarBlockCell < ::Cell::Base
 
     @schedules = Schedule.get_records_by_day(@max_date, tournament)
 
-    #puts "-------------------"
-    ##puts @schedules.class
-    #ap @schedules.count
-    #puts @schedules.class
-    #ap @schedules.methods
-    ##m = @schedules.to_a
-    #puts "_________________________"
-    #puts m
-    #puts "_________________________"
-    #puts @schedules
-    #@schedules.each_with_index do |item, i|
-    #  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    #  puts "index: #{i}"
-    #  ap item
-    #  puts "!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    #end
-
     render :locals => {:min_date => @min_date , :max_date => @max_date}, :layout => false
   end
 

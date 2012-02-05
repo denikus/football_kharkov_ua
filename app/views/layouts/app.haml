@@ -43,7 +43,7 @@
       / Container
       #container
         - top_submenu_type =  content_for(:top_submenu).strip!.to_s
-        - if ("tournament" == top_submenu_type && !request.subdomain.nil?)
+        - if ("tournament" == top_submenu_type && !request.subdomain.empty?)
           = render :partial => "tournaments/#{request.subdomain}_top_submenu"
         - elsif "user" == top_submenu_type
           = render :partial => "users/top_submenu"

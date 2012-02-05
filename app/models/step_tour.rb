@@ -28,11 +28,13 @@ class StepTour < Step
       def <=> other
         return other.score <=> self.score unless (other.score <=> self.score).zero?
         unless self[:results][other.team.id].nil?
+          self[:results][other.team.id] = self[:results][other.team.id].split(':')
           return self[:results][other.team.id].reverse.inject(&:<=>) unless self[:results][other.team.id].inject(&:==)
         end
         wins = [other, self].collect{ |e| e.games[0] }
         return wins.inject(&:<=>) unless wins.inject(&:==)
         diff = [other, self].collect{ |e| e.goals.inject(&:-) }
+
         return diff.inject(&:<=>) unless diff.inject(&:==)
 
         #goal hits

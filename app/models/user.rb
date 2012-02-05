@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :recoverable, :rememberable, :validatable, :trackable
+  devise :encryptable, :encryptor => :sha1
   
   has_one :profile
 
