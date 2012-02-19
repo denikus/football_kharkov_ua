@@ -12,6 +12,7 @@ class FootballerCell < Cell::Rails
   end
 
   def future_matches_block(args)
+    @opts = args
     if !current_user.nil? && !current_user.footballer.nil?
       @schedules = Schedule.future_footballer_matches(current_user.footballer.id)
       render

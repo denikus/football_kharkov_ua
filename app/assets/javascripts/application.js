@@ -9,6 +9,7 @@
 //= require jquery-plugins/jquery.tools.min
 //= require jquery-plugins/jquery.scrollTo-min
 
+
 if (!FHU) var FHU = {};
 
 $(function() {
