@@ -20,9 +20,12 @@ class Admin::MatchEventTypesController < ApplicationController
     params[:format] = 'json'
     params[:match_event_type] = [:symbol, :template].inject({}){ |p, k| p[k] = params.delete(k); p }
     case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
+      when :add
+        create
+      when :del
+        destroy
+      when :edit
+        update
     end
   end
 
