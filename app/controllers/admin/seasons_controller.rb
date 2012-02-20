@@ -22,9 +22,12 @@ class Admin::SeasonsController < ApplicationController
     params[:season] = [:name, :url].inject({}){ |p, k| p[k] = params.delete(k); p }
     params[:season][:tournament_id] = @tournament.id
     case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
+      when :add
+        create
+      when :del
+        destroy
+      when :edit
+        update
     end
   end
   
