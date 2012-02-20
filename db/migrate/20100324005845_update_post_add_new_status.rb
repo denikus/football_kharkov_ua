@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdatePostAddNewStatus < ActiveRecord::Migration
   def self.up
     change_column :posts, :status, :enum, :limit => ['published', 'hidden', 'updating'], :default => 'published'

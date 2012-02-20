@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMatchPlayerEvents < ActiveRecord::Migration
   def self.up
     create_table :match_player_events do |t|

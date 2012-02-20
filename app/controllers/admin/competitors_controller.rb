@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::CompetitorsController < ApplicationController
   def index
     match = Match.find(params[:match_id], :include => {:competitors => [:team, {:football_players => :footballer}]})

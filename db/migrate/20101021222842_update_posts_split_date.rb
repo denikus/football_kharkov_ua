@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdatePostsSplitDate < ActiveRecord::Migration
   def self.up
     add_column :posts, :url_year, :integer, :limit => 4

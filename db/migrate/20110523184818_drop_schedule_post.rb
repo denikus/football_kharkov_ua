@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DropSchedulePost < ActiveRecord::Migration
   def self.up
     Comment.delete_all(:post_id => [293, 308, 350, 358])

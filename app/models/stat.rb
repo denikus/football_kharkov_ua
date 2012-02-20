@@ -1,4 +1,6 @@
-require 'generator.rb'
+# -*- encoding : utf-8 -*-
+#require 'generator.rb'
+#require 'rexml/syncenumerator'
 
 class Stat < ActiveRecord::Base
   belongs_to :statable, :polymorphic => true
@@ -16,15 +18,18 @@ class Stat < ActiveRecord::Base
       load_target unless loaded?
       st = target.select{ |stat| stat.name == stat_name }.collect(&:value)
       case st.length
-      when 0: nil
-      when 1: st[0]
+        when 0
+          nil
+        when 1
+          st[0]
       else; st
       end
     end
     
     def set stat_name, *args
       load_target unless loaded?
-      ::SyncEnumerator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
+      #::SyncEnumerator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
+      Enumerator::Generator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
         s.destroy and next if v.nil?
         (s || Stat.new(:name => stat_name, :statable => proxy_owner)).tap{ |s| s.value = v }.save
       end

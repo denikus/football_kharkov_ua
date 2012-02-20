@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110526173626) do
+ActiveRecord::Schema.define(:version => 20120205121356) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -70,11 +71,11 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
   add_index "comments", ["post_id"], :name => "post_id"
 
   create_table "competitors", :force => true do |t|
-    t.integer "match_id",                                                  :null => false
-    t.enum    "side",     :limit => [:hosts, :guests], :default => :hosts, :null => false
-    t.integer "team_id",                                                   :null => false
-    t.integer "score",    :limit => 2,                 :default => 0,      :null => false
-    t.integer "fouls",    :limit => 2,                 :default => 0,      :null => false
+    t.integer "match_id",                                   :null => false
+    t.string  "side",     :limit => 0, :default => "hosts", :null => false
+    t.integer "team_id",                                    :null => false
+    t.integer "score",    :limit => 2, :default => 0,       :null => false
+    t.integer "fouls",    :limit => 2, :default => 0,       :null => false
   end
 
   add_index "competitors", ["match_id"], :name => "index_competitors_on_match_id"
@@ -94,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
   create_table "football_player_appointments", :force => true do |t|
     t.integer "competitor_id"
     t.integer "footballer_id"
-    t.enum    "response",      :limit => [:not_responded, :accepted, :declined, :tentative], :default => :not_responded, :null => false
+    t.string  "response",      :limit => 0, :default => "not_responded", :null => false
   end
 
   create_table "football_players", :force => true do |t|
@@ -154,7 +155,7 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
 
   create_table "match_links", :force => true do |t|
     t.integer "match_id"
-    t.enum    "link_type", :limit => [:video, :audio, :photo, :review, :other], :default => :other
+    t.string  "link_type", :limit => 0, :default => "other"
     t.string  "link_href"
     t.string  "link_text"
   end
@@ -211,12 +212,12 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
     t.integer  "author_id"
     t.integer  "resource_id"
     t.string   "resource_type"
-    t.enum     "status",        :limit => [:published, :hidden, :updating], :default => :published
+    t.string   "status",        :limit => 0, :default => "published"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
-    t.string   "title",                                                                             :null => false
-    t.boolean  "hide_comments",                                             :default => false
+    t.string   "title",                                               :null => false
+    t.boolean  "hide_comments",              :default => false
     t.string   "short_url"
     t.integer  "tournament_id"
     t.integer  "url_year"
@@ -232,9 +233,9 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
-    t.enum     "gender",              :limit => [:unknown, :male, :female],                                                 :default => :unknown
-    t.enum     "user_type",           :limit => [:fan, :footballer],                                                        :default => :fan
-    t.enum     "role",                :limit => [:unknown, :ball_boy, :goalkeeper, :fullback, :halfback, :forward, :coach], :default => :unknown
+    t.string   "gender",              :limit => 0, :default => "unknown"
+    t.string   "user_type",           :limit => 0, :default => "fan"
+    t.string   "role",                :limit => 0, :default => "unknown"
     t.string   "first_name"
     t.string   "last_name"
     t.date     "birthday"
@@ -397,24 +398,25 @@ ActiveRecord::Schema.define(:version => 20110526173626) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",             :limit => 64,                    :null => false
-    t.string   "email",                :limit => 100,                   :null => false
-    t.boolean  "enabled",                             :default => true, :null => false
+    t.string   "username",               :limit => 64,                    :null => false
+    t.string   "email",                  :limit => 100,                   :null => false
+    t.boolean  "enabled",                               :default => true, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",   :limit => 40,                    :null => false
-    t.string   "password_salt",        :limit => 20,                    :null => false
-    t.string   "confirmation_token",   :limit => 20
+    t.string   "encrypted_password",     :limit => 40,                    :null => false
+    t.string   "password_salt",          :limit => 20,                    :null => false
+    t.string   "confirmation_token",     :limit => 20
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "reset_password_token", :limit => 20
-    t.string   "remember_token",       :limit => 20
+    t.string   "reset_password_token",   :limit => 20
     t.datetime "remember_created_at"
     t.integer  "sign_in_count"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "unconfirmed_email"
+    t.datetime "reset_password_sent_at"
   end
 
   create_table "venues", :force => true do |t|

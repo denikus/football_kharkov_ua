@@ -6,10 +6,7 @@
     %title= (@page_title ||= 'Харьков футбольный')
     %link{:rel=>"alternate", :type => "application/rss+xml", :title => "RSS", :href => "http://football.kharkov.ua/feed"}/
     %link{:rel=>"icon", :type => "image/x-icon", :href => "/favicon.ico"}/
-    = stylesheet_link_tag 'styles'
-    = stylesheet_link_tag 'scores'
-    = stylesheet_link_tag 'button'
-    = stylesheet_link_tag 'top_menu'
+    = stylesheet_link_tag 'application'
     = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
     :javascript
       if (typeof(jQuery) == 'undefined') {
@@ -20,11 +17,11 @@
         var scriptHook = document.getElementsByTagName('script')[0];
         scriptHook.parentNode.insertBefore(script, scriptHook);
       }
-    = javascript_include_tag :defaults
-    = javascript_include_tag "jquery-plugins/jquery.tools.min"
-    = javascript_include_tag "jquery-plugins/jquery.scrollTo-min.js"
+    = javascript_include_tag "application"
+    -#= javascript_include_tag "jquery-plugins/jquery.tools.min"
+    -#= javascript_include_tag "jquery-plugins/jquery.scrollTo-min.js"
     = csrf_meta_tag
-    - unless current_subdomain.nil?
+    - unless request.subdomain.nil?
       = javascript_include_tag "application/schedule/schedule"
     -#/[if lt IE 7]
     = stylesheet_link_tag 'ie6.css', :media => 'screen, projection'
@@ -36,7 +33,7 @@
         / Header
         #header
           #header-block
-            = link_to image_tag("/images/logo.gif", :height=>"85", :alt=>"Харьков футбольный"), root_url(:host => with_subdomain(nil)), {:title=> "Харьков Футбольный", :id => "logo-link"}
+            = link_to image_tag("logo.gif", :height=>"85", :alt=>"Харьков футбольный"), root_url(subdomain: false), {:title=> "Харьков Футбольный", :id => "logo-link"}
             - if user_signed_in?
               =render :partial => 'shared/user_block'
             - else
@@ -46,15 +43,15 @@
       / Container
       #container
         - top_submenu_type =  content_for(:top_submenu).strip!.to_s
-        - if ("tournament" == top_submenu_type && !current_subdomain.nil?)
-          = render :partial => "tournaments/#{current_subdomain}_top_submenu"
+        - if ("tournament" == top_submenu_type && !request.subdomain.empty?)
+          = render :partial => "tournaments/#{request.subdomain}_top_submenu"
         - elsif "user" == top_submenu_type
           = render :partial => "users/top_submenu"
         - else
           = render :partial => "shared/top_submenu"
         #near-scroll-panel
           = link_to(image_tag("http://twitter-badges.s3.amazonaws.com/t_logo-b.png", :alt => "Follow Footballkharkov on Twitter", :title => "Follow Footballkharkov on Twitter"), "http://www.twitter.com/footballkharkov" , {:class => "button-container", :rel => "nofollow", :target => "_blank"})
-          = link_to(image_tag("/images/rss_icon.png", :alt => "RSS Лента новостей", :title => "RSS Лента новостей"), "/feed" , {:class => "button-container", :target => "_blank"})
+          = link_to(image_tag("rss_icon.png", :alt => "RSS Лента новостей", :title => "RSS Лента новостей"), "/feed" , {:class => "button-container", :target => "_blank"})
         = yield(:content)
       / EOF Container
     #clearfooter

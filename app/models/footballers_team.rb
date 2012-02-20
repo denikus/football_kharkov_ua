@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FootballersTeam < ActiveRecord::Base
   belongs_to :footballer
   belongs_to :team

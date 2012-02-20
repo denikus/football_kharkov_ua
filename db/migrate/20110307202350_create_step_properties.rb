@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateStepProperties < ActiveRecord::Migration
   def self.up
     create_table :step_properties do |t|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::CommentsController < ApplicationController
   before_filter :authenticate_admin!
   

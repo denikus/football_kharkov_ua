@@ -1,7 +1,9 @@
+# -*- encoding : utf-8 -*-
 class UserCell < Cell::Rails
   include Devise::Controllers::Helpers
 
-  def sidebar
+  def sidebar(args)
+    @opts = args
     if request.parameters[:controller] == "users"
       @profile = User.from_param(params[:id]).profile
     else

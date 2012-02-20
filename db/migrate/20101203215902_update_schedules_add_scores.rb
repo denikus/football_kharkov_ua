@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateSchedulesAddScores < ActiveRecord::Migration
   def self.up
     add_column :schedules, :host_scores, :integer, :references => nil, :null => true 

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Step < ActiveRecord::Base
   ORDER = ['StepSeason', 'StepStage', 'StepLeague', 'StepTour']
   
@@ -26,10 +27,14 @@ class Step < ActiveRecord::Base
   
   def full_name
     case self
-    when StepSeason: 'Сезон ' + name
-    when StepStage: 'Этап ' + identifier.to_s
-    when StepLeague: name
-    when StepTour: name
+      when StepSeason
+        'Сезон ' + name
+      when StepStage
+        'Этап ' + identifier.to_s
+      when StepLeague
+        name
+      when StepTour
+        name
     end
   end
   

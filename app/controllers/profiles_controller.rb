@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ProfilesController < ApplicationController
 #  before_filter :find_user_profile
   before_filter :authenticate_user!, :except => [:show]

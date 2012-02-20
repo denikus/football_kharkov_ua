@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OauthProviderController < ApplicationController
   before_filter :authenticate_user!
 

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateQuickMatchResultsLink2Schedule < ActiveRecord::Migration
   def self.up
     add_column :quick_match_results, :schedule_id, :integer, :references => [:schedules, :id], :name => :fk_quick_match_result_2_season, :on_delete => :no_action

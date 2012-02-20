@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateQuickMatchResults < ActiveRecord::Migration
   def self.up
     create_table :quick_match_results do |t|

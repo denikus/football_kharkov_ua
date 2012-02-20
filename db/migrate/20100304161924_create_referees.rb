@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateReferees < ActiveRecord::Migration
   def self.up
     create_table :referees do |t|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateTourLink2Stage < ActiveRecord::Migration
   def self.up
     remove_column :tours, :league_id

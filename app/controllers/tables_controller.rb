@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TablesController < ApplicationController
   layout "app_without_sidebar"
   
@@ -28,7 +29,7 @@ class TablesController < ApplicationController
 #    ap @set = StepLeague.for_table.find(params[:id]).table_set
 #    puts '---------------------------'
 #    @sets = {:league => StepLeague.find}
-    tournament = Tournament.find_by_url(current_subdomain)
+    tournament = Tournament.find_by_url(request.subdomain)
 
     @stages = tournament.step_seasons.find(:last, :order => "identifier ASC").stages.find(:all, :order => "identifier DESC")
 

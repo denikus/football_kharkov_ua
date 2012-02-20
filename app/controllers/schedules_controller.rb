@@ -1,9 +1,10 @@
+# -*- encoding : utf-8 -*-
 class SchedulesController < ApplicationController
   layout "app_without_sidebar"
   
   def index
-    if current_subdomain
-      tournament = Tournament.from_param(current_subdomain)
+    if request.subdomain
+      tournament = Tournament.from_param(request.subdomain)
     end
 
     #get max && min date
@@ -24,7 +25,7 @@ class SchedulesController < ApplicationController
     current_date = params[:id].to_date
     date_type    = params[:date_type]
     
-    tournament = Tournament.find_by_url(current_subdomain)
+    tournament = Tournament.find_by_url(request.subdomain)
 
     if ('prev' == date_type)
       condition_str = "match_on < ?  AND #{(tournament.nil? ? "1" : "steps.tournament_id = ?")} "
@@ -68,7 +69,7 @@ class SchedulesController < ApplicationController
                                )
     @current_date = @match_date[:match_on].to_s
     unless params[:format] == 'quick_results'
-      @template_data = render_to_string(:partial => "day", :locals => {:schedules => @schedules})
+      ap @template_data = render_to_string(:partial => "day", :locals => {:schedules => @schedules})
 
       render :layout => false, :locals => {:current_date => @match_date[:match_on].to_s}
     else

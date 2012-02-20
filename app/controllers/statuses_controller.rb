@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class StatusesController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
 
@@ -30,7 +31,7 @@ class StatusesController < ApplicationController
 
     @page_title = @post.title
 
-    if !@post.tournament.nil? && current_subdomain.nil?
+    if !@post.tournament.nil? && request.subdomain.nil?
       redirect_params = {:host => with_subdomain(@post.tournament.url) }
       redirect_params.merge!(params)
       redirect_params.delete_if {|key,value| !["year", "month", "day", "url", :host].include?(key)}

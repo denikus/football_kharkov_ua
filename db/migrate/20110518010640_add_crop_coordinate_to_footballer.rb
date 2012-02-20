@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddCropCoordinateToFootballer < ActiveRecord::Migration
   def self.up
     add_column :footballers, :crop_x_left, :integer

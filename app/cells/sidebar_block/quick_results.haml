@@ -1,4 +1,3 @@
-
 .sidebar-block
   .sidebar-block-header
     %h4= @opts[:title]
@@ -6,9 +5,10 @@
       - unless @schedules.empty?
         %table
           %tr
-            %td.control=link_to image_tag("/images/buttons/prev.png"), "#", {:class => "prev"}
+            %td.control=link_to image_tag("buttons/prev.png"), "#", {:class => "prev"}
+            %td#quick-result-current-date= ""
             %td#quick-result-current-date= Russian::strftime(@schedules[0].match_on.to_date, "%a, %d %B '%y")
-            %td.control= link_to image_tag("/images/buttons/next.png"), "#", {:class => "next"}
+            %td.control= link_to image_tag("buttons/next.png"), "#", {:class => "next"}
   .bd#quick-match-results-content
     =render :view => 'quick_results_content.haml', :locals => {:schedules => @schedules}
 - unless @schedules.empty?

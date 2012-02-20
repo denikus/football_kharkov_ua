@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Extensions
   module ActionController
     def self.included(base)

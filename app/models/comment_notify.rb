@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CommentNotify < ActionMailer::Base
   def new_comment_email(post, comment, recipient, recipients)
       recipients recipient

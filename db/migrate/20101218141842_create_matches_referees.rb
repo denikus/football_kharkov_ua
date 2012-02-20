@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMatchesReferees < ActiveRecord::Migration
   def self.up
     create_table :matches_referees, :id => false do |t|

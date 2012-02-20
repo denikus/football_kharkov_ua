@@ -15,7 +15,7 @@
           = link_to schedule_item.step_tour.tournament.short_name, tournament_url(:subdomain => schedule_item.step_tour.tournament.url)
         %td.venue
           - unless schedule_item.venue.nil?
-            = (!schedule_item.venue.icon.nil? && !schedule_item.venue.icon.empty? ? image_tag("/images/icons/#{schedule_item.venue.icon}", :alt => "#{schedule_item.venue.name}", :title => "#{schedule_item.venue.name}") : "")
+            = (!schedule_item.venue.icon.nil? && !schedule_item.venue.icon.empty? ? image_tag("icons/#{schedule_item.venue.icon}", :alt => "#{schedule_item.venue.name}", :title => "#{schedule_item.venue.name}") : "")
             =link_to schedule_item.venue.short_name, venue_url(schedule_item.venue.url)
         %td.hosts
           = link_to schedule_item.hosts.name, team_url(schedule_item.hosts.url, :host => with_subdomain(schedule_item.step_tour.tournament.url))

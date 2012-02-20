@@ -1,10 +1,11 @@
+# -*- encoding : utf-8 -*-
 class Post < ActiveRecord::Base
-  acts_as_taggable
+  #acts_as_taggable
   
   belongs_to :resource, :polymorphic => true
   belongs_to :user, :foreign_key => :author_id
   belongs_to :tournament
-
+ 
   has_many :comments
   has_many :subscribers
   has_many :users, :through => :subscribers

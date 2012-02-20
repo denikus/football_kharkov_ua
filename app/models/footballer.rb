@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Footballer < ActiveRecord::Base
   has_attached_file :photo, :styles => {:large => {:geometry => "500x500>"}, :medium=> {:geometry => "200x200>", :processors => [:cropper]}, :thumb => {:geometry => "50x50>", :processors => [:cropper]}, :small_thumb => {:geometry => "35x35", :processors => [:cropper]} },
                     :path => ":rails_root/public/:class/:attachment/:id/:style/:basename.:extension",

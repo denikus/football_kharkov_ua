@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateTourResults < ActiveRecord::Migration
   def self.up
     create_table :tour_results do |t|

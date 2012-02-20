@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCompetitors < ActiveRecord::Migration
   def self.up
     create_table :competitors do |t|

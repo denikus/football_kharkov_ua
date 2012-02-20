@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Team < ActiveRecord::Base
   #has_many :footballers_teams, :include => :footballer
   #has_many :footballers, :through => :footballers_teams

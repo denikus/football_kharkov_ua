@@ -1,0 +1,9 @@
+#user-box
+  %dl
+    %dt
+      Привет,
+      = "#{link_to current_user.username, user_url(current_user, :subdomain => false)}! (#{link_to "Выйти", destroy_user_session_url(:subdomain => false)})".html_safe
+    %dd
+      = link_to 'Редактировать профиль', edit_profile_url(:subdomain => false)
+    %dd
+      = link_to 'Написать что-нибудь интересное!', url_for(:controller=>:article, :action=>:new, :subdomain => false)

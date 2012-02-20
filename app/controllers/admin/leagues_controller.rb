@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::LeaguesController < ApplicationController
   layout 'admin/main'
 #  admin_section :tournaments

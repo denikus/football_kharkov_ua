@@ -1,5 +1,5 @@
 %h1 Вход
-= form_for resource_name, resource, :url => session_path(resource_name) do |f|
+= form_for @user, :url => session_path(resource_name) do |f|
   = f.error_messages
 
   %fieldset

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 FootballKharkov::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -32,8 +33,13 @@ FootballKharkov::Application.configure do
   # like if you have constraints or database-specific column types
   # config.active_record.schema_format = :sql
 
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
+
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  config.action_dispatch.tld_length = 2
 
   BITLY = {
     :username => 'footballkharkov',

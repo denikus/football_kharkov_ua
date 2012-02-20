@@ -1,24 +1,24 @@
 %ul.topnav
   %li.first
-    #top-menu-home= link_to 'Главная', root_url(:host => with_subdomain(nil))
+    #top-menu-home= link_to 'Главная', root_url(subdomain: false)
   %li.drop
     #top-menu-tournaments
       = link_to 'Турниры', '#'
       %ul.subnav
-        %li= link_to 'IT-Лига', tournament_url(:host => with_subdomain("itleague"))
-        %li= link_to 'Кубок ФК Универ', tournament_url(:host => with_subdomain("univercup"))
-        %li= link_to 'Футбольный Коленвал', tournament_url(:host => with_subdomain("kolenval"))
+        %li= link_to 'IT-Лига', tournament_url(subdomain: "itleague")
+        %li= link_to 'Кубок ФК Универ', tournament_url(subdomain: "univercup")
+        %li= link_to 'Футбольный Коленвал', tournament_url(subdomain: "kolenval")
   %li.drop
     #top-menu-venues
       = link_to 'Спорткомплексы', "#", {:target => "_blank"}
       %ul.subnav
-        %li= link_to 'СК Вирта', venue_url(:id => "спорткомплекс-вирта", :host => with_subdomain(nil))
-        %li= link_to 'ДФА Металлист', venue_url(:id => "Детская-футбольная-академия-Металлист", :host => with_subdomain(nil))
-        %li= link_to 'СК Каразинский', venue_url(:id => "спорткомплекс-Каразинский", :host => with_subdomain(nil))
-        %li= link_to 'СК Пионер', venue_url(:id => "спорткомплекс-Пионер", :host => with_subdomain(nil))
-        %li= link_to 'СК Звезда', venue_url(:id => "спорткомплекс-Звезда", :host => with_subdomain(nil))
-        %li= link_to 'СК Тетра', venue_url(:id => "спорткомплекс-тетра", :host => with_subdomain(nil))
+        %li= link_to 'СК Вирта', venue_url(:id => "спорткомплекс-вирта", :subdomain => false)
+        %li= link_to 'ДФА Металлист', venue_url(:id => "Детская-футбольная-академия-Металлист", :subdomain => false)
+        %li= link_to 'СК Каразинский', venue_url(:id => "спорткомплекс-Каразинский", :subdomain => false)
+        %li= link_to 'СК Пионер', venue_url(:id => "спорткомплекс-Пионер", :subdomain => false)
+        %li= link_to 'СК Звезда', venue_url(:id => "спорткомплекс-Звезда", :subdomain => false)
+        %li= link_to 'СК Тетра', venue_url(:id => "спорткомплекс-тетра", :subdomain => false)
   %li
     #top-menu-shop= link_to 'Магазин', 'http://shop.football.kharkov.ua/', {:target => "_blank"}
   %li
-    #top-menu-contacts= link_to 'Контакты', page_url(:id=>"contacts", :host => with_subdomain(nil))
+    #top-menu-contacts= link_to 'Контакты', page_url(:id=>"contacts", :subdomain => false)

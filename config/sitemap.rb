@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "http://football.kharkov.ua"
 SitemapGenerator::Sitemap.yahoo_app_id = "f8482c9f62d5bdf433e8fd41d1d42d6a"

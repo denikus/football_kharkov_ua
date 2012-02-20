@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
@@ -43,7 +44,7 @@ Devise.setup do |config|
   # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
   # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
-  config.encryptor = :sha1
+  #config.encryptor = :sha1
 #  config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
@@ -51,13 +52,21 @@ Devise.setup do |config|
 
   config.authentication_keys = [:email]
 
-  config.confirm_within = 5.days
+  #config.confirm_within = 5.days
+  config.allow_unconfirmed_access_for=5.days
 
   config.remember_for = 3.month
+
+  config.use_salt_as_remember_token = true
+  config.reset_password_within = 6.hours
 
   config.timeout_in = 6.hour
 
   config.mailer_sender = "football.kharkov.ua@gmail.com"
+
+  config.case_insensitive_keys = [:email]
+
+  config.reconfirmable = true
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateLeaguesTeams < ActiveRecord::Migration
   def self.up
     create_table :leagues_teams, :id => false do |t|

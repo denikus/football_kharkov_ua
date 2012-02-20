@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class StageController < ApplicationController
   def index
     stages = Stage.find(:all, :conditions => {:season_id => params[:season][:id] })

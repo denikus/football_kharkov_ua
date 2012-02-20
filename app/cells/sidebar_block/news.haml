@@ -6,5 +6,5 @@
       - @posts.each do |item|
         %li
           %p.post-title
-            = link_to item.title, item.resource_type=='Status' ? status_path(item.resource.id) : post_url({:year => item.created_at.strftime('%Y'), :month => item.created_at.strftime('%m'), :day => item.created_at.strftime('%d'), :url => !item.url.nil? ? item.url : '', :host => with_subdomain(item.tournament.nil? ? "" : item.tournament.url )})
+            = link_to item.title, item.resource_type=='Status' ? status_path(item.resource.id) : post_url({:year => item.created_at.strftime('%Y'), :month => item.created_at.strftime('%m'), :day => item.created_at.strftime('%d'), :url => !item.url.nil? ? item.url : '', :subdomain => item.tournament.nil? ? "" : item.tournament.url, :host =>@domain})
           %p.post-date= Russian::strftime(item.created_at, "%B %d, %Y")

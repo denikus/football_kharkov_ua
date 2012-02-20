@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddShortUrlToPost < ActiveRecord::Migration
   def self.up
     add_column :posts, :short_url, :string, :limit => 255, :null => true

@@ -1,31 +1,35 @@
+# -*- encoding : utf-8 -*-
 class SidebarBlockCell < ::Cell::Base
   helper UrlHelper
   helper ApplicationHelper
   include Devise::Controllers::Helpers
-  
-  def helpers
 
-  end
-  
-  def news
-    @posts = Post.tournament(@opts[:subdomain]).paginate(:page => 1, :per_page => 5, :order => 'created_at DESC')
+  def news(opts)
+    @posts = Post.tournament(opts[:subdomain]).paginate(:page => 1, :per_page => 5, :order => 'created_at DESC')
+    @opts = opts
+    @domain= opts[:domain]
     render
   end
 
-  def comments
-    @comments = Comment.tournament(@opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => {:post , :user}, :conditions => ["parent_id IS NOT NULL"])
+  def comments(opts)
+    @comments = Comment.tournament(opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => [:post , :user], :conditions => ["parent_id IS NOT NULL"])
+    @opts = opts
+    @domain= opts[:domain]
     render
   end
 
-  def user_comments
-    username = params[:id].nil? ? current_user.username : params[:id]
+  def user_comments(args)
+    @opts = args
+    username = args[:user_id].nil? ? current_user.username : args[:user_id]
     user = User.from_param(username)
-    @comments = Comment.tournament(@opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => {:post , :user}, :conditions => ["comments.author_id = #{user.id} AND parent_id IS NOT NULL"])
+    @domain= args[:domain]
+    @comments = Comment.tournament(args[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => [:post , :user], :conditions => ["comments.author_id = #{user.id} AND parent_id IS NOT NULL"])
 
     render :file => 'app/cells/sidebar_block/comments'
   end
 
-  def shop
+  def shop(opts)
+    @opts = opts
     render
   end
 
@@ -33,16 +37,17 @@ class SidebarBlockCell < ::Cell::Base
     render
   end
 
-  def quick_results
-    current_subdomain = @opts[:subdomain].nil? ? @opts[:locals][:current_subdomain] : @opts[:subdomain]
-
-    if current_subdomain
-      tournament = Tournament.from_param(current_subdomain)
+  def quick_results(opts)
+    subdomain = opts[:subdomain]
+    if !subdomain.nil? && !subdomain.empty?
+      tournament = Tournament.from_param(subdomain)
     end
+    @opts = opts
+    ##get max && min date
 
-    #get max && min date
     max  = Schedule.get_max_date(tournament, true)
     min = Schedule.get_min_date(tournament, true)
+
     @max_date = max[:match_on]
     @min_date = min[:match_on]
 
@@ -57,7 +62,7 @@ class SidebarBlockCell < ::Cell::Base
     render
   end
 
-  def advertisement
+  def advertisement(opts)
     render
   end
 end

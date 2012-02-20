@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PhotoGalleryController < ApplicationController
 #  protect_from_forgery :except => [:upload_image]
   

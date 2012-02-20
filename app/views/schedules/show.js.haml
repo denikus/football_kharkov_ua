@@ -1,4 +1,4 @@
 Schedule.current_date = "#{@current_date}";
 -#Schedule.current_date = response_data['current_date'];
-$(".schedule-content-wrap").html("#{escape_javascript(@template_data)}");
+$(".schedule-content-wrap").html("#{escape_javascript(@template_data.html_safe)}");
 Schedule.checkArrows();

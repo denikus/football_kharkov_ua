@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Tournament < ActiveRecord::Base
   has_many :step_seasons
 #  has_many :seasons

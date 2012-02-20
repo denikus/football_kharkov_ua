@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSchedulePosts < ActiveRecord::Migration
   def self.up
     create_table :schedule_posts do |t|

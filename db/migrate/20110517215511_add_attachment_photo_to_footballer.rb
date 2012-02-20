@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddAttachmentPhotoToFootballer < ActiveRecord::Migration
   def self.up
     add_column :footballers, :photo_file_name, :string

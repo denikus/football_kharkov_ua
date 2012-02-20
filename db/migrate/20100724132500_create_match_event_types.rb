@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMatchEventTypes < ActiveRecord::Migration
   def self.up
     create_table :match_event_types do |t|

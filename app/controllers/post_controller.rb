@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PostController < ApplicationController
 #  before_filter :authorize, :except => [:show, :index]
   before_filter :authenticate_user!, :except => [:show, :index]
@@ -60,21 +61,20 @@ class PostController < ApplicationController
   end
   
   def show
-    @post = Post.find(:first, :conditions => ["url_year = :year AND url_month = :month AND url_day = :day AND url = :url ", params])
-    if @post.nil?
-      render "#{Rails.root}/public/404.html", :status => 404, :layout => false
-      return
-    end
-    
-    @page_title = @post.title
+    @post = Post.where(["url_year = :year AND url_month = :month AND url_day = :day AND url = :url ", params]).first
+    #if @post.nil?
+    #  render "#{Rails.root}/public/404.html", :status => 404, :layout => false
+    #  return
+    #end
 
-
-    if !@post.tournament.nil? && current_subdomain.nil?
-      redirect_params = {:host => with_subdomain(@post.tournament.url) }
-      redirect_params.merge!(params)
-      redirect_params.delete_if {|key,value| !["year", "month", "day", "url", :host].include?(key)}
-      redirect_to post_url(redirect_params), :status=>301
-    end
+    #@page_title = @post.title
+    #
+    #if !@post.tournament.nil? && request.subdomain.nil?
+    #  redirect_params = {:subdomain => @post.tournament.url }
+    #  redirect_params.merge!(params)
+    #  redirect_params.delete_if {|key,value| !["year", "month", "day", "url", :host].include?(key)}
+    #  redirect_to post_url(redirect_params), :status=>301
+    #end
   end
 
   def subscribe

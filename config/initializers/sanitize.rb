@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Sanitize::Config::FOOTBALL_ARTICLE = {
   :elements => [
     'a', 'b', 'blockquote', 'br', 'cite', 'dd', 'dl', 'dt', 'em',

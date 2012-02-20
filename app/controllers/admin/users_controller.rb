@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'secured.rb'
 
 class Admin::UsersController < ApplicationController

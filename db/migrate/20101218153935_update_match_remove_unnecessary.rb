@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdateMatchRemoveUnnecessary < ActiveRecord::Migration
   def self.up
     remove_column :matches, :referee_id

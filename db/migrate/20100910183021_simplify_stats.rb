@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SimplifyStats < ActiveRecord::Migration
   def self.up
     drop_table :statistics

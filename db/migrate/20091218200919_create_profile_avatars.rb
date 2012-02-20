@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateProfileAvatars < ActiveRecord::Migration
   def self.up
     create_table :profile_avatars do |t|

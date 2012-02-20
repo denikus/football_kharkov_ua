@@ -19,14 +19,14 @@
           - hosts_class = "fancy-score-equal"
           - guests_class = "fancy-score-equal"
       %tr{:class => row_class}
-        -if current_subdomain.nil?
+        -if request.subdomain.nil?
           %td.tournament
             = link_to schedule_item.step_tour.tournament.short_name, tournament_url(:subdomain => schedule_item.step_tour.tournament.url)
           %td.tour
             = schedule_item.step_tour.name
         %td.venue
           - unless schedule_item.venue.nil?
-            = (!schedule_item.venue.icon.nil? && !schedule_item.venue.icon.empty? ? image_tag("/images/icons/#{schedule_item.venue.icon}", :alt => "#{schedule_item.venue.name}", :title => "#{schedule_item.venue.name}") : "")
+            = (!schedule_item.venue.icon.nil? && !schedule_item.venue.icon.empty? ? image_tag("icons/#{schedule_item.venue.icon}", :alt => "#{schedule_item.venue.name}", :title => "#{schedule_item.venue.name}") : "")
             =link_to schedule_item.venue.short_name, venue_url(schedule_item.venue.url)
         %td.league
           - unless schedule_item[:league_name].nil?

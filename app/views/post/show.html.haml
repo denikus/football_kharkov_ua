@@ -1,0 +1,13 @@
+%h1= @post.title
+- if @post.resource_type=='Article'
+  = render(:partial => "article_show", :locals => { :post => @post })
+- elsif @post.resource_type=='SchedulePost'
+  = render(:partial => "schedule_post_show", :locals => { :post => @post })
+- elsif @post.resource_type=='PhotoGallery'
+  = render(:partial => "photo_gallery_show", :locals => { :post => @post })
+
+= render :partial => "shared/blog_link_panel", :locals => {:post=>@post}
+
+= render :partial => "shared/comment_block", :locals => {:post=>@post}
+- content_for :top_submenu do
+  = "tournament"

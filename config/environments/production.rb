@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 FootballKharkov::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -47,6 +48,25 @@ FootballKharkov::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+
+  # Choose the compressors to use
+  # config.assets.js_compressor  = :uglifier
+  # config.assets.css_compressor = :yui
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+
+  # Generate digests for assets URLs.
+  config.assets.digest = true
+
+  # Defaults to Rails.root.join("public/assets")
+  # config.assets.manifest = YOUR_PATH
+
+  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  # config.assets.precompile += %w( search.js )
+
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -64,7 +84,7 @@ FootballKharkov::Application.configure do
     :sender_address => %{"notifier" <info@football.kharkov.ua>},
     :exception_recipients => %w{denis.soloshenko@gmail.com}
 
-  TLD_SIZE = 2
+  config.action_dispatch.tld_length = 2
 
   BITLY = {
     :username => 'footballkharkov',

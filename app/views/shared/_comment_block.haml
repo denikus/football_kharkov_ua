@@ -58,7 +58,7 @@
     %h2
       Зафутболить коммент:
     .error#comment-errors{:style => "display: none;"}
-    - form_for :comment, Comment.new, :url => {:controller => :comment, :action => :create, :id => 'new'}, :html => {:id => 'newComment', :method => :post} do |f|
+    = form_for Comment.new, :url => {:controller => :comment, :action => :create, :id => 'new'}, :html => {:id => 'newComment', :method => :post} do |f|
       = f.hidden_field :post_id, :value => post.id
       %div.txtAreaBox
         = f.text_area :body

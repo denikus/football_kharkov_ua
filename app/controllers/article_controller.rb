@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ArticleController < ApplicationController
 #before_filter :authorize, :except => [:show]
 before_filter :authenticate_user!, :except => [:show]
@@ -12,7 +13,7 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
   def create
     @article = Article.new(params[:article])
     @post = Post.new({:author_id=>current_user[:id], :title => params[:post][:title],
-                      :tag_list => params[:post][:tag_list], :status => params[:post][:status],
+                       :status => params[:post][:status],
                       :hide_comments => params[:post][:hide_comments],
                       :tournament_id => params[:post][:tournament_id]
                      })

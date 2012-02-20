@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Secured
   def self.included(base)
     base.instance_variable_set(:@secured_actions, [])

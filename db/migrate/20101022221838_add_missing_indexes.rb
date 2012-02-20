@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddMissingIndexes < ActiveRecord::Migration
   def self.up
     add_index :comments, :author_id

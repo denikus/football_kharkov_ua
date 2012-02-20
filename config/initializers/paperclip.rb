@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Paperclip
   class Cropper < Thumbnail
     def transformation_command

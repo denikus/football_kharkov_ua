@@ -7,7 +7,7 @@
   /right column
   #col-right
     = render_cell :user, :sidebar, :title => "О пользователе"
-    = render_cell :sidebar_block, :user_comments, :title => "Комментарии"
+    = render_cell :sidebar_block, :user_comments, :title => "Комментарии", :user_id => params[:id], :subdomain => request.subdomain, :domain => request.domain
 
 - content_for :top_submenu do
   = "user"

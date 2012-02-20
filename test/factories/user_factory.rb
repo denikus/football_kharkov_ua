@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Factory.define :user do |f|
   f.username  "testuser"
   f.email "denix@test.ru"

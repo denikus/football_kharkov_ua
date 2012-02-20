@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SeasonController < ApplicationController
   def index
     seasons = Season.find(:all, :conditions => {:tournament_id => params[:tournament][:id] })

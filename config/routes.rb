@@ -1,4 +1,5 @@
-require "lib/subdomain.rb"
+# -*- encoding : utf-8 -*-
+require "#{Rails.root}/lib/subdomain.rb"
 FootballKharkov::Application.routes.draw do
   devise_for :users, :admins
 
@@ -97,11 +98,11 @@ FootballKharkov::Application.routes.draw do
 
 
 #  with_options :constraints => {:subdomain => /.+/} do
-  constraints(Subdomain) do
-    match '/feed' =>  "tournaments#feed"
-    match '/' => "tournaments#index", :as => "tournament"
-    match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post"
-  end
+#  constraints(Subdomain) do
+    match '/feed' =>  "tournaments#feed", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+    match '/' => "tournaments#index", :as => "tournament", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+    match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  #end
   
   resources :football_player_appointment, :only => ["update"]
   resources :team_appointment, :only => ["show"]

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::MatchEventsController < ApplicationController
   def index
     events = MatchEvent.find_all_by_match_id(params[:match_id], :select => 'id, minute, message', :order => 'minute DESC')

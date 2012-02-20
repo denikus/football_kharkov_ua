@@ -1,15 +1,14 @@
+# -*- encoding : utf-8 -*-
 class PagesController < ApplicationController
   def show
-    if current_subdomain.nil?
+    if request.subdomain.empty?
       @page = Page.from_param(params[:id])
     else
-      @page = Page.find(:first,
-                        :joins => :tournament,
-                        :conditions => ["pages.url = ? AND tournaments.url = ? ", params[:id], current_subdomain])
+      @page = Page.where(["pages.url = ? AND tournaments.url = ? ", params[:id], request.subdomain]).joins(:tournament).first
     end
     @page_title = @page.title
 
-    unless current_subdomain.nil?
+    unless request.subdomain.nil?
       render :layout => "app_without_sidebar"
     end
   end

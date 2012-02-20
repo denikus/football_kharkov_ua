@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateVenues < ActiveRecord::Migration
   def self.up
     create_table :venues do |t|

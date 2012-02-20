@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PostAddUrl < ActiveRecord::Migration
   def self.up
     remove_column :articles, :title

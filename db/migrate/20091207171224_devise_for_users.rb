@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DeviseForUsers < ActiveRecord::Migration
   def self.up
     remove_column :users, :hashed_password

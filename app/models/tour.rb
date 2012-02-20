@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Tour < ActiveRecord::Base
   belongs_to :stage
   #  has_many :matches

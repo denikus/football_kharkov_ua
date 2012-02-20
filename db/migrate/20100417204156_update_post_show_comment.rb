@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UpdatePostShowComment < ActiveRecord::Migration
   def self.up
     add_column :posts, :hide_comments, :boolean, :default => false
