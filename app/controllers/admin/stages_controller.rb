@@ -36,9 +36,12 @@ class Admin::StagesController < ApplicationController
     params[:stage] = {:number => params.delete(:number)}
     params[:stage][:season_id] = params[:parent_id] if params[:parent_id]
     case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
+      when :add
+        create
+      when :del
+        destroy
+      when :edit
+        update
     end
   end
 
