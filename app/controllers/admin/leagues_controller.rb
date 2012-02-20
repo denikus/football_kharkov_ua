@@ -21,9 +21,12 @@ class Admin::LeaguesController < ApplicationController
     params[:league] = [:name, :url, :stage_id].inject({}){ |p, k| p[k] = params.delete(k); p }
     params[:league][:stage_id] = Stage.create_next(:season_id => params[:season_id]).id if params[:league][:stage_id] and params[:league][:stage_id].empty?
     case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
+      when :add
+        create
+      when :del
+        destroy
+      when :edit
+        update
     end
   end
   
