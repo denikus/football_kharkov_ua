@@ -65,7 +65,7 @@ FootballKharkov::Application.configure do
   # config.assets.manifest = YOUR_PATH
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( schedule.js )
+  config.assets.precompile += %w( application/schedule/schedule.js )
 
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
   config.action_mailer.delivery_method = :smtp
