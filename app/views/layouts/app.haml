@@ -24,7 +24,7 @@
     - unless request.subdomain.nil?
       = javascript_include_tag "application/schedule/schedule"
     -#/[if lt IE 7]
-    = stylesheet_link_tag 'ie6.css', :media => 'screen, projection'
+    -#= stylesheet_link_tag 'ie6.css', :media => 'screen, projection'
     = yield :head_declarations
   %body
     #minHeight
