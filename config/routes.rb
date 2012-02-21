@@ -74,7 +74,7 @@ FootballKharkov::Application.routes.draw do
   match 'users/feed/:id' => 'users#feed'
 
   resources :users do
-      get :feed    
+      get :feed, :format => "xml"
   end
   resources :pages
   resources :schedules
@@ -99,7 +99,7 @@ FootballKharkov::Application.routes.draw do
 
 #  with_options :constraints => {:subdomain => /.+/} do
 #  constraints(Subdomain) do
-    match '/feed' =>  "tournaments#feed", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+    match '/feed' =>  "tournaments#feed", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :format => "xml"
     match '/' => "tournaments#index", :as => "tournament", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
     match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   #end
