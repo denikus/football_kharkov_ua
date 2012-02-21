@@ -17,9 +17,12 @@ class Admin::ToursController < ApplicationController
     params[:tour] = [:name].inject({}){ |p, k| p[k] = params.delete(k); p }
     params[:tour][:league_id] = params.delete(:parent_id) if params.key?(:parent_id)
     case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
+      when :add
+        create
+      when :del
+        destroy
+      when :edit
+        update
     end
   end
 
