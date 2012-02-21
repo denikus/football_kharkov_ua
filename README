@@ -1,3 +1,20 @@
+21 февраля обновление до ruby-1.9.3-p125
+последовательно выполняем команды
+
+rvm install ruby-1.9.3-p125
+rvm use ruby-1.9.3-p125
+rvm gemset create rails3.2
+rvm use --default ruby-1.9.3-p125@rails3.2
+
+gem install bundler --pre
+
+затем заходим в папку с проектом и выполняем
+bundle install
+
+все!
+
+-----------------
+
 
 Стек используемых технологий
 
