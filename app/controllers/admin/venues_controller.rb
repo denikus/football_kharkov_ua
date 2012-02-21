@@ -20,9 +20,12 @@ class Admin::VenuesController < ApplicationController
     params[:format] = 'json'
     params[:venue] = [:name, :short_name, :url, :icon].inject({}){ |p, k| p[k] = params.delete(k); p }
     case params[:oper].to_sym
-    when :add: create
-    when :del: destroy
-    when :edit: update
+      when :add
+        create
+      when :del
+        destroy
+      when :edit
+        update
     end
   end
 
