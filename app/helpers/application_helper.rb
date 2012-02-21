@@ -49,7 +49,7 @@ module ApplicationHelper
                #:anchor => !anchor.nil? ? "announce-breaker" : "",
                #:host => with_subdomain(post_item.tournament.nil? ? false : post_item.tournament.url, request)
                #:host => [request.subdomain + '.', request.domain].join
-               :host => ["#{post_item.tournament.nil? ? false : post_item.tournament.url}.", request.domain].join
+               :host => ["#{post_item.tournament.nil? ? nil : "#{post_item.tournament.url}."}", request.domain].join
 #               :host => (post_item.tournament.nil? ? false : post_item.tournament.url)
               })
   end
