@@ -20,7 +20,7 @@ FootballKharkov::Application.configure do
   # just comment this out and Rails will serve the files
 
   # See everything in the log (default is :info)
-  config.log_level = :debug
+  #config.log_level = :debug
 
 
   # Use a different logger for distributed setups
@@ -66,7 +66,7 @@ FootballKharkov::Application.configure do
   # config.assets.manifest = YOUR_PATH
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( application/schedule/schedule.js )
+  config.assets.precompile += %w( application/schedule/schedule.js jquery-plugins/jquery_form/jquery.form.js)
 
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
   config.action_mailer.delivery_method = :smtp
