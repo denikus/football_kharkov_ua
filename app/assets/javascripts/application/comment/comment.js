@@ -211,6 +211,12 @@ if (!FHU) var FHU = {};
   }
 
 
+$(document).ajaxSend(function(e, xhr, options) {
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+});
+
+
   //subscribe/unsubscribe handler
   $("[id^=subscribe_unsibscribe_comments_]").live('click', function (obj) {
     var matches = obj.currentTarget["id"].match(/^subscribe_unsibscribe_comments_(.*)/);
