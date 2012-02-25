@@ -69,6 +69,6 @@ namespace :deploy do
   end
 
   task :compile_assets do
-    run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec /home/denix/.rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
+    run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
   end
 end
