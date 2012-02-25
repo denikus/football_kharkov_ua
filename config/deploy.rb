@@ -31,6 +31,14 @@ set :default_environment, {
 }
 
 
+after "deploy", "deploy:bundle_gems"
+after "deploy:bundle_gems", "deploy:update_shared_symlinks"
+after "deploy:update_shared_symlinks", "deploy:perform_migrations"
+after "deploy:perform_migrations" , "deploy:compile_assets"
+after "deploy:compile_assets" , "deploy:restart"
+after "deploy:update_code", "deploy:cleanup"
+
+
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
   task :perform_migrations do
