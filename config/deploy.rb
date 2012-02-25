@@ -42,7 +42,7 @@ after "deploy:update_code", "deploy:cleanup"
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
   task :perform_migrations do
-    run "cd #{deploy_to}/current && /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake db:migrate RAILS_ENV=production"
+    run "cd #{deploy_to}/current && bundle exec  /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake db:migrate RAILS_ENV=production"
   end
 
   task :bundle_gems do
