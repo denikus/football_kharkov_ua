@@ -5,20 +5,14 @@ gem 'rails', '3.2.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'rake', '~> 0.8.7'
 gem 'rake', '>= 0.8.9'
-#gem 'mysql2', '=0.2.7'
-#gem 'mysql2', '0.2.11'
 gem 'mysql2'
 gem 'will_paginate', '~> 3.0.beta'
-#gem 'mongrel'
 gem 'haml'
-#gem 'devise', '=1.1.8'
 gem 'devise', '2.0.4'
 gem 'mini_magick'
 gem 'hpricot'
 gem 'russian'
-#gem 'rutils'
 gem 'cells'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
@@ -94,7 +88,7 @@ end
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'

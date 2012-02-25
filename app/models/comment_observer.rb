@@ -4,10 +4,7 @@ class CommentObserver < ActiveRecord::Observer
 #    model.logger.info("Comment #{model.id} created" )
 
 #    model.post.
-    subscribers = Subscriber.find(:all,
-                          :conditions => ["post_id = ? AND user_id != ? ", model.post.id, model.author_id],
-                          :include => :user
-                          )
+    subscribers = Subscriber.where(["post_id = ? AND user_id != ? ", model.post.id, model.author_id]).include(:user).all
     recipients = subscribers.collect{|x | x.user[:email]}
     unless recipients.empty?
       recipient = recipients.pop
