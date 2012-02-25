@@ -66,7 +66,7 @@ end
 group :development do
   gem 'mongrel', '1.2.0.pre2'
   #gem 'newrelic_rpm'
-  gem 'fancy-buttons'
+  #gem 'fancy-buttons'
 end
 
 group :test do
