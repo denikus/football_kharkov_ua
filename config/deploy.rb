@@ -1,10 +1,17 @@
 require 'bundler/capistrano'
-set :application, "football.kharkov.ua"
+set :application, "football_kharkov_ua"
 set :repository,  "git@git.assembla.com:football_kharkov_ua.git"
 set :user, "denix"
 set :use_sudo, false
 set :scm, :git
 set :branch, "master"
+set :deploy_via, :remote_cache
+
+set :deploy_env, 'production'
+set :deploy_to, "/home/denix/vhosts/#{application}"
+set :port, 3089
+server "178.79.139.151", :app, :web, :primary => true
+
 
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
