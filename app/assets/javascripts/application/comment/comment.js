@@ -218,7 +218,7 @@ $(document).ajaxSend(function(e, xhr, options) {
 
 
   //subscribe/unsubscribe handler
-  $("[id^=subscribe_unsibscribe_commentss_]").live('click', function (obj) {
+  $("[id^=subscribe_unsibscribe_comments_]").live('click', function (obj) {
     var matches = obj.currentTarget["id"].match(/^subscribe_unsibscribe_comments_(.*)/);
     var url = '/post/subscribe/';
     var checked = this.checked;
