@@ -225,6 +225,7 @@ $(document).ajaxSend(function(e, xhr, options) {
     if (!checked) {
       url = '/post/unsubscribe';
     }
+    console.log('before ajax call subscribe');
     $.ajax({
       url: url,
       data: { id: matches[1] },
