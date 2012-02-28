@@ -66,7 +66,7 @@ FootballKharkov::Application.configure do
   # config.assets.manifest = YOUR_PATH
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( application/schedule/schedule.js jquery-plugins/jquery_form/jquery.form.js application/comment/comment.js ckeditor/init.js)
+  config.assets.precompile += %w( application/schedule/schedule.js jquery-plugins/jquery_form/jquery.form.js application/comment/comment.js ckeditor/init.js jquery-plugins/fancybox/jquery.fancybox-1.3.4.pack jquery-plugins/fancybox/jquery.easing-1.3.pack)
 
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
   config.action_mailer.delivery_method = :smtp
