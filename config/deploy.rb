@@ -42,11 +42,12 @@ after "deploy:update_code", "deploy:cleanup"
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
   task :perform_migrations do
-    run "cd #{deploy_to}/current && bundle exec  /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake db:migrate RAILS_ENV=production"
+    run "cd #{releases_path} && bundle exec  /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake db:migrate RAILS_ENV=production"
   end
 
   task :bundle_gems do
-    run "cd #{deploy_to}/current && bundle install --system"
+    #run "cd #{deploy_to}/current && bundle install --system"
+    run "cd #{releases_path} && bundle install --system"
   end
 
   task :start do
@@ -62,13 +63,14 @@ namespace :deploy do
   end
 
   task :update_shared_symlinks do
-    %w(config/database.yml).each do |path|
+    %w(config/database.yml public/ckeditor_assets).each do |path|
       run "rm -rf #{File.join(release_path, path)}"
       run "ln -s #{File.join(deploy_to, "shared", path)} #{File.join(release_path, path)}"
     end
   end
 
   task :compile_assets do
-    run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
+    #run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
+    run "cd #{releases_path} && RAILS_ENV=production bundle exec /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
   end
 end
