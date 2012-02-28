@@ -17,7 +17,8 @@ gem 'cells'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
 gem "paperclip", "~> 2.3"
-gem 'ckeditor', :git => 'git://github.com/galetahub/rails-ckeditor.git', :branch => 'rails3'
+#gem 'ckeditor', :git => 'git://github.com/galetahub/rails-ckeditor.git', :branch => 'rails3'
+gem 'ckeditor', "3.7.0.rc3"
 gem 'sanitize'
 gem 'ruby_parser'
 #gem 'enum_column', :git => 'git://github.com/electronick/enum_column.git'

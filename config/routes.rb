@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 require "#{Rails.root}/lib/subdomain.rb"
 FootballKharkov::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   devise_for :users, :admins
 
   namespace(:admin) do
