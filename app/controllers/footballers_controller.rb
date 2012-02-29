@@ -106,8 +106,10 @@ class FootballersController < ApplicationController
   private
 
   def redirect_to_main_domain
-    unless request.subdomain.nil?
-      redirect_params = {:subdomain => nil, :id => params[:id] }
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    ap request.subdomain
+    unless request.subdomain.blank?
+      redirect_params = {:subdomain => false, :id => params[:id] }
       redirect_to footballer_url(redirect_params), :status=>301
     end
   end

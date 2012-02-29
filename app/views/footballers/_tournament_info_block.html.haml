@@ -1,10 +1,10 @@
-%h4= link_to tournament_team[:tournament].name, tournament_url(:host => with_subdomain(tournament_team[:tournament].url))
+%h4= link_to tournament_team[:tournament].name, tournament_url(:host => ["#{tournament_team[:tournament].url.nil? ? nil : "#{tournament_team[:tournament].url}."}", request.domain].join)
 %p.season-header
   %strong= "Cезон \"#{tournament_team[:season].name}\""
 - tournament_team[:teams_stats].each do |team|
   %p.season-content
     = "В составе команды "
-    = "#{link_to team[:team].name, team_url(team[:team].url, :host => with_subdomain(tournament_team[:tournament].url))} (#{team[:league].name}). ".html_safe
+    = "#{link_to team[:team].name, team_url(team[:team].url, :host => ["#{tournament_team[:tournament].url.nil? ? nil : "#{tournament_team[:tournament].url}."}", request.domain].join )} (#{team[:league].name}). ".html_safe
     = "Участвовал в #{t(:took_part_matches, :count => team[:footballer_matches])} из #{t(:from_matches, :count => team[:total_team_matches]) } сезона."
     - unless team[:goal].nil?
       = "Забил #{t(:goals, :count => team[:goal])}."
