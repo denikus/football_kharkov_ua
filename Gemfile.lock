@@ -299,5 +299,5 @@ DEPENDENCIES
   therubyracer
   uglifier (>= 1.0.3)
   whenever
-  will_paginate (~> 3.0.beta)
+  will_paginate (~> 3.0)
   yajl-ruby

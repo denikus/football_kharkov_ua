@@ -7,7 +7,7 @@ gem 'rails', '3.2.1'
 
 gem 'rake', '>= 0.8.9'
 gem 'mysql2'
-gem 'will_paginate', '~> 3.0.beta'
+gem 'will_paginate', '~> 3.0'
 gem 'haml'
 gem 'devise', '2.0.4'
 gem 'mini_magick'
