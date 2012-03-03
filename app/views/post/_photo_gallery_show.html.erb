@@ -1,14 +1,14 @@
-<%= javascript_include_tag "shadowbox/adapter/shadowbox-jquery" %>
-<%= javascript_include_tag "shadowbox/shadowbox" %>
-<script type="text/javascript">
-  Shadowbox.loadSkin('classic', '../../../javascripts/shadowbox/skin');
-  Shadowbox.loadLanguage('ru', '../../../javascripts/shadowbox/lang');
-  Shadowbox.loadPlayer(['html', 'iframe', 'img'], '../../../javascripts/shadowbox/player');
-  $(document).ready(function() {
-
-      Shadowbox.init();
-  });
-</script>
+<%#= javascript_include_tag "shadowbox/adapter/shadowbox-jquery" %>
+<%#= javascript_include_tag "shadowbox/shadowbox" %>
+<!--<script type="text/javascript">-->
+//  Shadowbox.loadSkin('classic', '../../../javascripts/shadowbox/skin');
+//  Shadowbox.loadLanguage('ru', '../../../javascripts/shadowbox/lang');
+//  Shadowbox.loadPlayer(['html', 'iframe', 'img'], '../../../javascripts/shadowbox/player');
+//  $(document).ready(function() {
+//
+//      Shadowbox.init();
+//  });
+<!--</script>-->
 <div>
   <%if !post.resource.photos.nil? %>
     <% post.resource.photos.each do |image| %>
