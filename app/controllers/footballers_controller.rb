@@ -31,7 +31,7 @@ class FootballersController < ApplicationController
         footballer_team.step.stages.collect{|stage| stage.tours.map{|tour| tour.schedules.map{|schedule| matches << schedule.match if (!schedule.host_scores.nil? && (schedule.host_team_id == team.id || schedule.guest_team_id == team.id)) }}}
 
         #count number of matches played by the footballer
-        played_matches = Match.played_by_footballer(matches.collect{|m| m.id}, team.id, @footballer.id)
+        played_matches = Match.played_by_footballer(matches.collect{|m| m.id unless m.nil?}, team.id, @footballer.id)
 
         #get competitors by season
         competitors = Competitor.by_team_matches(team.id, played_matches)
@@ -106,8 +106,6 @@ class FootballersController < ApplicationController
   private
 
   def redirect_to_main_domain
-    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    ap request.subdomain
     unless request.subdomain.blank?
       redirect_params = {:subdomain => false, :id => params[:id] }
       redirect_to footballer_url(redirect_params), :status=>301
