@@ -3,6 +3,8 @@ class FootballerCell < Cell::Rails
   helper UrlHelper
   helper ApplicationHelper
   include Devise::Controllers::Helpers
+  helper_method :current_user #all your needed helper
+
 
   def sidebar
     id = params[:id].nil? ? params[:footballer_id] : params[:id]
