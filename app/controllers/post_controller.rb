@@ -62,10 +62,10 @@ class PostController < ApplicationController
   
   def show
     @post = Post.where(["url_year = :year AND url_month = :month AND url_day = :day AND url = :url ", params]).first
-    #if @post.nil?
-    #  render "#{Rails.root}/public/404.html", :status => 404, :layout => false
-    #  return
-    #end
+    if @post.nil?
+      render "#{Rails.root}/public/404.html", :status => 404, :layout => false
+      return
+    end
 
     #@page_title = @post.title
     #
