@@ -11,7 +11,7 @@ class CommentObserver < ActiveRecord::Observer
       #
       # model.logger.info("Comment #{recipients.to_s} created" )
 
-      CommentNotify.deliver_new_comment_email(model.post, model, recipient, recipients)
+      #CommentNotify.deliver_new_comment_email(model.post, model, recipient, recipients)
     end  
   end
 end
