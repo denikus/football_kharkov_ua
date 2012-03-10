@@ -1,0 +1,267 @@
+/* line 9, ../../app/assets/stylesheets/user.scss */
+div#left-sidebar {
+  width: 250px;
+  float: left;
+  /*border-right:1px solid $grey_border;*/
+}
+/* line 14, ../../app/assets/stylesheets/user.scss */
+div#left-sidebar ul {
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+}
+/* line 19, ../../app/assets/stylesheets/user.scss */
+div#left-sidebar ul li {
+  line-height: 1.2em;
+}
+
+/* line 26, ../../app/assets/stylesheets/user.scss */
+div#col-left {
+  width: 450px;
+  float: right;
+  border-right: none;
+}
+/* line 30, ../../app/assets/stylesheets/user.scss */
+div#col-left hr {
+  color: #eeeeee;
+  background-color: #eeeeee;
+  height: 1px;
+  border: none;
+}
+/* line 38, ../../app/assets/stylesheets/user.scss */
+div#col-left div#profile-data-block-view label {
+  display: inline;
+}
+
+/* line 44, ../../app/assets/stylesheets/user.scss */
+div#posts {
+  width: 50%;
+  float: left;
+  border: 1px solid #d9d9d9;
+  padding-left: 5px;
+  margin: 0 0 1em 0;
+}
+/* line 51, ../../app/assets/stylesheets/user.scss */
+div#posts h4 {
+  background: url('/images/right-col-box-bg.png?1316264478') repeat-x scroll 0 0 transparent;
+  border-bottom: 1px solid #d9d9d9;
+  margin: 0 0 1em 0;
+  margin-left: -5px;
+}
+
+/* line 58, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block {
+  width: 200px;
+  float: right;
+  background: url('/images/right-col-box-bg.png?1316264478') repeat-x scroll 0 0 transparent;
+  border: 1px solid #d9d9d9;
+  margin: 0 0 1em 0;
+}
+/* line 65, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block a {
+  color: #006ca2;
+  text-decoration: none;
+  font-family: arial, verdana,helvetica;
+  font-size: 14px;
+  font-weight: bold;
+}
+/* line 76, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block a:hover {
+  color: #be420e;
+}
+/* line 80, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul {
+  margin: 0;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+}
+/* line 85, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li {
+  line-height: 1.2em;
+  padding: 5px;
+  border: 0;
+  border-top: 1px solid #d9d9d9;
+}
+/* line 91, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li p.post-title {
+  line-height: 1.2em;
+  margin-bottom: 3px;
+}
+/* line 96, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li p.post-date {
+  color: #666666;
+  line-height: 1em;
+  padding: 0;
+  margin-bottom: 2px;
+}
+/* line 104, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li p.author {
+  line-height: 1.2em;
+}
+/* line 105, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul li p.author a {
+  color: #666666;
+  font-weight: normal;
+  text-decoration: underline;
+}
+/* line 118, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul.my-schedule-block li a {
+  color: #be420e;
+  font-weight: normal;
+}
+/* line 122, ../../app/assets/stylesheets/user.scss */
+#right-sidebar .sidebar-block ul.my-schedule-block li a:hover {
+  color: #006ca2;
+}
+
+/* line 129, ../../app/assets/stylesheets/user.scss */
+.sidebar-block-header {
+  background-color: transparent;
+}
+/* line 132, ../../app/assets/stylesheets/user.scss */
+.sidebar-block-header h4 {
+  font-size: 100%;
+  color: #be420e;
+  font-weight: bold;
+  margin: 0.6em 0 0.6em 0.4em;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+/* line 144, ../../app/assets/stylesheets/user.scss */
+div.header-bottom table {
+  width: 100%;
+  color: #be420e;
+}
+/* line 147, ../../app/assets/stylesheets/user.scss */
+div.header-bottom table td {
+  font-size: 12px;
+  text-align: center;
+}
+/* line 151, ../../app/assets/stylesheets/user.scss */
+div.header-bottom table td.control {
+  width: 20px;
+}
+
+/* line 157, ../../app/assets/stylesheets/user.scss */
+div#container h1 {
+  font-size: 180%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* line 164, ../../app/assets/stylesheets/user.scss */
+ul#left-sidebar-menu {
+  margin: 0;
+  margin-top: 10px;
+  text-align: left;
+  list-style-type: none;
+}
+/* line 169, ../../app/assets/stylesheets/user.scss */
+ul#left-sidebar-menu li {
+  display: block;
+  border-bottom: 1px solid #eeeeee;
+}
+/* line 172, ../../app/assets/stylesheets/user.scss */
+ul#left-sidebar-menu li a {
+  text-decoration: none;
+  display: block;
+  padding: 4px;
+}
+/* line 177, ../../app/assets/stylesheets/user.scss */
+ul#left-sidebar-menu li a:hover {
+  background-color: #eeeeee;
+}
+/* line 181, ../../app/assets/stylesheets/user.scss */
+ul#left-sidebar-menu li a.active {
+  background-color: #dcdcdc;
+}
+
+/*Tab Top Navigation*/
+/* line 192, ../../app/assets/stylesheets/user.scss */
+ul#tabnav {
+  /*  height: 27px;
+    color:#292929;
+    height:27px;
+    line-height:1em;
+    margin: 0;
+    float: right;
+    margin-bottom:-43px;
+    position:relative;
+    top:-40px;*/
+  position: relative;
+  float: right;
+  margin-bottom: -43px;
+  top: -38px;
+  height: 27px;
+  /*clear: both;*/
+  /*border-bottom: 1px solid #EEE;*/
+  padding: 0 0 0 5px;
+  /*span {*/
+  /*font-weight: bold;*/
+  /*}*/
+  /*  #profile-edit {
+      background: url('/images/icons/user_edit.png') no-repeat scroll 0 50% transparent;
+    }
+  
+    #photo-edit {
+      background: url('/images/icons/picture_edit.png') no-repeat scroll 0 50% transparent;
+    }*/
+}
+/* line 211, ../../app/assets/stylesheets/user.scss */
+ul#tabnav li {
+  /*border-right: 1px solid $grey_border;*/
+  /*float: left;*/
+  /*list-style-type:none;*/
+  /*background:image-url("top_nav_tab_background.gif") repeat-x scroll left top #FFFFFF;*/
+  /*padding: 0 5px;*/
+  float: right;
+  display: block;
+  list-style: none;
+  font-size: 13px;
+}
+/* line 223, ../../app/assets/stylesheets/user.scss */
+ul#tabnav li.first {
+  border-left: 1px solid #EEEEEE;
+}
+/* line 227, ../../app/assets/stylesheets/user.scss */
+ul#tabnav a:link, ul#tabnav a:visited, ul#tabnav span {
+  /*display:block;*/
+  /*padding:9px 9px 6px 20px;*/
+  font-weight: bold;
+  text-decoration: none;
+  float: left;
+  display: block;
+  padding: 4px 10px 6px;
+  margin: 2px 5px 0 0;
+  background: #FAFAFA;
+  border: 1px solid #EEE;
+  line-height: 14px;
+  font-size: 11px;
+  border-bottom: 0;
+  -moz-border-radius-topleft: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border-top-left-radius: 6px 6px;
+  border-top-right-radius: 6px 6px;
+}
+/* line 253, ../../app/assets/stylesheets/user.scss */
+ul#tabnav a.current {
+  /*background:image-url("top_nav_tab_background.gif") repeat-x scroll left top #FFFFFF;*/
+  /*color:#292929;*/
+  /*padding-bottom:7px !important;*/
+  /*color: #333;*/
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  margin-bottom: -1px;
+  background: white;
+  position: relative;
+  z-index: 5;
+  font-size: 13px;
+  padding: 5px 10px 7px;
+  margin-top: 0;
+}
+
+/*EOF Tab Top Navigation*/
