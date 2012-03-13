@@ -3,7 +3,17 @@ require "#{Rails.root}/lib/subdomain.rb"
 FootballKharkov::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
-  devise_for :users, :admins
+  devise_for :users
+  devise_for :admins, :controllers => {:sessions => "admin/session"}
+
+  #as :admin do
+  #  get "/admins/sign_in" => "admin/session#new", :as => :new_admin_session
+
+    #get 'signin' => 'devise/sessions#new', :as => :new_user_session
+    #post '/admins/sign_in' => 'admin/session#create', :as => :admin_session
+    #delete 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+
+  #end
 
   namespace(:admin) do
     root :to => 'main#index'

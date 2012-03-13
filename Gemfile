@@ -16,7 +16,7 @@ gem 'russian'
 gem 'cells'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
-gem "paperclip", "~> 2.3"
+gem "paperclip", "~> 2.7"
 #gem 'ckeditor', :git => 'git://github.com/galetahub/rails-ckeditor.git', :branch => 'rails3'
 gem 'ckeditor', "3.7.0.rc3"
 gem 'sanitize'
