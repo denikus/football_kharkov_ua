@@ -35,7 +35,7 @@
 
 /*global Ext, Application */
 
-Ext.BLANK_IMAGE_URL = '/source/extjs/resources/images/default/s.gif';
+Ext.BLANK_IMAGE_URL = '/source/ext-3.3.1/resources/images/default/s.gif';
 Ext.ns('Application');
 
 //application main entry point

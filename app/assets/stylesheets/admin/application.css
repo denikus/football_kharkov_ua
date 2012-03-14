@@ -4,8 +4,8 @@
 *= require "admin/ux/grid.row_editor.css"
 */
 .icon-add {
-  background-image: url(/images/icons/add.png) !important;
+  background-image: url(/assets/images/icons/add.png) !important;
 }
 .icon-delete {
-  background-image: url(/images/icons/delete.png) !important;
+  background-image: url(/assets/images/icons/delete.png) !important;
 }
