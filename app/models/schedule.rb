@@ -79,6 +79,7 @@ class Schedule < ActiveRecord::Base
         group("`schedules`.id")
       else
         return []
+      end
     end
 
     def get_min_date(tournament, with_results = false)
