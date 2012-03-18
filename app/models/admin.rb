@@ -2,6 +2,7 @@
 class Admin < ActiveRecord::Base
   devise :database_authenticatable, :rememberable
   devise :encryptable, :encryptor => :sha1
+
   has_many :permissions
   
   scope :regular, {:conditions => {:super_admin => false}}

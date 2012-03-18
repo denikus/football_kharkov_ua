@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class Team < ActiveRecord::Base
   #has_many :footballers_teams, :include => :footballer
   #has_many :footballers, :through => :footballers_teams
@@ -54,12 +55,12 @@ class Team < ActiveRecord::Base
     end
     
     def [] step_id
-      Footballer.by_team_step(:team_id => @team.id, :step_id => step_id).map(&:id)
+      ::Footballer.by_team_step(:team_id => @team.id, :step_id => step_id).map(&:id)
     end
     
     def []= step_id, ids
-      FootballersTeam.delete_all(:step_id => step_id, :team_id => @team.id)
-      FootballersTeam.create ids.collect{ |id| {:step_id => step_id, :team_id => @team.id, :footballer_id => id} }
+      ::FootballersTeam.delete_all(:step_id => step_id, :team_id => @team.id)
+      ::FootballersTeam.create ids.collect{ |id| {:step_id => step_id, :team_id => @team.id, :footballer_id => id} }
     end
   end
 end

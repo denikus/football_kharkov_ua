@@ -13,9 +13,29 @@
 * License details: http://www.gnu.org/licenses/lgpl.html
 */
 
+//= require underscore.js
+//= require 'source/ext-3.3.1/adapter/ext/ext-base.js'
+//= require 'source/ext-3.3.1/ext-all.js'
+//= require 'admin/ux/layout.js'
+//= require 'admin/ux/menu.js'
+//= require 'admin/ux/common/name_filter.js'
+//= require 'admin/ux/common/SearchField.js'
+//= require 'admin/ux/nav/tournament.js'
+//= require 'admin/ux/nav/team_footballers.js'
+//= require 'admin/ux/grid.row_editor.js'
+//= require 'admin/ux/tournament/step_form.js'
+//= require 'admin/ux/tournament/match_form.js'
+//= require 'admin/ux/tournament/match_events_grid.js'
+//= require 'admin/ux/tournament/step_teams_panel.js'
+//= require 'admin/ux/tournament/schedules_panel.js'
+//= require 'admin/ux/personnel/personnel_panel.js'
+//= require 'admin/ux/personnel/team_footballers_panel.js'
+
+
+
 /*global Ext, Application */
 
-Ext.BLANK_IMAGE_URL = '/source/extjs/resources/images/default/s.gif';
+Ext.BLANK_IMAGE_URL = '/source/ext-3.3.1/resources/images/default/s.gif';
 Ext.ns('Application');
 
 //application main entry point

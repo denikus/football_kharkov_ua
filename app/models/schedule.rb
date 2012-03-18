@@ -74,8 +74,12 @@ class Schedule < ActiveRecord::Base
           select("matches.schedule_id").
           joins("INNER JOIN matches ON competitors.match_id = matches.id").
           where('competitors.team_id = ?', team_id).collect{|x| x.schedule_id.to_s}.uniq
-      where("schedules.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ? AND schedules.id in (#{schedules.join(',')})", Time.now.to_date).
-      group("`schedules`.id")
+      if !schedules.empty?
+        where("schedules.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ? AND schedules.id in (#{schedules.join(',')})", Time.now.to_date).
+        group("`schedules`.id")
+      else
+        return []
+      end
     end
 
     def get_min_date(tournament, with_results = false)

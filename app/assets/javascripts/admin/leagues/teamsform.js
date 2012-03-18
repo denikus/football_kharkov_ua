@@ -175,7 +175,7 @@ LeagueTeamsForm = Ext.extend(Ext.FormPanel, {
           name: 'team_ids',
           //disabled: true,
           fieldLabel: 'Выбрать Команды',
-          imagePath: '/source/extjs/examples/ux/images/',
+          imagePath: '/source/ext-3.3.1js/examples/ux/images/',
           multiselects: [{
             width: 250,
             height: 200,

@@ -1,6 +1,6 @@
 - content_for :head_declarations do
   = javascript_include_tag "admin/temp"
-- form_for @schedule, :url => {:action => "create"} do |f|
+= form_for @schedule, :url => {:action => "create"} do |f|
   =select_tag(:tournament_id, options_from_collection_for_select(@tournaments, "id", "name", cookies[:schedule_tournament_id]))
   -#, {:selected => cookies[:schedule_tournament_id]}
   =f.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
@@ -18,7 +18,7 @@
 
   = f.submit("Сохранить")
 
-- form_for @schedule, :url => {:action => "import_from_csv"}, :html => {:multipart => true} do |ff|
+= form_for @schedule, :url => {:action => "import_from_csv"}, :html => {:multipart => true} do |ff|
   =ff.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
   =file_field(:upload, :datafile)
   =ff.submit("Import")

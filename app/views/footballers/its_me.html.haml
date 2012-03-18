@@ -28,7 +28,8 @@
       С помощью формы - вы отправляете нам скан документа подтверждающего вашу личность (принимается скан первой страницы паспорта или водительского удостоверения)
       %br/
       %br/
-      - form_for :user_connect_footballer_request, UserConnectFootballerRequest.new, :url => oauth_provider_path(:action => "scan_auth", :provider => "vkontakte"), :html => { :multipart => true } do |f|
+      / :user_connect_footballer_request, 
+      - form_for UserConnectFootballerRequest.new, :url => oauth_provider_path(:action => "scan_auth", :provider => "vkontakte"), :html => { :multipart => true } do |f|
         = f.hidden_field :footballer_id, :value => @footballer.id
         = f.file_field :photo
         = submit_tag "Отправить", :class => "fancy-button", :style => "color: #FFF;"

@@ -6,14 +6,14 @@
   = image_tag "ajax-loader.gif"
   %br/
   Идет загрузка...
-- form_for :profile, @profile, {:url => upload_photo_profile_path, :html => {:multipart => true, :id => "photo-upload-form"}} do |f|
+= form_for @profile, {:url => upload_photo_profile_path, :html => {:multipart => true, :id => "photo-upload-form"}} do |f|
   %label{:for => "photo-upload-field"} Загрузить новое фото:
   = f.file_field :photo, {:class=>"text", :id => "photo-upload-field"}
   .clear
 //cropping
 - unless @profile.photo.instance.photo_file_name.nil?
   = image_tag @profile.photo.url(:large), :id => "cropbox"
-  - form_for :profile, @profile, {:url => make_crop_profile_path, :html => {:id => "photo-crop-form"}} do |f|
+  = form_for @profile, {:url => make_crop_profile_path, :html => {:id => "photo-crop-form"}} do |f|
     - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
       = f.hidden_field attribute, :id => attribute
     .clear
@@ -21,7 +21,7 @@
   %h3= "Удалить фото"
   %div{:style => "text-align: center; font-weight: bold;"} Не забудьте загрузить новое фото!
   %br/
-  - form_for :profile, @profile, {:url => destroy_photo_profile_path, :html => {:method => :delete, :id => "photo-delete-form"}} do |f|
+  = form_for @profile, {:url => destroy_photo_profile_path, :html => {:method => :delete, :id => "photo-delete-form"}} do |f|
     %div{:style => "text-align: center;"}
       %input.fancy-button.blue{:type => "submit", :name => "submit", :value => "Удалить"}
 
