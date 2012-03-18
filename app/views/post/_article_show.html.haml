@@ -20,10 +20,11 @@
           fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
 
-    = javascript_include_tag "http://userapi.com/js/api/openapi.js?45"
+    = javascript_include_tag "http://userapi.com/js/api/openapi.js?48"
+
 
     :javascript
-      VK.init({apiId: 2704521, onlyWidgets: true});
+      VK.init({apiId: 2861845, onlyWidgets: true});
     
     %script{:type=>"text/javascript", :src=>"http://vkontakte.ru/js/api/share.js?11", :charset=>"windows-1251"}
         
@@ -34,9 +35,6 @@
         #vk_like
         %script{:type=>"text/javascript"}
           VK.Widgets.Like("vk_like", {type: "button"});
-      %li
-        %script{:type=>"text/javascript"}
-          <!-- document.write(VK.Share.button(false,{type: "round", text: "Сохранить"})); -->
       %li
         %a{:href=>"https://twitter.com/share", :"data-url"=>"#{post.short_url}", :class=>"twitter-share-button", :"data-count"=>"horizontal", :"data-via"=>"footballkharkov", :"data-lang"=>"ru"}
           "Твитнуть"
