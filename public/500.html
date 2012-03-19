@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
+  <title>500-я ошибка на Харькове Футбольном</title>
+  <meta charset="utf-8">
+  <script>
+      document.createElement('header');
+      document.createElement('section');
+  </script>  
+  <link rel="stylesheet" href="stylesheets/errors.css" />
 </head>
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
-  </div>
+<body id="page500">
+
+  <header>
+    <div class="inner">
+      <a href="http://football.kharkov.ua" title="На главную">
+        <img src="images/errors/logo.gif" alt="Харьков Футбольный Лого">
+      </a>
+    </div>
+  </header>
+  <section role="main">
+    <div class="inner content">
+      <h1>
+        Ой! Что-то пошло<br>
+        не так...
+      </h1>
+      <div class="message">
+        <p></p>
+        <p>
+          Попробуйте зайти на сайт немножко позже.
+          <br>Мы уже знаем о проблеме и работаем ее решением.
+        </p>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>

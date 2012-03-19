@@ -20,7 +20,7 @@ footer, header, hgroup, menu, nav, section
 }
 header
 {
-    background: url("../images/header_bg.gif") 0 0 repeat-x;
+    background: url("../images/errors/bg/header.gif") 0 0 repeat-x;
     height: 120px;
 }
 a
@@ -41,7 +41,7 @@ p
 }
 #page404 .content
 {
-    background: url("../images/errors/404.jpg") 100% 100% no-repeat;
+    background: url("../images/errors/404/player.jpg") 100% 100% no-repeat;
     position: relative;
     height: 600px;
     }
@@ -63,8 +63,62 @@ p
         width: 450px;
         position: absolute;
         left: 0;
-        top: 300px;        
+        top: 300px;
         font-size: 16px;
-        background: url("../images/errors/cards.jpg") 0 15px no-repeat;
+        background: url("../images/errors/404/cards.jpg") 0 15px no-repeat;
         padding-left: 120px;
     }
+
+#page500 .content
+{
+    background: url("../images/errors/500/ball.jpg") 100% 100% no-repeat;
+    position: relative;
+    height: 600px;
+    }
+    #page500 .content h1
+    {
+        position: absolute;
+        top: 150px;
+        font-size: 40px;
+        font-weight: normal;
+        line-height: 1.2;
+    }
+    #page500 .content .message
+    {
+        width: 420px;
+        position: absolute;
+        left: 0;
+        top: 250px;
+        font-size: 16px;
+    }
+
+#page422
+{
+    background: #000;
+    color: #fff;
+    }
+    #page422 .content
+    {
+        background: url("../images/errors/422/casillas.jpg") 0 100% no-repeat;
+        position: relative;
+        height: 600px;
+        }
+        #page422 .content h1
+        {
+            position: absolute;
+            top: 150px;
+            font-size: 40px;
+            font-weight: normal;
+            line-height: 1.2;
+            right: 0;
+            text-align: right;
+        }
+        #page422 .content .message
+        {
+            width: 420px;
+            position: absolute;
+            right: 0;
+            top: 320px;
+            font-size: 16px;
+            text-align: right;
+        }
