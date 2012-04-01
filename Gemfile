@@ -77,7 +77,7 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-group :development, :test do 
+group :development, :test do
   gem 'rspec-rails', :branch => 'rails3'
   gem "guard-rspec"
   gem "guard-spork"
