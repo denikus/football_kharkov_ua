@@ -35,7 +35,7 @@ class SchedulesController < ApplicationController
       order_str = "match_on ASC"
     end
 
-   unless tournament.nil?
+   unless tournament.blank?
       conditions = [condition_str, current_date,  tournament.id]
     else
       conditions = [condition_str, current_date]
@@ -50,7 +50,7 @@ class SchedulesController < ApplicationController
                                  )
     @schedules_by_day = Schedule.get_records_by_day(@match_date[:match_on], tournament)
     
-    unless tournament.nil?
+    unless tournament.blank?
       conditions = ["match_on = ?  AND steps.tournament_id = ? ", @match_date.match_on,  tournament.id]
     else
       conditions = ["match_on = ?", @match_date.match_on]
