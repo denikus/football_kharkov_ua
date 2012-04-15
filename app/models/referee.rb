@@ -5,10 +5,12 @@ class Referee < ActiveRecord::Base
   end
   
   def name_with_initials
-    returning last_name do |name|
+    name = ""
+    #returning last_name do |name|
       name << " #{last_name[/^(.)/, 1]}." if last_name
       name << " #{patronymic[/^(.)/, 1]}." if patronymic
-    end
+    #end
+    return name
   end
   
   alias_method :name, :full_name
