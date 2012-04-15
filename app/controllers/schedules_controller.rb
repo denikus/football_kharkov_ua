@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
   layout "app_without_sidebar"
   
   def index
-    if request.subdomain
+    unless request.subdomain.blank?
       tournament = Tournament.from_param(request.subdomain)
     end
 
