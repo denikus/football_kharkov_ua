@@ -14,7 +14,7 @@ class Match < ActiveRecord::Base
   has_many :competitors, :include => :football_players do
     def [] side
       load_target unless loaded?
-      target.find{ |s| s.side == side.to_sym }
+      target.find{ |s| s.side.to_sym == side.to_sym }
     end
   end
   
