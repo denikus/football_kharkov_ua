@@ -18,7 +18,8 @@ class Competitor < ActiveRecord::Base
       end
       stats.each do |id, s|
         next if s['number'].empty?
-        player = target.find{ |p| p.footballer_id == id.to_i } || FootballPlayer.create(:footballer_id => id, :competitor_id => proxy_owner.id, :number => s['number'])
+        #player = target.find{ |p| p.footballer_id == id.to_i } || FootballPlayer.create(:footballer_id => id, :competitor_id => proxy_owner.id, :number => s['number'])
+        player = target.find{ |p| p.footballer_id == id.to_i } || FootballPlayer.create(:footballer_id => id, :competitor_id => proxy_association.owner.id, :number => s['number'])
         player.update s
       end
     end

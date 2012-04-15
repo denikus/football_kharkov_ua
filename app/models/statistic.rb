@@ -14,7 +14,8 @@ class Statistic < ActiveRecord::Base
         #SyncEnumerator.new(target.select{ |s| s.statistic_id == S[sym] }, Array(val)).each do |s, v|
         Enumerator::Generator.new(target.select{ |s| s.statistic_id == S[sym] }, Array(val)).each do |s, v|
           s.destroy and next if v.nil?
-          (s || Stat.new(:statistic_id => S[sym], :statable => proxy_owner)).tap{ |s| s.statistic_value = v }.save
+          #(s || Stat.new(:statistic_id => S[sym], :statable => proxy_owner)).tap{ |s| s.statistic_value = v }.save
+          (s || Stat.new(:statistic_id => S[sym], :statable => proxy_association.owner)).tap{ |s| s.statistic_value = v }.save
         end
         reload
       end
