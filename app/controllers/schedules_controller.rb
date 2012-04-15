@@ -69,7 +69,7 @@ class SchedulesController < ApplicationController
                                )
     @current_date = @match_date[:match_on].to_s
     unless params[:format] == 'quick_results'
-      ap @template_data = render_to_string(:partial => "day", :locals => {:schedules => @schedules})
+      @template_data = render_to_string(:partial => "day", :locals => {:schedules => @schedules})
 
       render :layout => false, :locals => {:current_date => @match_date[:match_on].to_s}
     else

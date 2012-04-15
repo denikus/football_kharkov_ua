@@ -1,4 +1,4 @@
 Schedule.current_date = "#{@current_date}";
-$("#quick-match-results-content").html("#{escape_javascript(@template_data)}");
+$("#quick-match-results-content").html("#{escape_javascript(@template_data.html_safe)}");
 $("#quick-result-current-date").html("#{Russian::strftime(@current_date.to_date, "%A, %d %B %Y")}");
 Schedule.checkArrows();
