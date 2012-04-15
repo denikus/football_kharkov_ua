@@ -32,7 +32,8 @@ class Stat < ActiveRecord::Base
       #Enumerator::Generator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
       REXML::SyncEnumerator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
         s.destroy and next if v.nil?
-        (s || Stat.new(:name => stat_name, :statable => proxy_owner)).tap{ |s| s.value = v }.save
+        #(s || Stat.new(:name => stat_name, :statable => proxy_owner)).tap{ |s| s.value = v }.save
+        (s || Stat.new(:name => stat_name, :statable => proxy_association.owner)).tap{ |s| s.value = v }.save
       end
       reload
       get stat_name
