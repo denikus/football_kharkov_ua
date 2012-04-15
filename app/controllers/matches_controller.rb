@@ -11,6 +11,7 @@ class MatchesController < ApplicationController
   end
 
   def show
+    ap params
     @match = Match.find(:first,
                         :include => {:schedule => :step_tour},
                         :conditions => {:id => params[:id]}
