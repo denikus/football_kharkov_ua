@@ -53,17 +53,19 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
   end
 
   def delete
-    @article = Article.find(params[:id])
-    respond_to do |format|
-      if @article.post.resource.destroy
-        flash[:notice] = "Статья успешно удалена"
-        format.html { redirect_to(:controller => 'blog', :action => 'index') }
-        format.xml  { head :ok }
-      else   
-        format.html { render :action => "edit", :id => params[:id] }
-        format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
+      @article = Article.find(params[:id])
+      respond_to do |format|
+        if user_signed_in? && current_user[:id]==1
+          if @article.post.resource.destroy
+            flash[:notice] = "Статья успешно удалена"
+            format.html { redirect_to(:controller => 'blog', :action => 'index') }
+            format.xml  { head :ok }
+          else
+            format.html { render :action => "edit", :id => params[:id] }
+            format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
+          end
+        end
       end
-    end
   end
 
   def show
