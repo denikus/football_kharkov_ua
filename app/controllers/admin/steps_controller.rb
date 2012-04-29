@@ -9,7 +9,30 @@ class Admin::StepsController < ApplicationController
   def show
     root, params[:id], params[:type] = $1, $2, $3 if params[:node] =~ /^nav-tournament-(?:(root)|(?:(\d+)-?(\w+)?))$/
     @node = root ? Tournament.from(params[:tournament_id]) : Step.find(params[:id])
-
+  #  nodes, name, type = case @node
+  #    when Tournament
+  #      [:steps, 'Сезон', 'StepSeason']
+  #    when StepSeason
+  #      [:steps, 'Этап', 'StepStage']
+  #    when StepStage
+  #      case params[:type]
+  #        when 'leagues'
+  #          [:leagues, 'Лигу', 'StepLeague']
+  #        when 'tours'
+  #          [:tours, 'Тур', 'StepTour']
+  #        else [[{:text => 'Лиги', :cls => 'folder', :id => "nav-tournament-#{@node.id}-leagues"}, {:text => 'Туры', :cls => 'folder', :id => "nav-tournament-#{@node.id}-tours"}], nil, nil]
+  #      end
+  #  end
+  #
+  #if @node.is_a? StepTour
+  #  season_id = @node.stage.season.id
+  #  nodes = @node.schedules.all(:include => {:match => {:competitors => {:team => :footballers_teams}}}).map do |s|
+  #    ap s.match
+  #    debugger
+  #  end
+      #ap {:text => s.match.hosts.team.name + " - " + s.match.guests.team.name, :cls => 'leaf', :id => "nav-tournament-schedule-#{s.id}", :leaf => true, '_type' => 'Schedule', '_id' => s.id, '_match_id' => s.match.id, '_hosts' => s.match.hosts.team.name, '_guests' => s.match.guests.team.name, '_hosts_footballer_ids' => s.match.hosts.team.footballer_ids[season_id]*',', '_guests_footballer_ids' => s.match.guests.team.footballer_ids[season_id]*','}
+    #end
+  #end
     render :action => 'show.ext.haml', :layout => false
   end
   

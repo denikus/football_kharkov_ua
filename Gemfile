@@ -77,10 +77,11 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-group :development, :test do 
+group :development, :test do
   gem 'rspec-rails', :branch => 'rails3'
   gem "guard-rspec"
   gem "guard-spork"
+  gem 'debugger'
   #gem "ruby-debug19"
   #gem 'growl_notify', :require => false if RUBY_PLATFORM =~/darwin/i
   #gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~/darwin/i

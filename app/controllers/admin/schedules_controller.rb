@@ -83,6 +83,8 @@ class Admin::SchedulesController < ApplicationController
   end
   
   def update_results
+    #ap params
+    #debugger
     schedule = Schedule.find(params[:id], :include => {:match => {:competitors => [:stats, {:football_players => :stats}]}})
     
     %w{hosts guests}.each do |side|

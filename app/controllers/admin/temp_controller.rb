@@ -9,21 +9,33 @@ class Admin::TempController < ApplicationController
 
 
     @tournaments = Tournament.all
-            
-    @tours = StepTour.find(:all,
-                           :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],
-                           :order => "identifier ASC"
-                          )
+
+    @season = StepSeason.where("tournament_id = ?", cookies[:schedule_tournament_id]).order("identifier ASC").last
+
+    @stage = @season.stages.last
+
+    @tours = StepTour.joins("INNER JOIN `steps_phases` AS s_p ON (steps.id=s_p.phase_id)").where("steps.tournament_id = ? AND s_p.step_id=?", cookies[:schedule_tournament_id], @stage.id).order("identifier ASC")
+
+
+    #@tours = StepTour.find(:all,
+    #                       :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],
+    #                       :order => "identifier ASC"
+    #                      )
     @venues = Venue.all
-    @schedule = Schedule.new({:match_on => "2011-09-"})
+    @schedule = Schedule.new({:match_on => "2012-05-"})
     
-    @last_schedules = Schedule.find(
-                                    :all,
-                                    :joins => "INNER JOIN steps ON (steps.id = schedules.tour_id AND steps.type = 'StepTour')",
-                                    :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],
-                                    :order => "match_on DESC, venue_id ASC, match_at ASC",
-                                    :limit => 80
-                                   )
+    @last_schedules = Schedule.joins("INNER JOIN steps ON (steps.id = schedules.tour_id AND steps.type = 'StepTour')").
+                               where("tournament_id = ? ", cookies[:schedule_tournament_id]).
+                               order("match_on DESC, venue_id ASC, match_at ASC").
+                               limit(80)
+
+    #@last_schedules = Schedule.find(
+    #                                :all,
+    #                                :joins => "INNER JOIN steps ON (steps.id = schedules.tour_id AND steps.type = 'StepTour')",
+    #                                :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],
+    #                                :order => "match_on DESC, venue_id ASC, match_at ASC",
+    #                                :limit => 80
+    #                               )
   end
 
   def delete_schedule
@@ -43,11 +55,13 @@ class Admin::TempController < ApplicationController
     last_season = StepSeason.by_tournament(params["tournament_id"]).last
     
     cookies[:schedule_tournament_id] = params["tournament_id"]
-    @tours = StepTour.find(:all,
-                         :joins => "INNER JOIN `steps_phases` ON (phase_id = steps.id) ",
-                         :conditions => ["steps_phases.step_id IN (#{last_season.stages.collect!{|x| x.id}.join(',')})"],
-                         :order => "identifier ASC"
-                        )
+
+    @tours = StepTour.joins("INNER JOIN `steps_phases` ON (phase_id = steps.id) ").where("steps_phases.step_id IN (#{last_season.stages.collect!{|x| x.id}.join(',')})").order("identifier ASC")
+    #@tours = StepTour.find(:all,
+    #                     :joins => "INNER JOIN `steps_phases` ON (phase_id = steps.id) ",
+    #                     :conditions => ["steps_phases.step_id IN (#{last_season.stages.collect!{|x| x.id}.join(',')})"],
+    #                     :order => "identifier ASC"
+    #                    )
     data = @tours.collect do |tour|
       {:text => tour.name,
        :value => tour.id

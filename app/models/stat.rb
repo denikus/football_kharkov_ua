@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 #require 'generator.rb'
-#require 'rexml/syncenumerator'
+require 'rexml/syncenumerator'
 
 class Stat < ActiveRecord::Base
   belongs_to :statable, :polymorphic => true
@@ -29,9 +29,11 @@ class Stat < ActiveRecord::Base
     def set stat_name, *args
       load_target unless loaded?
       #::SyncEnumerator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
-      Enumerator::Generator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
+      #Enumerator::Generator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
+      REXML::SyncEnumerator.new(target.select{ |stat| stat.name == stat_name }, args).each do |s, v|
         s.destroy and next if v.nil?
-        (s || Stat.new(:name => stat_name, :statable => proxy_owner)).tap{ |s| s.value = v }.save
+        #(s || Stat.new(:name => stat_name, :statable => proxy_owner)).tap{ |s| s.value = v }.save
+        (s || Stat.new(:name => stat_name, :statable => proxy_association.owner)).tap{ |s| s.value = v }.save
       end
       reload
       get stat_name

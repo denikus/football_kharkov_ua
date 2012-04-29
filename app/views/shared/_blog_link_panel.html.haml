@@ -15,10 +15,8 @@
   - if post[:status].to_s=='updating'
     .updating_link_cell{:title=>"Публикация в процессе добавления данных"}
       %span Обновляется
-  / .social_link_cell
-  /   = retweet_button(post.title, post.short_url)
-  /   = to_facebook_button(post.title, post.resource_type=='Status' ? status_path(post.resource.id) : post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : ''}))
-  /   = to_vkontakte_button(post.title,post.resource_type=='Status' ? status_path(post.resource.id) :  post_url({:year => post.created_at.strftime('%Y'), :month => post.created_at.strftime('%m'), :day => post.created_at.strftime('%d'), :url => !post.url.nil? ? post.url : ''}))
+  - if user_signed_in? && (current_user[:id]==1)
+    %div{:class=>"delete_link_cell last"}= link_to "Удалить", {:controller =>controller, :action =>:delete, :id => post.resource.id}
   - if user_signed_in? && (post.author_id == current_user[:id] || current_user[:id]==1)
     %div{:class=>"edit_link_cell last"}= link_to "Править", {:controller =>controller, :action =>:edit, :id => post.resource.id}
 .clear

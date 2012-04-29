@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
   layout "app_without_sidebar"
   
   def index
-    if request.subdomain
+    unless request.subdomain.blank?
       tournament = Tournament.from_param(request.subdomain)
     end
 
@@ -35,7 +35,7 @@ class SchedulesController < ApplicationController
       order_str = "match_on ASC"
     end
 
-   unless tournament.nil?
+   unless tournament.blank?
       conditions = [condition_str, current_date,  tournament.id]
     else
       conditions = [condition_str, current_date]
@@ -50,7 +50,7 @@ class SchedulesController < ApplicationController
                                  )
     @schedules_by_day = Schedule.get_records_by_day(@match_date[:match_on], tournament)
     
-    unless tournament.nil?
+    unless tournament.blank?
       conditions = ["match_on = ?  AND steps.tournament_id = ? ", @match_date.match_on,  tournament.id]
     else
       conditions = ["match_on = ?", @match_date.match_on]
@@ -69,7 +69,7 @@ class SchedulesController < ApplicationController
                                )
     @current_date = @match_date[:match_on].to_s
     unless params[:format] == 'quick_results'
-      ap @template_data = render_to_string(:partial => "day", :locals => {:schedules => @schedules})
+      @template_data = render_to_string(:partial => "day", :locals => {:schedules => @schedules})
 
       render :layout => false, :locals => {:current_date => @match_date[:match_on].to_s}
     else
