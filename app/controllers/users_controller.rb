@@ -50,7 +50,8 @@ class UsersController < ApplicationController
     @profile = User.from_param(params[:id]).profile
     @posts = Post.paginate(:page => params[:page], :per_page => 10, :order => 'created_at DESC', :conditions => {:author_id => @profile.user_id})
     @feed = {:title => "Футбольная лента #{@profile.user.username}"}
-    render :layout=>false, :template => "feed/index"
+    #render :layout=>false, :template => "feed/index"
+    render :layout=>false, :template => "feed/index.xml.builder"
     response.headers["Content-Type"] = "application/xml; charset=utf-8"
   end
 
