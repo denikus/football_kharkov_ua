@@ -82,8 +82,12 @@ FootballKharkov::Application.routes.draw do
     match 'import(/:action(/:id))' => "import"
   end
 
-  match "/!!/:id" => 'users#show', :constraints => {:controller => '#!'}
+  match "/:hash/:id" => 'users#show', :constraints => {:hash => '!!'}
   match 'users/feed/:id' => 'users#feed'
+
+  #  match "/!!/:id" => 'users#show', :constraints => {:controller => '#!'}
+  #  match 'users/feed/:id' => 'users#feed'
+
 
   resources :users do
       get :feed, :format => "xml"
