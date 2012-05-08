@@ -177,6 +177,7 @@ Ext.ux.personnel.Panel.createFieldset = function(type) {
       id: 'birth_date',
       fieldLabel: 'ДР',
       name: type + '[birth_date]',
+      format: "Y-m-d",
       xtype: 'datefield'
     }];
     if(type == 'footballers') {
