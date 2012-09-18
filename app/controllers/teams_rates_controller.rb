@@ -24,7 +24,7 @@ class TeamsRatesController < ApplicationController
         :group => 'teams.id',
         :per_page => 50,
         :page => 1
-                  
+
     )
 
     @teams.each do |team|
