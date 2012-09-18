@@ -63,6 +63,7 @@ class SidebarBlockCell < ::Cell::Base
   end
 
   def advertisement(opts)
+    @opts = opts
     render
   end
 end
