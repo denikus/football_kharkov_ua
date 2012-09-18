@@ -3,3 +3,13 @@
     %h4= @opts[:title]
   .bd{:style => "border-top: 1px solid #D9D9D9;padding-top: 5px;padding-bottom: 5px;text-align:center;"}
     =link_to image_tag("/advertisement/265x270px.png"), "http://plarium.com", {:style => "display: block;", :target => "_blank"}
+.sidebar-block
+  .sidebar-block-header
+    %h4= @opts[:title_jobs]
+  .bd{:style => "border-top: 1px solid #D9D9D9;padding-top: 5px;padding-bottom: 5px;text-align:center;"}
+    %ul{:style => "text-align: left;"}
+      %li=link_to "C++ разработчик", "http://www.plarium.com/Common/Job#/kharkov/kharkov-cpp", {:target => "_blank"}
+      %li=link_to ".NET (разработка серверной части)", "http://www.plarium.com/Common/Job#/kharkov/kharkov-net-server-side", {:target => "_blank"}
+      %li=link_to "Корректор", "http://www.plarium.com/Common/Job#/kharkov/kharkov-corrector", {:target => "_blank"}
+      %li=link_to "2D художник", "http://www.plarium.com/Common/Job#/kharkov/kharkov-2d-artist", {:target => "_blank"}
+      %li=link_to "Java разработчик", "http://www.plarium.com/Common/Job#/kharkov/kharkov-java", {:target => "_blank"}

@@ -18,7 +18,7 @@
     - if request.subdomain.nil? || request.subdomain.empty?
       = render_cell :sidebar_block, :news, :title => "Новенькое", :subdomain => request.subdomain, :domain => request.domain
     - if !request.subdomain.nil? && request.subdomain == 'itleague'
-      = render_cell :sidebar_block, :advertisement, :title => "Спонсоры"
+      = render_cell :sidebar_block, :advertisement, :title => "Спонсор", :title_jobs => "Вакансии спонсора"
     = render_cell :sidebar_block, :shop, :title => "Амуниция"
     = render_cell :sidebar_block, :comments, :title => "Комментарии", :subdomain => request.subdomain, :domain => request.domain
 
