@@ -2,621 +2,578 @@
 = @page.body.html_safe
 - content_for :top_submenu do
   = "tournament"
--#%h2 Состав групп
--#
--#%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
--#  %tr
--#    %th{:colspan => 3} Группа A
--#  %tr.odd
--#    %td
--#      1
--#    %td
--#      Zfort Group
--#  %tr
--#    %td
--#      2
--#    %td
--#      GlobalLogic
--#  %tr.odd
--#    %td
--#      3
--#    %td
--#      Gameloft-II
--#  %tr
--#    %td
--#      4
--#    %td
--#      CS
--#
--#%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
--#  %tr
--#    %th{:colspan => 3} Группа B
--#  %tr.odd
--#    %td
--#      1
--#    %td
--#      GraceHoppers
--#  %tr
--#    %td
--#      2
--#    %td
--#      UTeam
--#  %tr.odd
--#    %td
--#      3
--#    %td
--#      EPAM Systems
--#  %tr
--#    %td
--#      4
--#    %td
--#      CS-2
--#
--#%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
--#  %tr
--#    %th{:colspan => 3} Группа C
--#  %tr.odd
--#    %td
--#      1
--#    %td
--#      NIX Solutions
--#  %tr
--#    %td
--#      2
--#    %td
--#      Ciklum
--#  %tr.odd
--#    %td
--#      3
--#    %td
--#      AKVELON
--#  %tr
--#    %td
--#      4
--#    %td
--#      Ronis
--#
--#%table.tournament-position{:style => "width: 200px;margin-right: 20px;"}
--#  %tr
--#    %th{:colspan => 3} Группа D
--#  %tr.odd
--#    %td
--#      1
--#    %td
--#      Gameloft
--#  %tr
--#    %td
--#      2
--#    %td
--#      Stella Systems
--#  %tr.odd
--#    %td
--#      3
--#    %td
--#      Eclipse
--#  %tr
--#    %td
--#      4
--#    %td
--#      Random United
--#
--#.clear
--#
--#%h2 Групповой этап
--#
--#%table.fixtures{:style => "margin-right:20px;"}
--#  %caption 1-й Тур
--#  %tr
--#    %th.date Дата
--#    %th.group Группа
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr.odd
--#    %td.date 3.04.2011
--#    %td.group A
--#    %td.hosts Zfort Group
--#    %td.spacer -
--#    %td.guests CS
--#  %tr
--#    %td.date 3.04.2011
--#    %td.group A
--#    %td.hosts GlobalLogic
--#    %td.spacer -
--#    %td.guests Gameloft-II
--#  %tr.odd
--#    %td.date 3.04.2011
--#    %td.group B
--#    %td.hosts GraceHoppers
--#    %td.spacer -
--#    %td.guests CS-2
--#  %tr
--#    %td.date 3.04.2011
--#    %td.group B
--#    %td.hosts UTeam
--#    %td.spacer -
--#    %td.guests EPAM Systems
--#  %tr.odd
--#    %td.date 3.04.2011
--#    %td.group C
--#    %td.hosts NIX Solutions
--#    %td.spacer -
--#    %td.guests Ronis
--#  %tr
--#    %td.date 3.04.2011
--#    %td.group C
--#    %td.hosts Ciklum
--#    %td.spacer -
--#    %td.guests AKVELON
--#  %tr.odd
--#    %td.date 3.04.2011
--#    %td.group D
--#    %td.hosts Gameloft
--#    %td.spacer -
--#    %td.guests Random United
--#  %tr
--#    %td.date 3.04.2011
--#    %td.group D
--#    %td.hosts Stella Systems
--#    %td.spacer -
--#    %td.guests Eclipse
--#
--#%table.fixtures
--#  %caption 2-й Тур
--#  %tr
--#    %th.date Дата
--#    %th.group Группа
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr.odd
--#    %td.date 16-17.04.2011
--#    %td.group D
--#    %td.hosts Eclipse
--#    %td.spacer -
--#    %td.guests Gameloft
--#  %tr
--#    %td.date 16-17.04.2011
--#    %td.group D
--#    %td.hosts Random United
--#    %td.spacer -
--#    %td.guests Stella Systems
--#  %tr.odd
--#    %td.date 16-17.04.2011
--#    %td.group A
--#    %td.hosts Gameloft-II
--#    %td.spacer -
--#    %td.guests Zfort Group
--#  %tr
--#    %td.date 16-17.04.2011
--#    %td.group A
--#    %td.hosts CS
--#    %td.spacer -
--#    %td.guests GlobalLogic
--#  %tr.odd
--#    %td.date 16-17.04.2011
--#    %td.group B
--#    %td.hosts EPAM Systems
--#    %td.spacer -
--#    %td.guests GraceHoppers
--#  %tr
--#    %td.date 16-17.04.2011
--#    %td.group B
--#    %td.hosts CS-2
--#    %td.spacer -
--#    %td.guests UTeam
--#  %tr.odd
--#    %td.date 16-17.04.2011
--#    %td.group C
--#    %td.hosts AKVELON
--#    %td.spacer -
--#    %td.guests NIX Solutions
--#  %tr
--#    %td.date 16-17.04.2011
--#    %td.group C
--#    %td.hosts Ronis
--#    %td.spacer -
--#    %td.guests Ciklum
--#.clear
--#%table.fixtures{:style => "margin-right:20px;"}
--#  %caption 3-й Тур
--#  %tr
--#    %th.date Дата
--#    %th.group Группа
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr.odd
--#    %td.date 23-24.04.2011
--#    %td.group A
--#    %td.hosts Zfort Group
--#    %td.spacer -
--#    %td.guests Gameloft-II
--#  %tr
--#    %td.date 23-24.04.2011
--#    %td.group A
--#    %td.hosts GlobalLogic
--#    %td.spacer -
--#    %td.guests CS (A4)
--#  %tr.odd
--#    %td.date 23-24.04.2011
--#    %td.group B
--#    %td.hosts GraceHoppers
--#    %td.spacer -
--#    %td.guests EPAM Systems
--#  %tr
--#    %td.date 23-24.04.2011
--#    %td.group B
--#    %td.hosts UTeam
--#    %td.spacer -
--#    %td.guests CS-2
--#  %tr.odd
--#    %td.date 23-24.04.2011
--#    %td.group C
--#    %td.hosts NIX Solutions
--#    %td.spacer -
--#    %td.guests AKVELON
--#  %tr
--#    %td.date 23-24.04.2011
--#    %td.group C
--#    %td.hosts Ciklum
--#    %td.spacer -
--#    %td.guests Ronis
--#  %tr.odd
--#    %td.date 23-24.04.2011
--#    %td.group D
--#    %td.hosts Gameloft
--#    %td.spacer -
--#    %td.guests Eclipse
--#  %tr
--#    %td.date 23-24.04.2011
--#    %td.group D
--#    %td.hosts Stella Systems
--#    %td.spacer -
--#    %td.guests Random United
--#%table.fixtures
--#  %caption 4-й Тур
--#  %tr
--#    %th.date Дата
--#    %th.group Группа
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr.odd
--#    %td.date 30.04-01.05.2011
--#    %td.group D
--#    %td.hosts Random United
--#    %td.spacer -
--#    %td.guests Gameloft
--#  %tr
--#    %td.date 30.04-01.05.2011
--#    %td.group D
--#    %td.hosts Eclipse
--#    %td.spacer -
--#    %td.guests Stella Systems
--#  %tr.odd
--#    %td.date 30.04-01.05.2011
--#    %td.group A
--#    %td.hosts CS
--#    %td.spacer -
--#    %td.guests Zfort Group
--#  %tr
--#    %td.date 30.04-01.05.2011
--#    %td.group A
--#    %td.hosts Gameloft-II
--#    %td.spacer -
--#    %td.guests GlobalLogic
--#  %tr.odd
--#    %td.date 30.04-01.05.2011
--#    %td.group B
--#    %td.hosts CS-2
--#    %td.spacer -
--#    %td.guests GraceHoppers
--#  %tr
--#    %td.date 30.04-01.05.2011
--#    %td.group B
--#    %td.hosts EPAM Systems
--#    %td.spacer -
--#    %td.guests UTeam
--#  %tr.odd
--#    %td.date 30.04-01.05.2011
--#    %td.group C
--#    %td.hosts Ronis
--#    %td.spacer -
--#    %td.guests NIX Solutions
--#  %tr
--#    %td.date 30.04-01.05.2011
--#    %td.group C
--#    %td.hosts AKVELON
--#    %td.spacer -
--#    %td.guests Ciklum
--#.clear
--#%table.fixtures{:style => "margin-right:20px;"}
--#  %caption 5-й Тур
--#  %tr
--#    %th.date Дата
--#    %th.group Группа
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr.odd
--#    %td.date 14-15.05.2011
--#    %td.group C
--#    %td.hosts Ciklum
--#    %td.spacer -
--#    %td.guests NIX Solutions
--#  %tr
--#    %td.date 14-15.05.2011
--#    %td.group C
--#    %td.hosts Ronis
--#    %td.spacer -
--#    %td.guests AKVELON
--#  %tr.odd
--#    %td.date 14-15.05.2011
--#    %td.group D
--#    %td.hosts Stella Systems
--#    %td.spacer -
--#    %td.guests Gameloft
--#  %tr
--#    %td.date 14-15.05.2011
--#    %td.group D
--#    %td.hosts Random United
--#    %td.spacer -
--#    %td.guests Eclipse
--#  %tr.odd
--#    %td.date 14-15.05.2011
--#    %td.group A
--#    %td.hosts GlobalLogic
--#    %td.spacer -
--#    %td.guests Zfort Group
--#  %tr
--#    %td.date 14-15.05.2011
--#    %td.group A
--#    %td.hosts CS
--#    %td.spacer -
--#    %td.guests Gameloft-II
--#  %tr.odd
--#    %td.date 14-15.05.2011
--#    %td.group B
--#    %td.hosts UTeam
--#    %td.spacer -
--#    %td.guests GraceHoppers
--#  %tr
--#    %td.date 14-15.05.2011
--#    %td.group B
--#    %td.hosts CS-2
--#    %td.spacer -
--#    %td.guests EPAM Systems
--#%table.fixtures
--#  %caption 6-й Тур
--#  %tr
--#    %th.date Дата
--#    %th.group Группа
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr.odd
--#    %td.date 28-29.05.2011
--#    %td.group B
--#    %td.hosts GraceHoppers
--#    %td.spacer -
--#    %td.guests UTeam
--#  %tr
--#    %td.date 28-29.05.2011
--#    %td.group B
--#    %td.hosts EPAM Systems
--#    %td.spacer -
--#    %td.guests CS-2
--#  %tr.odd
--#    %td.date 28-29.05.2011
--#    %td.group C
--#    %td.hosts NIX Solutions
--#    %td.spacer -
--#    %td.guests Ciklum
--#  %tr
--#    %td.date 28-29.05.2011
--#    %td.group C
--#    %td.hosts AKVELON
--#    %td.spacer -
--#    %td.guests Ronis
--#  %tr.odd
--#    %td.date 28-29.05.2011
--#    %td.group D
--#    %td.hosts Gameloft
--#    %td.spacer -
--#    %td.guests Stella Systems
--#  %tr
--#    %td.date 28-29.05.2011
--#    %td.group D
--#    %td.hosts Eclipse
--#    %td.spacer -
--#    %td.guests Random United
--#  %tr.odd
--#    %td.date 28-29.05.2011
--#    %td.group A
--#    %td.hosts Zfort Group
--#    %td.spacer -
--#    %td.guests GlobalLogic
--#  %tr
--#    %td.date 28-29.05.2011
--#    %td.group A
--#    %td.hosts Gameloft-II
--#    %td.spacer -
--#    %td.guests CS
--#.clear
--#
--#%h2 Плейофф
--#
--#(Римскими цифрами обозначены места команд в соответствующих группах)
--#.clear
--#%table.fixtures{:style => "margin-right:20px;"}
--#  %caption 1/4 Финала Beta Cup
--#  %tr
--#    %th.date Дата
--#    %th Код
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr
--#    %td.date 04.06.2011
--#    %td BCQ1
--#    %td.hosts A-III
--#    %td.spacer -
--#    %td.guests C-IV
--#  %tr
--#    %td.date 04.06.2011
--#    %td BCQ2
--#    %td.hosts B-III
--#    %td.spacer -
--#    %td.guests D-IV
--#  %tr
--#    %td.date 04.06.2011
--#    %td BCQ3
--#    %td.hosts C-III
--#    %td.spacer -
--#    %td.guests A-IV
--#  %tr
--#    %td.date 04.06.2011
--#    %td BCQ4
--#    %td.hosts D-III
--#    %td.spacer -
--#    %td.guests B-IV
--#
--#%table.fixtures
--#  %caption 1/4 Финала IT-League
--#  %tr
--#    %th.date Дата
--#    %th Код
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr
--#    %td.date 04.06.2011
--#    %td ITQ1
--#    %td.hosts A-I
--#    %td.spacer -
--#    %td.guests C-II
--#  %tr
--#    %td.date 04.06.2011
--#    %td ITQ2
--#    %td.hosts B-I
--#    %td.spacer -
--#    %td.guests D-II
--#  %tr
--#    %td.date 04.06.2011
--#    %td ITQ3
--#    %td.hosts C-I
--#    %td.spacer -
--#    %td.guests A-II
--#  %tr
--#    %td.date 04.06.2011
--#    %td ITQ4
--#    %td.hosts D-I
--#    %td.spacer -
--#    %td.guests B-II
--#.clear
--#
--#%table.fixtures{:style => "margin-right:20px;width: 450px;"}
--#  %caption 1/2 Финала Beta Cup
--#  %tr
--#    %th.date Дата
--#    %th{:style => "width: 300px;"} Код
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr
--#    %td.date 11-12.06.2011
--#    %td за 16-13 места
--#    %td.hosts BCQ4L
--#    %td.spacer -
--#    %td.guests BCQ3L
--#  %tr
--#    %td.date 11-12.06.2011
--#    %td за 16-13 места
--#    %td.hosts BCQ2L
--#    %td.spacer -
--#    %td.guests BCQ1L
--#  %tr
--#    %td.date 11-12.06.2011
--#    %td за 12-9 места
--#    %td.hosts BCQ4W
--#    %td.spacer -
--#    %td.guests BCQ3W
--#  %tr
--#    %td.date 11-12.06.2011
--#    %td за 12-9 места
--#    %td.hosts BCQ1W
--#    %td.spacer -
--#    %td.guests BCQ2W
--#
--#%table.fixtures{:style => "width: 450px;"}
--#  %caption 1/2 Финала IT-League
--#  %tr
--#    %th.date Дата
--#    %th{:style => "width: 250px;"} Код
--#    %th.hosts Хозяева
--#    %th.spacer &nbsp;
--#    %th.guests Гости
--#  %tr
--#    %td.date 11-12.06.2011
--#    %td за 8-5 места
--#    %td.hosts ITL4L
--#    %td.spacer -
--#    %td.guests ITL3L
--#  %tr
--#    %td.date 11-12.06.2011
--#    %td за 8-5 места
--#    %td.hosts ITL2L
--#    %td.spacer -
--#    %td.guests ITL1L
--#  %tr
--#    %td.date 11-12.06.2011
--#    %td за 4-1 места
--#    %td.hosts ITL4W
--#    %td.spacer -
--#    %td.guests ITL3W
--#  %tr
--#    %td.date 11-12.06.2011
--#    %td за 4-1 места
--#    %td.hosts ITL1W
--#    %td.spacer -
--#    %td.guests ITL2W
--#.clear
--#%h2 Финалы
--#
--#%table.fixtures{:style => "margin-right:20px;"}
--#  %caption Первый день финалов
--#  %tr
--#    %th{:style => "width:150px;"} Дата
--#    %th Матч
--#  %tr
--#    %td 18-19.06.2011
--#    %td За 15 место
--#  %tr
--#    %td 18-19.06.2011
--#    %td За 13 место
--#  %tr
--#    %td 18-19.06.2011
--#    %td За 11 место
--#  %tr
--#    %td 18-19.06.2011
--#    %td за 7 место
--#  %tr
--#    %td 18-19.06.2011
--#    %td за 5 место
--#
--#%table.fixtures
--#  %caption Последний день финалов
--#  %tr
--#    %th{:style => "width:150px;"} Дата
--#    %th Матч
--#  %tr
--#    %td 25-26.06.2011
--#    %td Финал Beta Cup
--#  %tr
--#    %td 25-26.06.2011
--#    %td За 3-е место
--#  %tr
--#    %td 25-26.06.2011
--#    %td Финал IT-Лиги
--#.clear
+#col-left{:style => "width: 920px;"}
+  -#%h1 Турнирная сетка
+  -#%table.tournament-position{:style => "width:200px;margin-right:20px"}
+  -#  %tbody
+  -#    %tr
+  -#      %th{:colspan => "3"} Группа A
+  -#    %tr
+  -#      %td 1
+  -#      %td Zfort Group
+  -#    %tr
+  -#      %td 2
+  -#      %td GlobalLogic
+  -#    %tr
+  -#      %td 3
+  -#      %td Eclipse
+  -#    %tr
+  -#      %td 4
+  -#      %td Ronis
+  -#%table.tournament-position{:style => "width:200px;margin-right:20px"}
+  -#  %tbody
+  -#    %tr
+  -#      %th{:colspan => "3"} Группа B
+  -#    %tr
+  -#      %td 1
+  -#      %td NIX Solutions
+  -#    %tr
+  -#      %td 2
+  -#      %td Gameloft
+  -#    %tr
+  -#      %td 3
+  -#      %td AKVELON
+  -#    %tr
+  -#      %td 4
+  -#      %td DataArt
+  -#%table.tournament-position{:style => "width:200px;margin-right:20px"}
+  -#  %tbody
+  -#    %tr
+  -#      %th{:colspan => "3"} Группа C
+  -#    %tr
+  -#      %td 1
+  -#      %td Random United
+  -#    %tr
+  -#      %td 2
+  -#      %td UTeam
+  -#    %tr
+  -#      %td 3
+  -#      %td CS-2
+  -#    %tr
+  -#      %td 4
+  -#      %td CLOSE-KNIT TEAM
+  -#%table.tournament-position{:style => "width:200px;margin-right:20px"}
+  -#  %tbody
+  -#    %tr
+  -#      %th{:colspan => "3"} Группа D
+  -#    %tr
+  -#      %td 1
+  -#      %td GraceHoppers
+  -#    %tr
+  -#      %td 2
+  -#      %td Ciklum
+  -#    %tr
+  -#      %td 3
+  -#      %td EPAM Systems
+  -#    %tr
+  -#      %td 4
+  -#      %td CS
+  -#%div
+  -#%h2 Групповой этап
+  -#%table.fixtures{:style => "margin-right:20px"}
+  -#  %caption 1-й Тур
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th Группа
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 17.09.2011
+  -#      %td D
+  -#      %td GraceHoppers
+  -#      %td -
+  -#      %td CS
+  -#    %tr
+  -#      %td 17.09.2011
+  -#      %td C
+  -#      %td UTeam
+  -#      %td -
+  -#      %td CS-2
+  -#    %tr
+  -#      %td 17.09.2011
+  -#      %td A
+  -#      %td Zfort Group
+  -#      %td -
+  -#      %td Ronis
+  -#    %tr
+  -#      %td 17.09.2011
+  -#      %td A
+  -#      %td GlobalLogic
+  -#      %td -
+  -#      %td Eclipse
+  -#    %tr
+  -#      %td 17.09.2011
+  -#      %td B
+  -#      %td NIX Solutions
+  -#      %td -
+  -#      %td DataArt
+  -#    %tr
+  -#      %td 17.09.2011
+  -#      %td B
+  -#      %td Gameloft
+  -#      %td -
+  -#      %td AKVELON
+  -#    %tr
+  -#      %td 17.09.2011
+  -#      %td C
+  -#      %td Random United
+  -#      %td -
+  -#      %td CLOSE-KNIT TEAM
+  -#    %tr
+  -#      %td 17.09.2011
+  -#      %td D
+  -#      %td Ciklum
+  -#      %td -
+  -#      %td EPAM Systems
+  -#%table.fixtures
+  -#  %caption 2-й Тур
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th Группа
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 24.09.2011
+  -#      %td D
+  -#      %td EPAM Systems
+  -#      %td -
+  -#      %td GraceHoppers
+  -#    %tr
+  -#      %td 24.09.2011
+  -#      %td D
+  -#      %td CS
+  -#      %td -
+  -#      %td Ciklum
+  -#    %tr
+  -#      %td 24.09.2011
+  -#      %td A
+  -#      %td Eclipse
+  -#      %td -
+  -#      %td Zfort Group
+  -#    %tr
+  -#      %td 24.09.2011
+  -#      %td A
+  -#      %td Ronis
+  -#      %td -
+  -#      %td GlobalLogic
+  -#    %tr
+  -#      %td 24.09.2011
+  -#      %td B
+  -#      %td AKVELON
+  -#      %td -
+  -#      %td NIX Solutions
+  -#    %tr
+  -#      %td 24.09.2011
+  -#      %td B
+  -#      %td DataArt
+  -#      %td -
+  -#      %td Gameloft
+  -#    %tr
+  -#      %td 24.09.2011
+  -#      %td C
+  -#      %td CS-2
+  -#      %td -
+  -#      %td Random United
+  -#    %tr
+  -#      %td 24.09.2011
+  -#      %td C
+  -#      %td CLOSE-KNIT TEAM
+  -#      %td -
+  -#      %td UTeam
+  -#%table.fixtures{:style => "margin-right:20px;"}
+  -#  %caption 3-й Тур
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th Группа
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 01.10.2011
+  -#      %td C
+  -#      %td UTeam
+  -#      %td -
+  -#      %td Random United
+  -#    %tr
+  -#      %td 01.10.2011
+  -#      %td C
+  -#      %td CLOSE-KNIT TEAM
+  -#      %td -
+  -#      %td CS-2
+  -#    %tr
+  -#      %td 01.10.2011
+  -#      %td D
+  -#      %td Ciklum
+  -#      %td -
+  -#      %td GraceHoppers
+  -#    %tr
+  -#      %td 01.10.2011
+  -#      %td D
+  -#      %td CS
+  -#      %td -
+  -#      %td EPAM Systems
+  -#    %tr
+  -#      %td 01.10.2011
+  -#      %td A
+  -#      %td GlobalLogic
+  -#      %td -
+  -#      %td Zfort Group
+  -#    %tr
+  -#      %td 01.10.2011
+  -#      %td B
+  -#      %td Gameloft
+  -#      %td -
+  -#      %td NIX Solutions
+  -#    %tr
+  -#      %td 01.10.2011
+  -#      %td B
+  -#      %td DataArt
+  -#      %td -
+  -#      %td AKVELON
+  -#    %tr
+  -#      %td 01.10.2011
+  -#      %td A
+  -#      %td Ronis
+  -#      %td -
+  -#      %td Eclipse
+  -#%table.fixtures
+  -#  %caption 4-й Тур
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th Группа
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 08.10.2011
+  -#      %td B
+  -#      %td NIX Solutions
+  -#      %td -
+  -#      %td Gameloft
+  -#    %tr
+  -#      %td 08.10.2011
+  -#      %td B
+  -#      %td AKVELON
+  -#      %td -
+  -#      %td DataArt
+  -#    %tr
+  -#      %td 08.10.2011
+  -#      %td C
+  -#      %td Random United
+  -#      %td -
+  -#      %td UTeam
+  -#    %tr
+  -#      %td 08.10.2011
+  -#      %td C
+  -#      %td CS-2
+  -#      %td -
+  -#      %td CLOSE-KNIT TEAM
+  -#    %tr
+  -#      %td 08.10.2011
+  -#      %td D
+  -#      %td GraceHoppers
+  -#      %td -
+  -#      %td Ciklum
+  -#    %tr
+  -#      %td 08.10.2011
+  -#      %td D
+  -#      %td EPAM Systems
+  -#      %td -
+  -#      %td CS
+  -#    %tr
+  -#      %td 08.10.2011
+  -#      %td A
+  -#      %td Zfort Group
+  -#      %td -
+  -#      %td GlobalLogic
+  -#    %tr
+  -#      %td 08.10.2011
+  -#      %td A
+  -#      %td Eclipse
+  -#      %td -
+  -#      %td Ronis
+  -#%table.fixtures{:style => "margin-right: 20px;"}
+  -#  %caption 5-й Тур
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th Группа
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 15.10.2011
+  -#      %td A
+  -#      %td Zfort Group
+  -#      %td -
+  -#      %td Eclipse
+  -#    %tr
+  -#      %td 15.10.2011
+  -#      %td B
+  -#      %td NIX Solutions
+  -#      %td -
+  -#      %td AKVELON
+  -#    %tr
+  -#      %td 15.10.2011
+  -#      %td B
+  -#      %td Gameloft
+  -#      %td -
+  -#      %td DataArt
+  -#    %tr
+  -#      %td 15.10.2011
+  -#      %td C
+  -#      %td Random United
+  -#      %td -
+  -#      %td CS-2
+  -#    %tr
+  -#      %td 15.10.2011
+  -#      %td C
+  -#      %td UTeam
+  -#      %td -
+  -#      %td CLOSE-KNIT TEAM
+  -#    %tr
+  -#      %td 15.10.2011
+  -#      %td D
+  -#      %td Ciklum
+  -#      %td -
+  -#      %td CS
+  -#    %tr
+  -#      %td 15.10.2011
+  -#      %td D
+  -#      %td GraceHoppers
+  -#      %td -
+  -#      %td EPAM Systems
+  -#    %tr
+  -#      %td 15.10.2011
+  -#      %td A
+  -#      %td GlobalLogic
+  -#      %td -
+  -#      %td Ronis
+  -#%table.fixtures
+  -#  %caption 6-й Тур
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th Группа
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 22.10.2011
+  -#      %td D
+  -#      %td EPAM Systems
+  -#      %td -
+  -#      %td Ciklum
+  -#    %tr
+  -#      %td 22.10.2011
+  -#      %td D
+  -#      %td CS
+  -#      %td -
+  -#      %td GraceHoppers
+  -#    %tr
+  -#      %td 22.10.2011
+  -#      %td A
+  -#      %td Eclipse
+  -#      %td -
+  -#      %td GlobalLogic
+  -#    %tr
+  -#      %td 22.10.2011
+  -#      %td B
+  -#      %td DataArt
+  -#      %td -
+  -#      %td NIX Solutions
+  -#    %tr
+  -#      %td 22.10.2011
+  -#      %td B
+  -#      %td AKVELON
+  -#      %td -
+  -#      %td Gameloft
+  -#    %tr
+  -#      %td 22.10.2011
+  -#      %td C
+  -#      %td CS-2
+  -#      %td -
+  -#      %td UTeam
+  -#    %tr
+  -#      %td 22.10.2011
+  -#      %td C
+  -#      %td CLOSE-KNIT TEAM
+  -#      %td -
+  -#      %td Random United
+  -#    %tr
+  -#      %td 22.10.2011
+  -#      %td A
+  -#      %td Ronis
+  -#      %td -
+  -#      %td Zfort Group
+  -#%div
+  -#%h2 1/4 Финала
+  -#%table.fixtures{:style => "margin-right:20px;"}
+  -#  %caption IT-League Cup
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 29.10.2011
+  -#      %td ITQ1
+  -#      %td A-I
+  -#      %td -
+  -#      %td C-II
+  -#    %tr
+  -#      %td 29.10.2011
+  -#      %td ITQ2
+  -#      %td B-I
+  -#      %td -
+  -#      %td D-II
+  -#    %tr
+  -#      %td 29.10.2011
+  -#      %td ITQ3
+  -#      %td C-I
+  -#      %td -
+  -#      %td A-II
+  -#    %tr
+  -#      %td 29.10.2011
+  -#      %td ITQ4
+  -#      %td D-I
+  -#      %td -
+  -#      %td B-II
+  -#%table.fixtures
+  -#  %caption Beta Cup
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 29.10.2011
+  -#      %td BCQ1
+  -#      %td A-III
+  -#      %td -
+  -#      %td C-IV
+  -#    %tr
+  -#      %td 29.10.2011
+  -#      %td BCQ2
+  -#      %td B-III
+  -#      %td -
+  -#      %td D-IV
+  -#    %tr
+  -#      %td 29.10.2011
+  -#      %td BCQ3
+  -#      %td C-III
+  -#      %td -
+  -#      %td A-IV
+  -#    %tr
+  -#      %td 29.10.2011
+  -#      %td BCQ4
+  -#      %td D-III
+  -#      %td -
+  -#      %td B-IV
+  -#.clear
+  -#%h2 1/2 Финала
+  -#%table.fixtures{:style => "margin-right: 20px;"}
+  -#  %caption IT-League Cup
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 05.11.2011
+  -#      %td ITL1
+  -#      %td ITQ4W
+  -#      %td -
+  -#      %td ITQ3W
+  -#    %tr
+  -#      %td 05.11.2011
+  -#      %td ITL2
+  -#      %td ITQ2W
+  -#      %td -
+  -#      %td ITQ1W
+  -#    %tr
+  -#      %td 05.11.2011
+  -#      %td 8th — 5th
+  -#      %td ITQ4L
+  -#      %td -
+  -#      %td ITQ3L
+  -#    %tr
+  -#      %td 05.11.2011
+  -#      %td 8th — 5th
+  -#      %td ITQ2L
+  -#      %td -
+  -#      %td ITQ1L
+  -#%table.fixtures
+  -#  %caption Beta Cup
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th
+  -#      %th Хозяева
+  -#      %th         %th Гости
+  -#    %tr
+  -#      %td 05.11.2011
+  -#      %td BCS1
+  -#      %td BCQ4W
+  -#      %td -
+  -#      %td BCQ3W
+  -#    %tr
+  -#      %td 05.11.2011
+  -#      %td BCS2
+  -#      %td BCQ2W
+  -#      %td -
+  -#      %td BCQ1W
+  -#    %tr
+  -#      %td 05.11.2011
+  -#      %td 16th — 13th
+  -#      %td BCQ4L
+  -#      %td -
+  -#      %td BCQ3L
+  -#    %tr
+  -#      %td 05.11.2011
+  -#      %td 16th — 13th
+  -#      %td BCQ2L
+  -#      %td -
+  -#      %td BCQ1L
+  -#.clear
+  -#%h2 Финалы (день 1)
+  -#%table.fixtures
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th Матч
+  -#    %tr
+  -#      %td 12.11.2011
+  -#      %td Матч за 15е место
+  -#    %tr
+  -#      %td 12.11.2011
+  -#      %td Матч за 13е место
+  -#    %tr
+  -#      %td 12.11.2011
+  -#      %td Матч за 11е место
+  -#    %tr
+  -#      %td 12.11.2011
+  -#      %td Матч за 7е место
+  -#    %tr
+  -#      %td 12.11.2011
+  -#      %td Матч за 5е место
+  -#.clear
+  -#%h2 Финалы (день 2)
+  -#%table.fixtures
+  -#  %tbody
+  -#    %tr
+  -#      %th Дата
+  -#      %th Матч
+  -#    %tr
+  -#      %td 19.11.2011
+  -#      %td Финал Beta Cup
+  -#    %tr
+  -#      %td 12.11.2011
+  -#      %td Матч за 3е место
+  -#    %tr
+  -#      %td 12.11.2011
+  -#      %td Финал IT-League
+  -#.clear
