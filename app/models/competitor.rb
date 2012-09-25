@@ -8,6 +8,10 @@ class Competitor < ActiveRecord::Base
   has_many :football_players, :dependent => :destroy do
     def update_stats stats
       load_target unless loaded?
+
+      #delete all players' records
+      Stat.delete_all(['statable_id = ? AND statable_type = "FootballPlayer"', target.collect{|i| i.id}])
+
       stats = stats.clone
       target.each do |player|
         if stats[player.footballer_id.to_s]['number'].empty?

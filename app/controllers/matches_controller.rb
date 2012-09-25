@@ -11,10 +11,10 @@ class MatchesController < ApplicationController
   end
 
   def show
-    ap params
-    @match = Match.find(:first,
-                        :include => {:schedule => :step_tour},
-                        :conditions => {:id => params[:id]}
-                       )
+    #@match = Match.find(:first,
+    #                    :include => {:schedule => :step_tour},
+    #                    :conditions => {:id => params[:id]}
+    #                   )
+    @match = Match.where(:id => params[:id]).includes(:schedule => :step_tour).first
   end
 end
