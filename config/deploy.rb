@@ -22,7 +22,7 @@ server "178.79.139.151", :app, :web, :primary => true
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
-
+ 
 set :default_environment, {
   'PATH' => "/usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin:/home/denix/.rvm/bin:$PATH",
   'RUBY_VERSION' => '1.9.3',
