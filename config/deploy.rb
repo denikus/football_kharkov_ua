@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 set :application, "football_kharkov_ua"
-set :repository,  "git@git.assembla.com:football_kharkov_ua.git"
+set :repository,  "git@github.com:denikus/football_kharkov_ua.git"
 set :user, "denix"
 set :use_sudo, false
 set :scm, :git
