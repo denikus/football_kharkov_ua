@@ -61,9 +61,20 @@ class StepTour < Step
       
       def << table
         clone = table.clone
+        #ap clone
         clone.process
         if first
           clone.values.each_with_index do |record, position|
+            #puts "record"
+            #ap record
+            #puts "vals"
+            #ap first.values
+            #puts "position"
+            #ap position
+            #puts "index"
+            #first.values.index{|v| puts v}
+
+            #ap first.values
             record.position_change = first.values.index{ |v| v.team.id == record.team.id } - position
           end
         end
