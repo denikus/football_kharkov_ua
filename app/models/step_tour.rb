@@ -31,6 +31,7 @@ class StepTour < Step
           self[:results][other.team.id] = self[:results][other.team.id].split(':')
           return self[:results][other.team.id].reverse.inject(&:<=>) unless self[:results][other.team.id].inject(&:==)
         end
+
         wins = [other, self].collect{ |e| e.games[0] }
         return wins.inject(&:<=>) unless wins.inject(&:==)
         diff = [other, self].collect{ |e| e.goals.inject(&:-) }
@@ -61,20 +62,20 @@ class StepTour < Step
       
       def << table
         clone = table.clone
-        #ap clone
         clone.process
-        if first
-          clone.values.each_with_index do |record, position|
-            #puts "record"
-            #ap record
-            #puts "vals"
-            #ap first.values
-            #puts "position"
-            #ap position
-            #puts "index"
-            #first.values.index{|v| puts v}
 
-            #ap first.values
+        if first
+          diff_teams = clone.values.collect{|i| i[0]} - first.values.collect{|i| i[0]}
+
+          unless diff_teams.empty?
+            clone.values.each do |val|
+              if diff_teams.collect{|i| i[:id]}.include?(val[0][:id])
+                first.values << val
+              end
+            end
+          end
+
+          clone.values.each_with_index do |record, position|
             record.position_change = first.values.index{ |v| v.team.id == record.team.id } - position
           end
         end
@@ -107,6 +108,8 @@ class StepTour < Step
     def process
       return if @processed
       @values = @records.values.sort
+      #puts '@values'
+      #ap @values
       @processed = true
     end
     
