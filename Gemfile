@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -60,7 +60,7 @@ group :production do
   gem 'whenever', :require => false
   #need this for js compiling
   gem 'execjs'
-  gem 'therubyracer'
+  gem 'therubyracer', '0.11.2'
 
 end
 
