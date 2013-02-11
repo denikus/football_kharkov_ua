@@ -24,10 +24,10 @@ server "178.79.139.151", :app, :web, :primary => true
 # these http://github.com/rails/irs_process_scripts
 
 set :default_environment, {
-  'PATH' => "/usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin:/home/denix/.rvm/bin:$PATH",
+  'PATH' => "/usr/local/rvm/gems/ruby-1.9.3-p327@rails3.2/bin:/home/denix/.rvm/bin:$PATH",
   'RUBY_VERSION' => '1.9.3',
-  'GEM_HOME' => '/usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2',
-  'GEM_PATH' => '/usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2:/usr/local/rvm/gems/ruby-1.9.3-p125@global'
+  'GEM_HOME' => '/usr/local/rvm/gems/ruby-1.9.3-p327@rails3.2',
+  'GEM_PATH' => '/usr/local/rvm/gems/ruby-1.9.3-p327@rails3.2:/usr/local/rvm/gems/ruby-1.9.3-p327@rails3.2'
 }
 
 
