@@ -27,6 +27,21 @@ class ProfileController < ApplicationController
     
   end
 
+  def upload_photo
+    current_user.profile.attributes = params[:profile]
+    current_user.profile.save!
+
+    redirect_to :action => :edit_photo
+  end
+
+  def make_crop
+    current_user.profile.attributes = params[:profile]
+    current_user.profile.save!
+
+    redirect_to :action => :edit_photo
+  end
+
+
   def update_photo
     
   end

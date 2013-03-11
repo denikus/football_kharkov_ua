@@ -22,7 +22,7 @@ class Profile < ActiveRecord::Base
 
   def avatar_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
+    @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style)) unless photo.to_file(style).blank?
   end
 
   def crop_image

@@ -60,7 +60,7 @@ group :production do
   gem 'whenever', :require => false
   #need this for js compiling
   gem 'execjs'
-  gem 'therubyracer', '0.11.2'
+  gem 'therubyracer', '0.11.0beta8'
 
 end
 

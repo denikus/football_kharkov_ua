@@ -28,9 +28,9 @@
   :javascript
     $(function() {
       var options = {
-        original_width: "#{@profile.avatar_geometry(:original).width}",
-        large_width:    "#{@profile.avatar_geometry(:large).width}",
-        large_height:   "#{@profile.avatar_geometry(:large).height}",
+        original_width: "#{@profile.avatar_geometry(:original).width unless @profile.avatar_geometry(:original).nil?}",
+        large_width:    "#{@profile.avatar_geometry(:large).width unless @profile.avatar_geometry(:large).nil?}",
+        large_height:   "#{@profile.avatar_geometry(:large).height unless @profile.avatar_geometry(:large).nil?}",
         x_left:         "#{@profile.crop_x_left || 0}",
         y_top:          "#{@profile.crop_y_top || 0}",
         x_right:        "#{@profile.crop_x_left.nil? ? "200" : (@profile.crop_x_left + @profile.crop_width)}",
