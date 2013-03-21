@@ -67,7 +67,7 @@ class PostController < ApplicationController
       return
     end
 
-    #@page_title = @post.title
+    @page_title = @post.title
     #
     #if !@post.tournament.nil? && request.subdomain.nil?
     #  redirect_params = {:subdomain => @post.tournament.url }
