@@ -33,7 +33,7 @@ class BombardiersController < ApplicationController
                                                               "ON (statistic.statable_id=football_players.id) ").
                               where(["footballers.id >0 AND leagues.id IN (#{@leagues.collect!{|x| x.id}.join(',')})"]).
                               group("competitors.team_id, footballers.id ").
-                              paginate(:per_page => 50,:page => 1).
+                              #paginate(:per_page => 50,:page => 1).
                               order("statable_sum DESC, footballers.last_name ASC")
 
     bombardiers_grouped = {}

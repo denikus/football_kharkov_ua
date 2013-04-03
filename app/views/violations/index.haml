@@ -1,0 +1,11 @@
+%h1= "Нарушения"
+- @violations_by_tour.each_pair do |tour_name, set|
+  %h3= tour_name
+  %ul{:style => "list-style-type: none;"}
+    - set.each do |item|
+      %li
+        -if item.stats_name=='yellow_card'
+          = image_tag("icons/yellow_card.png")
+        -elsif item.stats_name=='red_card'
+          = image_tag("icons/red_card.png")
+        = "#{item.first_name} #{item.last_name} (#{item.name})"
