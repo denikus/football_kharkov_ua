@@ -12,7 +12,7 @@ class OauthProviderController < ApplicationController
     if @user_json["uid"].nil?
       flash[:error] = 'Ошибка авторизации попробуйте еще раз!'
     else
-      user_request = UserConnectFootballerRequest.new({:provider_uid => @user_json["uid"], :provider => @user_json["provider"], :provider_data => Marshal.dump(@user_json["user_info"]), :user_id => current_user.id, :footballer_id => cookies[:request_footballer_id]})
+      user_request = UserConnectFootballerRequest.new({:provider_uid => @user_json["uid"], :provider => @user_json["provider"], :provider_data => Marshal.dump(@user_json), :user_id => current_user.id, :footballer_id => cookies[:request_footballer_id]})
       if user_request.valid?
         user_request.save
         flash[:notice] = 'Ваш запрос успешно создан и будет обработан в течение суток!'
