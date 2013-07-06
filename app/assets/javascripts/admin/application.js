@@ -30,6 +30,7 @@
 //= require 'admin/ux/tournament/schedules_panel.js'
 //= require 'admin/ux/personnel/personnel_panel.js'
 //= require 'admin/ux/personnel/team_footballers_panel.js'
+//= require admin/temp.js
 
 
 

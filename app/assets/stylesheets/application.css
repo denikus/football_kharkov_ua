@@ -6,8 +6,12 @@
 /*
 /*
 *= require_self
-*= require "styles"
-*= require "scores"
-*= require "button"
-*= require "top_menu"
+*= require user
+*= require styles
+*= require scores
+*= require button
+*= require top_menu
+*= require itleague_draw.css
+*= require jquery-plugins/jquery.jcrop.css
+*= require javascripts/jquery-plugins/jquery-ui-1.8.4.custom/css/redmond/jquery-ui-1.8.4.custom.css
 */

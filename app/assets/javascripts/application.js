@@ -1,8 +1,18 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
+//= require application/schedule/schedule.js
+//= require jquery-plugins/jquery_form/jquery.form.js
+//= require application/comment/comment.js
+//= require ckeditor/init.js
+//= require jquery-plugins/fancybox/jquery.fancybox-1.3.4.pack.js
+//= require jquery-plugins/fancybox/jquery.easing-1.3.pack.js
+//= require jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js
+//= require application/itleague_draw.js
+//= require application/profile/profile.js
+//= require jquery-plugins/jquery.jcrop.min.js
+//= require extensions.js
 //= require jquery-plugins/jquery.tools.min
 //= require jquery-plugins/jquery.scrollTo-min
-
 
 $(document).ajaxSend(function(e, xhr, options) {
   var token = $("meta[name='csrf-token']").attr("content");
@@ -10,22 +20,10 @@ $(document).ajaxSend(function(e, xhr, options) {
 });
 
 
-
 if (!FHU) var FHU = {};
 
 $(function() {
   //error block effects
-//  $("#main-error-block,#main-notice-block,#main-success-block").fadeOut("fast").fadeIn("fast").fadeOut("fast").fadeIn("fast").fadeOut(5000);
-
-
-/*  $(".sidebar-shop-content-wrap").jCarouselLite({
-        btnNext: ".next",
-        btnPrev: ".prev",
-        visible: 1,
-        auto: 10000,
-        speed: 1000,
-        start: Math.floor(Math.random()*10+1)
-  });*/
 
   new FHU.topNav();
   new FHU.comments();
