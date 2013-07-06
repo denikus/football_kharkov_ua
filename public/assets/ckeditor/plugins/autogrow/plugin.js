@@ -1,5 +1,0 @@
-/*
-Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.html or http://ckeditor.com/license
-*/
-(function(){var a=function(a){var b=a.document,c=a.window.getViewPaneSize().height,d;CKEDITOR.env.ie||CKEDITOR.env.gecko?d=b.getBody().$.scrollHeight+(CKEDITOR.env.ie&&CKEDITOR.env.quirks?0:24):d=b.getDocumentElement().$.offsetHeight;var e=a.config.autoGrow_minHeight,f=a.config.autoGrow_maxHeight;e==undefined&&(a.config.autoGrow_minHeight=e=200),e&&(d=Math.max(d,e)),f&&(d=Math.min(d,f)),d!=c&&(d=a.fire("autoGrow",{currentHeight:c,newHeight:d}).newHeight,a.resize(a.container.getStyle("width"),d,!0))};CKEDITOR.plugins.add("autogrow",{init:function(b){for(var c in{contentDom:1,key:1,selectionChange:1,insertElement:1})b.on(c,function(c){var d=b.getCommand("maximize");c.editor.mode=="wysiwyg"&&(!d||d.state!=CKEDITOR.TRISTATE_ON)&&setTimeout(function(){a(c.editor)},100)})}})})()
