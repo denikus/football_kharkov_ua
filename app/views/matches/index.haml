@@ -1,5 +1,5 @@
 - content_for :head_declarations do
-  = javascript_include_tag "application/schedule/schedule"
+  -#= javascript_include_tag "application/schedule/schedule"
 %h2= @season.name
 - @season.stages.find(:all, :order => "identifier DESC").each do |stage|
   - stage.tours.find(:all, :order => "identifier DESC").each do |tour|

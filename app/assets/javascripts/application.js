@@ -7,7 +7,6 @@
 //= require jquery-plugins/fancybox/jquery.fancybox-1.3.4.pack.js
 //= require jquery-plugins/fancybox/jquery.easing-1.3.pack.js
 //= require jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js
-//= require application/itleague_draw.js
 //= require application/profile/profile.js
 //= require jquery-plugins/jquery.jcrop.min.js
 //= require extensions.js
