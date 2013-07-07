@@ -31,13 +31,13 @@ class TeamsController < ApplicationController
   end
 
   def show
-    unless request.subdomain.nil?
+    unless request.subdomain.blank?
       @team = Team.find_by_url(params[:id])
-      if @team.nil? 
+      if @team.nil?
         render "#{Rails.root}/public/404.html", :status => 404, :layout => false
         return
       end
-      
+
       @tournament = Tournament.find_by_url(request.subdomain)
       @season = StepSeason.find(:last,
                                  :joins => "INNER JOIN `steps_teams` ON (steps.id = steps_teams.step_id) ",
@@ -47,8 +47,11 @@ class TeamsController < ApplicationController
 #      @team.seasons.by_tournament(@tournament.id)
       unless @season.nil?
         @footballers = Footballer.by_team_step({:team_id => @team.id, :step_id => @season.id} )
-      end  
+      end
       @schedules = Schedule.future_team_matches(@team.id)
+    else
+      render "#{Rails.root}/public/404.html", :status => 404, :layout => false
+      return
     end
   end
 end
