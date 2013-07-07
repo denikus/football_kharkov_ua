@@ -63,7 +63,7 @@ namespace :deploy do
   end
 
   task :update_shared_symlinks do
-    run "mkdir #{File.join(release_path)}/public/assets"
+    #run "mkdir #{File.join(release_path)}/public/assets"
     %w(config/database.yml public/ckeditor_assets public/footballers public/assets/sources_manifest.yml public/assets/manifest.yml).each do |path|
       run "rm -rf #{File.join(release_path, path)}"
       run "ln -s #{File.join(deploy_to, "shared", path)} #{File.join(release_path, path)}"
@@ -73,9 +73,9 @@ namespace :deploy do
   task :compile_assets do
     #run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
     #copy source manifest file here
-    path = 'public/assets/sources_manifest.yml'
-    run "mkdir #{File.join(release_path)}/public/assets"
-    run "ln -s #{File.join(deploy_to, "shared", path)} #{File.join(release_path, path)}"
+    #path = 'public/assets/sources_manifest.yml'
+    #run "mkdir #{File.join(release_path)}/public/assets"
+    #run "ln -s #{File.join(deploy_to, "shared", path)} #{File.join(release_path, path)}"
 
     run "cd #{release_path} && RAILS_ENV=production bundle exec /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
     #
