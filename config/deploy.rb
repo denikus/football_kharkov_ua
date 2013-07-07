@@ -63,7 +63,7 @@ namespace :deploy do
   end
 
   task :update_shared_symlinks do
-    #run "mkdir #{File.join(release_path)}/public/assets"
+    run "mkdir #{File.join(release_path)}/public/assets"
     %w(config/database.yml public/ckeditor_assets public/footballers public/assets/sources_manifest.yml public/assets/manifest.yml).each do |path|
       run "rm -rf #{File.join(release_path, path)}"
       run "ln -s #{File.join(deploy_to, "shared", path)} #{File.join(release_path, path)}"
