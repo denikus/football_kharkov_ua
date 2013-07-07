@@ -73,6 +73,7 @@ namespace :deploy do
     #run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
     #copy source manifest file here
     path = 'public/assets/sources_manifest.yml'
+    run "mkdir #{File.join(release_path)}/public/assets"
     run "ln -s #{File.join(deploy_to, "shared", path)} #{File.join(release_path, path)}"
 
     run "cd #{release_path} && RAILS_ENV=production bundle exec /usr/local/rvm/gems/ruby-1.9.3-p125@rails3.2/bin/rake assets:precompile"
