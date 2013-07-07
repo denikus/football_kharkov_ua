@@ -63,7 +63,7 @@ namespace :deploy do
   end
 
   task :update_shared_symlinks do
-    %w(config/database.yml public/ckeditor_assets public/footballers public/assets/sources_manifest.yml).each do |path|
+    %w(config/database.yml public/ckeditor_assets public/footballers).each do |path|
       run "rm -rf #{File.join(release_path, path)}"
       run "ln -s #{File.join(deploy_to, "shared", path)} #{File.join(release_path, path)}"
     end
