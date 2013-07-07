@@ -317,7 +317,7 @@ DEPENDENCIES
   capistrano
   capybara
   cells
-  ckeditor (= 3.7.0.rc3)
+  ckeditor
   coffee-rails (~> 3.2.1)
   compass
   debugger

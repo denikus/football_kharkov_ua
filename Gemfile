@@ -14,7 +14,7 @@ gem 'cells'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
 gem "paperclip", "~> 2.7"
-gem 'ckeditor', "3.7.0.rc3"
+gem 'ckeditor'
 gem 'sanitize'
 gem 'ruby_parser'
 gem 'awesome_print'
