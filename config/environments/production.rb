@@ -77,7 +77,7 @@ FootballKharkov::Application.configure do
     :port                 => 587,
 #    :domain               => 'football.kharkov.ua',
     :user_name            => 'football.kharkov.ua@gmail.com',
-    :password             => '7SieoNCoNEkQ',
+    :password             => 'lkQ4I9EZ81wA01K',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 
