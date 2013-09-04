@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205121356) do
+ActiveRecord::Schema.define(:version => 20130828062750) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(:version => 20120205121356) do
     t.datetime "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "applications", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "owner_id"
+    t.integer  "season_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "article_images", :force => true do |t|
@@ -72,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20120205121356) do
 
   create_table "competitors", :force => true do |t|
     t.integer "match_id",                                   :null => false
-    t.string  "side",     :limit => 0, :default => "hosts", :null => false
+    t.string  "side",     :limit => 6, :default => "hosts", :null => false
     t.integer "team_id",                                    :null => false
     t.integer "score",    :limit => 2, :default => 0,       :null => false
     t.integer "fouls",    :limit => 2, :default => 0,       :null => false
@@ -95,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20120205121356) do
   create_table "football_player_appointments", :force => true do |t|
     t.integer "competitor_id"
     t.integer "footballer_id"
-    t.string  "response",      :limit => 0, :default => "not_responded", :null => false
+    t.string  "response",      :limit => 13, :default => "not_responded", :null => false
   end
 
   create_table "football_players", :force => true do |t|
@@ -155,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20120205121356) do
 
   create_table "match_links", :force => true do |t|
     t.integer "match_id"
-    t.string  "link_type", :limit => 0, :default => "other"
+    t.string  "link_type", :limit => 6, :default => "other"
     t.string  "link_href"
     t.string  "link_text"
   end
@@ -212,7 +220,7 @@ ActiveRecord::Schema.define(:version => 20120205121356) do
     t.integer  "author_id"
     t.integer  "resource_id"
     t.string   "resource_type"
-    t.string   "status",        :limit => 0, :default => "published"
+    t.string   "status",        :limit => 9, :default => "published"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
@@ -233,9 +241,9 @@ ActiveRecord::Schema.define(:version => 20120205121356) do
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
-    t.string   "gender",              :limit => 0, :default => "unknown"
-    t.string   "user_type",           :limit => 0, :default => "fan"
-    t.string   "role",                :limit => 0, :default => "unknown"
+    t.string   "gender",              :limit => 7,  :default => "unknown"
+    t.string   "user_type",           :limit => 10, :default => "fan"
+    t.string   "role",                :limit => 10, :default => "unknown"
     t.string   "first_name"
     t.string   "last_name"
     t.date     "birthday"

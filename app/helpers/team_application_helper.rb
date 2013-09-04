@@ -1,0 +1,2 @@
+module TeamApplicationHelper
+end
