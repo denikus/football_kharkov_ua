@@ -27,6 +27,9 @@ gem 'omniauth-facebook'
 gem 'yajl-ruby'
 gem 'awesome_nested_set'
 
+# for easy config files
+gem 'figaro'
+
 #maybe we don't need this
 gem 'dynamic_form'
 
@@ -48,7 +51,7 @@ group :production do
   gem 'whenever', :require => false
   #need this for js compiling
   gem 'execjs'
-  gem 'therubyracer', '0.11.0beta8'
+  gem 'therubyracer'
 
 end
 
@@ -67,7 +70,7 @@ group :development, :test do
   gem 'rspec-rails', :branch => 'rails3'
   gem "guard-rspec"
   gem "guard-spork"
-  gem 'debugger'
+  #gem 'debugger'
   gem 'jazz_hands'
 end
 

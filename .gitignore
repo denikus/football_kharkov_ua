@@ -26,3 +26,6 @@ public/ckeditor_assets/
 public/footballers/
 public/user_connect_footballer_requests/
 .sass-cache/
+
+# Ignore application configuration
+/config/application.yml

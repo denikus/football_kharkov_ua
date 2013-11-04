@@ -66,34 +66,46 @@ FootballKharkov::Application.configure do
   # config.assets.manifest = YOUR_PATH
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  #config.assets.precompile += %w( application/schedule/schedule.js jquery-plugins/jquery_form/jquery.form.js application/comment/comment.js ckeditor/init.js jquery-plugins/fancybox/jquery.fancybox-1.3.4.pack.js jquery-plugins/fancybox/jquery.easing-1.3.pack.js user.css styles.css jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js application/itleague_draw.js /javascripts/jquery-plugins/jquery-ui-1.8.4.custom/css/redmond/jquery-ui-1.8.4.custom.css itleague_draw.css jquery-plugins/jquery.jcrop.css application/profile/profile.js jquery-plugins/jquery.jcrop.min.js admin/application.css admin/temp.js /javascripts/jquery-plugins/jquery-ui-1.8.4.custom/css/redmond/jquery-ui-1.8.4.custom.css admin.css extensions.js)
   config.assets.precompile += %w( admin/application.css admin/admin.css user.css itleague_draw.js itleague_draw.css admin/temp.js jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js extensions.js)
   config.assets.precompile += %w( /vendor/assets/images/default/**/*.gif)
 
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-#    :domain               => 'football.kharkov.ua',
-    :user_name            => 'football.kharkov.ua@gmail.com',
-    :password             => 'lkQ4I9EZ81wA01K',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+  #config.action_mailer.smtp_settings = {
+  #  :address              => "smtp.gmail.com",
+  #  :port                 => 587,
+  #  :user_name            => 'football.kharkov.ua@gmail.com',
+  #  :password             => 'lkQ4I9EZ81wA01K',
+  #  :authentication       => 'plain',
+  #  :enable_starttls_auto => true
+  #}
+ config.action_mailer.smtp_settings = {
+    :address              => ENV["SMTP_ADDRESS"],
+    :port                 => ENV["SMTP_PORT"],
+    :user_name            => ENV["SMTP_USERNAME"],
+    :password             => ENV["SMTP_PASSWORD"],
+    :authentication       => ENV["SMTP_AUTHENTICATION"],
+    :enable_starttls_auto => ENV["SMTP_ENABLE_STARTTLS_AUTO"]
+  }
 
+
+  #config.middleware.use ExceptionNotifier,
+  #  :email_prefix => "[fhu_error]",
+  #  :sender_address => %{"notifier" <info@football.kharkov.ua>},
+  #  :exception_recipients => %w{denis.soloshenko@gmail.com}
 
   config.middleware.use ExceptionNotifier,
-    :email_prefix => "[fhu_error]",
-    :sender_address => %{"notifier" <info@football.kharkov.ua>},
-    :exception_recipients => %w{denis.soloshenko@gmail.com}
+    :email_prefix => ENV["EXCEPTION_NOTIFIER_EMAIL_PREFIX"],
+    :sender_address => ENV["EXCEPTION_NOTIFIER_SENDER_ADDRESS"],
+    :exception_recipients => ENV["EXCEPTION_NOTIFIER_RECIPIENTS"]
 
   config.action_dispatch.tld_length = 2
 
   BITLY = {
-    :username => 'footballkharkov',
-    :api_key => 'R_284aa8534d40494118bf2dadca17695a'
+    :username => ENV["BITLY_USERNAME"],
+    :api_key => ENV["BITLY_API_KEY"]
   }.freeze
 
-
+  # TODO: Refactor this dirty hack
   MEGA_USER = [1, 107, 74, 87]
 end

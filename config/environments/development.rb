@@ -45,10 +45,10 @@ FootballKharkov::Application.configure do
   #config.consider_all_requests_local
 
   BITLY = {
-    :username => 'footballkharkov',
-    :api_key => 'R_284aa8534d40494118bf2dadca17695a'
+    :username => ENV["BITLY_USERNAME"],
+    :api_key => ENV["BITLY_API_KEY"]
   }.freeze
-
+s
   MEGA_USER = [1]
 end
 
