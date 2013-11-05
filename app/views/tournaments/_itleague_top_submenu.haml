@@ -6,7 +6,6 @@
     .clear
   = link_to "Команды", teams_path, :id => "top-submenu-teams"
   = link_to "Расписание", schedules_path, :id => "top-submenu-schedules"
-  = link_to "Турнирная сетка", page_url(:id=>"fixtures", :subdomain => request.subdomain), :id => "top-submenu-fixtures"
   = link_to "Таблицы", tables_path, :id => "top-submenu-tables"
   = link_to "Матчи", season_matches_path(:season_id => Tournament.find_by_url(request.subdomain).step_seasons.find(:last, :order => "identifier ASC").url), :id => "top-submenu-matches"
   = link_to "Бомбардиры", bombardiers_path, :id => "top-submenu-bombardiers"
