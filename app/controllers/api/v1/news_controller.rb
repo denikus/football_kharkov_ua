@@ -5,9 +5,8 @@ class Api::V1::NewsController < ApplicationController
     params[:page] ||= 1
     params[:per_page] ||= 10
 
-    #@posts = Post.tournament(request.subdomain).paginate(:page => params[:page], :per_page => 10, :order => 'created_at DESC')
-    total_posts = @tournament.posts.count
-    @posts = @tournament.posts.paginate(page: params[:page], per_page: 10).order('created_at DESC').collect{|item|
+    posts_count = @tournament.posts.count
+    @posts = @tournament.posts.paginate(page: params[:page], per_page: params[:per_page]).order('created_at DESC').collect{|item|
             {
               id: item.id,
               created_at: item.created_at,
@@ -19,7 +18,7 @@ class Api::V1::NewsController < ApplicationController
     }
 
     respond_to do |format|
-      format.json{ render json: {total_news: total_posts, news: @posts} }
+      format.json{ render json: {total_news: posts_count, news: @posts} }
     end
   end
 
