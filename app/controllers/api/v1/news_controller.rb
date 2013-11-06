@@ -18,7 +18,7 @@ class Api::V1::NewsController < ApplicationController
     }
 
     respond_to do |format|
-      format.json{ render json: {total_news: posts_count, news: @posts} }
+      format.json{ render json: {news_count: posts_count, news: @posts} }
     end
   end
 
