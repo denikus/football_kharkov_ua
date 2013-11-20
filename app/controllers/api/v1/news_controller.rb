@@ -22,6 +22,25 @@ class Api::V1::NewsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+
+    response = {
+        id: @post.id,
+        created_at: @post.created_at,
+        updated_at: @post.updated_at,
+        title: @post.title,
+        body: ActiveSupport::Base64.encode64(@post.resource.body),
+        author: @post.user.username,
+        comments_count: @post.comments.count
+    }
+
+
+    respond_to do |format|
+      format.json{ render json: response }
+    end
+  end
+
   #def show
   #  ap @post = Post.find(params[:id])
   #  #rescue ActiveRecord::RecordNotFound
