@@ -71,7 +71,7 @@ FootballKharkov::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
   config.action_mailer.delivery_method = :smtp
- config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :address              => ENV["SMTP_ADDRESS"],
     :port                 => ENV["SMTP_PORT"],
     :user_name            => ENV["SMTP_USERNAME"],
@@ -79,12 +79,6 @@ FootballKharkov::Application.configure do
     :authentication       => ENV["SMTP_AUTHENTICATION"],
     :enable_starttls_auto => ENV["SMTP_ENABLE_STARTTLS_AUTO"]
   }
-
-
-  #config.middleware.use ExceptionNotifier,
-  #  :email_prefix => "[fhu_error]",
-  #  :sender_address => %{"notifier" <info@football.kharkov.ua>},
-  #  :exception_recipients => %w{denis.soloshenko@gmail.com}
 
   config.middleware.use ExceptionNotifier,
     :email_prefix => ENV["EXCEPTION_NOTIFIER_EMAIL_PREFIX"],
