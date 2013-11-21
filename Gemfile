@@ -63,7 +63,7 @@ group :test do
   gem "capybara"
   gem "guard-rspec"
   gem 'spork', '~>0.9.0.rc9'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~>4.0'
 end
 
 group :development, :test do

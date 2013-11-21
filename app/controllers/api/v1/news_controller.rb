@@ -35,10 +35,10 @@ class Api::V1::NewsController < ApplicationController
         comments_count: @post.comments.count
     }
 
-
     respond_to do |format|
       format.json{ render json: response }
     end
+
   end
 
   #def show
