@@ -59,7 +59,6 @@ describe Api::V1::NewsController, :type => :api do
 
     response.content_type.should == 'application/json'
     response.status.should == 200
-
   end
 
   it "get the news by incorrect id" do
@@ -75,8 +74,6 @@ describe Api::V1::NewsController, :type => :api do
 
     response.content_type.should == 'application/json'
     response.status.should == 404
-
   end
-
 
 end
