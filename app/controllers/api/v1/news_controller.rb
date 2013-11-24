@@ -29,7 +29,7 @@ class Api::V1::NewsController < Api::V1::BaseController
     @post = Post.find_by_id(params[:id])
 
     # return error if news not found
-    error!("New not found", 404) and return if @post.blank?
+    error!("Record not found", 404) and return if @post.blank?
 
 
     response = {
