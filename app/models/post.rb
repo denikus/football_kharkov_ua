@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 class Post < ActiveRecord::Base
-  #acts_as_taggable
-  
   belongs_to :resource, :polymorphic => true
   belongs_to :user, :foreign_key => :author_id
   belongs_to :tournament
@@ -37,12 +35,14 @@ class Post < ActiveRecord::Base
   end
 
   def generate_short_link
-    Bitly.use_api_version_3
-    bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
-    unless self.resource.class.name=='Status'
-      self.short_url = bitly.shorten("http://football.kharkov.ua/#{self.created_at.strftime('%Y')}/#{self.created_at.strftime('%m')}/#{self.created_at.strftime('%d')}/#{self.url}").short_url
-    else
-      self.short_url = bitly.shorten("http://football.kharkov.ua/statuses/#{self.resource.id}").short_url
+    unless Rails.env == 'test'
+      Bitly.use_api_version_3
+      bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
+      unless self.resource.class.name=='Status'
+        self.short_url = bitly.shorten("http://football.kharkov.ua/#{self.created_at.strftime('%Y')}/#{self.created_at.strftime('%m')}/#{self.created_at.strftime('%d')}/#{self.url}").short_url
+      else
+        self.short_url = bitly.shorten("http://football.kharkov.ua/statuses/#{self.resource.id}").short_url
+      end
     end
     self.save!
   end

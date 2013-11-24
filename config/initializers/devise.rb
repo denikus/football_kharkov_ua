@@ -68,6 +68,8 @@ Devise.setup do |config|
 
   config.reconfirmable = true
 
+  config.stretches = Rails.env.test? ? 1 : 10
+
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
   # he will be able to access your application without confirming. Default is nil.

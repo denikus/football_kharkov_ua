@@ -12,8 +12,9 @@ before_filter :check_permissions, :except => [:show, :new, :create, :upload_imag
 
   def create
     @article = Article.new(params[:article])
-    @post = Post.new({:author_id=>current_user[:id], :title => params[:post][:title],
-                       :status => params[:post][:status],
+    @post = Post.new({:author_id=>current_user[:id],
+                      :title => params[:post][:title],
+                      :status => params[:post][:status],
                       :hide_comments => params[:post][:hide_comments],
                       :tournament_id => params[:post][:tournament_id]
                      })

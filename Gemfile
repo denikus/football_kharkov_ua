@@ -52,7 +52,6 @@ group :production do
   #need this for js compiling
   gem 'execjs'
   gem 'therubyracer'
-
 end
 
 group :development do
@@ -70,6 +69,7 @@ group :development, :test do
   gem 'rspec-rails', :branch => 'rails3'
   gem "guard-rspec"
   gem "guard-spork"
+  gem 'database_cleaner'
   #gem 'debugger'
   gem 'jazz_hands'
 end

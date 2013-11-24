@@ -1,9 +1,12 @@
-class Api::V1::NewsController < ApplicationController
+class Api::V1::NewsController < Api::V1::BaseController
   before_filter :find_tournament
 
   def index
     params[:page] ||= 1
     params[:per_page] ||= 10
+
+    # return error if params non integer or < 0
+    error!("Incorrect params", 403) and return if (params[:page].to_i < 1 || params[:per_page].to_i < 1)
 
     posts_count = @tournament.posts.count
     @posts = @tournament.posts.paginate(page: params[:page], per_page: params[:per_page]).order('created_at DESC').collect{|item|
@@ -23,13 +26,18 @@ class Api::V1::NewsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by_id(params[:id])
+
+    # return error if news not found
+    error!("New not found", 404) and return if @post.blank?
+
 
     response = {
         id: @post.id,
         created_at: @post.created_at,
         updated_at: @post.updated_at,
         title: @post.title,
+        #subtitle:
         body: ActiveSupport::Base64.encode64(@post.resource.body),
         author: @post.user.username,
         comments_count: @post.comments.count
