@@ -1,4 +1,4 @@
-guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :bundler => false do
+guard 'spork', :cucumber => false, :rspec_env => { 'RAILS_ENV' => 'test' }, :test_unit => false do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.+\.rb$})
