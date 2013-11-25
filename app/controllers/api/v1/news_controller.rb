@@ -1,5 +1,6 @@
 class Api::V1::NewsController < Api::V1::BaseController
   include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::SanitizeHelper
 
   before_filter :find_tournament
 
@@ -17,7 +18,7 @@ class Api::V1::NewsController < Api::V1::BaseController
               created_at: item.created_at,
               updated_at: item.updated_at,
               title: item.title,
-              subtitle: truncate(item.resource.body, length: 1000, separator: '<div style="page-break-after: always;">'),
+              subtitle: strip_tags(truncate(item.resource.body, length: 1000, separator: '<div style="page-break-after: always;">')),
               author: item.user.username,
               comments_count: item.comments.count
             }
@@ -39,7 +40,7 @@ class Api::V1::NewsController < Api::V1::BaseController
         created_at: @post.created_at,
         updated_at: @post.updated_at,
         title: @post.title,
-        subtitle: truncate(@post.resource.body, length: 1000, separator: '<div style="page-break-after: always;">'),
+        subtitle: strip_tags(truncate(@post.resource.body, length: 1000, separator: '<div style="page-break-after: always;">')),
         body: ActiveSupport::Base64.encode64(@post.resource.body),
         author: @post.user.username,
         comments_count: @post.comments.count
