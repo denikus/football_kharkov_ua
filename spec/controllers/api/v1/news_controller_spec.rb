@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::NewsController, :type => :api do
+describe Api::V1::NewsController do
 
   it "get news list without any params" do
     # create user and news for him
