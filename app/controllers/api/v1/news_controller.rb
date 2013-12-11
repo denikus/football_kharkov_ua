@@ -74,12 +74,4 @@ class Api::V1::NewsController < Api::V1::BaseController
   #  end
   #end
 
-  private
-
-  def find_tournament
-    @tournament = Tournament.find_by_url(params[:tournament_id])
-    rescue ActiveRecord::RecordNotFound
-      error = { :error => "The tournament you were looking for could not be found."}
-      respond_with(error, :status => 404)
-  end
 end

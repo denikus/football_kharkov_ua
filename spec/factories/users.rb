@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :user, aliases: [:author] do
-    username "denis"
-    email { "#{username}@example.com".downcase }
+    username Faker::Name.name
+    email Faker::Internet.email
+    #email { "#{username}@example.com".downcase }
     password { "#{username}123"}
   end
 
