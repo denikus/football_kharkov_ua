@@ -13,7 +13,7 @@ gem 'russian'
 gem 'cells'
 gem 'mime-types', :require => 'mime/types'
 gem 'bitly'
-gem "paperclip", "~> 2.7"
+gem 'paperclip', '~> 2.7'
 gem 'ckeditor'
 gem 'sanitize'
 gem 'ruby_parser'
@@ -40,8 +40,8 @@ gem 'turbo-sprockets-rails3', '~>0.3.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', " ~> 3.2.3"
-  gem 'coffee-rails', " ~> 3.2.1"
+  gem 'sass-rails', ' ~> 3.2.3'
+  gem 'coffee-rails', ' ~> 3.2.1'
   gem 'uglifier', '>=1.0.3'
 end
 
@@ -59,18 +59,18 @@ group :development do
 end
 
 group :test do
-  gem "capybara"
-  gem "guard-rspec"
+  gem 'capybara'
+  gem 'guard-rspec'
   gem 'spork', '~>0.9.0.rc9'
   gem 'factory_girl_rails', '~>4.0'
+  gem 'faker'
 end
 
 group :development, :test do
   gem 'rspec-rails', :branch => 'rails3'
-  gem "guard-rspec"
-  gem "guard-spork"
+  gem 'guard-rspec'
+  gem 'guard-spork'
   gem 'database_cleaner'
-  #gem 'debugger'
   gem 'jazz_hands'
 end
 

@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Api::V1::NewsController, :type => :api do
+describe Api::V1::NewsController do
+
+  let(:user) {FactoryGirl.build(:confirmed_user)}
+  let(:post) {FactoryGirl.build(:post)}
 
   it "get news list without any params" do
-    # create user and news for him
-    user = FactoryGirl.build(:confirmed_user)
-    post = FactoryGirl.build(:post)
     post.resource = FactoryGirl.build(:article)
     post.save
 
@@ -27,9 +27,6 @@ describe Api::V1::NewsController, :type => :api do
   end
 
   it "get news list with noninteger params should return 403 error status" do
-    # create user and news for him
-    user = FactoryGirl.build(:confirmed_user)
-    post = FactoryGirl.build(:post)
     post.resource = FactoryGirl.build(:article)
     post.save
 
@@ -47,9 +44,6 @@ describe Api::V1::NewsController, :type => :api do
   end
 
   it "get the news by real id" do
-    # create user and news for him
-    user = FactoryGirl.build(:confirmed_user)
-    post = FactoryGirl.build(:post)
     post.resource = FactoryGirl.build(:article)
     post.save
 
@@ -62,9 +56,6 @@ describe Api::V1::NewsController, :type => :api do
   end
 
   it "get the news by incorrect id" do
-    # create user and news for him
-    user = FactoryGirl.build(:confirmed_user)
-    post = FactoryGirl.build(:post)
     post.resource = FactoryGirl.build(:article)
     post.save
 
