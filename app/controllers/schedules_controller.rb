@@ -3,9 +3,9 @@ class SchedulesController < ApplicationController
   layout "app_without_sidebar"
   
   def index
-    #unless request.subdomain.blank?
-    #  tournament = Tournament.from_param(request.subdomain)
-    #end
+    unless request.subdomain.blank?
+      tournament = Tournament.from_param(request.subdomain)
+    end
 
     #get max && min date
     max  = Schedule.get_max_date(tournament)
