@@ -2,9 +2,10 @@
 
 FactoryGirl.define do
 
-  factory :stage do
-    type "StepStage"
+  factory :season do
+    type "StepSeason"
     name Faker::Name.name
+    url { "#{name}"}
   end
 
 end

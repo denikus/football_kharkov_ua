@@ -10,7 +10,8 @@ FootballKharkov::Application.routes.draw do
     namespace :v1 do
       resources :tournaments do
         resources :news, only: [ :index, :show]
-        resources :schedules, only: [ :index]
+        resources :schedules, only: [ :index, :show]
+        resources :seasons, only: [ :index]
       end
     end
   end
