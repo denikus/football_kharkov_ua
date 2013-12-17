@@ -152,7 +152,11 @@ class Schedule < ActiveRecord::Base
         conditions = ["match_on = ? ", day]
       end
       #includes([:hosts, :guests, :venue])
-      select("schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name").joins("INNER JOIN `steps` ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') LEFT JOIN `steps` AS leagues ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ").where(conditions).includes(:hosts, :guests, :venue).order("match_at ASC")
+      select("schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name, `seasons`.`name` AS season_name").joins("INNER JOIN `steps` ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
+                                                                                                            "LEFT JOIN `steps_phases` as `tours_phase` ON (`tours_phase`.`phase_id` = `schedules`.`tour_id`) " +
+                                                                                                            "LEFT JOIN `steps_phases` as `seasons_phase` ON (`seasons_phase`.`phase_id` = `tours_phase`.`step_id`) " +
+                                                                                                            "LEFT JOIN `steps` AS `seasons` ON (`seasons_phase`.`step_id` = `seasons`.`id` AND `seasons`.type = 'StepSeason') " +
+                                                                                                            "LEFT JOIN `steps` AS leagues ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ").where(conditions).includes(:hosts, :guests, :venue).order("match_at ASC")
       #find(:all,
       #      :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name",
       #      :joins => "INNER JOIN `steps`" +

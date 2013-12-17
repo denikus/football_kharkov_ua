@@ -15,8 +15,6 @@ class Api::V1::SchedulesController < Api::V1::BaseController
                     "INNER JOIN `steps_phases` AS `seasons_phase` ON (`seasons_phase`.`phase_id` = `tours_phase`.`step_id`) "
                    ).where("`seasons_phase`.`step_id` = ? ", @season.id).group("match_on").order(match_on: :asc).collect{|item| item.match_on}
 
-
-
     respond_to do |format|
       format.json{ render json: {dates: @dates} }
     end
@@ -26,11 +24,15 @@ class Api::V1::SchedulesController < Api::V1::BaseController
     # return error if no season with such url
     error!("Incorrect params", 403) and return if params[:id].blank?
 
+    #schedule Schedule.get_records_by_day(params[:id], @tournament).first
+
     @schedules = Schedule.get_records_by_day(params[:id], @tournament).collect{|item|
       {
         id: item.id,
         match_on: item.match_on,
         match_at: item.match_at,
+        venue_name: (item.venue.nil? ? "" : item.venue.name),
+        season_name: item.season_name,
         host_team_name: item.hosts.name,
         host_scores: item.host_scores,
         guest_team_name: item.guests.name,
