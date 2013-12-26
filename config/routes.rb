@@ -12,6 +12,7 @@ FootballKharkov::Application.routes.draw do
         resources :news, only: [ :index, :show]
         resources :schedules, only: [ :index, :show]
         resources :seasons, only: [ :index]
+        resources :matches, only: [ :show]
       end
     end
   end
