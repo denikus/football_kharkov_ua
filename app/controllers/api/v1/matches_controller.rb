@@ -48,6 +48,11 @@ class Api::V1::MatchesController < Api::V1::BaseController
 
               }
 
+            },
+            referees: @match.referees.collect{|referee|
+              {first_name: referee.first_name,
+               last_name: referee.last_name
+              }
             }
 
         }
