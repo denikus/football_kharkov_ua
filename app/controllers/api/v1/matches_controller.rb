@@ -15,7 +15,7 @@ class Api::V1::MatchesController < Api::V1::BaseController
                     player_name: "#{player.footballer.first_name} #{player.footballer.last_name}",
                     player_number: player.number,
                     statistic_type: stat.name,
-                    team: @match.schedule.hosts.name
+                    team: "host_team"
                    }
       end
     end
@@ -27,7 +27,7 @@ class Api::V1::MatchesController < Api::V1::BaseController
                     player_name: "#{player.footballer.first_name} #{player.footballer.last_name}",
                     player_number: player.number,
                     statistic_type: stat.name,
-                    team: @match.schedule.guests.name
+                    team: "guest_team"
                    }
       end
     end
