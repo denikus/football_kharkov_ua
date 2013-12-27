@@ -6,6 +6,38 @@ class Api::V1::MatchesController < Api::V1::BaseController
 
     @match = Match.where(:schedule_id => params[:id]).includes(:schedule => :step_tour).first
 
+    @events = []
+
+    #hosts
+    @match.hosts.football_players.sort_by_number.each do |player|
+      player.stats.each do |stat|
+        @events << {minute: stat.value,
+                    player_name: "#{player.footballer.first_name} #{player.footballer.last_name}",
+                    player_number: player.number,
+                    statistic_type: stat.name,
+                    team: @match.schedule.hosts.name
+                   }
+      end
+    end
+
+    #guests
+    @match.guests.football_players.sort_by_number.each do |player|
+      player.stats.each do |stat|
+        @events << {minute: stat.value,
+                    player_name: "#{player.footballer.first_name} #{player.footballer.last_name}",
+                    player_number: player.number,
+                    statistic_type: stat.name,
+                    team: @match.schedule.guests.name
+                   }
+      end
+    end
+
+    #ap @events
+    @events.sort! { |a,b| a[:minute] <=> b[:minute] }
+    #ap @events
+
+
+
     response = {
             season_name: @match.schedule.step_tour.stage.season.name,
             tour_name:    @match.schedule.step_tour.name,
@@ -41,14 +73,15 @@ class Api::V1::MatchesController < Api::V1::BaseController
 
                 }
             },
-            events: @match.match_events.collect{|event|
-              {
-                  minute: event.minute,
-                  text: event.message
+            events: @events,
+              #  @match.match_events.collect{|event|
+              #{
+              #    minute: event.minute,
+              #    text: event.message
+              #
+              #}
 
-              }
-
-            },
+            #},
             referees: @match.referees.collect{|referee|
               {first_name: referee.first_name,
                last_name: referee.last_name
