@@ -30,7 +30,7 @@ class Api::V1::ViolationsController < Api::V1::BaseController
     @violations_by_tour = {}
     violations.each do |item|
       @violations_by_tour[item.tour_name] = [] if @violations_by_tour[item.tour_name].nil?
-      @violations_by_tour[item.tour_name] << item
+      @violations_by_tour[item.tour_name] << {team_name: item.name, first_name: item.first_name, last_name: item.last_name, stats_name: item.stats_name, tour_name: item.tour_name}
     end
 
     respond_to do |format|
