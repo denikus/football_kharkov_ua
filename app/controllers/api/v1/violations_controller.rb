@@ -30,8 +30,8 @@ class Api::V1::ViolationsController < Api::V1::BaseController
     @violations_by_tour = []
     i = 0
     violations.each do |item|
-      i += 1 if !@violations_by_tour[i].nil? && item.tour_name != @violations_by_tour[i][:tour_name]
-      @violations_by_tour[i] = [] if @violations_by_tour[i].nil?
+      i += 1 if !@violations_by_tour[i].nil? && item.tour_name != @violations_by_tour[i]["tour_name"]
+      #@violations_by_tour[i] = [] if @violations_by_tour[i].nil?
       @violations_by_tour[i] << {team_name: item.name, first_name: item.first_name, last_name: item.last_name, stats_name: item.stats_name, tour_name: item.tour_name}
     end
 
