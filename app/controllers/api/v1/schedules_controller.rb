@@ -33,6 +33,7 @@ class Api::V1::SchedulesController < Api::V1::BaseController
         match_at: item.match_at,
         venue_name: (item.venue.nil? ? "" : item.venue.name),
         season_name: item.season_name,
+        league_name: item.league_name,
         host_team_name: item.hosts.name,
         host_scores: item.host_scores,
         guest_team_name: item.guests.name,
