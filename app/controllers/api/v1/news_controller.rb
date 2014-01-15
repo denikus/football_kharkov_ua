@@ -15,8 +15,8 @@ class Api::V1::NewsController < Api::V1::BaseController
     @posts = @tournament.posts.paginate(page: params[:page], per_page: params[:per_page]).order('created_at DESC').collect{|item|
             {
               id: item.id,
-              created_at: item.created_at,
-              updated_at: item.updated_at,
+              created_at: item.created_at.strftime("%Y-%m-%d %T%z"),
+              updated_at: item.updated_at.strftime("%Y-%m-%d %T%z"),
               title: item.title,
               subtitle: strip_tags(truncate(item.resource.body, length: 1000, separator: '<div style="page-break-after: always;">')),
               author: item.user.username,
@@ -37,8 +37,8 @@ class Api::V1::NewsController < Api::V1::BaseController
 
     response = {
         id: @post.id,
-        created_at: @post.created_at,
-        updated_at: @post.updated_at,
+        created_at: @post.created_at.strftime("%Y-%m-%d %T%z"),
+        updated_at: @post.updated_at.strftime("%Y-%m-%d %T%z"),
         title: @post.title,
         subtitle: strip_tags(truncate(@post.resource.body, length: 1000, separator: '<div style="page-break-after: always;">')),
         body: ActiveSupport::Base64.encode64(@post.resource.body),
