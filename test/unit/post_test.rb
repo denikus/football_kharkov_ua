@@ -3,15 +3,16 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
   # Replace this with your real tests.
-  test "adding article and post" do
-      article = Factory.build(:article)
-      post = Factory.build(:post)
-      post.resource = article
-      post.resource_id = article.id
+  pending "adding article and post" do
 
-      assert post.valid?
+    article = Factory.build(:article)
+    post = Factory.build(:post)
+    post.resource = article
+    post.resource_id = article.id
 
-      assert post.save!
+    assert post.valid?
+
+    assert post.save!
   end
 
   test "adding tags to post(article)" do

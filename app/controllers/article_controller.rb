@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 class ArticleController < ApplicationController
-#before_filter :authorize, :except => [:show]
-before_filter :authenticate_user!, :except => [:show]
-before_filter :check_permissions, :except => [:show, :new, :create, :upload_image]
+
+  before_filter :authenticate_user!, :except => [:show]
+  before_filter :check_permissions, :except => [:show, :new, :create, :upload_image]
 
   def new
     @article = Article.new
