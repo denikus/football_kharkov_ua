@@ -49,33 +49,6 @@ class PhotoGalleryController < ApplicationController
     
   end
   
-  def upload_image
-    if params[:gallery_id].nil? || params[:gallery_id].to_i==0
-      @gallery = PhotoGallery.new()
-#      @gallery = PhotoGallery.new()
-      @gallery.save
-#      cookies[:gallery_id] = @gallery.id
-      gallery_id            = @gallery.id
-    else 
-      gallery_id = params[:gallery_id]
-      @gallery = PhotoGallery.find(gallery_id)
-    end
-=begin
-    pp params[:photoupload][:file]
-    puts params['Filename']
-    pp session
-=end
-#    puts current_user[:id]
-#    photo_data = {:filename => params['Filename'], :user_id => User.find(params['user_id']).id.to_s, :file => params[:photoupload]}
-    user = User.find(params['user_id'])
-    photo_data = {:filename => params['Filename'], :user_id => user[:id].to_s, :file => params[:photoupload][:file]}
-    @gallery.photos << Photo.new(photo_data)
-    @gallery.save
-    return_data = {:result => "success", :size => 'All ok!', :gallery_id => gallery_id.to_s,  :path => '/user/' + user[:id].to_s + '/photo_gallery/' + gallery_id.to_s + '/thumbs/' }
-    
-    render :text => return_data.to_json, :layout => false
-  end
-
   def edit
     @photo_gallery = PhotoGallery.find(params[:id])
   end

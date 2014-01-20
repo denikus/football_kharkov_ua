@@ -73,19 +73,6 @@ class ArticleController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  def upload_image
-    picture_path = RAILS_ROOT + '/public/user/' + current_user[:id].to_s + '/images/'
-    picture = Picture.new
-    picture.prepare_directory(RAILS_ROOT + '/public/user/' + current_user[:id].to_s)
-    picture.prepare_directory(picture_path)
-    picture.set_picture_path(picture_path)
-    picture.save(params['file'])
-
-    result = {:result => 'success', :path => '/user/' + current_user[:id].to_s + '/images/' + params['file'].original_filename}
-
-    render :text => result.to_json, :layout=> false
-  end
-
   private
   
   def check_permissions
