@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class CommentController < ApplicationController
 
-protect_from_forgery :except => [:create]
+  protect_from_forgery :except => [:create]
 
   def create
     #create root comment if it doesn't exists yet
