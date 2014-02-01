@@ -40,7 +40,7 @@ class TeamsController < ApplicationController
 
       @tournament = Tournament.find_by_url(request.subdomain)
       @season = StepSeason.find(:last,
-                                 :joins => "INNER JOIN `steps_teams` ON (steps.id = steps_teams.step_id) ",
+                                 :joins => "INNER JOIN steps_teams ON (steps.id = steps_teams.step_id) ",
                                  :conditions => ["steps_teams.team_id = ? AND steps.tournament_id = ? ", @team.id, @tournament.id]
                                  # :order => "steps."
                                 )

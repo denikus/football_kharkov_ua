@@ -14,7 +14,7 @@ class Admin::TempController < ApplicationController
 
     @stage = @season.stages.last
 
-    @tours = StepTour.joins("INNER JOIN `steps_phases` AS s_p ON (steps.id=s_p.phase_id)").where("steps.tournament_id = ? AND s_p.step_id=?", cookies[:schedule_tournament_id], @stage.id).order("identifier ASC")
+    @tours = StepTour.joins("INNER JOIN steps_phases AS s_p ON (steps.id=s_p.phase_id)").where("steps.tournament_id = ? AND s_p.step_id=?", cookies[:schedule_tournament_id], @stage.id).order("identifier ASC")
 
 
     #@tours = StepTour.find(:all,
@@ -56,12 +56,7 @@ class Admin::TempController < ApplicationController
     
     cookies[:schedule_tournament_id] = params["tournament_id"]
 
-    @tours = StepTour.joins("INNER JOIN `steps_phases` ON (phase_id = steps.id) ").where("steps_phases.step_id IN (#{last_season.stages.collect!{|x| x.id}.join(',')})").order("identifier ASC")
-    #@tours = StepTour.find(:all,
-    #                     :joins => "INNER JOIN `steps_phases` ON (phase_id = steps.id) ",
-    #                     :conditions => ["steps_phases.step_id IN (#{last_season.stages.collect!{|x| x.id}.join(',')})"],
-    #                     :order => "identifier ASC"
-    #                    )
+    @tours = StepTour.joins("INNER JOIN steps_phases ON (phase_id = steps.id) ").where("steps_phases.step_id IN (#{last_season.stages.collect!{|x| x.id}.join(',')})").order("identifier ASC")
     data = @tours.collect do |tour|
       {:text => tour.name,
        :value => tour.id

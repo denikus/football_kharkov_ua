@@ -44,29 +44,16 @@ class Schedule < ActiveRecord::Base
 
     def future_footballer_matches(footballer_id)
       #get seasons where footballer play in team
-#      footballers_teams = FootballersTeam.
-#              select("footballers_teams.*, `tours`.id AS tour_id").
-#              joins("INNER JOIN `steps_phases` AS `stages_phase` ON (`stages_phase`.`step_id` = `footballers_teams`.`step_id`) " +
-#                    "INNER JOIN `steps_phases` AS `tours_phase` ON (`tours_phase`.`step_id` = `stages_phase`.`phase_id`) " +
-#                    "INNER JOIN `steps` AS `tours` ON (`tours`.`id` = `tours_phase`.`phase_id` AND `tours`.`type`='StepTour') " +
-#                    "INNER JOIN `schedules` ON (`schedules`.`tour_id` = `tours`.`id` ) ").
-#              where( "footballer_id =? AND `schedules`.match_on > ?", footballer_id, Time.now.to_date)
-
-#      tours = footballers_teams.collect{|x| x.tour_id}.uniq
-#      ap select("schedules.*, `with_guest_team`.team_id AS guest_team_id, `with_host_team`.team_id AS host_team_id").
-      select("`schedules`.*, `footballers_teams`.footballer_id ").
+      select("schedules.*, footballers_teams.footballer_id ").
       joins(
-            "INNER JOIN `steps_phases` AS `tours_phase` ON (`tours_phase`.`phase_id` = `schedules`.`tour_id`) " +
-            "INNER JOIN `steps_phases` AS `seasons_phase` ON (`seasons_phase`.`phase_id` = `tours_phase`.`step_id`) " +
-            "INNER JOIN `footballers_teams` ON (`footballers_teams`.`step_id` = `seasons_phase`.`step_id`) " +
-            "LEFT JOIN `footballers_teams` AS `with_guest_team` ON (`with_guest_team`.`team_id` = `schedules`.`guest_team_id` AND `with_guest_team`.`footballer_id` = #{footballer_id.to_i}) " +
-            "LEFT JOIN `footballers_teams` AS `with_host_team` ON (`with_host_team`.`team_id` = `schedules`.`host_team_id` AND `with_host_team`.`footballer_id` = #{footballer_id.to_i})"
+            "INNER JOIN steps_phases AS tours_phase ON (tours_phase.phase_id = schedules.tour_id) " +
+            "INNER JOIN steps_phases AS seasons_phase ON (seasons_phase.phase_id = tours_phase.step_id) " +
+            "INNER JOIN footballers_teams ON (footballers_teams.step_id = seasons_phase.step_id) " +
+            "LEFT JOIN footballers_teams AS with_guest_team ON (with_guest_team.team_id = schedules.guest_team_id AND with_guest_team.footballer_id = #{footballer_id.to_i}) " +
+            "LEFT JOIN footballers_teams AS with_host_team ON (with_host_team.team_id = schedules.host_team_id AND with_host_team.footballer_id = #{footballer_id.to_i})"
            ).
-#            "LEFT JOIN `footballers_teams` AS `with_guest_team` ON (`with_guest_team`.`team_id` = `schedules`.`guest_team_id` AND `with_guest_team`.`footballer_id` = #{footballer_id.to_i})" +
-#            "LEFT JOIN `footballers_teams` AS `with_host_team` ON (`with_host_team`.`team_id` = `schedules`.`host_team_id` AND `with_host_team`.`footballer_id` = #{footballer_id.to_i})").
-#      where("`schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ? AND `schedules`.`tour_id` IN (?) AND (`with_guest_team`.`team_id` IS NOT NULL OR `with_host_team`.`team_id` IS NOT NULL )", Time.now.to_date, tours.join(',')).
-      where("`schedules`.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `footballers_teams`.footballer_id = ? AND `schedules`.match_on > ? AND ( `with_guest_team`.`team_id` = `footballers_teams`.team_id OR `with_host_team`.`team_id`  = `footballers_teams`.team_id )", footballer_id, Time.now.to_date).
-      group("`schedules`.id")
+      where("schedules.host_scores IS NULL AND schedules.guest_scores IS NULL AND footballers_teams.footballer_id = ? AND schedules.match_on > ? AND ( with_guest_team.team_id = footballers_teams.team_id OR with_host_team.team_id  = footballers_teams.team_id )", footballer_id, Time.now.to_date).
+      group("schedules.id")
     end
 
     def future_team_matches(team_id)
@@ -75,8 +62,8 @@ class Schedule < ActiveRecord::Base
           joins("INNER JOIN matches ON competitors.match_id = matches.id").
           where('competitors.team_id = ?', team_id).collect{|x| x.schedule_id.to_s}.uniq
       if !schedules.empty?
-        where("schedules.host_scores IS NULL AND `schedules`.guest_scores IS NULL AND `schedules`.match_on > ? AND schedules.id in (#{schedules.join(',')})", Time.now.to_date).
-        group("`schedules`.id")
+        where("schedules.host_scores IS NULL AND schedules.guest_scores IS NULL AND schedules.match_on > ? AND schedules.id in (#{schedules.join(',')})", Time.now.to_date).
+        group("schedules.id")
       else
         return []
       end
@@ -84,7 +71,7 @@ class Schedule < ActiveRecord::Base
 
     def get_min_date(tournament, with_results = false)
 
-      condition_str = "1"
+      condition_str = "true"
       condition_vals = []
 
       unless tournament.nil?
@@ -96,7 +83,7 @@ class Schedule < ActiveRecord::Base
         condition_str += " AND (host_scores IS NOT NULL AND guest_scores IS NOT NULL) "
       end
 
-      select("MIN(match_on) AS match_on").joins("INNER JOIN `steps` ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')").where([condition_str] + condition_vals).first
+      select("MIN(match_on) AS match_on").joins("INNER JOIN steps ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')").where([condition_str] + condition_vals).first
       #find(:first,
       #           :select => ,
       #           :joins =>  +
@@ -107,7 +94,7 @@ class Schedule < ActiveRecord::Base
     end
 
     def get_max_date(tournament, with_results = false)
-      condition_str = "1"
+      condition_str = "true"
       condition_vals = []
 
       unless tournament.nil?
@@ -118,10 +105,10 @@ class Schedule < ActiveRecord::Base
       if with_results
         condition_str += " AND (host_scores IS NOT NULL AND guest_scores IS NOT NULL) "
       end
-      select("MAX(match_on) AS match_on").joins("INNER JOIN `steps` ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')").where([condition_str] + condition_vals).first
+      select("MAX(match_on) AS match_on").joins("INNER JOIN steps ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')").where([condition_str] + condition_vals).first
 #      find(:first,
 #                 :select => "MAX(match_on) AS match_on",
-#                 :joins => "INNER JOIN `steps`" +
+#                 :joins => "INNER JOIN steps" +
 #                            "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
 #                 :conditions => [condition_str] + condition_vals
 ##                 :conditions => ["steps.tournament_id = ? ", tournament.id]
@@ -137,7 +124,7 @@ class Schedule < ActiveRecord::Base
 
       schedule_date = find(:first,
                            :select => "match_on",
-                           :joins => "INNER JOIN `steps` " +
+                           :joins => "INNER JOIN steps " +
                                        "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour')",
                            :conditions => conditions,
                            :order => "match_on",
@@ -152,16 +139,16 @@ class Schedule < ActiveRecord::Base
         conditions = ["match_on = ? ", day]
       end
       #includes([:hosts, :guests, :venue])
-      select("schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name, `seasons`.`name` AS season_name").joins("INNER JOIN `steps` ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
-                                                                                                            "LEFT JOIN `steps_phases` as `tours_phase` ON (`tours_phase`.`phase_id` = `schedules`.`tour_id`) " +
-                                                                                                            "LEFT JOIN `steps_phases` as `seasons_phase` ON (`seasons_phase`.`phase_id` = `tours_phase`.`step_id`) " +
-                                                                                                            "LEFT JOIN `steps` AS `seasons` ON (`seasons_phase`.`step_id` = `seasons`.`id` AND `seasons`.type = 'StepSeason') " +
-                                                                                                            "LEFT JOIN `steps` AS leagues ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ").where(conditions).includes(:hosts, :guests, :venue).order("match_at ASC")
+      select("schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name, seasons.name AS season_name").joins("INNER JOIN steps ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
+                                                                                                            "LEFT JOIN steps_phases as tours_phase ON (tours_phase.phase_id = schedules.tour_id) " +
+                                                                                                            "LEFT JOIN steps_phases as seasons_phase ON (seasons_phase.phase_id = tours_phase.step_id) " +
+                                                                                                            "LEFT JOIN steps AS seasons ON (seasons_phase.step_id = seasons.id AND seasons.type = 'StepSeason') " +
+                                                                                                            "LEFT JOIN steps AS leagues ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ").where(conditions).includes(:hosts, :guests, :venue).order("match_at ASC")
       #find(:all,
       #      :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name",
-      #      :joins => "INNER JOIN `steps`" +
+      #      :joins => "INNER JOIN steps" +
       #          "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
-      #          "LEFT JOIN `steps` AS leagues " +
+      #          "LEFT JOIN steps AS leagues " +
       #            "ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ",
       #      :conditions => conditions,
       #      :include => [:hosts, :guests, :venue],

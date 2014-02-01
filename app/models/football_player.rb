@@ -36,10 +36,10 @@ class FootballPlayer < ActiveRecord::Base
   end
 
   def self.get_stats(ids)
-    FootballPlayer.select("COUNT(*), `stats`.name").
-                   joins("INNER JOIN `stats` ON (`stats`.statable_id = `football_players`.id AND `stats`.statable_type = 'FootballPlayer')").
-                   where("`football_players`.id IN (?)", ids).
-                   group("`stats`.name")
+    FootballPlayer.select("COUNT(*), stats.name").
+                   joins("INNER JOIN stats ON (stats.statable_id = football_players.id AND stats.statable_type = 'FootballPlayer')").
+                   where("football_players.id IN (?)", ids).
+                   group("stats.name")
 
   end
 

@@ -5,9 +5,9 @@ require 'rexml/syncenumerator'
 class Stat < ActiveRecord::Base
   belongs_to :statable, :polymorphic => true
 
-  scope :by_football_players, lambda {|players_id| select("COUNT(*) AS stat_count, `stats`.name").
-                    where("`stats`.statable_id IN (?) AND `stats`.statable_type = 'FootballPlayer'", players_id).
-                    group("`stats`.name")
+  scope :by_football_players, lambda {|players_id| select("COUNT(*) AS stat_count, stats.name").
+                    where("stats.statable_id IN (?) AND stats.statable_type = 'FootballPlayer'", players_id).
+                    group("stats.name")
                   }
   def to_tpl
     value.to_s

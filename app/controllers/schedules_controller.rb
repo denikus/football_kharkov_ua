@@ -42,7 +42,7 @@ class SchedulesController < ApplicationController
     end
     
     @match_date = Schedule.find(:first,
-                                  :joins => "INNER JOIN `steps`" +
+                                  :joins => "INNER JOIN steps" +
                                               "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') ",
                                   :conditions => conditions,
                                   :order => order_str,
@@ -58,9 +58,9 @@ class SchedulesController < ApplicationController
 
     @schedules = Schedule.find(:all,
                                 :select => "schedules.*, leagues.name AS league_name, leagues.short_name AS league_short_name",
-                                :joins => "INNER JOIN `steps`" +
+                                :joins => "INNER JOIN steps" +
                                     "ON (schedules.tour_id = steps.id AND steps.type = 'StepTour') " +
-                                    "LEFT JOIN `steps` AS leagues " +
+                                    "LEFT JOIN steps AS leagues " +
                                       "ON (schedules.league_id = leagues.id AND leagues.type = 'StepLeague') ",
                                 :conditions => conditions,
                                 :include => [:hosts, :guests, :venue],

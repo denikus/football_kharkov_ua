@@ -12,13 +12,13 @@ class TeamsRatesController < ApplicationController
     @teams = Team.paginate(
         :all,
         :select => "teams.*",
-        :joins =>  "INNER JOIN `competitors` " +
+        :joins =>  "INNER JOIN competitors " +
                   "ON (teams.id = competitors.team_id) " +
-             "INNER JOIN `matches` " +
+             "INNER JOIN matches " +
                                 "ON (competitors.match_id = matches.id) "+
-                              "INNER JOIN `schedules` " +
+                              "INNER JOIN schedules " +
                                 "ON (matches.schedule_id = schedules.id) "+
-                              "INNER JOIN `steps` AS leagues " +
+                              "INNER JOIN steps AS leagues " +
                                 "ON (schedules.league_id = leagues.id) ",
         :conditions => "schedules.league_id IN (#{leagues.collect!{|x| x.id}.join(',')})",
         :group => 'teams.id',

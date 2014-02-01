@@ -10,11 +10,11 @@ class StepLeague < Step
   def StepLeague.get_leagues_in_season(season_id)
     leagues = self.all(
               :select => "steps.* ",
-              :joins => "INNER JOIN `steps_phases` AS stages_2_leagues " +
+              :joins => "INNER JOIN steps_phases AS stages_2_leagues " +
                           "ON (steps.id = stages_2_leagues.phase_id) " +
-                        "INNER JOIN `steps_phases` AS seasons_2_stages " +
+                        "INNER JOIN steps_phases AS seasons_2_stages " +
                           "ON (stages_2_leagues.step_id = seasons_2_stages.phase_id)" +
-                        "INNER JOIN `steps` AS seasons " +
+                        "INNER JOIN steps AS seasons " +
                           "ON (seasons_2_stages.step_id = seasons.id AND seasons.type = 'StepSeason')",
               :conditions => ["seasons.id = ? AND steps.type = 'StepLeague'", season_id])
 

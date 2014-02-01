@@ -5,34 +5,34 @@ class BombardiersController < ApplicationController
   def index
     seasons =  Step.find_all_by_tournament_id(Tournament.find_by_url(request.subdomain), :conditions => ["type = 'StepSeason'"])
 
-    @leagues = StepLeague.select("steps.* ").joins("INNER JOIN `steps_phases` AS stages_2_leagues " +
+    @leagues = StepLeague.select("steps.* ").joins("INNER JOIN steps_phases AS stages_2_leagues " +
                                                 "ON (steps.id = stages_2_leagues.phase_id) " +
-                                              "INNER JOIN `steps_phases` AS seasons_2_stages " +
+                                              "INNER JOIN steps_phases AS seasons_2_stages " +
                                                 "ON (stages_2_leagues.step_id = seasons_2_stages.phase_id)" +
-                                              "INNER JOIN `steps` AS seasons " +
+                                              "INNER JOIN steps AS seasons " +
                                                 "ON (seasons_2_stages.step_id = seasons.id AND seasons.type = 'StepSeason')").
                                             where(["seasons.id = ? AND steps.type = 'StepLeague'", seasons.last]).all
 
 
-    @bombardiers = Footballer.select("`footballers`.*, `football_players`.id AS football_player_id, `competitors`.team_id AS team_id, SUM(statistic.statable_total) AS statable_sum").
-                              joins("INNER JOIN `football_players` " +
+    @bombardiers = Footballer.select("footballers.*, football_players.id AS football_player_id, competitors.team_id AS team_id, SUM(statistic.statable_total) AS statable_sum").
+                              joins("INNER JOIN football_players " +
                                                               "ON (footballers.id = football_players.footballer_id) " +
-                                                            "INNER JOIN `competitors` " +
+                                                            "INNER JOIN competitors " +
                                                               "ON (football_players.competitor_id = competitors.id) "+
-                                                            "INNER JOIN `matches` " +
+                                                            "INNER JOIN matches " +
                                                               "ON (competitors.match_id = matches.id) "+
-                                                            "INNER JOIN `schedules` " +
+                                                            "INNER JOIN schedules " +
                                                               "ON (matches.schedule_id = schedules.id) "+
-                                                            "INNER JOIN `steps` AS leagues " +
+                                                            "INNER JOIN steps AS leagues " +
                                                               "ON (schedules.league_id = leagues.id) "+
                                                             "INNER JOIN (SELECT stats.statable_id, COUNT(stats.id) AS statable_total " +
-                              		                                       "FROM`stats` " +
+                              		                                       "FROM stats " +
                               		                                       "WHERE " +
                               		                                       "stats.statable_type='FootballPlayer' AND stats.name IN ('goal', 'goal_6', 'goal_10') " +
                                                                       	 "GROUP BY stats.statable_id) AS statistic " +
                                                               "ON (statistic.statable_id=football_players.id) ").
-                              where(["footballers.id >0 AND leagues.id IN (#{@leagues.collect!{|x| x.id}.join(',')})"]).
-                              group("competitors.team_id, footballers.id ").
+                              where(["footballers.id >0 AND leagues.id IN (#{ @leagues.size > 0 ? @leagues.collect!{|x| x.id}.join(',') : "0" })"]).
+                              group("competitors.team_id, footballers.id, football_player_id ").
                               #paginate(:per_page => 50,:page => 1).
                               order("statable_sum DESC, footballers.last_name ASC")
 

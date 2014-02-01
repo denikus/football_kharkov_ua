@@ -10,7 +10,7 @@ class PlayerRatesController < ApplicationController
          :joins =>
             "INNER JOIN footballers " +
               "ON (football_players.footballer_id = footballers.id)" +
-            "INNER JOIN `competitors` " +
+            "INNER JOIN competitors " +
               "ON (football_players.competitor_id = competitors.id) " +
             "INNER JOIN steps_teams " +
               "ON steps_teams.team_id = competitors.team_id " +

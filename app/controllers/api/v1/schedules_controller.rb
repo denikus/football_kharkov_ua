@@ -11,9 +11,9 @@ class Api::V1::SchedulesController < Api::V1::BaseController
     error!("Incorrect params", 403) and return if @season.nil?
 
     @dates = Schedule.select(:match_on).joins(
-                    "INNER JOIN `steps_phases` AS `tours_phase` ON (`tours_phase`.`phase_id` = `schedules`.`tour_id`) " +
-                    "INNER JOIN `steps_phases` AS `seasons_phase` ON (`seasons_phase`.`phase_id` = `tours_phase`.`step_id`) "
-                   ).where("`seasons_phase`.`step_id` = ? ", @season.id).group("match_on").order(match_on: :asc).collect{|item| item.match_on}
+                    "INNER JOIN steps_phases AS tours_phase ON (tours_phase.phase_id = schedules.tour_id) " +
+                    "INNER JOIN steps_phases AS seasons_phase ON (seasons_phase.phase_id = tours_phase.step_id) "
+                   ).where("seasons_phase.step_id = ? ", @season.id).group("match_on").order(match_on: :asc).collect{|item| item.match_on}
 
     respond_to do |format|
       format.json{ render json: {dates: @dates} }

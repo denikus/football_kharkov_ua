@@ -24,14 +24,14 @@ class Team < ActiveRecord::Base
   def get_league(footballer_id, season_id)
     Team.select("step_leagues.* ").
               joins(
-                "INNER JOIN `footballers_teams` ON (`footballers_teams`.team_id = `teams`.id) " +
-                "INNER JOIN `steps_phases` AS stages ON (`stages`.step_id = `footballers_teams`.step_id) " +
-                "INNER JOIN `steps_phases` AS leagues ON (`leagues`.step_id = `stages`.phase_id) " +
-                "INNER JOIN `steps_teams` ON (`steps_teams`.step_id = `leagues`.phase_id) " +
-                "INNER JOIN `steps` AS step_leagues ON (`step_leagues`.id = `steps_teams`.step_id AND `step_leagues`.type = 'StepLeague') "
+                "INNER JOIN footballers_teams ON (footballers_teams.team_id = teams.id) " +
+                "INNER JOIN steps_phases AS stages ON (stages.step_id = footballers_teams.step_id) " +
+                "INNER JOIN steps_phases AS leagues ON (leagues.step_id = stages.phase_id) " +
+                "INNER JOIN steps_teams ON (steps_teams.step_id = leagues.phase_id) " +
+                "INNER JOIN steps AS step_leagues ON (step_leagues.id = steps_teams.step_id AND step_leagues.type = 'StepLeague') "
               ).
             where(
-              [" `teams`.id = ? AND  `footballers_teams`.step_id = ? AND `footballers_teams`.footballer_id = ? AND `steps_teams`.team_id = ? ", self, season_id, footballer_id, self]
+              [" teams.id = ? AND  footballers_teams.step_id = ? AND footballers_teams.footballer_id = ? AND steps_teams.team_id = ? ", self, season_id, footballer_id, self]
             ).group("step_leagues.id").first
   end
 
