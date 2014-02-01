@@ -6,6 +6,7 @@ class CommentController < ApplicationController
   def create
     #create root comment if it doesn't exists yet
     @comment = Comment.new({:body => ApplicationController.helpers.white_list(params[:comment][:body]), :author_id => current_user[:id], :post_id => params[:comment][:post_id]})
+
     if @comment.valid?
       post = Post.find(params[:comment][:post_id])
       if post.comments.empty?

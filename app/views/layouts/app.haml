@@ -7,7 +7,7 @@
     %link{:rel=>"alternate", :type => "application/rss+xml", :title => "RSS", :href => "http://football.kharkov.ua/feed"}/
     %link{:rel=>"icon", :type => "image/x-icon", :href => "/favicon.ico"}/
     = stylesheet_link_tag 'application'
-    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
+    = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
     :javascript
       if (typeof(jQuery) == 'undefined') {
         var script = document.createElement('script');
@@ -18,13 +18,7 @@
         scriptHook.parentNode.insertBefore(script, scriptHook);
       }
     = javascript_include_tag "application"
-    -#= javascript_include_tag "jquery-plugins/jquery.tools.min"
-    -#= javascript_include_tag "jquery-plugins/jquery.scrollTo-min.js"
     = csrf_meta_tag
-    -#- unless request.subdomain.nil?
-    -#  = javascript_include_tag "application/schedule/schedule"
-    -#/[if lt IE 7]
-    -#= stylesheet_link_tag 'ie6.css', :media => 'screen, projection'
     = yield :head_declarations
   %body
     #minHeight

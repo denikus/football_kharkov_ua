@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
   end
 
   def generate_short_link
-    unless Rails.env == 'test'
+    unless ['test', 'development'].include? Rails.env
       Bitly.use_api_version_3
       bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
       unless self.resource.class.name=='Status'

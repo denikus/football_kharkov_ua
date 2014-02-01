@@ -40,7 +40,6 @@ FootballKharkov::Application.configure do
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.action_dispatch.tld_length = 2
-  #TLD_SIZE = 2
 
   #config.consider_all_requests_local
 

@@ -15,8 +15,8 @@
   - if post[:status].to_s=='updating'
     .updating_link_cell{:title=>"Публикация в процессе добавления данных"}
       %span Обновляется
-  - if user_signed_in? && (current_user[:id]==1)
+
+  - if policy(post).update?
     %div{:class=>"delete_link_cell last"}= link_to "Удалить", {:controller =>controller, :action =>:delete, :id => post.resource.id}
-  - if user_signed_in? && (post.author_id == current_user[:id] || current_user[:id]==1)
     %div{:class=>"edit_link_cell last"}= link_to "Править", {:controller =>controller, :action =>:edit, :id => post.resource.id}
 .clear
