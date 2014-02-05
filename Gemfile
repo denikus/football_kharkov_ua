@@ -78,5 +78,5 @@ group :development, :test do
 end
 
 # Deploy with Capistrano
-gem 'capistrano'
+gem 'capistrano', '=2.14.1'
 
