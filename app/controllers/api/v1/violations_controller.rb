@@ -26,7 +26,7 @@ class Api::V1::ViolationsController < Api::V1::BaseController
                                                     "ON (footballers.id = f_p.footballer_id) " +
                                                   "INNER JOIN stats " +
                                                     "ON (stats.statable_id = f_p.id AND stats.statable_type = 'FootballPlayer' AND stats.name IN ('yellow_card', 'red_card')) "
-                                                 ).where(:id => season.id).group("tours.id, stats.id").order("tours.id DESC")
+                                                 ).where(:id => season.id).group("tours.id, stats.id, footballers.first_name, footballers.last_name, teams.name, tour_name").order("tours.id DESC")
     @violations_by_tour = []
     i = 0
     violations.each do |item|
