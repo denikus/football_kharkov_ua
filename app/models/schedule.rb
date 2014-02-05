@@ -53,7 +53,7 @@ class Schedule < ActiveRecord::Base
             "LEFT JOIN footballers_teams AS with_host_team ON (with_host_team.team_id = schedules.host_team_id AND with_host_team.footballer_id = #{footballer_id.to_i})"
            ).
       where("schedules.host_scores IS NULL AND schedules.guest_scores IS NULL AND footballers_teams.footballer_id = ? AND schedules.match_on > ? AND ( with_guest_team.team_id = footballers_teams.team_id OR with_host_team.team_id  = footballers_teams.team_id )", footballer_id, Time.now.to_date).
-      group("schedules.id")
+      group("schedules.id, footballers_teams.footballer_id")
     end
 
     def future_team_matches(team_id)
