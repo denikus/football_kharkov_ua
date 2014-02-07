@@ -107,6 +107,11 @@ class StepTour < Step
     
     def process
       return if @processed
+      #puts "!!!1"
+      #ap @records
+      #puts "!!!1"
+      #ap @records.values
+
       @values = @records.values.sort
       #puts '@values'
       #ap @values
