@@ -35,10 +35,6 @@ class Api::V1::TablesController < Api::V1::BaseController
                  }
         end
         leagues << {league_name: league.name, rows: rows}
-
-
-
-        #ap league
       end
       response << {stage: stage.name, leagues: leagues}
     end
