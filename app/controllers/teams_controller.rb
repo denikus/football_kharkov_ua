@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   def index
     unless request.subdomain.nil?
       tournament = Tournament.find_by_url(request.subdomain)
-      last_season = StepSeason.where(:tournament_id => tournament.id).order("identifier ASC").last
+      last_season = StepSeason.where(:tournament_id => tournament.id).order("created_at ASC").last
 
       @teams_by_groups = []
       last_season.stages.first.leagues.order("identifier ASC").each do |league|
