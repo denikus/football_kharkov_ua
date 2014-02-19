@@ -54,7 +54,7 @@ if (!FHU) var FHU = {};
       });
 
       // user clicked on a "Reply" button
-      $(selectors.newReply.link).live('click', function () {
+      $(selectors.newReply.link).on('click', function () {
         var self = $(this),
             opts = self.data("options");
 
@@ -218,7 +218,7 @@ if (!FHU) var FHU = {};
 
 
   //subscribe/unsubscribe handler
-  $("[id^=subscribe_unsibscribe_comments_]").live('click', function (obj) {
+  $("[id^=subscribe_unsibscribe_comments_]").on('click', function (obj) {
     var matches = obj.currentTarget["id"].match(/^subscribe_unsibscribe_comments_(.*)/);
     var url = '/post/subscribe/';
     var checked = this.checked;
