@@ -6,17 +6,8 @@
     %title= (@page_title ||= 'Харьков футбольный')
     %link{:rel=>"alternate", :type => "application/rss+xml", :title => "RSS", :href => "http://football.kharkov.ua/feed"}/
     %link{:rel=>"icon", :type => "image/x-icon", :href => "/favicon.ico"}/
+    = jquery_include_tag :google
     = stylesheet_link_tag 'application'
-    = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"
-    :javascript
-      if (typeof(jQuery) == 'undefined') {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = '/javascripts/jquery.min.js';
-
-        var scriptHook = document.getElementsByTagName('script')[0];
-        scriptHook.parentNode.insertBefore(script, scriptHook);
-      }
     = javascript_include_tag "application"
     = csrf_meta_tag
     = yield :head_declarations

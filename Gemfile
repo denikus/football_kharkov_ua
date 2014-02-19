@@ -15,14 +15,11 @@ gem 'cells'
 gem "mime-types"
 gem 'bitly'
 gem 'paperclip', '~> 2.7'
-gem 'ckeditor', '=4.0.6'
+gem 'ckeditor', '4.0.6'
 gem 'sanitize'
 gem 'ruby_parser'
 gem 'awesome_print'
 gem 'oauth2'
-#gem 'sass'
-
-#gem 'compass'
 gem 'omniauth', '>=0.2.5'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook'
@@ -36,7 +33,7 @@ gem 'figaro'
 gem 'dynamic_form'
 
 gem 'rails_autolink'
-gem 'jquery-rails'
+gem 'jquery-rails-cdn'
 gem 'turbo-sprockets-rails3', '~>0.3.0'
 gem 'pundit'
 gem 'rails-sass-images'
@@ -56,10 +53,6 @@ group :production do
   #need this for js compiling
   gem 'execjs'
   gem 'therubyracer'
-end
-
-group :development do
-  gem 'mongrel', '1.2.0.pre2'
 end
 
 group :test do
