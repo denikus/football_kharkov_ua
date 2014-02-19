@@ -13,14 +13,15 @@ class CommentController < ApplicationController
         root_comment = Comment.new({:body => 'root', :author_id => post.author_id, :post_id => params[:comment][:post_id]})
         root_comment.save
       end
+
       if @comment.save
         #find parent node for new comment
         if params[:comment][:parent_id].nil?
-          parent_comment = Post.find(params[:comment][:post_id]).comments.find_by_parent_id(nil)
+          parent_comment = Post.find(params[:comment][:post_id]).comments.where(body: "root", parent_id: nil)
         else
           parent_comment = Post.find(params[:comment][:post_id]).comments.find(params[:comment][:parent_id])
         end
-        
+
         #make comment as child of parent
         @comment.move_to_child_of parent_comment
 

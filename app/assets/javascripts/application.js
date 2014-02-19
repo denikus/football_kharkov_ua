@@ -4,8 +4,6 @@
 //= require jquery-plugins/jquery_form/jquery.form.js
 //= require application/comment/comment.js
 //= require ckeditor/init.js
-//= require jquery-plugins/fancybox/jquery.fancybox-1.3.4.pack.js
-//= require jquery-plugins/fancybox/jquery.easing-1.3.pack.js
 //= require application/profile/profile.js
 //= require jquery-plugins/jquery.jcrop.min.js
 //= require extensions.js
