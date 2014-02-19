@@ -63,7 +63,7 @@ FHU.comments = function() {
       return false;
     });
 
-    $("#" + lnkBackToChildId).live("click", function() {
+    $("#" + lnkBackToChildId).on("click", function() {
       var self = $(this);
       var anchorToBack = self.attr("href");
       goToComment(anchorToBack);
