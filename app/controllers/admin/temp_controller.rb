@@ -10,11 +10,11 @@ class Admin::TempController < ApplicationController
 
     @tournaments = Tournament.all
 
-    @season = StepSeason.where("tournament_id = ?", cookies[:schedule_tournament_id]).order("identifier ASC").last
+    @season = StepSeason.where("tournament_id = ?", cookies[:schedule_tournament_id]).order("created_at ASC").last
 
     @stage = @season.stages.last
 
-    @tours = StepTour.joins("INNER JOIN steps_phases AS s_p ON (steps.id=s_p.phase_id)").where("steps.tournament_id = ? AND s_p.step_id=?", cookies[:schedule_tournament_id], @stage.id).order("identifier ASC")
+    @tours = StepTour.joins("INNER JOIN steps_phases AS s_p ON (steps.id=s_p.phase_id)").where("steps.tournament_id = ? AND s_p.step_id=?", cookies[:schedule_tournament_id], @stage.id).order("created_at ASC")
 
 
     #@tours = StepTour.find(:all,
