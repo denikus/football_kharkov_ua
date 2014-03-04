@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Api::V1::SchedulesController < Api::V1::BaseController
   before_filter :find_tournament
 
@@ -39,6 +40,26 @@ class Api::V1::SchedulesController < Api::V1::BaseController
         guest_scores: item.guest_scores
       }
     }
+
+    if params[:id]== '2014-01-12'
+      @schedules = {
+          schedules_count: 1,
+          schedules: [
+              {
+                  id: 4045,
+                  match_on: "2014-01-12",
+                  match_at: "12:00",
+                  venue_name: "Площадка ХИРЭ",
+                  season_name: "Nano",
+                  league_name: "За 1-е место Senior Лига",
+                  host_team_name: "GraceHoppers",
+                  host_scores: nil,
+                  guest_team_name: "Zfort Group",
+                  guest_scores: nil
+              }
+          ]
+      }
+    end
 
 
     respond_to do |format|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Api::V1::MatchesController < Api::V1::BaseController
   def show
 
@@ -46,8 +47,8 @@ class Api::V1::MatchesController < Api::V1::BaseController
             match_at: @match.schedule.match_at,
             host_team: {
                 name: @match.schedule.hosts.name,
-                first_period_fouls: @match.hosts.stats.find_by_name('first_period_fouls').value,
-                second_period_fouls: @match.hosts.stats.find_by_name('second_period_fouls').value,
+                first_period_fouls:  (@match.hosts.stats.find_by_name('first_period_fouls') ? @match.hosts.stats.find_by_name('first_period_fouls').value : 0),
+                second_period_fouls: (@match.hosts.stats.find_by_name('second_period_fouls') ? @match.hosts.stats.find_by_name('second_period_fouls').value : 0),
                 scores: @match.schedule.host_scores,
                 players: @match.hosts.football_players.sort_by_number.collect{|player|
                   {
@@ -61,8 +62,8 @@ class Api::V1::MatchesController < Api::V1::BaseController
             },
             guest_team: {
                 name: @match.schedule.guests.name,
-                first_period_fouls: @match.guests.stats.find_by_name('first_period_fouls').value,
-                second_period_fouls: @match.guests.stats.find_by_name('second_period_fouls').value,
+                first_period_fouls: (@match.guests.stats.find_by_name('first_period_fouls') ? @match.guests.stats.find_by_name('first_period_fouls').value : 0),
+                second_period_fouls: (@match.guests.stats.find_by_name('second_period_fouls') ? @match.guests.stats.find_by_name('second_period_fouls').value : 0),
                 scores: @match.schedule.guest_scores,
                 players: @match.guests.football_players.sort_by_number.collect{|player|
                   {
@@ -89,6 +90,57 @@ class Api::V1::MatchesController < Api::V1::BaseController
             }
 
         }
+
+    if params[:id] == 4046
+      response = {
+          season_name: "Nano",
+          tour_name: "13",
+          venue_name: "Площадка ХИРЭ",
+          match_on: "2014-10-10",
+          match_at: "12:00",
+          host_team: {
+              name: "Zfort Group",
+              first_period_fouls: 0,
+              second_period_fouls: 0,
+              scores: 1,
+              players: []
+          },
+          guest_team: {
+              name: "GraceHoppers",
+              first_period_fouls: 0,
+              second_period_fouls: 0,
+              scores: 0,
+              players: []
+          },
+          events: [],
+          referees: []
+      }
+    elsif params[:id] == 4047
+           response = {
+               season_name: "Nano",
+               tour_name: "13",
+               venue_name: "Площадка ХИРЭ",
+               match_on: "2014-11-11",
+               match_at: "12:00",
+               host_team: {
+                   name: "GraceHoppers",
+                   first_period_fouls: 0,
+                   second_period_fouls: 0,
+                   scores: 1,
+                   players: []
+               },
+               guest_team: {
+                   name: "Zfort Group",
+                   first_period_fouls: 0,
+                   second_period_fouls: 0,
+                   scores: 0,
+                   players: []
+               },
+               events: [],
+               referees: []
+           }
+
+    end
 
     respond_to do |format|
       format.json{ render json: response }
