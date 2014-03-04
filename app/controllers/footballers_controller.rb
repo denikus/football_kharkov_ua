@@ -15,7 +15,7 @@ class FootballersController < ApplicationController
     
     @title = "Футболист: #{@footballer.full_name}"
 
-    tournaments = @footballer.footballers_teams.joins(:step).group("steps.tournament_id").collect{|item| item.step.tournament}
+    tournaments = @footballer.footballers_teams.joins(:step).group("steps.tournament_id, footballers_teams.footballer_id").collect{|item| item.step.tournament}
 
     @tournaments_teams = []
 
