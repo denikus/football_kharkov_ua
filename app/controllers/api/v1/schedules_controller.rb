@@ -59,6 +59,24 @@ class Api::V1::SchedulesController < Api::V1::BaseController
               }
           ]
       }
+    elsif params[:id]== '2014-11-11'
+      @schedules = {
+          schedules_count: 1,
+          schedules: [
+              {
+                  id: 4045,
+                  match_on: "2014-11-1",
+                  match_at: "12:00",
+                  venue_name: "Площадка ХИРЭ",
+                  season_name: "Nano",
+                  league_name: "За 1-е место Senior Лига",
+                  host_team_name: "Zfort Group",
+                  host_scores: 1,
+                  guest_team_name: "GraceHoppers",
+                  guest_scores: 0
+              }
+          ]
+      }
     end
 
 
