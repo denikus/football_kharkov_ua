@@ -7,7 +7,6 @@
 //= require application/profile/profile.js
 //= require jquery-plugins/jquery.jcrop.min.js
 //= require extensions.js
-//= require jquery-plugins/jquery.tools.min
 //= require jquery-plugins/jquery.scrollTo-min
 
 $(document).ajaxSend(function(e, xhr, options) {
