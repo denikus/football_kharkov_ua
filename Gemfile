@@ -15,7 +15,7 @@ gem 'cells'
 gem "mime-types"
 gem 'bitly'
 gem 'paperclip', '~> 2.7'
-gem 'ckeditor', '4.0.6'
+gem 'ckeditor'
 gem 'sanitize'
 gem 'ruby_parser'
 gem 'awesome_print'
