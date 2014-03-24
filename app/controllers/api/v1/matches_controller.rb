@@ -33,11 +33,7 @@ class Api::V1::MatchesController < Api::V1::BaseController
       end
     end
 
-    #ap @events
     @events.sort! { |a,b| a[:minute] <=> b[:minute] }
-    #ap @events
-
-
 
     response = {
             season_name: @match.schedule.step_tour.stage.season.name,
@@ -75,14 +71,6 @@ class Api::V1::MatchesController < Api::V1::BaseController
                 }
             },
             events: @events,
-              #  @match.match_events.collect{|event|
-              #{
-              #    minute: event.minute,
-              #    text: event.message
-              #
-              #}
-
-            #},
             referees: @match.referees.collect{|referee|
               {first_name: referee.first_name,
                last_name: referee.last_name
@@ -90,57 +78,6 @@ class Api::V1::MatchesController < Api::V1::BaseController
             }
 
         }
-
-    if params[:id] == 4046
-      response = {
-          season_name: "Nano",
-          tour_name: "13",
-          venue_name: "Площадка ХИРЭ",
-          match_on: "2014-10-10",
-          match_at: "12:00",
-          host_team: {
-              name: "Zfort Group",
-              first_period_fouls: 0,
-              second_period_fouls: 0,
-              scores: 1,
-              players: []
-          },
-          guest_team: {
-              name: "GraceHoppers",
-              first_period_fouls: 0,
-              second_period_fouls: 0,
-              scores: 0,
-              players: []
-          },
-          events: [],
-          referees: []
-      }
-    elsif params[:id] == 4047
-           response = {
-               season_name: "Nano",
-               tour_name: "13",
-               venue_name: "Площадка ХИРЭ",
-               match_on: "2014-11-11",
-               match_at: "12:00",
-               host_team: {
-                   name: "GraceHoppers",
-                   first_period_fouls: 0,
-                   second_period_fouls: 0,
-                   scores: 1,
-                   players: []
-               },
-               guest_team: {
-                   name: "Zfort Group",
-                   first_period_fouls: 0,
-                   second_period_fouls: 0,
-                   scores: 0,
-                   players: []
-               },
-               events: [],
-               referees: []
-           }
-
-    end
 
     respond_to do |format|
       format.json{ render json: response }
