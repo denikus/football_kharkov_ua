@@ -37,9 +37,9 @@ class Api::V1::MatchesController < Api::V1::BaseController
 
 
     if @events.blank?
-      @events = [{player_name: "Заполнение", statistic_type: "goal", team: "host_team"}]
+      @events = [{player_name: ". Заполнение", statistic_type: "goal", team: "host_team"}]
     end
-    
+
     response = {
             season_name: @match.schedule.step_tour.stage.season.name,
             tour_name:    @match.schedule.step_tour.name,
