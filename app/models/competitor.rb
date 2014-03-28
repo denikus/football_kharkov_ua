@@ -10,7 +10,7 @@ class Competitor < ActiveRecord::Base
       load_target unless loaded?
 
       #delete all players' records
-      Stat.delete_all(['statable_id IN(?) AND statable_type = "FootballPlayer"', target.collect{|i| i.id}])
+      Stat.delete_all(['statable_id IN(?) AND statable_type=\'FootballPlayer\'', target.collect{|i| i.id}])
 
       stats = stats.clone
       target.each do |player|
