@@ -1,8 +1,3 @@
-- content_for :head_declarations do
-  -#= stylesheet_link_tag "/javascripts/jquery-plugins/fancybox/jquery.fancybox-1.3.4.css", :media => "all"
-  -#= javascript_include_tag "jquery-plugins/fancybox/jquery.fancybox-1.3.4.pack"
-  -#= javascript_include_tag "jquery-plugins/fancybox/jquery.easing-1.3.pack"
-
 %h2.tournament-subtitle= "Команда: #{@team.name}"
 - unless @season.nil?
   %h3= "Состав (#{@tournament.name} #{@season.name})"
