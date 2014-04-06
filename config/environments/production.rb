@@ -94,5 +94,5 @@ FootballKharkov::Application.configure do
   }.freeze
 
   # TODO: Refactor this dirty hack
-  MEGA_USER = [1, 107, 74, 87]
+  MEGA_USER = [1]
 end
