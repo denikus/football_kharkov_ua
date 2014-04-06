@@ -7,7 +7,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    user && user.id == post.author_id
+    user && (user.id == post.author_id || MEGA_USER.include?(user.id) )
   end
 
 end
