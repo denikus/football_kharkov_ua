@@ -45,19 +45,22 @@ Schedule = {
   quick_results: {
     current_score: '-',
     init: function() {
-      $("div.fancy-score").live('click', Schedule.quick_results.container_click_handler);
-      $("div.fancy-score input").live('keydown', Schedule.quick_results.input_field_keydown_handler);
-      $("div.fancy-score input").live('blur', Schedule.quick_results.input_field_blur_handler);
+      $("div.fancy-score").on('click', Schedule.quick_results.container_click_handler);
     },
     container_click_handler: function(event) {
+
       Schedule.quick_results.current_score = $(this).text();
       var schedule_id = $(this).attr("id").match(/\d+$/);
       var team_type = $(this).attr("id").match(/^[a-zA-Z]+/);
       var input_field_id = team_type + "_score_" + schedule_id;
       $(this).html('<input name="' + team_type + '_score" class="fancy_score_edit" type="text" value="' + ( Schedule.quick_results.current_score!='-' ? Schedule.quick_results.current_score : "" ) + '" id="' + input_field_id + '" />');
       $("input#" + input_field_id + "").focus();
+
+      //events binding
+      $("div.fancy-score input").on('keydown', Schedule.quick_results.input_field_keydown_handler);
+      $("div.fancy-score input").on('blur', Schedule.quick_results.input_field_blur_handler);
     },
-    input_field_keydown_handler: function(event) {
+    input_field_keydown_handler: function(event) {s
       var input_field = $(this);
       var sched_id  = input_field.attr("id").match(/\d+$/);
       var score     = input_field.val();

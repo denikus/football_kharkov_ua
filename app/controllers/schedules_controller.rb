@@ -28,10 +28,10 @@ class SchedulesController < ApplicationController
     tournament = Tournament.find_by_url(request.subdomain)
 
     if ('prev' == date_type)
-      condition_str = "match_on < ?  AND #{(tournament.nil? ? "1" : "steps.tournament_id = ?")} "
+      condition_str = "match_on < ?  AND #{(tournament.nil? ? "true" : "steps.tournament_id = ?")} "
       order_str = "match_on DESC"
     elsif ('next' == date_type)
-      condition_str = "match_on > ?  AND #{(tournament.nil? ? "1" : "steps.tournament_id = ?")} "
+      condition_str = "match_on > ?  AND #{(tournament.nil? ? "true" : "steps.tournament_id = ?")} "
       order_str = "match_on ASC"
     end
 
