@@ -5,7 +5,7 @@
 //= require application/comment/comment.js
 //= require ckeditor/init.js
 //= require application/profile/profile.js
-//= require ../../../vendor/assets/javascripts/jquery-plugins/jquery.Jcrop.min.js
+//= require /vendor/assets/javascripts/jquery-plugins/jquery.Jcrop.min.js
 //= require extensions.js
 //= require jquery-plugins/jquery.scrollTo-min
 
