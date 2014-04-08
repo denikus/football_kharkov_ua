@@ -5,14 +5,14 @@
 
 %p{:style => "color: #BE420E; font-weight: bold;"}= "Внимание! Убедительно просим загружать вашу актуальную фотографию, на которых четко будет видно лицо. Мультяшных героев, логотипы команд, ваши детские фото и др. можете использовать для аватара вашего профиля пользователя. В противном случае вы можете быть лишены возьможности управления этой страницей."
 
-- form_for @footballer, {:url => footballer_upload_photo_path, :html => {:multipart => true, :id => "photo-upload-form"}} do |f|
+= form_for @footballer, {:url => footballer_upload_photo_path, :html => {:multipart => true, :id => "photo-upload-form"}} do |f|
   %label{:for => "photo-upload-field"} Загрузить новое фото:
   = f.file_field :photo, {:class=>"text", :id => "photo-upload-field"}
   .clear
 //cropping
 - unless @footballer.photo.instance.photo_file_name.nil?
   = image_tag @footballer.photo.url(:large), :id => "cropbox"
-  - form_for @footballer, {:url => footballer_upload_photo_path, :html => {:id => "photo-crop-form"}} do |f|
+  = form_for @footballer, {:url => footballer_upload_photo_path, :html => {:id => "photo-crop-form"}} do |f|
     - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
       = f.hidden_field attribute, :id => attribute
     .clear
@@ -20,7 +20,7 @@
   %h3= "Удалить фото"
   %div{:style => "text-align: center; font-weight: bold;"} Не забудьте загрузить новое фото!
   %br/
-  - form_for @footballer, {:url => footballer_destroy_photo_path, :html => {:method => :delete, :id => "photo-delete-form"}} do |f|
+  = form_for @footballer, {:url => footballer_destroy_photo_path, :html => {:method => :delete, :id => "photo-delete-form"}} do |f|
     %div{:style => "text-align: center;"}
       %input.fancy-button.blue{:type => "submit", :name => "submit", :value => "Удалить"}
 
