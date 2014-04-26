@@ -14,7 +14,7 @@ class BombardiersController < ApplicationController
                                             where(["seasons.id = ? AND steps.type = 'StepLeague'", seasons.last]).all
 
 
-    @bombardiers = Footballer.select("footballers.*, football_players.id AS football_player_id, competitors.team_id AS team_id, SUM(statistic.statable_total) AS statable_sum").
+    @bombardiers = Footballer.select("footballers.*, competitors.team_id AS team_id, SUM(statistic.statable_total) AS statable_sum").
                               joins("INNER JOIN football_players " +
                                                               "ON (footballers.id = football_players.footballer_id) " +
                                                             "INNER JOIN competitors " +
@@ -32,7 +32,7 @@ class BombardiersController < ApplicationController
                                                                       	 "GROUP BY stats.statable_id) AS statistic " +
                                                               "ON (statistic.statable_id=football_players.id) ").
                               where(["footballers.id >0 AND leagues.id IN (#{ @leagues.size > 0 ? @leagues.collect!{|x| x.id}.join(',') : "0" })"]).
-                              group("competitors.team_id, footballers.id, football_player_id ").
+                              group("competitors.team_id, footballers.id").
                               #paginate(:per_page => 50,:page => 1).
                               order("statable_sum DESC, footballers.last_name ASC")
 

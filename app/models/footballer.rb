@@ -44,6 +44,9 @@ class Footballer < ActiveRecord::Base
 
   def avatar_geometry(style = :original)
     @geometry ||= {}
+    # puts "photo"
+    # ap photo
+    # puts "eof photo"
     @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
   end
 

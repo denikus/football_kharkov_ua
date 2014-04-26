@@ -14,6 +14,7 @@ gem 'russian'
 gem 'cells'
 gem "mime-types"
 gem 'bitly'
+gem 'cocaine'
 gem 'paperclip', '~> 2.7'
 gem 'ckeditor'
 gem 'sanitize'
