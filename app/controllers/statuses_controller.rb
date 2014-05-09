@@ -27,10 +27,10 @@ class StatusesController < ApplicationController
   end
 
   def show
+
     @post = Status.find(params[:id]).post
 
     @page_title = @post.title
-
     if !@post.tournament.nil? && request.subdomain.nil?
       redirect_params = {:host => with_subdomain(@post.tournament.url) }
       redirect_params.merge!(params)
