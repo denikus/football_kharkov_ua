@@ -1,8 +1,8 @@
 - content_for :head_declarations do
   -#= javascript_include_tag "application/schedule/schedule"
 %h2= @season.name
-- @season.stages.find(:all, :order => "identifier DESC").each do |stage|
-  - stage.tours.find(:all, :order => "identifier DESC").each do |tour|
+- @season.stages.find(:all, :order => "created_at DESC").each do |stage|
+  - stage.tours.find(:all, :order => "created_at DESC").each do |tour|
     -unless Schedule.count(:conditions => ["tour_id = ? AND host_scores IS NOT NULL AND guest_scores IS NOT NULL", tour.id]) == 0
       %h3= tour.name
       - stage.leagues.find(:all, :order => "identifier ASC").each do |league|
