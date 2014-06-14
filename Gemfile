@@ -54,6 +54,7 @@ group :production do
   #need this for js compiling
   gem 'execjs'
   gem 'therubyracer'
+  gem 'jazz_hands'
 end
 
 group :test do
