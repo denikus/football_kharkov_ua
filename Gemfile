@@ -38,6 +38,8 @@ gem 'jquery-rails-cdn'
 gem 'turbo-sprockets-rails3', '~>0.3.0'
 gem 'pundit'
 gem 'rails-sass-images'
+gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+gem 'pry-byebug'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -54,7 +56,7 @@ group :production do
   #need this for js compiling
   gem 'execjs'
   gem 'therubyracer'
-  gem 'jazz_hands'
+
 end
 
 group :test do
@@ -69,9 +71,10 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'database_cleaner'
-  gem 'jazz_hands'
 end
 
 # Deploy with Capistrano
-gem 'capistrano', '=2.14.1'
+# gem 'capistrano', '=2.14.1'
+gem 'capistrano',  '~> 3.1'
+gem 'capistrano-rails', '~> 1.1'
 
