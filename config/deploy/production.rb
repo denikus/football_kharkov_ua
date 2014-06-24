@@ -13,7 +13,8 @@ set :branch, 'master'
 
 # Extended Server Syntax
 # ======================
-server '85.159.209.246', roles: :all, user: fetch(:user)
+server '85.159.209.246', roles: :all, user: fetch(:user), port: 34597
+
 
 # Shell env
 # ======================
