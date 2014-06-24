@@ -7,7 +7,7 @@ set :repo_url, 'git@github.com:denikus/football_kharkov_ua.git'
 
 # output format
 set :format, :pretty
-set :log_level, :debug #:debug
+set :log_level, :info #:debug
 
 # Default value for :linked_files is []
 set :linked_files, %w{config/database.yml}
