@@ -13,7 +13,7 @@ set :log_level, :info #:debug
 set :linked_files, %w{config/database.yml config/application.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp public/system}
+set :linked_dirs, %w{bin log tmp public/system public/ckeditor_assets public/footballers}
 
 # Rails assets options
 set :assets_roles, [:all]
