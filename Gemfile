@@ -13,7 +13,7 @@ gem 'hpricot'
 gem 'russian'
 gem 'cells'
 gem "mime-types"
-gem 'bitly'
+gem 'bitly', '~>0.10.1'
 gem 'cocaine'
 gem 'paperclip', '~> 4.1'
 gem 'ckeditor'
