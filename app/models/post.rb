@@ -36,8 +36,8 @@ class Post < ActiveRecord::Base
 
   def generate_short_link
     unless ['test', 'development'].include? Rails.env
-      Bitly.use_api_version_3
-      bitly = Bitly.new(BITLY[:username], BITLY[:api_key])
+      # Bitly.use_api_version_3
+      bitly = Bitly.client
       unless self.resource.class.name=='Status'
         self.short_url = bitly.shorten("http://football.kharkov.ua/#{self.created_at.strftime('%Y')}/#{self.created_at.strftime('%m')}/#{self.created_at.strftime('%d')}/#{self.url}").short_url
       else
