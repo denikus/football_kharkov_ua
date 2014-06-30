@@ -81,11 +81,6 @@ FootballKharkov::Application.configure do
     :enable_starttls_auto => ENV["SMTP_ENABLE_STARTTLS_AUTO"]
   }
 
-  config.middleware.use ExceptionNotifier,
-    :email_prefix => ENV["EXCEPTION_NOTIFIER_EMAIL_PREFIX"],
-    :sender_address => ENV["EXCEPTION_NOTIFIER_SENDER_ADDRESS"],
-    :exception_recipients => ENV["EXCEPTION_NOTIFIER_RECIPIENTS"]
-
   config.action_dispatch.tld_length = 2
 
   BITLY = {
