@@ -2,8 +2,14 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
 
-  has_attached_file :photo, :styles => {:large => {:geometry => "500x500>"}, :medium=> {:geometry => "200x200>", :processors => [:cropper]}, :thumb => {:geometry => "50x50>", :processors => [:cropper]}, :small_thumb => {:geometry => "35x35", :processors => [:cropper]} }
-  has_attached_file :avatar, :styles => { :small => {:geometry => "50x50>", :processors => [:cropper]}, :very_small => {:geometry => "35x35", :processors => [:cropper]} }
+  has_attached_file :photo, :url => "/system/:attachment/:id/:style/:filename",
+                    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+                    :styles => {:large => {:geometry => "500x500>"},
+                                :medium=> {:geometry => "200x200>", :processors => [:cropper]},
+                                :thumb => {:geometry => "50x50>", :processors => [:cropper]},
+                                :small_thumb => {:geometry => "35x35", :processors => [:cropper]}
+                    }
+  has_attached_file :avatar, :path => ":rails_root/public/system/:attachment/:id/:style/:filename", :styles => { :small => {:geometry => "50x50>", :processors => [:cropper]}, :very_small => {:geometry => "35x35", :processors => [:cropper]} }
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_photo, :if => :cropping?
