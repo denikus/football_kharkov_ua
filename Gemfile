@@ -57,7 +57,6 @@ group :production do
   #need this for js compiling
   gem 'execjs'
   gem 'therubyracer'
-
 end
 
 group :test do
@@ -75,7 +74,6 @@ group :development, :test do
 end
 
 # Deploy with Capistrano
-# gem 'capistrano', '=2.14.1'
 gem 'capistrano',  '~> 3.1'
 gem 'capistrano-rails', '~> 1.1'
 gem 'capistrano-rvm', github: 'capistrano/rvm'
