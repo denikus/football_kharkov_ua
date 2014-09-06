@@ -42,7 +42,7 @@ gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
 gem 'pry-byebug'
 gem 'newrelic_rpm'
 
-gem 'exception_notification'
+gem 'rollbar', '~> 1.0.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -53,7 +53,6 @@ group :assets do
 end
 
 group :production do
-  # gem 'exception_notification_rails3', :require => 'exception_notifier'
   gem 'sitemap_generator'
   gem 'whenever', :require => false
   #need this for js compiling
