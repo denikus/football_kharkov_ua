@@ -86,7 +86,7 @@ FootballKharkov::Application.configure do
   BITLY = {
     :username => ENV["BITLY_USERNAME"],
     :api_key => ENV["BITLY_API_KEY"]
-  }.freeze
+  }.freeze 
 
   # TODO: Refactor this dirty hack
   MEGA_USER = [1]
