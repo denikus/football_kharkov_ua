@@ -91,3 +91,5 @@ FootballKharkov::Application.configure do
   # TODO: Refactor this dirty hack
   MEGA_USER = [1]
 end
+
+

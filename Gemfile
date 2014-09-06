@@ -52,6 +52,7 @@ end
 
 group :production do
   # gem 'exception_notification_rails3', :require => 'exception_notifier'
+  gem 'exception_notification'
   gem 'sitemap_generator'
   gem 'whenever', :require => false
   #need this for js compiling
