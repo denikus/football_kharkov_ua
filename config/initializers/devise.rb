@@ -50,6 +50,10 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   config.pepper = "cdc1042b28c519eb97c637f69d9f56e51963f3ab67a2e5695018231a7d43988804566188090876e50ac870945419d2ad1da5850f548d65dd5a97dbc9ba2cf61f"
 
+  # config.secret_key = ENV['DEVICE_SECRET']
+
+  # config.allow_insecure_token_lookup = true
+
   config.authentication_keys = [:email]
 
   #config.confirm_within = 5.days
@@ -57,7 +61,6 @@ Devise.setup do |config|
 
   config.remember_for = 3.month
 
-  config.use_salt_as_remember_token = true
   config.reset_password_within = 6.hours
 
   config.timeout_in = 6.hour
@@ -69,6 +72,8 @@ Devise.setup do |config|
   config.reconfirmable = true
 
   config.stretches = Rails.env.test? ? 1 : 10
+
+  # config.router_name = :main_app
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
