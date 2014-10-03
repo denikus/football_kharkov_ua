@@ -11,7 +11,7 @@ class Match < ActiveRecord::Base
                   joins(:competitors => :football_players).
                   where("matches.id IN (?) AND competitors.team_id = ? AND football_players.footballer_id = ? ", match_ids, team_id, footballer_id)}
             
-  has_many :competitors, :include => :football_players do
+  has_many :competitors, :dependent => :destroy, :include => :football_players do
     def [] side
       load_target unless loaded?
       target.find{ |s| s.side.to_sym == side.to_sym }
