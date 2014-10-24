@@ -37,7 +37,7 @@ module ApplicationHelper
   def full_article(body)
     new_body = body.sub(/\[\[break\]\]/, '<a href="#" id="announce-breaker"></a>')
 #    decode_entities(new_body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
-    decode_entities(new_body.sub(/<div style="page-break-after: always;">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
+    decode_entities(new_body.sub(/<div style="page-break-after: always">(.*?)<\/div>/m, '<a href="#" id="announce-breaker"></a>'))
   end
 
   def post_item_path(post_item, anchor = nil)
