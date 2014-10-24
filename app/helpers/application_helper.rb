@@ -4,7 +4,7 @@ module ApplicationHelper
   def article_announce(body)
     if !(break_index = body.index('[[break]]')).nil?
       decode_entities(body[0..break_index-1])
-    elsif !(break_index = body.index('<div style="page-break-after: always;">')).nil?
+    elsif !(break_index = body.index('<div style="page-break-after: always">')).nil?
       decode_entities(body[0..break_index-1])
     else
       truncate(decode_entities(body), {:length => 1000, :omission =>  '...'})
