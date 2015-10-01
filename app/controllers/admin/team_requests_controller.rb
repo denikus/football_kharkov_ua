@@ -55,7 +55,7 @@ class Admin::TeamRequestsController < ApplicationController
     team = Team.find(params[:id])
 
     @footballer = Footballer.new(first_name: params[:first_name], last_name: params[:last_name], patronymic: params[:patronymic], birth_date: params[:birth_date])
-    
+
     if @footballer.save
       FootballersTeam.create({:step_id => params[:step_id], :team_id => team.id, :footballer_id => @footballer.id})
     end

@@ -376,7 +376,7 @@ DEPENDENCIES
   awesome_print
   bitly!
   capistrano (~> 3.1)
-  capistrano-rails (~> 1.1)
+  capistrano-rails (~> 1.1.1)
   capistrano-rvm!
   capybara
   cells
