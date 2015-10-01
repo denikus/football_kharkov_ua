@@ -84,6 +84,10 @@ FootballKharkov::Application.routes.draw do
     end
     match 'temp(/:action(/:id))' => "temp"
     match 'import(/:action(/:id))' => "import"
+    resources :team_requests do
+      post :add_player, on: :member
+      post :create_player, on: :member
+    end
   end
 
   match "/:hash/:id" => 'users#show', :constraints => {:hash => '!!'}

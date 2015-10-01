@@ -1,0 +1,7 @@
+= form_tag '/admin/team_requests', method: :get do
+  = select_tag(:season_id, options_from_collection_for_select(@seasons, "id", "name", cookies[:season_id]))
+  = submit_tag("Выбрать")
+
+%ol
+  - @teams.each do |team|
+    %li= link_to team.name, admin_team_request_path(id: team.id)

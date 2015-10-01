@@ -59,6 +59,26 @@ class Footballer < ActiveRecord::Base
     end
   end
 
+  def self.for_diplom(team_name, reason, template_name)
+    # get last season in itleague
+    tournament = Tournament.find_by_url('itleague')
+
+    season = StepSeason.by_tournament(tournament.id).last
+
+    team = Team.find_by_name(team_name)
+
+    # get footballers list by season
+    footballers = Footballer.by_team_step({:team_id => team.id, :step_id => season.id} )
+
+    res = "["
+    footballers.each do |footballer|
+      res += "{name: \"#{footballer.first_name} #{footballer.last_name}\", who: \"игрок команды #{team.name}\", reason: \"#{reason}\", template: \"#{template_name}\"},"
+    end
+    res += "]"
+
+    puts res
+  end
+
   private
 
   def reprocess_photo

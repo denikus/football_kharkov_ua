@@ -1,0 +1,53 @@
+- content_for :head_declarations do
+  = javascript_include_tag "admin/temp"
+%h1= @team.name
+
+%ol
+  - @api_players.each_with_index do |player, index|
+    %li
+      %strong= "#{player["last_name"]} #{player["first_name"]} #{player["patronymic"]} (#{player["birth_date"]})".html_safe
+      = link_to 'Create&Add player', create_player_admin_team_request_path(id: @team.id, step_id: cookies[:season_id]), class: 'create_player',
+        :'data-first_name' => player["first_name"], :'data-last_name' => player["last_name"], :'data-patronymic' => player["patronymic"],
+        :'data-birth_date' => player["birth_date"]
+
+      - if !@fhu_players[index].nil? && !@fhu_players[index].empty?
+        - @fhu_players[index].each do |fhu_player|
+          %p
+            = "#{fhu_player["last_name"]} #{fhu_player["first_name"]} #{fhu_player["patronymic"]} (#{fhu_player["birth_date"]})".html_safe
+            - if !@footballer_ids.include?(fhu_player.id)
+              = link_to 'Добавить в команду', add_player_admin_team_request_path(id: @team.id, step_id: cookies[:season_id]), id: "#{fhu_player.id}", class: 'add_to_team'
+
+:coffee
+  $ ->
+    $("a.add_to_team").on('click', (e)->
+      e.preventDefault()
+
+      el = $(e.currentTarget)
+      url = el.attr('href')
+      footballer_id = el.attr('id')
+
+      $.ajax
+        url: url
+        data: {footballer_id: footballer_id}
+        dataType: 'json'
+        method: 'POST'
+        success: (data)->
+          el.remove()
+    )
+
+    $("a.create_player").on('click', (e)->
+      e.preventDefault()
+
+      el = $(e.currentTarget)
+      url = el.attr('href')
+
+      $.ajax
+        url: url
+        data: {first_name: el.data('first_name'), last_name: el.data('last_name'), patronymic: el.data('patronymic'), birth_date: el.data('birth_date')}
+        dataType: 'json'
+        method: 'POST'
+        success: (data)->
+          el.remove()
+
+
+    )

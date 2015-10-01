@@ -30,7 +30,7 @@ class Admin::SessionController < Devise::SessionsController
   def create
     user = Admin.find_for_authentication(:email => params[:admin][:email])
     if !user || !user.valid_password?(params[:admin][:password])
-      response_data[:general] << I18n.t("devise.failure.invalid")
+      # response_data[:general] << I18n.t("devise.failure.invalid")
       return false
     end
 
