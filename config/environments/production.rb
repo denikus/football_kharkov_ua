@@ -68,7 +68,7 @@ FootballKharkov::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( admin/application.css admin/admin.css user.css itleague_draw.js itleague_draw.css admin/temp.js jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js extensions.js)
   config.assets.precompile += %w( /vendor/assets/images/default/**/*.gif)
-  config.assets.precompile += ['jquery.js', 'jquery.min']
+  config.assets.precompile += ['jquery.js', 'jquery.min.js']
 
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
   config.action_mailer.delivery_method = :smtp
