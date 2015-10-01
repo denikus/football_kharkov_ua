@@ -22,7 +22,7 @@ class Admin::TeamRequestsController < ApplicationController
     @team = Team.find(params[:id])
 
     # get team's players from onetwoteam.com
-    @api_players = JSON.parse(open("https://onetwoteam.com/api/v1/teams/#{@team.name}.json").read)
+    @api_players = JSON.parse(open(URI.escape("https://onetwoteam.com/api/v1/teams/#{@team.name}.json")).read)
     @fhu_players = []
     @api_players.each_with_index do |api_player, index|
 
@@ -34,7 +34,6 @@ class Admin::TeamRequestsController < ApplicationController
       end
     end
 
-    # ap @fhu_players
     @footballer_ids = Team.find(@team.id).footballer_ids[cookies[:season_id]]
 
     @footballers = Footballer.by_team_step({:team_id => @team.id, :step_id => cookies[:season_id]} )
