@@ -21,21 +21,57 @@
     %div{:style => "text-align: center;"}
       %input.fancy-button.blue{:type => "submit", :name => "submit", :value => "Удалить"}
 
-  :javascript
-    $(function() {
-      var options = {
-        original_width: "#{@profile.avatar_geometry(:original).width unless @profile.avatar_geometry(:original).nil?}",
-        large_width:    "#{@profile.avatar_geometry(:large).width unless @profile.avatar_geometry(:large).nil?}",
-        large_height:   "#{@profile.avatar_geometry(:large).height unless @profile.avatar_geometry(:large).nil?}",
-        x_left:         "#{@profile.crop_x_left || 0}",
-        y_top:          "#{@profile.crop_y_top || 0}",
-        x_right:        "#{@profile.crop_x_left.nil? ? "200" : (@profile.crop_x_left + @profile.crop_width)}",
-        y_bottom:       "#{@profile.crop_y_top.nil? ? "200" : (@profile.crop_y_top + @profile.crop_height)}"
-      }
-      Application.crop.init(options);
-    });
+:coffee
+  $ ->
+    previewNode = document.querySelector("#template")
+    previewNode.id = ""
+    previewTemplate = previewNode.parentNode.innerHTML
+    previewNode.parentNode.removeChild(previewNode)
 
-:javascript
-  $(function() {
-    Application.photo_upload.init();
-  });
+    myDropzone = new Dropzone(document.body, {
+      url: "#{upload_photo_profile_path()}",
+      headers: {'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')},
+      previewTemplate: previewTemplate,
+      paramName: 'profile[avatar]',
+      previewsContainer: "#previews",
+      clickable: ".fileinput-button"
+    })
+
+    myDropzone.on("totaluploadprogress", (progress)->
+      $("#total-progress .progress-bar").css("width", progress + "%")
+    )
+
+    myDropzone.on("sending", (file)->
+      $("#total-progress").css("opacity","1")
+    )
+
+    myDropzone.on("queuecomplete", (progress)->
+      $('.done-text').css('display', 'block')
+      location.reload()
+    )
+
+    set_fields = (data)->
+      $("#crop_left").val(data.x)
+      $("#crop_top").val(data.y)
+      $("#crop_width").val(data.width)
+      $("#crop_height").val(data.height)
+
+    $('img.cropper').cropper({
+      aspectRatio: 1,
+      zoomable: false,
+      preview: ".profile-photo",
+      data: "#{crop_data(@profile).to_json}",
+      built: (event)->
+        crop_data = $('img.cropper').cropper('getData', 'rounded')
+        set_fields(crop_data)
+
+      dragend: (event)->
+        crop_data = $('img.cropper').cropper('getData', 'rounded')
+        set_fields(crop_data)
+    })
+
+    $("#crop-button").on('click', (event)->
+      event.preventDefault()
+      $("#crop-form").submit()
+
+    )

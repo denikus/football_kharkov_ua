@@ -47,7 +47,7 @@ class Footballer < ActiveRecord::Base
     # puts "photo"
     # ap photo
     # puts "eof photo"
-    @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
+    @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
   end
 
   def crop_image

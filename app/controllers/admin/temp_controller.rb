@@ -27,7 +27,7 @@ class Admin::TempController < ApplicationController
     @last_schedules = Schedule.joins("INNER JOIN steps ON (steps.id = schedules.tour_id AND steps.type = 'StepTour')").
                                where("tournament_id = ? ", cookies[:schedule_tournament_id]).
                                order("match_on DESC, venue_id ASC, match_at ASC").
-                               limit(80)
+                               limit(120)
 
     #@last_schedules = Schedule.find(
     #                                :all,

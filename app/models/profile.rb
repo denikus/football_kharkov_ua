@@ -10,9 +10,10 @@ class Profile < ActiveRecord::Base
                                 :small_thumb => {:geometry => "35x35", :processors => [:cropper]}
                     }
   has_attached_file :avatar, :path => ":rails_root/public/system/:attachment/:id/:style/:filename", :styles => { :small => {:geometry => "50x50>", :processors => [:cropper]}, :very_small => {:geometry => "35x35", :processors => [:cropper]} }
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  after_update :reprocess_photo, :if => :cropping?
+  after_update :reprocess_photo, :if => :cropped?
 
 #  has_one :profile_avatar
 
@@ -20,7 +21,7 @@ class Profile < ActiveRecord::Base
   USER_TYPE_OPTIONS = [[:fan, 'Болельщик'], [:footballer, 'Футболист']]
   ROLE_OPTIONS = [[:unknown, 'Еще не определился'], [:ball_boy, 'Подаю мячи'], [:goalkeeper, 'Вратарь'], [:fullback, 'Защитник'], [:halfback, 'Полузащитник'], [:forward, 'Форвард'], [:coach, 'Тренер']]
 
-  before_update :crop_image
+  # before_update :crop_image
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
@@ -28,7 +29,15 @@ class Profile < ActiveRecord::Base
 
   def avatar_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style)) unless photo.to_file(style).blank?
+    # ava_path = photo.photo_geometry(style).path unless photo.nil?#if !photo.nil? && !photo.queued_for_write[style].nil?
+    # avatar_geometry(style).width
+    # @geometry[style] ||= Paperclip::Geometry.from_file(ava_path) #if !photo.nil? && !photo.queued_for_write[style].nil?
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style)) if !photo.nil? #if !photo.nil? && !photo.queued_for_write[style].nil?
+
+  end
+
+  def cropped?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
 
   def crop_image
@@ -43,7 +52,9 @@ class Profile < ActiveRecord::Base
   private
 
   def reprocess_photo
-    photo.reprocess!
+    # photo.reprocess!
+    photo.assign(avatar)
+    photo.save
   end
 
 end

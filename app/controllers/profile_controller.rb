@@ -35,6 +35,7 @@ class ProfileController < ApplicationController
   end
 
   def make_crop
+    # ap params[:profile]
     current_user.profile.attributes = params[:profile]
     current_user.profile.save!
 

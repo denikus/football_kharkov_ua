@@ -16,7 +16,7 @@ gem 'cells'
 gem "mime-types"
 gem 'bitly', github: 'denikus/bitly'
 gem 'cocaine'
-gem 'paperclip', '~> 4.1'
+gem 'paperclip', '4.3'
 gem 'ckeditor', '~>4.0.10'
 gem 'sanitize'
 gem 'ruby_parser'
@@ -28,6 +28,7 @@ gem 'omniauth-vkontakte', '~>1.3.3'
 gem 'omniauth-facebook', '~>2.0.0'
 gem 'yajl-ruby'
 gem 'awesome_nested_set'
+# gem 'coffee-views'
 
 # for easy config files
 gem 'figaro'

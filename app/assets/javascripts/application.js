@@ -8,6 +8,8 @@
 //= require ../../../vendor/assets/javascripts/jquery-plugins/jquery.jcrop.min.js
 //= require extensions.js
 //= require jquery-plugins/jquery.scrollTo-min
+//= require dropzone/dropzone
+//= require cropper/cropper
 
 $(document).ajaxSend(function(e, xhr, options) {
   var token = $("meta[name='csrf-token']").attr("content");
