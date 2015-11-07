@@ -49,6 +49,7 @@ gem 'rollbar', '~> 1.0.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
+
 group :assets do
   gem 'sass-rails', '~>3.2.6'
   gem 'coffee-rails', ' ~> 3.2.1'
@@ -70,6 +71,10 @@ group :test do
   gem 'faker'
 end
 
+group :development do
+  gem 'capistrano-faster-assets', '~> 1.0'
+end
+
 group :development, :test do
   gem 'rspec-rails', :branch => 'rails3'
   gem 'guard-rspec'
@@ -81,4 +86,4 @@ end
 gem 'capistrano',  '~> 3.1'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rvm', github: 'capistrano/rvm'
-
+gem 'capistrano-db-tasks', require: false

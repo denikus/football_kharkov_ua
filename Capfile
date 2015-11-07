@@ -5,7 +5,7 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/rvm'
 require 'capistrano/rails'
-
+require 'capistrano/faster_assets'
 
 
 # Includes tasks from other gems included in your Gemfile
