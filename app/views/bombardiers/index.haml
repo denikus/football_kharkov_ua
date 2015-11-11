@@ -1,24 +1,29 @@
 %h2.tournament-subtitle Бомбардиры
 %br/
-%br/ 
-%table.bombardier-position
-  %tr.header
-    %td
-      Место
-    %td
-      Игрок
-    %td
-      Голы
-  - @bombardier_list.each_with_index do |item, index|
-    -unless index>9
-      -row_class = index%2 == 0 ? "" : "odd"
-      %tr{:class => row_class}
-        %td.place= index+1
-        %td
-          -item[1].each do |footballer|
-            -team = Team.find(footballer.team_id)
-            = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{link_to(team.name, team_path(team.url))})".html_safe
-            %br/
-        %td.goals= "#{item[0]}".to_i
+%br/
+
+- @tags.each do |tag|
+  %table.bombardier-position
+    %tr.header
+      %td{colspan: 3}
+        = tag[:name]
+    %tr.header
+      %td
+        Место
+      %td
+        Игрок
+      %td
+        Голы
+    - tag[:bombardiers].each_with_index do |item, index|
+      -unless index>9
+        -row_class = index%2 == 0 ? "" : "odd"
+        %tr{:class => row_class}
+          %td.place= index+1
+          %td
+            -item[1].each do |footballer|
+              -team = Team.find(footballer.team_id)
+              = "#{link_to("#{footballer.last_name} #{footballer.first_name}", footballer_path(footballer.url))} (#{link_to(team.name, team_path(team.url))})".html_safe
+              %br/
+          %td.goals= "#{item[0]}".to_i
 - content_for :top_submenu do
   = "tournament"

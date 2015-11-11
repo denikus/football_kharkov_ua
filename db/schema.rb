@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151022075332) do
+ActiveRecord::Schema.define(:version => 20151111103341) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -144,6 +144,20 @@ ActiveRecord::Schema.define(:version => 20151022075332) do
   add_index "footballers_teams", ["footballer_id"], :name => "footballers_teams_footballer_id"
   add_index "footballers_teams", ["step_id"], :name => "footballers_teams_step_id"
   add_index "footballers_teams", ["team_id"], :name => "footballers_teams_team_id"
+
+  create_table "league_tags", :force => true do |t|
+    t.integer  "step_season_id"
+    t.string   "name"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "leagues_league_tags", :force => true do |t|
+    t.integer  "step_league_id"
+    t.integer  "league_tag_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "match_event_types", :force => true do |t|
     t.string "symbol"

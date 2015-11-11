@@ -4,6 +4,8 @@ class StepLeague < Step
   
   has_many :schedules, :foreign_key => 'league_id'
   has_many :matches, :through => :schedules
+  has_one :leagues_league_tags, class_name: 'LeaguesLeagueTags'
+  has_one :league_tag, through: :leagues_league_tags, class_name: 'LeagueTag'
 
   scope :for_table, :include => {:matches => [{:schedule => :step_tour}, {:competitors => [:team, :stats, {:football_players => :stats}]}]}
 

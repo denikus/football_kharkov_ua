@@ -1503,7 +1503,8 @@ h2.tournament-subtitle {
 }
 
 table.bombardier-position {
-  width: 600px;
+  float: left;
+  margin-right: 10px;
   td.place {
     width: 30px;
     text-align:center;
