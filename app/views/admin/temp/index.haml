@@ -31,6 +31,7 @@
       = "#{ (schedule.match_on ? Russian::strftime(schedule.match_on.to_date , "%A, %d %B %Y") : "" )}; #{schedule.match_at}"
       = "#{schedule.hosts.name} - #{schedule.guests.name}"
       = link_to("удалить", url_for(:controller => "temp", :action => "delete_schedule", :id => schedule.id))
+      = link_to("редактировать", url_for(:controller => "temp", :action => "edit_schedule", :id => schedule.id))
 :javascript
   $(function(){
     football.temp.schedule.team.init({teams_path: "#{url_for(:controller => "admin/temp", :action => "teams")}"});

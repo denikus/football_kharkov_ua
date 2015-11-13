@@ -1,0 +1,21 @@
+- content_for :head_declarations do
+  = javascript_include_tag "admin/temp"
+= form_for @schedule, :url => {:action => "update_schedule"} do |f|
+  =f.hidden_field(:id)
+  =f.hidden_field(:host_team_id)
+  =f.hidden_field(:guest_team_id)
+
+  =text_field_tag(:host_team, (@schedule.hosts.nil? ? '' : @schedule.hosts.name))
+  =text_field_tag(:guest_team, (@schedule.guests.nil? ? '' : @schedule.guests.name))
+
+  =f.select(:venue_id, @venues.collect{|obj| [obj.name, obj.id]})
+
+  =f.text_field(:match_on)
+  =f.text_field(:match_at)
+
+  = f.submit("Сохранить")
+
+:javascript
+  $(function(){
+    football.temp.schedule.team.init({teams_path: "#{url_for(:controller => "admin/temp", :action => "teams")}"});
+  });

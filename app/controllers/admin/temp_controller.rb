@@ -46,6 +46,18 @@ class Admin::TempController < ApplicationController
     redirect_to :action => "index"
   end
 
+  def edit_schedule
+    @schedule = Schedule.find(params[:id])
+    @venues = Venue.all
+  end
+
+  def update_schedule
+    @schedule = Schedule.find(params[:schedule][:id])
+    @schedule.update_attributes(params[:schedule])
+
+    redirect_to action: 'edit_schedule', id: params[:schedule][:id]
+  end
+
   def get_tours
 
     if params["tournament_id"].nil?
