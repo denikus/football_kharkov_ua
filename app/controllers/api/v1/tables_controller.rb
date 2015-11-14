@@ -8,7 +8,6 @@ class Api::V1::TablesController < Api::V1::BaseController
 
     # return error if no season with such url
     error!("Incorrect params", 403) and return if @season.nil?
-    #ap StepSeason.where(tournament_id: @tournament.id, id: @season.id)
 
     @stages = StepSeason.where(tournament_id: @tournament.id, id: @season.id).first.stages.order('created_at ASC').all
 

@@ -15,6 +15,7 @@ FootballKharkov::Application.routes.draw do
         resources :matches, only: [ :show]
         resources :violations, only: [ :index]
         resources :tables, only: [ :index]
+        resources :bombardiers, only: [ :index]
       end
     end
   end
