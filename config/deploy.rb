@@ -45,6 +45,9 @@ set :linked_dirs, %w{bin log tmp public/system public/ckeditor_assets public/foo
 # Rails assets options
 set :assets_roles, [:all]
 
+set :ssh_options, :compression => false, :keepalive => true
+
+
 # =========================
 # Additional tasks
 # =========================
