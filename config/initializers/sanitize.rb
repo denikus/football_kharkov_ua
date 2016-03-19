@@ -21,7 +21,7 @@ Sanitize::Config::FOOTBALL_ARTICLE = {
     'embed'  => ['allowfullscreen', 'allowscriptaccess', 'height', 'src', 'type', 'width'],
     'object' => ['height', 'width'],
     'param'  => ['name', 'value'],
-    'iframe' => ["width", "height", "src", "frameborder", "allowfullscreen"], 
+    'iframe' => ['width', 'height', 'src', 'frameborder', 'allowfullscreen'], 
     'span'   => ['style']
   },
   :protocols => {

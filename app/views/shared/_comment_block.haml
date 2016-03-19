@@ -38,7 +38,7 @@
 
                         
               %div.commentBody
-                = show_comment(post, item)
+                = show_comment(post, item).html_safe
 
             - if user_signed_in?
               = link_to  "ответить", "#", :class => "button commentReply", :"data-options" => "{\"id\": \"#{item.id}\", \"level\": \"#{shiftComment}\", \"postId\": \"#{post.id}\"}"

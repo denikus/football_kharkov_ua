@@ -15,7 +15,30 @@ module ApplicationHelper
 
   def show_comment(post, comment)
     unless post.hide_comments
-      return simple_format(comment.body)
+      links = URI.extract(comment.body)
+
+      content = ''
+
+      if links.empty?
+        content = simple_format(comment.body)
+      else
+
+        links.each do |link|
+          page = MetaInspector.new(link, html_content_only: false)
+          if page.content_type.start_with?('image')
+            img_src = link
+          else
+            img_src = page.images.best
+          end
+          content += "#{link_to image_tag(img_src, style: 'max-width: 400px;'), link, target: '_blank'} <br/>"
+        end
+
+      end
+
+
+
+      # return MetaInspector.new(simple_format(comment.body))
+      return content
 #      .gsub!(/\n/, '<br />')
     end
 
