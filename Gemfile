@@ -38,7 +38,6 @@ gem 'dynamic_form'
 
 gem 'rails_autolink'
 gem 'jquery-rails-cdn'
-gem 'turbo-sprockets-rails3', '~>0.3.0'
 gem 'pundit'
 gem 'rails-sass-images'
 gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
@@ -56,6 +55,7 @@ group :assets do
   gem 'sass-rails', '~>3.2.6'
   gem 'coffee-rails', ' ~> 3.2.1'
   gem 'uglifier', '>=1.0.3'
+  gem 'turbo-sprockets-rails3', '~>0.3.0'
 end
 
 group :production do
