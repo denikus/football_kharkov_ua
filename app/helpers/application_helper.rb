@@ -24,13 +24,17 @@ module ApplicationHelper
       else
 
         links.each do |link|
-          page = MetaInspector.new(link, html_content_only: false)
-          if page.content_type.start_with?('image')
-            img_src = link
-          else
-            img_src = page.images.best
+          begin
+            page = MetaInspector.new(link, html_content_only: false)
+            if page.content_type.start_with?('image')
+              img_src = link
+            else
+              img_src = page.images.best
+            end
+            content += "#{link_to image_tag(img_src, style: 'max-width: 400px;'), link, target: '_blank'} <br/>"
+          rescue
+            content = simple_format(comment.body)
           end
-          content += "#{link_to image_tag(img_src, style: 'max-width: 400px;'), link, target: '_blank'} <br/>"
         end
 
       end
