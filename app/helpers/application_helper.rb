@@ -30,7 +30,7 @@ module ApplicationHelper
             else
               img_src = page.images.best
             end
-            content.gsub!(link, "#{link_to image_tag(img_src, style: 'max-width: 400px;'), link, target: '_blank'} <br/>")
+            content.gsub!(link, "#{link_to image_tag(img_src, style: 'max-width: 400px;max-height: 200px;'), link, target: '_blank'} <br/>")
           rescue Exception => e
             content.gsub!(link, " #{link_to link, link, target: '_blank'} <br/>")
           end
