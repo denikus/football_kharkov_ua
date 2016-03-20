@@ -17,12 +17,11 @@ module ApplicationHelper
     unless post.hide_comments
       links = URI.extract(comment.body)
 
-      content = ''
+      content = comment.body
 
       if links.empty?
         content = simple_format(comment.body)
       else
-
         links.each do |link|
           begin
             page = MetaInspector.new(link, html_content_only: false)
@@ -31,9 +30,9 @@ module ApplicationHelper
             else
               img_src = page.images.best
             end
-            content += "#{link_to image_tag(img_src, style: 'max-width: 400px;'), link, target: '_blank'} <br/>"
-          rescue
-            content = simple_format(comment.body)
+            content.gsub!(link, "#{link_to image_tag(img_src, style: 'max-width: 400px;'), link, target: '_blank'} <br/>")
+          rescue Exception => e
+            content.gsub!(link, " #{link_to link, link, target: '_blank'} <br/>")
           end
         end
 
@@ -42,7 +41,7 @@ module ApplicationHelper
 
 
       # return MetaInspector.new(simple_format(comment.body))
-      return content
+      return simple_format(content)
 #      .gsub!(/\n/, '<br />')
     end
 
