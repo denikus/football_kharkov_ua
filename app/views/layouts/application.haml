@@ -12,6 +12,8 @@
 
   /right column
   #col-right
+    - if !request.subdomain.nil? && request.subdomain == 'itleague'
+      = render_cell :sidebar_block, :itleague_soc, :title => "Социалочки"
     = render_cell :footballer, :future_matches_block, :title => "Мои матчи"
     - if !request.subdomain.nil? &&!request.subdomain.empty? || post_belongs_2_subdomain?
       = render_cell :sidebar_block, :quick_results, :title => "Блиц-результаты", :subdomain => !request.subdomain.nil?  ? request.subdomain : post_subdomain

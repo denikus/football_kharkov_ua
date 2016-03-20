@@ -1,0 +1,12 @@
+.sidebar-block
+  .sidebar-block-header
+    %h4= @opts[:title]
+  .bd{style: 'border-top: 1px solid #d9d9d9; padding: 10px 0 10px 0;'}
+    %div{style: 'margin: 0 auto;width: 230px;'}
+      %a{style: 'display: block; float: left; margin-right: 35px;', href: 'http://twitter.com/itleague', target: '_blank'}
+        =image_tag 'TwitterLogo.png', width: '50', height: '50'
+      %a{style: 'display: block; float: left; margin-right: 35px;', href: 'https://www.facebook.com/Itleague/', target: '_blank'}
+        =image_tag 'FB-f-Logo__blue_50.png', width: '50', height: '50'
+      %a{style: 'display: block; float: left;', href: 'http://youtube.com/itleague', target: '_blank'}
+        =image_tag 'YouTube.png', width: '50', height: '50'
+      .clearfix

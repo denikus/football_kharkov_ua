@@ -37,6 +37,11 @@ class SidebarBlockCell < ::Cell::Base
     render
   end
 
+  def itleague_soc(opts)
+    @opts = opts
+    render
+  end
+
   def quick_results(opts)
     subdomain = opts[:subdomain]
     if !subdomain.nil? && !subdomain.empty?
