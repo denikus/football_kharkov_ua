@@ -15,33 +15,33 @@ module ApplicationHelper
 
   def show_comment(post, comment)
     unless post.hide_comments
-      links = URI.extract(comment.body)
-
-      content = comment.body
-
-      if links.empty?
-        content = simple_format(comment.body)
-      else
-        links.each do |link|
-          begin
-            page = MetaInspector.new(link, html_content_only: false)
-            if page.content_type.start_with?('image')
-              img_src = link
-            else
-              img_src = page.images.best
-            end
-            content.gsub!(link, "#{link_to image_tag(img_src, style: 'max-width: 400px;max-height: 200px;'), link, target: '_blank'} <br/>")
-          rescue Exception => e
-            content.gsub!(link, " #{link_to link, link, target: '_blank'} <br/>")
-          end
-        end
-
-      end
+      # links = URI.extract(comment.body)
+      #
+      # content = comment.body
+      #
+      # if links.empty?
+      #   content = simple_format(comment.body)
+      # else
+      #   links.each do |link|
+      #     begin
+      #       page = MetaInspector.new(link, html_content_only: false)
+      #       if page.content_type.start_with?('image')
+      #         img_src = link
+      #       else
+      #         img_src = page.images.best
+      #       end
+      #       content.gsub!(link, "#{link_to image_tag(img_src, style: 'max-width: 400px;max-height: 200px;'), link, target: '_blank'} <br/>")
+      #     rescue Exception => e
+      #       content.gsub!(link, " #{link_to link, link, target: '_blank'} <br/>")
+      #     end
+      #   end
+      #
+      # end
 
 
 
       # return MetaInspector.new(simple_format(comment.body))
-      return simple_format(content)
+      return simple_format(comment.body)
 #      .gsub!(/\n/, '<br />')
     end
 

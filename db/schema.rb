@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151111103341) do
+ActiveRecord::Schema.define(:version => 20160321060358) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20151111103341) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "source"
   end
 
   add_index "comments", ["author_id"], :name => "comments_author_id"
