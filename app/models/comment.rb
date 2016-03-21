@@ -19,11 +19,11 @@ class Comment < ActiveRecord::Base
   before_create :prepare_data
 
   def prepare_data
-    self.source = self.body
+    self.source = self.body.clone
 
-    links = URI.extract(self.body)
+    links = URI.extract(self.body.clone)
 
-    content = self.body
+    content = self.body.clone
 
     unless links.empty?
     #   content = self.body)
@@ -36,7 +36,7 @@ class Comment < ActiveRecord::Base
           else
             img_src = page.images.best
           end
-          content.gsub!(link, "#{ActionController::Base.helpers.link_to image_tag(img_src, style: 'max-width: 400px;max-height: 200px;'), link, target: '_blank'} <br/>")
+          content.gsub!(link, "#{ActionController::Base.helpers.link_to ActionController::Base.helpers.image_tag(img_src, style: 'max-width: 400px;max-height: 200px;'), link, target: '_blank'} <br/>")
         rescue Exception => e
           content.gsub!(link, " #{ActionController::Base.helpers.link_to link, link, target: '_blank'} <br/>")
         end
