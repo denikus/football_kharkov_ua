@@ -20,7 +20,7 @@ class Admin::ClaimsController < ApplicationController
   def show
     @team = Team.find(params[:id])
 
-    response = HTTParty.get(URI.escape("http://localhost:3000/api/v1/claims/#{@team.name}.json"))
+    response = HTTParty.get(URI.escape("https://onetwoteam.com/api/v1/claims/#{@team.name}.json"))
 
 
 
@@ -63,7 +63,7 @@ class Admin::ClaimsController < ApplicationController
   def add_merge_player
     # create footballer
     @team = Team.find(params[:claim_id])
-    response = HTTParty.get(URI.escape("http://localhost:3000/api/v1/claims/#{@team.name}/player.json?player_id=#{params[:ott_player_id]}"))
+    response = HTTParty.get(URI.escape("https://onetwoteam.com/api/v1/claims/#{@team.name}/player.json?player_id=#{params[:ott_player_id]}"))
 
     args = {first_name: response["first_name"], last_name: response["last_name"], ott_player_id: params[:ott_player_id]}
     args.merge!({patronymic: response["patronymic"]}) unless response["patronymic"].blank?
