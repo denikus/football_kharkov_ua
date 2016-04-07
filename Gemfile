@@ -13,7 +13,7 @@ gem 'mini_magick'
 gem 'hpricot'
 gem 'russian'
 gem 'cells'
-gem "mime-types"
+gem 'mime-types'
 gem 'bitly', github: 'denikus/bitly'
 gem 'cocaine'
 gem 'paperclip', '4.3'
@@ -47,6 +47,7 @@ gem 'newrelic_rpm'
 gem 'rollbar', '~> 1.0.0'
 
 gem 'metainspector'
+gem 'httparty'
 
 # Gems used only for assets and not required
 # in production environments by default.

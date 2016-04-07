@@ -89,6 +89,11 @@ FootballKharkov::Application.routes.draw do
       post :add_player, on: :member
       post :create_player, on: :member
     end
+    resources :claims do
+      get :merge_player
+      get :add_merge_player
+    end
+
   end
 
   match "/:hash/:id" => 'users#show', :constraints => {:hash => '!!'}

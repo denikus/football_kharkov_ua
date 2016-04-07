@@ -430,6 +430,7 @@ DEPENDENCIES
   guard-spork
   haml
   hpricot
+  httparty
   jazz_hands!
   jquery-rails-cdn
   metainspector

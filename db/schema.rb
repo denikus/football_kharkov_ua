@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160321060358) do
+ActiveRecord::Schema.define(:version => 20160407055055) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20160321060358) do
     t.integer  "crop_y_top"
     t.integer  "crop_width"
     t.integer  "crop_height"
+    t.integer  "ott_player_id"
   end
 
   add_index "footballers", ["user_id"], :name => "footballers_user_id"

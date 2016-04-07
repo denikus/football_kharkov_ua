@@ -1,0 +1,23 @@
+%p
+  = "Team: #{@team.name}"
+%table
+  %thead
+    %th
+      %tr
+        %td "Onetwoteam player"
+        %td "FHU players"
+  -@claims.each do |claim|
+    %tr
+      %td{style: 'border: 1px solid black;'}
+        = "#{claim[:ott_player]["first_name"]} #{claim[:ott_player]["last_name"]} #{claim[:ott_player]["patronymic"]} (#{claim[:ott_player]["birth_date"]})"
+        = link_to "add and merge", admin_claim_add_merge_player_path(claim_id: @team.id, ott_player_id: claim[:ott_player]["player_id"])
+      %td{style: 'border: 1px solid black;'}
+        - claim[:footballers].each do |footballer|
+          %p
+            = link_to "#{footballer.last_name} #{footballer.first_name} #{footballer.patronymic} (#{footballer.birth_date})", '#', style: (footballer.ott_player_id ? 'font-weight: bold;' : '')
+            = link_to "merge", admin_claim_merge_player_path(claim_id: @team.id, footballer_id: footballer.id, ott_player_id: claim[:ott_player]["player_id"])
+
+
+
+
+
