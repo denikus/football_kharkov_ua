@@ -9,7 +9,7 @@
   -@claims.each do |claim|
     %tr
       %td{style: 'border: 1px solid black;'}
-        = "#{claim[:ott_player]["first_name"]} #{claim[:ott_player]["last_name"]} #{claim[:ott_player]["patronymic"]} (#{claim[:ott_player]["birth_date"]})"
+        = "#{claim[:ott_player]["last_name"]} #{claim[:ott_player]["first_name"]} #{claim[:ott_player]["patronymic"]} (#{claim[:ott_player]["birth_date"]})"
         = link_to "add and merge", admin_claim_add_merge_player_path(claim_id: @team.id, ott_player_id: claim[:ott_player]["player_id"])
       %td{style: 'border: 1px solid black;'}
         - claim[:footballers].each do |footballer|
