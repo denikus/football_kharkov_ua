@@ -93,6 +93,7 @@ FootballKharkov::Application.routes.draw do
       get :merge_player
       get :add_merge_player
     end
+    resources :awards
 
   end
 

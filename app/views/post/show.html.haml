@@ -8,6 +8,30 @@
 
 = render :partial => "shared/blog_link_panel", :locals => {:post=>@post}
 
-= render :partial => "shared/comment_block", :locals => {:post=>@post}
+- if @post.created_at > DateTime.parse("2016-09-04")
+  #disqus_thread
+  :javascript
+    DISQUS_PAGE_URL = 'football.kharkov.ua';
+    DISQUS_PAGE_IDENTIFIER = "#{@post.id}";
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+    /*
+    var disqus_config = function () {
+        this.page.url = DISQUS_PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = DISQUS_PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//football-kharkov-ua.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+  %noscript
+    Please enable JavaScript to view the
+    %a{:href => "https://disqus.com/?ref_noscript"} comments powered by Disqus.
+- else
+  = render :partial => "shared/comment_block", :locals => {:post=>@post}
 - content_for :top_submenu do
   = "tournament"

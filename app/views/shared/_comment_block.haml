@@ -43,25 +43,25 @@
             - if user_signed_in?
               = link_to  "ответить", "#", :class => "button commentReply", :"data-options" => "{\"id\": \"#{item.id}\", \"level\": \"#{shiftComment}\", \"postId\": \"#{post.id}\"}"
 
-- unless user_signed_in?
-  = link_to 'Зарегистрируйтесь', new_user_path
-  -# {:controller => :users, :action => :new}
-  или
-  = link_to 'Войдите', session_path(:user)
-  -# {:controller => :users, :action => :sign_in}
-  чтобы комментировать!
-- else
-  .clear
-  %div.newComment.postCommentBox
-    %h2
-      Зафутболить коммент:
-    .error#comment-errors{:style => "display: none;"}
-    = form_for Comment.new, :url => {:controller => :comment, :action => :create, :id => 'new'}, :html => {:id => 'newComment', :method => :post} do |f|
-      = f.hidden_field :post_id, :value => post.id
-      %div.txtAreaBox
-        = f.text_area :body
-      .clear
-      %p
-        %input.colored-button.primary.big{:type=>"submit", :value => "Отправить"}/
-    .loader
-
+-#- unless user_signed_in?
+-#  = link_to 'Зарегистрируйтесь', new_user_path
+-#  -# {:controller => :users, :action => :new}
+-#  или
+-#  = link_to 'Войдите', session_path(:user)
+-#  -# {:controller => :users, :action => :sign_in}
+-#  чтобы комментировать!
+-#- else
+-#  .clear
+-#  %div.newComment.postCommentBox
+-#    %h2
+-#      Зафутболить коммент:
+-#    .error#comment-errors{:style => "display: none;"}
+-#    = form_for Comment.new, :url => {:controller => :comment, :action => :create, :id => 'new'}, :html => {:id => 'newComment', :method => :post} do |f|
+-#      = f.hidden_field :post_id, :value => post.id
+-#      %div.txtAreaBox
+-#        = f.text_area :body
+-#      .clear
+-#      %p
+-#        %input.colored-button.primary.big{:type=>"submit", :value => "Отправить"}/
+-#    .loader
+-#

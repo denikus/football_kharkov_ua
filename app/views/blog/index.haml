@@ -15,3 +15,5 @@
 .football_pagination  
   = will_paginate @posts
 
+- content_for :footer do
+  %script#dsq-count-scr{:async => "", :src => "//football-kharkov-ua.disqus.com/count.js"}
