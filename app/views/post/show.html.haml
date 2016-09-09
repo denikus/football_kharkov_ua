@@ -35,3 +35,5 @@
   = render :partial => "shared/comment_block", :locals => {:post=>@post}
 - content_for :top_submenu do
   = "tournament"
+- content_for :footer do
+  %script#dsq-count-scr{:async => "", :src => "//football-kharkov-ua.disqus.com/count.js"}
