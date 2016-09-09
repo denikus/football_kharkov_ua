@@ -12,8 +12,8 @@
     %span= Russian::strftime(post.created_at, "%d %B %Y")
   .author_link_cell= link_to post_author.username, user_url(post_author, subdomain: false)
   -#.comment_link_cell= link_to( post.comments.count(:conditions => ['parent_id IS NOT NULL']).to_s,post.resource_type=='Status' ? status_path(post.resource.id) : post_item_path(post, "comments"))
-  -#.comment_link_cell
-  -#  =link_to 'x', post_item_path(post, "disqus_thread")
+  .comment_link_cell
+    =link_to 'x', post_item_path(post, "disqus_thread")
 
   - if post[:status].to_s=='updating'
     .updating_link_cell{:title=>"Публикация в процессе добавления данных"}
