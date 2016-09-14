@@ -23,6 +23,14 @@ class Post < ActiveRecord::Base
 
   STATUSES = [[:published, "Публиковать/Завершена"], [:updating, "Публиковать/Обновляется"]]
 
+  def process_path
+    self.path = dirify(self.title).downcase
+
+    while self.invalid? && !self.errors[:path].empty?
+      self.path = "#{self.path}-#{SecureRandom.urlsafe_base64.to_s}"
+    end
+  end
+
   def prepare_dates_and_url
     unless self.resource.class.name=='Status'
       self.url = dirify(self.title)

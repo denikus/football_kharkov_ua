@@ -67,6 +67,8 @@ class PostController < ApplicationController
       return
     end
 
+    redirect_to controller: :posts, action: :show, id: @post.path, status: 301
+
     @page_title = @post.title
     #
     #if !@post.tournament.nil? && request.subdomain.nil?

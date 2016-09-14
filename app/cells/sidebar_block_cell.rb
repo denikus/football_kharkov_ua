@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+require 'rss'
 class SidebarBlockCell < ::Cell::Base
   helper UrlHelper
   helper ApplicationHelper
@@ -12,6 +13,19 @@ class SidebarBlockCell < ::Cell::Base
   end
 
   def comments(opts)
+    # http://football-kharkov-ua.disqus.com/latest.rss
+
+    # ap rss = RSS::Parser.parse('http://football-kharkov-ua.disqus.com/latest.rss', false)
+    # comments = []
+    #
+    # rss.items.each do |item|
+    #   # puts "#{item.pubDate} - #{item.title}"
+    #   comments << {title: item.title, link: item.link}
+    # end
+    #
+    # ap comments
+
+    # @comments = []
     @comments = Comment.tournament(opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => [:post , :user], :conditions => ["parent_id IS NOT NULL"])
     @opts = opts
     @domain= opts[:domain]

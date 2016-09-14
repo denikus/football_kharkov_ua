@@ -133,7 +133,7 @@ FootballKharkov::Application.routes.draw do
     match '/feed' =>  "tournaments#feed", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :format => "xml"
     match '/' => "tournaments#index", :as => "tournament", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
     #match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-    match ':year/:month/:day/:url' => "post#show", :as => "post", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/
+    match ':year/:month/:day/:url' => "post#show", :as => "blog_post", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/
   #end
   
   resources :football_player_appointment, :only => ["update"]
@@ -154,7 +154,9 @@ FootballKharkov::Application.routes.draw do
   match '/auth/:provider/:action' => 'oauth_provider', :as => "oauth_provider"
   match '/auth/failure' => 'oauth_provider#failure'
 
-  match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
+  match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => 'blog_post'
+
+  resources :posts, only: ['show']
 
   match ':controller(/:action(/:id(.:format)))'
 

@@ -28,10 +28,13 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
   #     sitemap.add article_path(article), :lastmod => article.updated_at
   #   end
   Post.find_each do |post_item|
-    sitemap.add post_path({:year => post_item.url_year,
-               :month => post_item.url_month,
-               :day => post_item.url_day,
-               :url => !post_item.url.nil? ? post_item.url : '',
+    # sitemap.add post_path({:year => post_item.url_year,
+    #            :month => post_item.url_month,
+    #            :day => post_item.url_day,
+    #            :url => !post_item.url.nil? ? post_item.url : '',
+    #            :host => SitemapGenerator::Sitemap.default_host
+    #           }), :lastmod => post_item.updated_at
+    sitemap.add post_url({id: post_iem.path,
                :host => SitemapGenerator::Sitemap.default_host
               }), :lastmod => post_item.updated_at
   end

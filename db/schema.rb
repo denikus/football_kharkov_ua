@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160407055055) do
+ActiveRecord::Schema.define(:version => 20160911205938) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -246,6 +246,7 @@ ActiveRecord::Schema.define(:version => 20160407055055) do
     t.integer  "url_year"
     t.integer  "url_month",     :limit => 2
     t.integer  "url_day",       :limit => 2
+    t.string   "path"
   end
 
   add_index "posts", ["author_id"], :name => "posts_author_id"

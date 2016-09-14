@@ -4,7 +4,7 @@
   %ul
     - @comments.each do |item|
       %li
-        %p.author= link_to item.user.username, user_path(item.user, subdomain: false)
-        %p.post-title= link_to(item.post.title, item.post.resource_type=='Status' ? status_path(item.post.resource.id) : post_url({:year => item.post[:url_year], :month => item.post[:url_month], :day => item.post[:url_day], :url => !item.post.url.nil? ? item.post.url : '', :anchor => "comment-#{item.id}", :subdomain => item.post.tournament.nil? ? nil : item.post.tournament.url, :host => @domain }))
-        %p.post-date= "#{time_ago_in_words(item.created_at)} назад" 
-        -#%p.post-date= Russian::strftime(item.created_at, "%B %d; %H:%M")
+        -#%p.post-title= link_to(item[:title], post_url({:year => item.post[:url_year], :month => item.post[:url_month], :day => item.post[:url_day], :url => !item.post.url.nil? ? item.post.url : '', :subdomain => item.post.tournament.nil? ? nil : item.post.tournament.url, :host => @domain }))
+        -#%p.author= link_to item.user.username, user_path(item.user, subdomain: false)
+        -#%p.post-title= link_to(item.post.title, item.post.resource_type=='Status' ? status_path(item.post.resource.id) : post_url({:year => item.post[:url_year], :month => item.post[:url_month], :day => item.post[:url_day], :url => !item.post.url.nil? ? item.post.url : '', :anchor => "comment-#{item.id}", :subdomain => item.post.tournament.nil? ? nil : item.post.tournament.url, :host => @domain }))
+        -#%p.post-date= "#{time_ago_in_words(item.created_at)} назад"

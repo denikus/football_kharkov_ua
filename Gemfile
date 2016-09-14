@@ -49,6 +49,8 @@ gem 'rollbar', '~> 1.0.0'
 gem 'metainspector'
 gem 'httparty'
 
+# gem 'annotate', github: 'ctran/annotate_models'
+
 # Gems used only for assets and not required
 # in production environments by default.
 
