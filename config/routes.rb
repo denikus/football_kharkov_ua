@@ -90,6 +90,7 @@ FootballKharkov::Application.routes.draw do
       post :create_player, on: :member
     end
     resources :claims do
+      get :add_to_season
       get :merge_player
       get :add_merge_player
     end
