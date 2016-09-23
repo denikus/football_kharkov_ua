@@ -22,7 +22,7 @@
             = link_to "Merge and add to season", admin_claim_merge_player_path(claim_id: @team.ott_uid, footballer_id: similar.id, ott_player_id: claim[:ott_player]["player_id"])
             %br
             %hr
-            = link_to "Create new and add to season", admin_claim_add_merge_player_path(claim_id: @team.ott_uid, ott_player_id: claim[:ott_player]["player_id"])
+          = link_to "Create new and add to season", admin_claim_add_merge_player_path(claim_id: @team.ott_uid, ott_player_id: claim[:ott_player]["player_id"])
         - else
           = link_to "Create and add to season", admin_claim_add_merge_player_path(claim_id: @team.ott_uid, ott_player_id: claim[:ott_player]["player_id"])
         -#- if claim[:ott_player]["uid"] =
