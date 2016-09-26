@@ -7,9 +7,9 @@ namespace :integrate do
     @teams = response["data"]
 
     @teams.each do |item|
-      teams = Team.where(name: item["name"])
+      teams = Team.where(name: item["name"]).where(ott_uid: nil)
 
-      puts "more than 1 team found" and next if teams.length > 1
+      puts "more than 1 team found" and next if teams.length != 1
 
       teams.first.update_attribute(:ott_uid, item["id"])
     end

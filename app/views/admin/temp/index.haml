@@ -11,8 +11,8 @@
   =text_field_tag(:host_team)
   =text_field_tag(:guest_team)
 
-  -#=f.select(:venue_id, @venues.collect{|obj| [obj.name, obj.id]})
-  =select_tag(:venue_id, options_from_collection_for_select(@venues, "id", "name", cookies[:schedule_venue_id]))
+  =f.select(:venue_id, @venues.collect{|obj| [obj.name, obj.id]}, {:selected => cookies[:schedule_venue_id]})
+  -#=select_tag(:venue_id, options_from_collection_for_select(@venues, "id", "name", cookies[:schedule_venue_id]))
 
   =f.text_field(:match_on, :value => "#{Time.now.year}-#{Time.now.strftime("%m")}-")
   =f.text_field(:match_at)
