@@ -69,20 +69,28 @@ module ApplicationHelper
   end
 
   def post_item_path(post_item, anchor = nil)
-    post_url(id: post_item.path,
-             host: ["#{post_item.tournament.nil? ? nil : "#{post_item.tournament.url}."}", request.domain].join
-            )
-    #     blog_post_url({:year => post_item.url_year,
-    #                :month => post_item.url_month,
-    #                :day => post_item.url_day,
-    #                :url => !post_item.url.nil? ? post_item.url : '',
-    #                :anchor => anchor,
-    #                #:anchor => !anchor.nil? ? "announce-breaker" : "",
-    #                #:host => with_subdomain(post_item.tournament.nil? ? false : post_item.tournament.url, request)
-    #                #:host => [request.subdomain + '.', request.domain].join
-    #                :host => ["#{post_item.tournament.nil? ? nil : "#{post_item.tournament.url}."}", request.domain].join
-    # #               :host => (post_item.tournament.nil? ? false : post_item.tournament.url)
-    #               })
+    post_url({:year => post_item.url_year,
+              :month => post_item.url_month,
+              :day => post_item.url_day,
+              :url => !post_item.url.nil? ? post_item.url : '',
+              :anchor => anchor,
+              :host => ["#{post_item.tournament.nil? ? nil : "#{post_item.tournament.url}."}", request.domain].join
+             })
+
+    # post_url(id: post_item.path,
+    #          host: ["#{post_item.tournament.nil? ? nil : "#{post_item.tournament.url}."}", request.domain].join
+    #         )
+    # #     blog_post_url({:year => post_item.url_year,
+    # #                :month => post_item.url_month,
+    # #                :day => post_item.url_day,
+    # #                :url => !post_item.url.nil? ? post_item.url : '',
+    # #                :anchor => anchor,
+    # #                #:anchor => !anchor.nil? ? "announce-breaker" : "",
+    # #                #:host => with_subdomain(post_item.tournament.nil? ? false : post_item.tournament.url, request)
+    # #                #:host => [request.subdomain + '.', request.domain].join
+    # #                :host => ["#{post_item.tournament.nil? ? nil : "#{post_item.tournament.url}."}", request.domain].join
+    # # #               :host => (post_item.tournament.nil? ? false : post_item.tournament.url)
+    # #               })
 
   end
 

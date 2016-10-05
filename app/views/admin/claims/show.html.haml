@@ -5,17 +5,34 @@
     %th
       %tr
         %td "Onetwoteam player"
-        %td "FHU players"
   -@claims.each do |claim|
     %tr
       %td{style: 'border: 1px solid black;'}
-        = "#{claim[:ott_player]["last_name"]} #{claim[:ott_player]["first_name"]} #{claim[:ott_player]["patronymic"]} (#{claim[:ott_player]["birth_date"]})"
-        = link_to "add and merge", admin_claim_add_merge_player_path(claim_id: @team.id, ott_player_id: claim[:ott_player]["player_id"])
-      %td{style: 'border: 1px solid black;'}
-        - claim[:footballers].each do |footballer|
-          %p
-            = link_to "#{footballer.last_name} #{footballer.first_name} #{footballer.patronymic} (#{footballer.birth_date})", '#', style: (footballer.ott_player_id ? 'font-weight: bold;' : '')
-            = link_to "merge", admin_claim_merge_player_path(claim_id: @team.id, footballer_id: footballer.id, ott_player_id: claim[:ott_player]["player_id"])
+        = image_tag "https://onetwoteam.com#{claim[:ott_player]["photo"]}", style: 'float: left;'
+        = "#{claim[:ott_player]["last_name"]} #{claim[:ott_player]["first_name"]} #{claim[:ott_player]["patronymic"]} (#{claim[:ott_player]["birthdate"]})"
+        %hr
+        - if claim[:added]
+          = "In team"
+        - elsif !claim[:same_footballer].nil?
+          = "Exact match!"
+          = link_to "Add to season", admin_claim_add_to_season_path(claim_id: @team.ott_uid, footballer_id: claim[:same_footballer].id, ott_player_id: claim[:ott_player]["player_id"])
+        - elsif !claim[:similar_footballers].blank?
+          - claim[:similar_footballers].each do |similar|
+            = "#{similar.full_name} (#{similar.birth_date})"
+            = link_to "Merge and add to season", admin_claim_merge_player_path(claim_id: @team.ott_uid, footballer_id: similar.id, ott_player_id: claim[:ott_player]["player_id"])
+            %br
+            %hr
+          = link_to "Create new and add to season", admin_claim_add_merge_player_path(claim_id: @team.ott_uid, ott_player_id: claim[:ott_player]["player_id"])
+        - else
+          = link_to "Create and add to season", admin_claim_add_merge_player_path(claim_id: @team.ott_uid, ott_player_id: claim[:ott_player]["player_id"])
+        -#- if claim[:ott_player]["uid"] =
+        -#- else
+        -#  = link_to "add and merge", admin_claim_add_merge_player_path(claim_id: @team.ott_uid, ott_player_id: claim[:ott_player]["player_id"])
+      -#%td{style: 'border: 1px solid black;'}
+      -#  - claim[:footballers].each do |footballer|
+      -#    %p
+      -#      = link_to "#{footballer.last_name} #{footballer.first_name} #{footballer.patronymic} (#{footballer.birth_date})", '#', style: (footballer.ott_player_id ? 'font-weight: bold;' : '')
+      -#      = link_to "merge", admin_claim_merge_player_path(claim_id: @team.ott_uid, footballer_id: footballer.id, ott_player_id: claim[:ott_player]["player_id"])
 
 
 

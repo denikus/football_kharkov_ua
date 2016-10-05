@@ -1,6 +1,5 @@
 namespace :comments do
-  desc "copy products from lazada provider (by category) and link themself as connected"
-  # get all products by category, save only path and add to proper category
+  desc "copy comments"
   task :process => :environment do
     counter = 0
     Comment.find_each do |comment|

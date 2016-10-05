@@ -5,7 +5,10 @@ class Admin::TempController < ApplicationController
   layout "admin/temp"
   
   def index
+    # Tournament id
     cookies[:schedule_tournament_id] ||= 2
+    # KHNURE
+    cookies[:schedule_venue_id] ||= 16
 
 
     @tournaments = Tournament.all
@@ -16,6 +19,7 @@ class Admin::TempController < ApplicationController
 
     @tours = StepTour.joins("INNER JOIN steps_phases AS s_p ON (steps.id=s_p.phase_id)").where("steps.tournament_id = ? AND s_p.step_id=?", cookies[:schedule_tournament_id], @stage.id).order("created_at ASC")
 
+    cookies[:schedule_tour_id] ||= @tours.last.id
 
     #@tours = StepTour.find(:all,
     #                       :conditions => ["tournament_id = ? ", cookies[:schedule_tournament_id]],

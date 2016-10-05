@@ -15,18 +15,20 @@ class SidebarBlockCell < ::Cell::Base
   def comments(opts)
     # http://football-kharkov-ua.disqus.com/latest.rss
 
-    # ap rss = RSS::Parser.parse('http://football-kharkov-ua.disqus.com/latest.rss', false)
-    # comments = []
+    rss = RSS::Parser.parse('https://football-kharkov-ua.disqus.com/latest.rss', false)
+    @comments = []
     #
-    # rss.items.each do |item|
-    #   # puts "#{item.pubDate} - #{item.title}"
-    #   comments << {title: item.title, link: item.link}
-    # end
-    #
+    rss.items.each do |item|
+      # puts "#{item.pubDate} - #{item.title}"
+      # ap item.dc_creator
+      @comments << {title: item.title, link: item.link, date: item.date, author: item.dc_creator}
+    end
+
     # ap comments
 
+
     # @comments = []
-    @comments = Comment.tournament(opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => [:post , :user], :conditions => ["parent_id IS NOT NULL"])
+    # @comments = Comment.tournament(opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => [:post , :user], :conditions => ["parent_id IS NOT NULL"])
     @opts = opts
     @domain= opts[:domain]
     render

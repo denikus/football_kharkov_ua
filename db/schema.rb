@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160911205938) do
+ActiveRecord::Schema.define(:version => 20160918125144) do
 
   create_table "admins", :force => true do |t|
     t.string   "full_name",           :limit => 64,                     :null => false
@@ -133,6 +133,8 @@ ActiveRecord::Schema.define(:version => 20160911205938) do
     t.integer  "crop_width"
     t.integer  "crop_height"
     t.integer  "ott_player_id"
+    t.string   "ott_uid"
+    t.string   "ott_path"
   end
 
   add_index "footballers", ["user_id"], :name => "footballers_user_id"
@@ -395,6 +397,8 @@ ActiveRecord::Schema.define(:version => 20160911205938) do
     t.string   "url",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ott_uid"
+    t.string   "ott_path"
   end
 
   create_table "tournaments", :force => true do |t|

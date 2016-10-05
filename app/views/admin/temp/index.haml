@@ -3,7 +3,7 @@
 = form_for @schedule, :url => {:action => "create"} do |f|
   =select_tag(:tournament_id, options_from_collection_for_select(@tournaments, "id", "name", cookies[:schedule_tournament_id]))
   -#, {:selected => cookies[:schedule_tournament_id]}
-  =f.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
+  =f.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => cookies[:schedule_tour_id]})
 
   =f.hidden_field(:host_team_id)
   =f.hidden_field(:guest_team_id)
@@ -11,21 +11,23 @@
   =text_field_tag(:host_team)
   =text_field_tag(:guest_team)
 
-  =f.select(:venue_id, @venues.collect{|obj| [obj.name, obj.id]})
+  =f.select(:venue_id, @venues.collect{|obj| [obj.name, obj.id]}, {:selected => cookies[:schedule_venue_id]})
+  -#=select_tag(:venue_id, options_from_collection_for_select(@venues, "id", "name", cookies[:schedule_venue_id]))
 
-  =f.text_field(:match_on, :value => "2013-10-")
+  =f.text_field(:match_on, :value => "#{Time.now.year}-#{Time.now.strftime("%m")}-")
   =f.text_field(:match_at)
 
   = f.submit("Сохранить")
 
-= form_for @schedule, :url => {:action => "import_from_csv"}, :html => {:multipart => true} do |ff|
-  =ff.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
-  =file_field(:upload, :datafile)
-  =ff.submit("Import")
+-#= form_for @schedule, :url => {:action => "import_from_csv"}, :html => {:multipart => true} do |ff|
+-#  =ff.select(:tour_id, @tours.collect{|obj| [obj.name, obj.id]}, {:selected => @tours.last.id})
+-#  =file_field(:upload, :datafile)
+-#  =ff.submit("Import")
 
 %ul{:style => "font-size: 14px;"}
   - @last_schedules.each do |schedule|
     %li{:style => "padding-bottom: 2px; border-bottom: 1px dashed grey;"}
+      = "[#{schedule.step_tour.name}] "
       - unless  schedule.venue.nil?
         = "#{schedule.venue.short_name} - "
       = "#{ (schedule.match_on ? Russian::strftime(schedule.match_on.to_date , "%A, %d %B %Y") : "" )}; #{schedule.match_at}"
