@@ -60,8 +60,8 @@ class Api::V1::SchedulesController < Api::V1::BaseController
         side: item.host_team_id == @team.id ? 'host' : 'guest',
         match_on: item.match_on,
         match_at: item.match_at,
-        vanue: item.venue.name,
-        vanue_ott_uid: nil,
+        venue: item.venue.name,
+        venue_ott_uid: nil,
         competitor_name: competitor_team.name,
         competitor_uid: competitor_team.ott_uid
       }
