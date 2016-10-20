@@ -32,7 +32,7 @@ class Api::V1::BaseController < ActionController::Base
   end
 
   def find_team
-    @team = Team.find_by_ott_uid(params[:team_uid])
+    @team = Team.find_by_ott_uid(params[:id])
     rescue ActiveRecord::RecordNotFound
       error = { :error => "The team you were looking for could not be found."}
       respond_with(error, :status => 404)

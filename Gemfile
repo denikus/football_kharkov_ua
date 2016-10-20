@@ -48,6 +48,7 @@ gem 'rollbar', '~> 1.0.0'
 
 gem 'metainspector'
 gem 'httparty'
+gem 'active_model_serializers', '0.9.3'
 
 # gem 'annotate', github: 'ctran/annotate_models'
 

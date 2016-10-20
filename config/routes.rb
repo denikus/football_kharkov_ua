@@ -16,8 +16,8 @@ FootballKharkov::Application.routes.draw do
         resources :violations, only: [ :index]
         resources :tables, only: [ :index]
         resources :bombardiers, only: [ :index]
-        resources :teams do
-          get '/:team_uid/schedule', to: 'schedules#team_schedule', on: :collection
+        namespace :schedules do
+          resources :teams
         end
       end
     end

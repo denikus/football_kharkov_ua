@@ -47,7 +47,7 @@ FootballKharkov::Application.configure do
     :username => ENV["BITLY_USERNAME"],
     :api_key => ENV["BITLY_API_KEY"]
   }.freeze
-s
   MEGA_USER = [1]
+
 end
 
