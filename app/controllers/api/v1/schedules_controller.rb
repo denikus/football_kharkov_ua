@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Api::V1::SchedulesController < Api::V1::BaseController
   before_filter :find_tournament
+  before_filter :find_team, :only => [:team_schedule]
 
   # get list of dates by season_url
   def index
@@ -45,4 +46,5 @@ class Api::V1::SchedulesController < Api::V1::BaseController
       format.json{ render json: {schedules_count: @schedules.length, schedules: @schedules} }
     end
   end
+
 end

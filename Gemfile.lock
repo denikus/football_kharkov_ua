@@ -48,6 +48,8 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_model_serializers (0.9.3)
+      activemodel (>= 3.2)
     activemodel (3.2.13)
       activesupport (= 3.2.13)
       builder (~> 3.0.0)
@@ -405,6 +407,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (= 0.9.3)
   awesome_nested_set
   awesome_print
   bitly!
@@ -463,3 +466,6 @@ DEPENDENCIES
   whenever
   will_paginate (~> 3.0)
   yajl-ruby
+
+BUNDLED WITH
+   1.12.5
