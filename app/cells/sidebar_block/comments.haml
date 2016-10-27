@@ -6,6 +6,6 @@
       %li
         %p.author= item[:author]
         %p.post-title= link_to item[:title], item[:link]
-        %p.post-date= "#{time_ago_in_words(item[:date])} назад"
+        %p.post-date= "#{distance_of_time_in_words_to_now(item[:date])} назад"
         -#= link_to item.user.username, user_path(item.user, subdomain: false)
         -#%p.post-title= link_to(item.post.title, item.post.resource_type=='Status' ? status_path(item.post.resource.id) : post_url({:year => item.post[:url_year], :month => item.post[:url_month], :day => item.post[:url_day], :url => !item.post.url.nil? ? item.post.url : '', :anchor => "comment-#{item.id}", :subdomain => item.post.tournament.nil? ? nil : item.post.tournament.url, :host => @domain }))

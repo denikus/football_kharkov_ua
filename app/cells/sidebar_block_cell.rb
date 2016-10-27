@@ -17,14 +17,16 @@ class SidebarBlockCell < ::Cell::Base
 
     rss = RSS::Parser.parse('https://football-kharkov-ua.disqus.com/latest.rss', false)
     @comments = []
-    #
+    current_time = Time.zone.now
+    offset = current_time.utc_offset
+
     rss.items.each do |item|
       # puts "#{item.pubDate} - #{item.title}"
       # ap item.dc_creator
-      @comments << {title: item.title, link: item.link, date: item.date, author: item.dc_creator}
+      @comments << {title: item.title, link: item.link, date: (item.date + offset.seconds), author: item.dc_creator}
     end
 
-    # ap comments
+    # ap @comments
 
 
     # @comments = []
