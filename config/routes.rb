@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-require "#{Rails.root}/lib/subdomain.rb"
+# require "#{Rails.root}/lib/subdomain.rb"
 FootballKharkov::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
@@ -86,8 +86,7 @@ FootballKharkov::Application.routes.draw do
     resources :user_requests do
       get :merge
     end
-    match 'temp(/:action(/:id))' => "temp"
-    match 'import(/:action(/:id))' => "import"
+    get 'temp(/:action(/:id))' => 'temp'
     resources :team_requests do
       post :add_player, on: :member
       post :create_player, on: :member
@@ -101,8 +100,8 @@ FootballKharkov::Application.routes.draw do
 
   end
 
-  match "/:hash/:id" => 'users#show', :constraints => {:hash => '!!'}
-  match 'users/feed/:id' => 'users#feed'
+  get "/:hash/:id" => 'users#show', :constraints => {:hash => '!!'}
+  get 'users/feed/:id' => 'users#feed'
 
   #  match "/!!/:id" => 'users#show', :constraints => {:controller => '#!'}
   #  match 'users/feed/:id' => 'users#feed'
@@ -122,7 +121,7 @@ FootballKharkov::Application.routes.draw do
     end
   end
 
-  match '/itleague_draw' => "itleague_draw#index"
+  get '/itleague_draw' => "itleague_draw#index"
   resources :footballers, :only => ["index", "show"] do
     get :edit_photo, :crop, :its_me
     post :upload_photo, :make_crop
@@ -134,10 +133,10 @@ FootballKharkov::Application.routes.draw do
 
 #  with_options :constraints => {:subdomain => /.+/} do
 #  constraints(Subdomain) do
-    match '/feed' =>  "tournaments#feed", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :format => "xml"
-    match '/' => "tournaments#index", :as => "tournament", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+    get '/feed' =>  "tournaments#feed", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :format => "xml"
+    get '/' => "tournaments#index", :as => "tournament", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
     #match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => "post", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-    match ':year/:month/:day/:url' => "post#show", :as => "post", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/
+    get ':year/:month/:day/:url' => "post#show", :as => "post", constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/
   #end
   
   resources :football_player_appointment, :only => ["update"]
@@ -155,15 +154,15 @@ FootballKharkov::Application.routes.draw do
 
   root :to => "blog#index"
 
-  match '/auth/:provider/:action' => 'oauth_provider', :as => "oauth_provider"
-  match '/auth/failure' => 'oauth_provider#failure'
+  # match '/auth/:provider/:action' => 'oauth_provider', :as => "oauth_provider"
+  # match '/auth/failure' => 'oauth_provider#failure'
 
   # match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}, :as => 'blog_post'
-  match ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
+  get ':year/:month/:day/:url' => "post#show", :constraints => {:year=> /\d{4}/, :month=>/\d{1,2}/, :day=>/\d{1,2}/}
 
   resources :posts, only: ['show']
 
-  match ':controller(/:action(/:id(.:format)))'
+  get ':controller(/:action(/:id(.:format)))'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

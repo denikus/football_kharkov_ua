@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   include UrlHelper
 
-  protect_from_forgery
+  protect_from_forgery with: :exception
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 

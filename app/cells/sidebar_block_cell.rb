@@ -6,7 +6,7 @@ class SidebarBlockCell < ::Cell::Base
   include Devise::Controllers::Helpers
 
   def news(opts)
-    @posts = Post.tournament(opts[:subdomain]).paginate(:page => 1, :per_page => 5, :order => 'created_at DESC')
+    @posts = Post.tournament(opts[:subdomain]).page(1).per_page(5).order('created_at DESC')
     @opts = opts
     @domain= opts[:domain]
     render
@@ -21,16 +21,9 @@ class SidebarBlockCell < ::Cell::Base
     offset = current_time.utc_offset
 
     rss.items.each do |item|
-      # puts "#{item.pubDate} - #{item.title}"
-      # ap item.dc_creator
       @comments << {title: item.title, link: item.link, date: (item.date + offset.seconds), author: item.dc_creator}
     end
 
-    # ap @comments
-
-
-    # @comments = []
-    # @comments = Comment.tournament(opts[:subdomain]).paginate(:page => 1, :per_page => 10, :order => 'created_at DESC', :include => [:post , :user], :conditions => ["parent_id IS NOT NULL"])
     @opts = opts
     @domain= opts[:domain]
     render

@@ -10,10 +10,9 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :author_id, :title
 
-  scope :tournament, lambda{ |tournament_subdomain|
-    unless (tournament_subdomain.nil? || tournament_subdomain.empty?)
-      {:joins => "INNER JOIN tournaments ON (posts.tournament_id = tournaments.id) ", :conditions => ["tournaments.url = ?", tournament_subdomain]}
-    end  
+  scope :tournament, ->(tournament_subdomain){
+      joins("INNER JOIN tournaments ON (posts.tournament_id = tournaments.id) ").
+          where(["tournaments.url = ?", tournament_subdomain]) unless tournament_subdomain.blank?
   }
 
   before_create :prepare_dates_and_url

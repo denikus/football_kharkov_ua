@@ -1,12 +1,18 @@
 # -*- encoding : utf-8 -*-
-FootballKharkov::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true
 
-  # Full error reports are disabled and caching is turned on
+  # Eager load code on boot. This eager loads most of Rails and
+  # your application in memory, allowing both threaded web servers
+  # and those relying on copy on write to perform better.
+  # Rake tasks automatically ignore this option for performance.
+  config.eager_load = true
+
+  # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
@@ -19,8 +25,9 @@ FootballKharkov::Application.configure do
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
 
-  # See everything in the log (default is :info)
-  #config.log_level = :debug
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
+  # config.log_level = :debug
 
 
   # Use a different logger for distributed setups
@@ -31,7 +38,7 @@ FootballKharkov::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = true
+  # config.serve_static_assets = true
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -42,6 +49,20 @@ FootballKharkov::Application.configure do
   # Enable threaded mode
   # config.threadsafe!
 
+  # Enable Rack::Cache to put a simple HTTP cache in front of your application
+  # Add `rack-cache` to your Gemfile before enabling this.
+  # For large-scale production use, consider using a caching reverse proxy like
+  # NGINX, varnish or squid.
+  # config.action_dispatch.rack_cache = true
+
+  # Disable serving static files from the `/public` folder by default since
+  # Apache or NGINX already handles this.
+  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = :uglifier
+  # config.assets.css_compressor = :sass
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
@@ -50,7 +71,7 @@ FootballKharkov::Application.configure do
   config.active_support.deprecation = :notify
 
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  # config.assets.compress = true
 
   # Choose the compressors to use
   # config.assets.js_compressor  = :uglifier
@@ -64,11 +85,18 @@ FootballKharkov::Application.configure do
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
+  # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
+
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( admin/application.css admin/admin.css user.css itleague_draw.js itleague_draw.css admin/temp.js jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js extensions.js)
-  config.assets.precompile += %w( /vendor/assets/images/default/**/*.gif)
-  config.assets.precompile += ['jquery.js', 'jquery.min.js']
+  # config.assets.precompile += %w( admin/application.css admin/admin.css user.css itleague_draw.js itleague_draw.css admin/temp.js jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js extensions.js)
+  # config.assets.precompile += %w( /vendor/assets/images/default/**/*.gif)
+  # config.assets.precompile += ['jquery.js', 'jquery.min.js']
+
+  # Do not dump schema after migrations.
+  config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { :host => 'football.kharkov.ua' }
   config.action_mailer.delivery_method = :smtp

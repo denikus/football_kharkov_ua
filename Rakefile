@@ -14,4 +14,5 @@ module ::RakeFileUtils
   extend Rake::FileUtilsExt
 end
 
-FootballKharkov::Application.load_tasks
+# FootballKharkov::Application.load_tasks
+Rails.application.load_tasks
