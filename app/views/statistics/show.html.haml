@@ -1,0 +1,12 @@
+%h1= 'Статистика'
+
+- @seasons.each do |season|
+  %h3= season.name
+  %p
+    %ul
+      - season.stages.each do |stage|
+        - stage.tours.each do |tour|
+          - tour.schedules.each do |schedule|
+            %li= "#{Team.find(schedule.host_team_id).name} #{schedule.host_scores} - #{schedule.guest_scores} #{Team.find(schedule.guest_team_id).name}"
+
+

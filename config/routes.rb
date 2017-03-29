@@ -153,6 +153,8 @@ FootballKharkov::Application.routes.draw do
     resources :matches, :only => ["show", "index"]
   end
 
+  resource :statistic
+
   root :to => "blog#index"
 
   match '/auth/:provider/:action' => 'oauth_provider', :as => "oauth_provider"

@@ -7,7 +7,7 @@ class Admin::ClaimsController < ApplicationController
     tournament = Tournament.find_by_name('IT-Лига')
     last_season = StepSeason.where(:tournament_id => tournament.id).order("created_at ASC").last
 
-    ap response = HTTParty.get(URI.escape("https://onetwoteam.com/api/v1/teams/tournament/itleague.json"))
+     response = HTTParty.get(URI.escape("https://onetwoteam.com/api/v1/teams/tournament/itleague.json"))
 
     @teams = response["data"]
 
@@ -27,7 +27,7 @@ class Admin::ClaimsController < ApplicationController
   def show
     # @team = Team.find(params[:id])
 
-    ap response = HTTParty.get(URI.escape("https://onetwoteam.com/api/v1/claims/#{params[:id]}/tournament/itleague.json"))
+     response = HTTParty.get(URI.escape("https://onetwoteam.com/api/v1/claims/#{params[:id]}/tournament/itleague.json"))
 
     if response["data"].blank?
       redirect_to action: :index
@@ -102,7 +102,7 @@ class Admin::ClaimsController < ApplicationController
   def add_merge_player
     # create footballer
     @team = Team.find_by_ott_uid(params[:claim_id])
-    ap response = HTTParty.get(URI.escape("https://onetwoteam.com/api/v1/claims/#{params[:claim_id]}/player.json?player_id=#{params[:ott_player_id]}"))
+     response = HTTParty.get(URI.escape("https://onetwoteam.com/api/v1/claims/#{params[:claim_id]}/player.json?player_id=#{params[:ott_player_id]}"))
 
     args = {first_name: response["first_name"], last_name: response["last_name"], ott_uid: params[:ott_player_id]}
     args.merge!({patronymic: response["patronymic"]}) unless response["patronymic"].blank?
