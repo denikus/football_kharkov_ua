@@ -118,6 +118,8 @@ class Admin::TempController < ApplicationController
 
   def create
 
+    cookies[:schedule_tour_id] = params[:schedule][:tour_id]
+
     stage = StepStage.find(:first,
                              :joins => "INNER JOIN steps_phases ON (steps_phases.step_id = steps.id AND steps.type='StepStage')",
                              :conditions => ["steps_phases.phase_id = ? ", params[:schedule][:tour_id]]
