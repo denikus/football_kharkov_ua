@@ -26,15 +26,15 @@
     :javascript
       VK.init({apiId: 2861845, onlyWidgets: true});
     
-    %script{:type=>"text/javascript", :src=>"http://vkontakte.ru/js/api/share.js?11", :charset=>"windows-1251"}
+    -#%script{:type=>"text/javascript", :src=>"http://vkontakte.ru/js/api/share.js?11", :charset=>"windows-1251"}
         
     %h4
       Понравилось? Не ограничивайте себя в кликах!</h4>
     %ul
-      %li
-        #vk_like
-        %script{:type=>"text/javascript"}
-          VK.Widgets.Like("vk_like", {type: "button"});
+      -#%li
+      -#  #vk_like
+      -#  %script{:type=>"text/javascript"}
+      -#    VK.Widgets.Like("vk_like", {type: "button"});
       %li
         %a{:href=>"https://twitter.com/share", :"data-url"=>"#{post.short_url}", :class=>"twitter-share-button", :"data-count"=>"horizontal", :"data-via"=>"footballkharkov", :"data-lang"=>"ru"}
           "Твитнуть"
