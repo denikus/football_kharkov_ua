@@ -7,38 +7,38 @@
 .singleArticle
   = raw Hpricot(full_article(post.resource.body) ).to_html
 
-/ AddThis Button BEGIN
-%div{ :id => "letsShare", :class => "letsShare clearfix"}
-  %noindex
-    #fb-root
-    :javascript
-      (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
-          fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-    = javascript_include_tag "http://userapi.com/js/api/openapi.js?48"
-
-
-    -#:javascript
-    -#  VK.init({apiId: 2861845, onlyWidgets: true});
-    
-    -#%script{:type=>"text/javascript", :src=>"http://vkontakte.ru/js/api/share.js?11", :charset=>"windows-1251"}
-        
-    %h4
-      Понравилось? Не ограничивайте себя в кликах!</h4>
-    %ul
-      -#%li
-      -#  #vk_like
-      -#  %script{:type=>"text/javascript"}
-      -#    VK.Widgets.Like("vk_like", {type: "button"});
-      %li
-        %a{:href=>"https://twitter.com/share", :"data-url"=>"#{post.short_url}", :class=>"twitter-share-button", :"data-count"=>"horizontal", :"data-via"=>"footballkharkov", :"data-lang"=>"ru"}
-          "Твитнуть"
-        %script{:type=>"text/javascript", :src=>"//platform.twitter.com/widgets.js"}  
-      %li
-        .fb-like{:"data-send" => "true", :"data-layout" => "button_count", :"data-width" => "200", :"data-show-faces" => "true"}
-/ AddThis Button END
+-#/ AddThis Button BEGIN
+-#%div{ :id => "letsShare", :class => "letsShare clearfix"}
+-#  %noindex
+-#    #fb-root
+-#    :javascript
+-#      (function(d, s, id) {
+-#          var js, fjs = d.getElementsByTagName(s)[0];
+-#          if (d.getElementById(id)) {return;}
+-#          js = d.createElement(s); js.id = id;
+-#          js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
+-#          fjs.parentNode.insertBefore(js, fjs);
+-#      }(document, 'script', 'facebook-jssdk'));
+-#
+-#    = javascript_include_tag "http://userapi.com/js/api/openapi.js?48"
+-#
+-#
+-#    -#:javascript
+-#    -#  VK.init({apiId: 2861845, onlyWidgets: true});
+-#
+-#    -#%script{:type=>"text/javascript", :src=>"http://vkontakte.ru/js/api/share.js?11", :charset=>"windows-1251"}
+-#
+-#    %h4
+-#      Понравилось? Не ограничивайте себя в кликах!</h4>
+-#    %ul
+-#      -#%li
+-#      -#  #vk_like
+-#      -#  %script{:type=>"text/javascript"}
+-#      -#    VK.Widgets.Like("vk_like", {type: "button"});
+-#      %li
+-#        %a{:href=>"https://twitter.com/share", :"data-url"=>"#{post.short_url}", :class=>"twitter-share-button", :"data-count"=>"horizontal", :"data-via"=>"footballkharkov", :"data-lang"=>"ru"}
+-#          "Твитнуть"
+-#        %script{:type=>"text/javascript", :src=>"//platform.twitter.com/widgets.js"}
+-#      %li
+-#        .fb-like{:"data-send" => "true", :"data-layout" => "button_count", :"data-width" => "200", :"data-show-faces" => "true"}
+-#/ AddThis Button END
