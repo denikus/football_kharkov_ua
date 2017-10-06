@@ -36,8 +36,10 @@ class Api::V1::SchedulesController < Api::V1::BaseController
         season_name: item.season_name,
         league_name: item.league_name,
         host_team_name: item.hosts.name,
+        host_team_uid: item.hosts.ott_uid,
         host_scores: item.host_scores,
         guest_team_name: item.guests.name,
+        guest_team_uid: item.guests.ott_uid,
         guest_scores: item.guest_scores
       }
     }
