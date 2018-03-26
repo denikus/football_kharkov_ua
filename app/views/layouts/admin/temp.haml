@@ -11,8 +11,9 @@
     = javascript_include_tag "jquery-plugins/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js"
     = javascript_include_tag "extensions"
 
-    = stylesheet_link_tag "/javascripts/jquery-plugins/jquery-ui-1.8.4.custom/css/redmond/jquery-ui-1.8.4.custom.css"
     = stylesheet_link_tag "admin/admin.css"
+    -#= stylesheet_link_tag "/javascripts/jquery-plugins/jquery-ui-1.8.4.custom/css/redmond/jquery-ui-1.8.4.custom.css"
+
     = csrf_meta_tag
     = yield :head_declarations
     -#authenticity_token = "#{form_authenticity_token}";
