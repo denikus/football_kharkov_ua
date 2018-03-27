@@ -15,4 +15,22 @@ namespace :export do
       end
     end
   end
+
+  task users: :environment do
+    # create csv file
+    CSV.open("users.csv", "w") do |csv|
+
+      # form file headings
+      csv << %w{id username email enabled created_at updated_at encrypted_password password_salt confirmation_token
+                confirmed_at confirmation_sent_at reset_password_token remember_created_at sign_in_count current_sign_in_at
+                last_sign_in_at current_sign_in_ip last_sign_in_ip unconfirmed_email reset_password_sent_at }
+
+      # Select All posts
+      User.find_each do |user|
+        csv << [user.id, user.username, user.email, user.enabled, user.created_at, user.updated_at, user.encrypted_password, user.password_salt, user.confirmation_token,
+        user.confirmed_at, user.confirmation_sent_at, user.reset_password_token, user.remember_created_at, user.sign_in_count, user.current_sign_in_at,
+        user.last_sign_in_at, user.current_sign_in_ip, user.last_sign_in_ip, user.unconfirmed_email, user.reset_password_sent_at]
+      end
+    end
+  end
 end
