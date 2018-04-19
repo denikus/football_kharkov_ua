@@ -68,4 +68,17 @@ namespace :export do
       end
     end
   end
+
+  task steps_phases: :environment do
+    items = ActiveRecord::Base.connection.execute('SELECT * FROM steps_phases')
+
+    CSV.open('db/export/steps_phases.csv', 'w') do |csv|
+      csv << %w{step_id phase_id}
+
+      # create export csv
+      items.each do |item|
+        csv << [item["step_id"], item["phase_id"]]
+      end
+    end
+  end
 end
