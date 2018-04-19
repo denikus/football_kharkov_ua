@@ -57,4 +57,15 @@ namespace :export do
       end
     end
   end
+
+  task venues: :environment do
+    CSV.open('db/export/venues.csv', 'w') do |csv|
+      csv << %w{id name short_name url icon created_at updated_at page_content page_title}
+
+      # create export csv
+      Venue.find_each do |item|
+        csv << [item.id, item.name, item.short_name, item.url, item.icon, item.created_at, item.updated_at, item.page_content, item.page_title]
+      end
+    end
+  end
 end
