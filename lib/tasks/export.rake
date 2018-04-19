@@ -45,6 +45,16 @@ namespace :export do
         csv << [item.id, item.type, item.tournament_id, item.identifier, item.name, item.url, item.created_at, item.updated_at, item.short_name]
       end
     end
+  end
 
+  task teams: :environment do
+    CSV.open('db/export/teams.csv', 'w') do |csv|
+      csv << %w{id name url created_at updated_at ott_uid ott_path}
+
+      # create export csv
+      Team.find_each do |item|
+        csv << [item.id, item.name, item.url, item.created_at, item.updated_at, item.ott_uid, item.ott_path]
+      end
+    end
   end
 end
