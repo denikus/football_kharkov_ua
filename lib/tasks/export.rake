@@ -33,4 +33,18 @@ namespace :export do
       end
     end
   end
+
+  task steps: :environment do
+
+    CSV.open('db/export/steps.csv', 'w') do |csv|
+
+      csv << %w{id type tournament_id identifier name url created_at updated_at short_name}
+
+      # create export csv
+      Step.where(tournament_id: 1).find_each do |item|
+        csv << [item.id, item.type, item.tournament_id, item.identifier, item.name, item.url, item.created_at, item.updated_at, item.short_name]
+      end
+    end
+
+  end
 end
