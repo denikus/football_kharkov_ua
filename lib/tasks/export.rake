@@ -156,5 +156,17 @@ namespace :export do
     end
   end
 
+  task matches_referees: :environment do
+    items = ActiveRecord::Base.connection.execute('SELECT * FROM matches_referees')
+
+    CSV.open('db/export/matches_referees.csv', 'w') do |csv|
+      csv << %w{match_id referee_id}
+
+      # create export csv
+      items.each do |item|
+        csv << [item["match_id"], item["referee_id"]]
+      end
+    end
+  end
 
 end
