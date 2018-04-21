@@ -142,7 +142,7 @@ namespace :export do
       csv << %w{id created_at updated_at schedule_id}
 
 
-      StepProperty.find_each do |item|
+      Match.find_each do |item|
 
         next if item.schedule.league_id.blank?
 
