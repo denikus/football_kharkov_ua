@@ -124,4 +124,17 @@ namespace :export do
     end
   end
 
+
+  task step_properties: environment do
+    CSV.open('db/export/step_properties.csv', 'w') do |csv|
+      csv << %w{id step_id property_name property_value}
+
+      # create export csv
+      StepProperty.find_each do |item|
+        csv << [item.id, item.step_id, item.property_name, item.property_value]
+      end
+    end
+  end
+
+
 end
