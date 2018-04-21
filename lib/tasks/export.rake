@@ -137,4 +137,24 @@ namespace :export do
   end
 
 
+  task matches: :environment do
+    CSV.open('db/export/matches.csv', 'w') do |csv|
+      csv << %w{id created_at updated_at schedule_id}
+
+
+      StepProperty.find_each do |item|
+
+        next if item.schedule.league_id.blank?
+
+        league = StepLeague.find(item.schedule.league_id)
+
+        if league.stage.season.tournament_id == 1
+          csv << [item.id, item.step_id, item.property_name, item.property_value]
+        end
+      end
+
+    end
+  end
+
+
 end
