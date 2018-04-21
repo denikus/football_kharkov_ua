@@ -94,4 +94,21 @@ namespace :export do
       end
     end
   end
+
+  task schedules: :environment do
+    CSV.open('db/export/schedules.csv', 'w') do |csv|
+      csv << %w{id venue_id match_on match_at host_team_id guest_team_id created_at updated_at host_scores guest_scores league_id tour_id}
+
+      # create export csv
+      Schedule.find_each do |item|
+
+        next if item.league_id.blank?
+        
+        league = StepLeague.find(item.league_id)
+        if league.stage.season.tournament_id == 1
+          csv << [item.id, item.venue_id, item.match_on, item.match_at, item.host_team_id, item.guest_team_id, item.created_at, item.updated_at, item.host_scores, item.guest_scores, item.league_id, item.tour_id]
+        end
+      end
+    end
+  end
 end
