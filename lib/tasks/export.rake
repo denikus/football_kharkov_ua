@@ -103,7 +103,7 @@ namespace :export do
       Schedule.find_each do |item|
 
         next if item.league_id.blank?
-        
+
         league = StepLeague.find(item.league_id)
         if league.stage.season.tournament_id == 1
           csv << [item.id, item.venue_id, item.match_on, item.match_at, item.host_team_id, item.guest_team_id, item.created_at, item.updated_at, item.host_scores, item.guest_scores, item.league_id, item.tour_id]
@@ -111,4 +111,17 @@ namespace :export do
       end
     end
   end
+
+  task referees: :environment do
+    CSV.open('db/export/referees.csv', 'w') do |csv|
+
+      csv << %w{id user_id first_name last_name patronymic birth_date created_at updated_at}
+
+      # create export csv
+      Referee.find_each do |item|
+        csv << [item.id, item.user_id, item.first_name, item.last_name, item.patronymic, item.birth_date, item.created_at, item.updated_at]
+      end
+    end
+  end
+
 end
