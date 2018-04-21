@@ -125,7 +125,7 @@ namespace :export do
   end
 
 
-  task step_properties: environment do
+  task step_properties: :environment do
     CSV.open('db/export/step_properties.csv', 'w') do |csv|
       csv << %w{id step_id property_name property_value}
 
