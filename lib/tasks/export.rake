@@ -174,7 +174,7 @@ namespace :export do
       csv << %w{id match_id side team_id score fouls}
 
       # create export csv
-      Competitors.find_each do |item|
+      Competitor.find_each do |item|
         csv << [item.id, item.match_id, item.side, item.team_id, item.score, item.fouls]
       end
     end
