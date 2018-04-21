@@ -149,7 +149,7 @@ namespace :export do
         league = StepLeague.find(item.schedule.league_id)
 
         if league.stage.season.tournament_id == 1
-          csv << [item.id, item.step_id, item.property_name, item.property_value]
+          csv << [item.id, item.created_at, item.updated_at, item.schedule_id]
         end
       end
 
