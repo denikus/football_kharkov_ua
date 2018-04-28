@@ -191,4 +191,15 @@ namespace :export do
     end
   end
 
+  task football_players: :environment do
+    CSV.open('db/export/footballer_players.csv', 'w') do |csv|
+      csv << %w{id competitor_id footballer_id number}
+
+      # create export csv
+      FootballPlayer.find_each do |item|
+        csv << [item.id, item.competitor_id, item.footballer_id, item.number]
+      end
+    end
+  end
+
 end
