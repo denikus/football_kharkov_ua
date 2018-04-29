@@ -213,6 +213,16 @@ namespace :export do
     end
   end
 
+  task league_tags: :environment do
 
+    CSV.open('db/export/league_tags.csv', 'w') do |csv|
+      csv << %w{id step_season_id name created_at updated_at}
+
+      # create export csv
+      LeagueTag.find_each do |item|
+        csv << [item.id, item.step_season_id, item.name, item.created_at, item.updated_at]
+      end
+    end
+  end
 
 end
