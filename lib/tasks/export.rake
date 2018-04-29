@@ -258,5 +258,17 @@ namespace :export do
     end
   end
 
+  task stats: :environment do
+    CSV.open('db/export/stats.csv', 'w') do |csv|
+      csv << %w{id statable_id statable_type name value}
+
+      # create export csv
+      Stat.find_each do |item|
+        csv << [item.id item.statable_id item.statable_type item.name item.value]
+      end
+    end
+  end
+
+
 
 end
