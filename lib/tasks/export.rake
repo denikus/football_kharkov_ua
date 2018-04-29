@@ -264,7 +264,7 @@ namespace :export do
 
       # create export csv
       Stat.find_each do |item|
-        csv << [item.id item.statable_id item.statable_type item.name item.value]
+        csv << [item.id, item.statable_id, item.statable_type, item.name, item.value]
       end
     end
   end
