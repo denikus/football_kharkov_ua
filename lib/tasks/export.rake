@@ -207,7 +207,7 @@ namespace :export do
       csv << %w{footballer_id team_id step_id}
 
       # create export csv
-      FootballersTeam.order("footballer_id").find_each do |item|
+      FootballersTeam.order("footballers_teams.footballer_id").find_each do |item|
         csv << [item.footballer_id, item.team_id, item.step_id]
       end
     end
