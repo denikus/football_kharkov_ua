@@ -230,7 +230,7 @@ namespace :export do
       csv << %w{id step_league_id league_tag_id created_at updated_at}
 
       # create export csv
-      LeaguesLeagueTag.find_each do |item|
+      LeaguesLeagueTags.find_each do |item|
         csv << [item.id, item.step_league_id, item.league_tag_id, item.created_at, item.updated_at]
       end
     end
